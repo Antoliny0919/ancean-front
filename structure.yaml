@@ -1,0 +1,64 @@
+├─ .husky # git hooks(if commit eslint, prettier process auto)
+│  └─_
+├─ api  # set of api for HTTP with backend
+│  ├─ client.js # axios object
+│  └─ auth.js # api related with file name
+│
+│
+├─ components # (Global) -> common, (Local) -> create page by page Ex) signin, signup
+│  ├─ common # (Global) <1>
+│  ├─ signin # (Local) <2>
+│  └─ signup # (Local) <2>
+│      ├─ data.jsx # static data
+│      # (Main, Body, Footer) --> page structure(large range)
+│      ├─ SignUpMain.jsx 
+│      ├─ SignUpBody.jsx
+│      └─ SignUpFooter.jsx
+│
+│
+│
+├─ pages # route
+│  
+├─ public # img
+│ 
+├─ redux # reducer, wrapper
+│
+└─ styles # global styles --> Ex) theme, font
+
+common # <1> set of Global Components
+├─ sign # only used in certain page --> Ex) sign(signUp, signIn)
+│    ├─ containers
+│    └─ modules
+│
+├─ Button.jsx # use this button components all pages
+├─ CenterTemplate.jsx
+└─ FadeInEffect.jsx
+
+signup # <2> set of Local Components
+├─ containers # <3>
+├─ items # <4>
+├─ modules # <5>
+└─ process # <6>
+
+################
+base signup page
+################
+
+containers  # <3> (wrapped styled-components with logic)
+├─ AgreeStateContainer.jsx
+├─ ProcessContainer.jsx
+└─ ...
+
+items # <4> (styled-components --> One Element to be used on the current page)
+├─ ChangeProcessBtn.jsx
+├─ SignRadioInput.jsx
+└─ ...
+
+modules # <5> (redux object)
+├─ process.js
+└─ ... 
+
+process # <6> (set of components that you think need to be separate from the current page --> naming free)
+├─ EmailAuth.jsx
+├─ IDandPW.jsx
+└─ ...
