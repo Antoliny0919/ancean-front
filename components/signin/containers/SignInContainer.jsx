@@ -1,20 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn } from '../../common/sign/modules/auth';
-import SignInBody from '../SignInBody';
+import { signin } from '../../common/sign/modules/signinAuth';
+import Button from '../../common/Button';
 
 export default function SignInContainer() {
   const dispatch = useDispatch();
 
-  const { form, auth } = useSelector(({ sign, auth }) => ({
-    form: sign['signin']['form'],
-    auth: auth.signIn,
+  const { form } = useSelector(({ field }) => ({
+    form: field['signin']['form'],
   }));
 
   const onLogin = (e) => {
     e.preventDefault();
-    const { id, password } = form;
-    dispatch(signIn({ id, password }));
+    const { email, password } = form;
+    dispatch(signin({ email, password }));
   };
 
-  return <SignInBody onLogin={onLogin} authError={auth.authError} />;
+  return <Button onClick={onLogin} fontSize={18}>로그인</Button>
 }

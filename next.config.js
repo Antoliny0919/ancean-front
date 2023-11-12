@@ -4,9 +4,7 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
-  nextConfig: {
-    output: 'standalone',
-  },
+  output: 'standalone',
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
       poll: 1000,

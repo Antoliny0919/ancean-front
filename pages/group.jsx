@@ -4,7 +4,7 @@ export default function Test() {
   const [users, setUsers] = useState(false);
 
   const showUser = async () => {
-    let response = await fetch('http://localhost:6060/api/users/');
+    let response = await fetch('http://localhost:5050/api/users/');
     let data = await response.json();
     setUsers(data);
   };
@@ -20,9 +20,8 @@ export default function Test() {
         users.map((user, index) => {
           return (
             <div key={index}>
-              <h1>{user.username}</h1>
-              <h1>{user.age}</h1>
-              <h1>{user.information}</h1>
+              <h1>{user.email}</h1>
+              <h1>{user.introduce}</h1>
               <br></br>
             </div>
           );

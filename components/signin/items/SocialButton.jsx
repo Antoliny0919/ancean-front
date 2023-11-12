@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const StyledSocialButtonCover = styled.div`
+const StyledSocialButtonCover = styled(Link)`
   --google-symbol: #dcaeae;
   --github-symbol: #565656;
   --kakao-symbol: #4b2d11;
@@ -37,7 +37,7 @@ const StyledSocialButtonCover = styled.div`
   }
 `;
 
-const StyledSocialButton = styled(Link)`
+const StyledSocialButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,8 +57,8 @@ const StyledSocialButton = styled(Link)`
 
 export default function SocialButton({ logo, title, className, href }) {
   return (
-    <StyledSocialButtonCover className={className}>
-      <StyledSocialButton className={className} href={href}>
+    <StyledSocialButtonCover className={className} href={href}>
+      <StyledSocialButton className={className}>
         {logo}
       </StyledSocialButton>
       <span>{title}</span>

@@ -22,6 +22,10 @@ const initialState = {
       email: '',
       password: '',
     },
+    annotation: {
+      email: '',
+      password: ''
+    }
   },
 };
 

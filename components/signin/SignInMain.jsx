@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import CenterTemplate from '../common/CenterTemplate';
 import InputContainer from '../common/sign/containers/InputContainer';
-import Button from '../common/Button';
+import SignInContainer from './containers/SignInContainer'
 import SignInSocial from './SignInSocial';
 import { FIELD_DATA } from './data';
 
@@ -67,7 +67,7 @@ export default function SignInMain() {
               );
             })}
           </StyledInputArea>
-          <Button fontSize={18}>로그인</Button>
+          <SignInContainer/>
         </StyledSignInForm>
         <StyledDivideSocialLine>
           <span className="divide-line"></span>
