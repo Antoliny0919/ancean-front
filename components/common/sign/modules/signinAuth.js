@@ -18,16 +18,14 @@ const initialState = {
 const authSlice = createSlice({
   name: 'signinAuth',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(
       signin.fulfilled,
-      ( state, { payload: { access_token, refresh_token } }) => {
+      (state, { payload: { refresh, access } }) => {
         const cookies = new Cookies();
-        cookies.set('access_token', access_token);
-        cookies.set('refresh_token', refresh_token);
-        console.log(1);
+        cookies.set('access_token', access);
+        cookies.set('refresh_token', refresh);
         state.auth = true;
         state.authError = null;
       },
