@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { signin, changeMessage } from '../../common/sign/modules/signinAuth';
 import InputContainer from '../../common/sign/containers/InputContainer';
@@ -6,6 +7,8 @@ import Annotation from '../../common/sign/Annotation';
 import { FIELD_DATA } from '../data';
 
 export default function SignInContainer() {
+  const router = useRouter();
+
   const dispatch = useDispatch();
 
   const { form, message } = useSelector(({ field, signinAuth }) => ({
@@ -22,12 +25,18 @@ export default function SignInContainer() {
     e.preventDefault();
     const { email, password } = form;
     for (const field of Object.keys(form)) {
+      // if filed value is blank show error message and focus input
       if (!form[field]) {
         dispatch(changeMessage(`${toKorean[field]}을/를 입력해 주세요.`));
         return;
       }
     }
-    dispatch(signin({ email, password }));
+    // if signin success redirect homepage
+    dispatch(signin({ email, password })).then((res) => {
+      if (!res.error) {
+        router.push('/');
+      }
+    });
   };
 
   return (
