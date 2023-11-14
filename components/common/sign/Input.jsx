@@ -4,10 +4,7 @@ const StyledSignInputSet = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-
-  & + & {
-    margin: 2.5rem 0rem;
-  }
+  margin: 1rem 0rem;
 `;
 
 const filledText = css`

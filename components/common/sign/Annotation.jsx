@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledAnnotation = styled.div`
+  height: 1rem;
   font-size: 14px;
   padding-left: 0.3rem;
   &.success {

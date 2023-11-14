@@ -18,7 +18,11 @@ const initialState = {
 const authSlice = createSlice({
   name: 'signinAuth',
   initialState,
-  reducers: {},
+  reducers: {
+    changeMessage: (state, action) => {
+      state.authError = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       signin.fulfilled,
@@ -36,5 +40,7 @@ const authSlice = createSlice({
     });
   },
 });
+
+export const { changeMessage } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { signin } from '../../common/sign/modules/signinAuth';
+import { signin, changeMessage } from '../../common/sign/modules/signinAuth';
 import InputContainer from '../../common/sign/containers/InputContainer';
 import Button from '../../common/Button';
 import Annotation from '../../common/sign/Annotation';
@@ -13,9 +13,20 @@ export default function SignInContainer() {
     message: signinAuth.authError,
   }));
 
+  const toKorean = {
+    email: '이메일',
+    password: '비밀번호',
+  };
+
   const onLogin = (e) => {
     e.preventDefault();
     const { email, password } = form;
+    for (const field of Object.keys(form)) {
+      if (!form[field]) {
+        dispatch(changeMessage(`${toKorean[field]}을/를 입력해 주세요.`));
+        return;
+      }
+    }
     dispatch(signin({ email, password }));
   };
 
