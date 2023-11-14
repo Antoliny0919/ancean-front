@@ -18,6 +18,6 @@ export const theme = {
       success: '#276C27',
       fail: '#bd2d2d',
       warning: '#D27E30',
-    }
+    },
   },
 };

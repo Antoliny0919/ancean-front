@@ -30,11 +30,9 @@ const authSlice = createSlice({
         state.authError = null;
       },
     );
-    builder.addCase(signin.rejected, (state, action) => {
-      console.log('rejected');
-      console.log(action);
+    builder.addCase(signin.rejected, (state) => {
       state.auth = null;
-      state.authError = '로그인 실패';
+      state.authError = '입력과 일치하는 계정이 존재하지 않습니다.';
     });
   },
 });

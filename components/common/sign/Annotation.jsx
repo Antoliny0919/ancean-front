@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 const StyledAnnotation = styled.div`
-  font-size: 13px;
+  font-size: 14px;
   padding-left: 0.3rem;
-  .success {
+  &.success {
     color: ${({ theme }) => theme.colors.state.success};
   }
-  .warning {
-    color: ${({theme}) => theme.colors.state.fail};
+  &.warning {
+    color: ${({ theme }) => theme.colors.state.fail};
   }
-  .fail {
+  &.fail {
     color: ${({ theme }) => theme.colors.state.fail};
   }
 `;

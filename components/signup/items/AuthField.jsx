@@ -7,7 +7,7 @@ const StyledField = styled.div`
   & + & {
     margin-top: 2rem;
   }
-`
+`;
 
 const StyledAuthField = styled.div`
   display: flex;

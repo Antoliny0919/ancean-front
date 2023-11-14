@@ -24,8 +24,8 @@ const initialState = {
     },
     annotation: {
       email: '',
-      password: ''
-    }
+      password: '',
+    },
   },
 };
 

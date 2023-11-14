@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import CenterTemplate from '../common/CenterTemplate';
-import InputContainer from '../common/sign/containers/InputContainer';
 import SignInContainer from './containers/SignInContainer';
 import SignInSocial from './SignInSocial';
-import { FIELD_DATA } from './data';
 
 const StyledSignInArea = styled.div`
   display: flex;
@@ -51,16 +49,6 @@ export default function SignInMain() {
       <StyledSignInArea>
         <h1>로그인 페이지</h1>
         <StyledSignInForm>
-          {FIELD_DATA.map((data, index) => {
-            return (
-              <InputContainer
-                key={index}
-                step="signin"
-                inputData={data}
-                width={25}
-              ></InputContainer>
-            );
-          })}
           <SignInContainer />
         </StyledSignInForm>
         <StyledDivideSocialLine>

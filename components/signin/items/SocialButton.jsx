@@ -58,9 +58,7 @@ const StyledSocialButton = styled.div`
 export default function SocialButton({ logo, title, className, href }) {
   return (
     <StyledSocialButtonCover className={className} href={href}>
-      <StyledSocialButton className={className}>
-        {logo}
-      </StyledSocialButton>
+      <StyledSocialButton className={className}>{logo}</StyledSocialButton>
       <span>{title}</span>
     </StyledSocialButtonCover>
   );

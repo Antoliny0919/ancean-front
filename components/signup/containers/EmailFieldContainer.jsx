@@ -19,18 +19,23 @@ export default function EmailFieldContainer() {
 
   const dispatch = useDispatch();
 
-  const { emailInput, authcodeInput, authcode, isAuthed, emailAnnotation, authcodeAnnotation } = useSelector(
-    ({ field, signupAuth }) => {
-      return {
-        emailInput: field[STEP][FORM]['email'],
-        authcodeInput: field[STEP][FORM]['authcode'],
-        authcode: signupAuth.authcode,
-        isAuthed: signupAuth.auth,
-        emailAnnotation: field[STEP][ANNOTATION]['email'],
-        authcodeAnnotation: field[STEP][ANNOTATION]['authcode'],
-      };
-    },
-  );
+  const {
+    emailInput,
+    authcodeInput,
+    authcode,
+    isAuthed,
+    emailAnnotation,
+    authcodeAnnotation,
+  } = useSelector(({ field, signupAuth }) => {
+    return {
+      emailInput: field[STEP][FORM]['email'],
+      authcodeInput: field[STEP][FORM]['authcode'],
+      authcode: signupAuth.authcode,
+      isAuthed: signupAuth.auth,
+      emailAnnotation: field[STEP][ANNOTATION]['email'],
+      authcodeAnnotation: field[STEP][ANNOTATION]['authcode'],
+    };
+  });
 
   const loadGetAuthcode = (e) => {
     e.preventDefault();
