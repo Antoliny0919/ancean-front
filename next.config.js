@@ -4,6 +4,7 @@ module.exports = {
   compiler: {
     styledComponents: true,
   },
+  reactStrictMode: false,
   output: 'standalone',
   webpackDevMiddleware: (config) => {
     config.watchOptions = {

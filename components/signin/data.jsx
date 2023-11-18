@@ -17,7 +17,7 @@ export const SOCIAL_LOGIN_DATA = [
   },
   {
     logo: <SiKakao />,
-    href: 'https://kauth.kakao.com/oauth/authorize?client_id=22c13075453c19d0d6a1d8e303df37c2&redirect_uri=http://localhost:5050/api/oauth/kakao&response_type=code',
+    href: 'https://kauth.kakao.com/oauth/authorize?client_id=22c13075453c19d0d6a1d8e303df37c2&redirect_uri=http://localhost:3030/oauth/kakao&response_type=code',
     className: 'kakao',
     title: '카카오로 로그인하기',
   },

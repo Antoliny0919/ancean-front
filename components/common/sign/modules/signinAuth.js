@@ -10,6 +10,15 @@ export const signin = createAsyncThunk(
   },
 );
 
+export const oauthSignin = createAsyncThunk(
+  'auth/oauthSignin',
+  async ({ social, code }) => {
+    const response = await authAPI.oauthSignin({ social, code });
+    console.log(response);
+    return response.data;
+  },
+);
+
 const initialState = {
   auth: null,
   authError: null,
