@@ -11,8 +11,9 @@ export default function Social() {
   useEffect(() => {
     if (!social && !code) return;
     dispatch(oauthSignin({ social, code })).then((res) => {
-      // oauth login success and client already yet register
-      if (!res.error && res.payload.token) {
+      // oauth login success and client already register
+      console.log(res);
+      if (!res.error && res.payload.user) {
         router.push('/');
       } else {
         // oauth login success but client does not register yet

@@ -42,10 +42,15 @@ const signFieldSlice = createSlice({
       const form = state[step]['form'];
       form[input.name] = input.value;
     },
-    fillOauthEmail: (state, { payload }) => {
-      console.log(payload);
-      const signupEmail = state['signup']['form'];
-      signupEmail['email'] = payload;
+    // Ex) use unregistred Oauth user
+    fillInputandAnnotation: (
+      state,
+      { payload: { name, value, annotation } },
+    ) => {
+      const signupForm = state['signup']['form'];
+      const signupAnnotation = state['signup']['annotation'];
+      signupForm[name] = value;
+      signupAnnotation[name] = annotation;
     },
     changeAnnotation: (state, { payload: { step, name, value } }) => {
       const annotation = state[step]['annotation'];
@@ -56,9 +61,8 @@ const signFieldSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(HYDRATE, (state) => {
-      console.log(state);
-      return { ...state };
+    builder.addCase(HYDRATE, (state, actions) => {
+      return { ...state, ...actions.payload };
     });
   },
 });
@@ -66,7 +70,7 @@ const signFieldSlice = createSlice({
 export const {
   resetInput,
   changeInput,
-  fillOauthEmail,
+  fillInputandAnnotation,
   changeAnnotation,
   clearAuthcodeInput,
 } = signFieldSlice.actions;

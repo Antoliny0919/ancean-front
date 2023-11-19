@@ -11,13 +11,6 @@ export default function InputContainer({ step, inputData, width, ...rest }) {
     ({ field }) => field[step]['annotation'][inputData.name],
   );
 
-  // const { value, annotation } = useSelector(({ field }) => {
-  //   return {
-  //     value: field[step]['form'][inputData.name],
-  //     annotation: field[step]['annotation'][inputData.name],
-  //   };
-  // });
-
   const changeInputValue = (e) =>
     dispatch(
       changeInput({

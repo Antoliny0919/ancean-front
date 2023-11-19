@@ -1,6 +1,12 @@
 import wrapper from '@/redux';
+// import { useCookies } from 'react-cookie';
 
 export default function Home(props) {
+  // const [ cookies, setCookies ] = useCookies('name');
+
+  // setCookies('name', 'helloWorld');
+  // console.log(cookies);
+
   return (
     <>
       <h1>hello world</h1>
