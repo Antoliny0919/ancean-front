@@ -46,9 +46,6 @@ const authSlice = createSlice({
       state.auth = null;
       state.authError = '입력과 일치하는 계정이 존재하지 않습니다.';
     });
-    builder.addCase(oauthSignin.fulfilled, (state, { payload }) => {
-      sessionStorage.setItem('oauth', payload.email);
-    });
   },
 });
 

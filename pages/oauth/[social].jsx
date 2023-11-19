@@ -11,8 +11,13 @@ export default function Social() {
   useEffect(() => {
     if (!social && !code) return;
     dispatch(oauthSignin({ social, code })).then((res) => {
-      if (!res.error) {
+      // oauth login success and client already yet register
+      if (!res.error && res.payload.token) {
+        router.push('/');
+      } else {
+        // oauth login success but client does not register yet
         router.push('/member/signup');
+        sessionStorage.setItem('oauth', res.payload.email);
       }
     });
   }, [social]);
