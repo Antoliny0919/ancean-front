@@ -19,7 +19,7 @@ export default function Social() {
 
   return (
     <>
-      <div>hello</div>
+      <div>{social}</div>
     </>
   );
 }
