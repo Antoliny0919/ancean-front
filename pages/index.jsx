@@ -1,15 +1,6 @@
-import Link from 'next/link';
+import wrapper from '@/redux';
 
-export default function Home() {
-  const path =
-    'https://kauth.kakao.com/oauth/authorize?client_id=22c13075453c19d0d6a1d8e303df37c2&redirect_uri=http://localhost:5050/api/oauth/kakao&response_type=code';
-
-  const oauthTest = async () => {
-    const response = await fetch(
-      'https://kauth.kakao.com/oauth/authorize?client_id=22c13075453c19d0d6a1d8e303df37c2&redirect_uri=http://localhost:5050/api/oauth/kakao&response_type=code',
-    );
-    console.log(response.data);
-  };
+export default function Home(props) {
   return (
     <>
       <h1>hello world</h1>
@@ -17,8 +8,17 @@ export default function Home() {
       <h1>hello world</h1>
       <h1>hello world</h1>
       <h1>폰트 테스트</h1>
-      <Link href={path}>오어스 테트</Link>
-      <button onClick={oauthTest}>오어스 테스트</button>
+      <h1>{props.gift}</h1>
     </>
   );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) => async () => {
+    console.log(store.getState().field.signin.form);
+
+    return {
+      props: { gift: 'helloWorld' },
+    };
+  },
+);

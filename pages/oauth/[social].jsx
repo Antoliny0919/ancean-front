@@ -10,14 +10,16 @@ export default function Social() {
 
   useEffect(() => {
     if (!social && !code) return;
-    dispatch(oauthSignin({ social, code }));
-    console.log(social, code);
+    dispatch(oauthSignin({ social, code })).then((res) => {
+      if (!res.error) {
+        router.push('/member/signup');
+      }
+    });
   }, [social]);
 
   return (
     <>
       <div>hello</div>
-      {/* <button onClick={loadOauth}>오어스 테스트</button> */}
     </>
   );
 }

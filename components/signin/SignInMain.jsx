@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import CenterTemplate from '../common/CenterTemplate';
 import SignInContainer from './containers/SignInContainer';
 import SignInSocial from './SignInSocial';
+import Link from 'next/link';
 
 const StyledSignInArea = styled.div`
   display: flex;
@@ -46,6 +47,7 @@ const StyledDivideSocialLine = styled.div`
 export default function SignInMain() {
   return (
     <CenterTemplate>
+      <Link href="/member/signup">회원가입 페이지로</Link>
       <StyledSignInArea>
         <h1>로그인 페이지</h1>
         <StyledSignInForm>

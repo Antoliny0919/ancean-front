@@ -11,10 +11,14 @@ export default function SignInContainer() {
 
   const dispatch = useDispatch();
 
-  const { form, message } = useSelector(({ field, signinAuth }) => ({
-    form: field['signin']['form'],
-    message: signinAuth.authError,
-  }));
+  const form = useSelector(({ field }) => field['signin']['form']);
+
+  const message = useSelector(({ signinAuth }) => signinAuth.authError);
+
+  // const { form, message } = useSelector(({ field, signinAuth }) => ({
+  //   form: field['signin']['form'],
+  //   message: signinAuth.authError,
+  // }));
 
   const toKorean = {
     email: '이메일',

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { HYDRATE } from 'next-redux-wrapper';
 
 const initialState = {
   signup: {
@@ -41,6 +42,11 @@ const signFieldSlice = createSlice({
       const form = state[step]['form'];
       form[input.name] = input.value;
     },
+    fillOauthEmail: (state, { payload }) => {
+      console.log(payload);
+      const signupEmail = state['signup']['form'];
+      signupEmail['email'] = payload;
+    },
     changeAnnotation: (state, { payload: { step, name, value } }) => {
       const annotation = state[step]['annotation'];
       annotation[name] = value;
@@ -49,9 +55,20 @@ const signFieldSlice = createSlice({
       state['signup']['form']['authcode'] = '';
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(HYDRATE, (state) => {
+      console.log(state);
+      return { ...state };
+    });
+  },
 });
 
-export const { resetInput, changeInput, changeAnnotation, clearAuthcodeInput } =
-  signFieldSlice.actions;
+export const {
+  resetInput,
+  changeInput,
+  fillOauthEmail,
+  changeAnnotation,
+  clearAuthcodeInput,
+} = signFieldSlice.actions;
 
 export default signFieldSlice.reducer;

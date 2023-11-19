@@ -73,7 +73,7 @@ export default function EmailFieldContainer() {
     }
   };
 
-  console.log(emailInput, authcode);
+  // console.log(emailInput, authcode);
 
   return (
     <>
