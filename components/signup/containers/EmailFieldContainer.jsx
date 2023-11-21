@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   authFail,
@@ -19,6 +20,8 @@ export default function EmailFieldContainer() {
   const ANNOTATION = 'annotation';
 
   const dispatch = useDispatch();
+
+  const [buttonTitle, setButtonTitle] = useState(EMAIL_FIELD_DATA.buttonTitle);
 
   const {
     emailInput,
@@ -49,6 +52,9 @@ export default function EmailFieldContainer() {
         dispatch(
           changeAnnotation({ step: STEP, name: 'email', value: value[0] }),
         );
+      } else {
+        // fulfilled
+        setButtonTitle(EMAIL_FIELD_DATA.isSendedButtonTitle);
       }
       console.log(res);
     });
@@ -58,6 +64,7 @@ export default function EmailFieldContainer() {
     e.preventDefault();
     dispatch(clearAuthState());
     dispatch(changeAnnotation({ step: STEP, name: 'email', value: null }));
+    setButtonTitle(EMAIL_FIELD_DATA.buttonTitle);
   };
 
   const authcodeConfirm = (e) => {
@@ -76,6 +83,7 @@ export default function EmailFieldContainer() {
           }),
         );
         dispatch(clearAuthcodeInput());
+        setButtonTitle(EMAIL_FIELD_DATA.isAuthedButtonTitle);
         return;
       } else {
         dispatch(authFail('인증번호가 일치하지 않습니다.'));
@@ -110,11 +118,7 @@ export default function EmailFieldContainer() {
           inputWidth={EMAIL_FIELD_DATA.width}
           annotation={emailAnnotation}
           buttonWidth={10}
-          buttonTitle={
-            isAuthed
-              ? EMAIL_FIELD_DATA.isAuthedButtonTitle
-              : EMAIL_FIELD_DATA.buttonTitle
-          }
+          buttonTitle={buttonTitle}
           buttonLogic={isAuthed ? reAuthEmail : loadGetAuthcode}
           readOnly={isAuthed}
           $classState={stateToClassName(isAuthed)}

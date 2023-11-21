@@ -6,7 +6,7 @@ export const EMAIL_FIELD_DATA = {
   },
   width: 20,
   buttonTitle: '인증번호 발송',
-  isSendedButtonTitle: '재발송 하기',
+  isSendedButtonTitle: '재발송',
   isAuthedButtonTitle: '다른 이메일 사용',
 };
 
