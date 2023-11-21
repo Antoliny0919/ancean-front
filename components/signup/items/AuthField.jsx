@@ -3,12 +3,6 @@ import Annotation from '../../common/sign/Annotation';
 import InputContainer from '@/components/common/sign/containers/InputContainer';
 import AuthButtonContainer from '../containers/AuthButtonContainer';
 
-const StyledField = styled.div`
-  & + & {
-    margin-top: 2rem;
-  }
-`;
-
 const StyledAuthField = styled.div`
   display: flex;
   flex-direction: row;
@@ -26,7 +20,7 @@ export default function AuthField({
   ...rest
 }) {
   return (
-    <StyledField>
+    <>
       <StyledAuthField>
         <InputContainer
           step={step}
@@ -39,6 +33,6 @@ export default function AuthField({
         </AuthButtonContainer>
       </StyledAuthField>
       <Annotation>{annotation}</Annotation>
-    </StyledField>
+    </>
   );
 }

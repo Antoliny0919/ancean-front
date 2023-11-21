@@ -33,26 +33,38 @@ export default function EmailFieldContainer() {
       authcode: signupAuth.authcode,
       isAuthed: signupAuth.auth,
       emailAnnotation: field[STEP][ANNOTATION]['email'],
-      authcodeAnnotation: field[STEP][ANNOTATION]['authcode'],
+      authcodeAnnotation: signupAuth.message,
     };
   });
 
   const loadGetAuthcode = (e) => {
     e.preventDefault();
-    dispatch(getAuthcode({ email: emailInput }));
+    dispatch(getAuthcode({ email: emailInput })).then((res) => {
+      // rejected
+      if (res.error) {
+        const value = res.payload.data.email;
+        // error response is list type, when multiple errors response --> choose first error
+        dispatch(
+          changeAnnotation({ step: STEP, name: 'email', value: value[0] }),
+        );
+      }
+      console.log(res);
+    });
   };
 
   const reAuthEmail = (e) => {
     e.preventDefault();
     dispatch(clearAuthState());
+    dispatch(changeAnnotation({ step: STEP, name: 'email', value: null }));
   };
 
   const authcodeConfirm = (e) => {
     e.preventDefault();
     let now = new Date().getTime();
+    console.log(now, authcode.validTime);
     // authcode is valid time
-    if (now < authcode.valid_time) {
-      if (authcode.code == authcodeInput) {
+    if (now < authcode.validTime) {
+      if (authcode.value == Number(authcodeInput)) {
         dispatch(authcodeAuthSuccess('인증성공!'));
         dispatch(
           changeAnnotation({
@@ -94,7 +106,7 @@ export default function EmailFieldContainer() {
           $isAuthed={isAuthed}
         ></AuthField>
       }
-      {!isAuthed && (
+      {!isAuthed && authcode && (
         <AuthField
           step={STEP}
           inputData={AUTHCODE_FIELD_DATA.inputData}

@@ -3,9 +3,15 @@ import * as authAPI from '@/api/auth';
 
 export const getAuthcode = createAsyncThunk(
   'auth/signup',
-  async ({ email }) => {
-    const response = await authAPI.getAuthcode({ email });
-    return response.data;
+  async ({ email }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await authAPI.getAuthcode({ email });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
   },
 );
 
@@ -34,12 +40,16 @@ const signupAuthSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getAuthcode.fulfilled, (state, { payload }) => {
-      state.authcode = payload.authcode;
+      let now = new Date().getTime();
+      // authcode valid time --> 5minute
+      let validTime = now + 1000 * 64 * 5;
+      state.authcode = { value: payload.authcode, validTime: validTime };
       state.message = payload.message;
     });
-    builder.addCase(getAuthcode.rejected, (state, action) => {
-      console.log(action);
-    });
+    // builder.addCase(getAuthcode.rejected, (_, { payload: { data }}) => {
+    //   // error response is list type, when multiple errors response --> choose first error
+    //   data[0]
+    // });
   },
 });
 
