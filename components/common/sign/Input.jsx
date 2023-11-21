@@ -13,11 +13,12 @@ const filledText = css`
   transform: translate(-5rem, 0.5rem);
   padding: 0 0.3rem 0 0.3rem;
   background-color: #fff;
-  ${({ $isAuthed }) =>
-    $isAuthed &&
-    css`
-      color: ${({ theme }) => theme.colors.success};
-    `};
+  /* &.success {
+    color: ${({ theme }) => theme.colors.state.success};
+  }
+  &.fail {
+    color: ${({ theme }) => theme.colors.state.fail};
+  } */
 `;
 
 const StyledLabel = styled.label`
@@ -49,11 +50,11 @@ const StyledInput = styled.input`
   height: 2.5rem;
   border: none;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
-  ${({ $isAuthed }) =>
-    $isAuthed &&
-    css`
-      border-bottom: solid ${({ theme }) => theme.colors.success} 0.15rem;
-    `};
+  /* &.success {
+    border-bottom: solid ${({ theme }) => theme.colors.state.success} 0.15rem;
+    background-color: rgba(148, 190, 159, 0.5);
+    border-radius: 0.15rem;
+  } */
   &:focus {
     border-bottom: solid ${({ theme }) => theme.colors.mainColor[7]} 0.15rem;
   }
@@ -73,9 +74,10 @@ export default function Input({ value, onChange, inputData, width, ...rest }) {
         value={value}
         name={name}
         type={type}
+        className={rest.$classState}
         {...rest}
       />
-      <StyledLabel $isAuthed={rest.$isAuthed} $isFilled={value}>
+      <StyledLabel className={rest.$classState} $isFilled={value}>
         {placeholder}
       </StyledLabel>
     </StyledSignInputSet>

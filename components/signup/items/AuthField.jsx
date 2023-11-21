@@ -32,7 +32,7 @@ export default function AuthField({
           {buttonTitle}
         </AuthButtonContainer>
       </StyledAuthField>
-      <Annotation>{annotation}</Annotation>
+      <Annotation state={rest.$classState}>{annotation}</Annotation>
     </>
   );
 }

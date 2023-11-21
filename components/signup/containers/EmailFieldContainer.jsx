@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  authcodeAuthFail,
+  authFail,
   authcodeAuthSuccess,
   getAuthcode,
   clearAuthState,
@@ -9,6 +9,7 @@ import {
   clearAuthcodeInput,
   changeAnnotation,
 } from '../../common/sign/modules/field';
+import FadeInEffect from '@/components/common/FadeInEffect';
 import AuthField from '../items/AuthField';
 import { EMAIL_FIELD_DATA, AUTHCODE_FIELD_DATA } from '../data';
 
@@ -43,6 +44,7 @@ export default function EmailFieldContainer() {
       // rejected
       if (res.error) {
         const value = res.payload.data.email;
+        dispatch(authFail());
         // error response is list type, when multiple errors response --> choose first error
         dispatch(
           changeAnnotation({ step: STEP, name: 'email', value: value[0] }),
@@ -65,7 +67,7 @@ export default function EmailFieldContainer() {
     // authcode is valid time
     if (now < authcode.validTime) {
       if (authcode.value == Number(authcodeInput)) {
-        dispatch(authcodeAuthSuccess('인증성공!'));
+        dispatch(authcodeAuthSuccess());
         dispatch(
           changeAnnotation({
             step: STEP,
@@ -76,16 +78,28 @@ export default function EmailFieldContainer() {
         dispatch(clearAuthcodeInput());
         return;
       } else {
-        dispatch(authcodeAuthFail('인증번호가 일치하지 않습니다.'));
+        dispatch(authFail('인증번호가 일치하지 않습니다.'));
       }
     } else {
-      dispatch(
-        authcodeAuthFail('인증번호의 유효기간이 지났습니다. 재발급 해주세요.'),
-      );
+      dispatch(authFail('인증번호의 유효기간이 지났습니다. 재발급 해주세요.'));
     }
   };
 
-  // console.log(emailInput, authcode);
+  function stateToClassName(state) {
+    var className = '';
+    switch (state) {
+      case true:
+        className = 'success';
+        break;
+      case false:
+        className = 'fail';
+        break;
+      default:
+        className = 'warning';
+        break;
+    }
+    return className;
+  }
 
   return (
     <>
@@ -103,19 +117,22 @@ export default function EmailFieldContainer() {
           }
           buttonLogic={isAuthed ? reAuthEmail : loadGetAuthcode}
           readOnly={isAuthed}
-          $isAuthed={isAuthed}
+          $classState={stateToClassName(isAuthed)}
         ></AuthField>
       }
       {!isAuthed && authcode && (
-        <AuthField
-          step={STEP}
-          inputData={AUTHCODE_FIELD_DATA.inputData}
-          inputWidth={AUTHCODE_FIELD_DATA.width}
-          annotation={authcodeAnnotation}
-          buttonWidth={10}
-          buttonTitle={AUTHCODE_FIELD_DATA.buttonTitle}
-          buttonLogic={authcodeConfirm}
-        ></AuthField>
+        <FadeInEffect $fadeIn={!isAuthed}>
+          <AuthField
+            step={STEP}
+            inputData={AUTHCODE_FIELD_DATA.inputData}
+            inputWidth={AUTHCODE_FIELD_DATA.width}
+            annotation={authcodeAnnotation}
+            buttonWidth={10}
+            buttonTitle={AUTHCODE_FIELD_DATA.buttonTitle}
+            buttonLogic={authcodeConfirm}
+            $classState={stateToClassName(isAuthed)}
+          ></AuthField>
+        </FadeInEffect>
       )}
     </>
   );

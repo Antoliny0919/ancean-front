@@ -8,7 +8,7 @@ const StyledAnnotation = styled.div`
     color: ${({ theme }) => theme.colors.state.success};
   }
   &.warning {
-    color: ${({ theme }) => theme.colors.state.fail};
+    color: ${({ theme }) => theme.colors.state.warning};
   }
   &.fail {
     color: ${({ theme }) => theme.colors.state.fail};

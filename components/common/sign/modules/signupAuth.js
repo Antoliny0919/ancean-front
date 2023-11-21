@@ -25,13 +25,13 @@ const signupAuthSlice = createSlice({
   name: 'signupAuth',
   initialState,
   reducers: {
-    authcodeAuthSuccess: (state, { payload }) => {
+    authcodeAuthSuccess: (state) => {
       state.auth = true;
       state.authcode = null;
-      state.message = payload;
     },
-    authcodeAuthFail: (state, { payload }) => {
+    authFail: (state, { payload }) => {
       state.message = payload;
+      state.auth = false;
     },
     clearAuthState: (state) => {
       state.auth = null;
@@ -53,6 +53,6 @@ const signupAuthSlice = createSlice({
   },
 });
 
-export const { authcodeAuthSuccess, authcodeAuthFail, clearAuthState } =
+export const { authcodeAuthSuccess, authFail, clearAuthState } =
   signupAuthSlice.actions;
 export default signupAuthSlice.reducer;
