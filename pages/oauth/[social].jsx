@@ -1,3 +1,4 @@
+import nProgress from 'nprogress';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
@@ -13,6 +14,7 @@ export default function Social() {
     dispatch(oauthSignin({ social, code })).then((res) => {
       // oauth login success and client already register
       console.log(res);
+      nProgress.start();
       if (!res.error && res.payload.user) {
         router.push('/');
       } else {
@@ -20,6 +22,7 @@ export default function Social() {
         router.push('/member/signup');
         sessionStorage.setItem('oauth', res.payload.email);
       }
+      nProgress.done();
     });
   }, [social]);
 

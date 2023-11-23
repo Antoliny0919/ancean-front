@@ -1,5 +1,4 @@
-import nProgress from 'nprogress';
-import { useRouter } from 'next/router';
+import { usePRouter } from '../hooks/usePRouter';
 import React, { useState } from 'react';
 
 export default function Test() {
@@ -11,13 +10,11 @@ export default function Test() {
     setUsers(data);
   };
 
-  const router = useRouter();
+  const router = usePRouter();
 
   const shallowTest = (e) => {
     e.preventDefault();
-    nProgress.start();
     router.push('/member/signup/');
-    nProgress.done();
   };
 
   return (
