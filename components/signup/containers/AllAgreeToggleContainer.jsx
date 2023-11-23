@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { reverseAllState } from '../../common/sign/modules/toggle';
-import SignRadioInput from '../items/SignRadioInput';
+import Toggle from '../items/Toggle';
 
 export default function AllAgreeToggleContainer() {
   const dispatch = useDispatch();
@@ -15,10 +15,10 @@ export default function AllAgreeToggleContainer() {
   const changeAllAgreeState = () =>
     dispatch(reverseAllState({ disagreeCnt: disagreeCnt }));
   return (
-    <SignRadioInput
+    <Toggle
       onChecked={onChecked}
       changeState={changeAllAgreeState}
       data={{ name: null, label: '전체 약관 동의' }}
-    ></SignRadioInput>
+    ></Toggle>
   );
 }

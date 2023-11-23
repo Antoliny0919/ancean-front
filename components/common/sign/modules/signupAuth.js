@@ -60,9 +60,9 @@ const signupAuthSlice = createSlice({
       let validTime = now + 1000 * 64 * 5;
       state.authcode = { value: payload.authcode, validTime: validTime };
       state.message = payload.message;
-    });
-    builder.addCase(loadSignup.fulfilled, (state, { payload }) => {
       console.log(payload);
+    });
+    builder.addCase(loadSignup.fulfilled, (_, { payload }) => {
       setJWTToken(payload.token);
       alert('congraturation');
     });

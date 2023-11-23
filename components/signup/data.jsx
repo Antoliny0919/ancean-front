@@ -4,7 +4,6 @@ export const EMAIL_FIELD_DATA = {
     type: 'text',
     name: 'email',
   },
-  width: 20,
   buttonTitle: '인증번호 발송',
   isSendedButtonTitle: '재발송',
   isAuthedButtonTitle: '다른 이메일 사용',

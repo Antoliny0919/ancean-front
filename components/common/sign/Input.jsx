@@ -4,7 +4,7 @@ const StyledSignInputSet = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  margin: 1rem 0rem;
+  margin-top: 2rem;
 `;
 
 const filledText = css`
@@ -13,12 +13,6 @@ const filledText = css`
   transform: translate(-5rem, 0.5rem);
   padding: 0 0.3rem 0 0.3rem;
   background-color: #fff;
-  /* &.success {
-    color: ${({ theme }) => theme.colors.state.success};
-  }
-  &.fail {
-    color: ${({ theme }) => theme.colors.state.fail};
-  } */
 `;
 
 const StyledLabel = styled.label`
@@ -50,11 +44,6 @@ const StyledInput = styled.input`
   height: 2.5rem;
   border: none;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
-  /* &.success {
-    border-bottom: solid ${({ theme }) => theme.colors.state.success} 0.15rem;
-    background-color: rgba(148, 190, 159, 0.5);
-    border-radius: 0.15rem;
-  } */
   &:focus {
     border-bottom: solid ${({ theme }) => theme.colors.mainColor[7]} 0.15rem;
   }

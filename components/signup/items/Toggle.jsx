@@ -1,7 +1,7 @@
 import Styled, { css } from 'styled-components';
 import { BiMessageSquareAdd } from 'react-icons/bi';
 
-const StyledSignRadioInput = Styled.div`
+const StyledToggle = Styled.div`
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -21,11 +21,11 @@ const StyledSignRadioInput = Styled.div`
     appearance: none;
     width: 0.7rem;
     height: 0.7rem;
-    background-image: url('/unchecked.png');
+    background-color: white;
     background-size: cover;
-    border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
+    border: solid ${({ theme }) => theme.colors.mainColor[6]} 0.1rem;
     &:checked{
-      background-image: url('/checked.png');
+      background-color: ${({ theme }) => theme.colors.mainColor[6]};
       background-size: cover;
     }
   }
@@ -36,9 +36,9 @@ const StyledSignRadioInput = Styled.div`
   }
 `;
 
-export default function SignRadioInput({ changeState, onChecked, data }) {
+export default function Toggle({ changeState, onChecked, data }) {
   return (
-    <StyledSignRadioInput $isAllAgree={!data.name}>
+    <StyledToggle $isAllAgree={!data.name}>
       <input
         type="radio"
         id={data.name}
@@ -49,6 +49,6 @@ export default function SignRadioInput({ changeState, onChecked, data }) {
       ></input>
       <label htmlFor={data.name}>{data.label}</label>
       {data.name && <BiMessageSquareAdd />}
-    </StyledSignRadioInput>
+    </StyledToggle>
   );
 }

@@ -40,7 +40,7 @@ export default function Button({
   buttonLogic,
   type = 'button',
   width = 5,
-  fontSize = 16,
+  fontSize = 14,
   ...rest
 }) {
   return (

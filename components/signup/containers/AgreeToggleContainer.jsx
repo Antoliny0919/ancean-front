@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { reverseState } from '../../common/sign/modules/toggle';
-import SignRadioInput from '../items/SignRadioInput';
+import Toggle from '../items/Toggle';
 
 export default function AgreeToggleContainer({ data }) {
   const agreementState = useSelector(({ toggle }) => toggle);
@@ -13,10 +13,10 @@ export default function AgreeToggleContainer({ data }) {
   };
 
   return (
-    <SignRadioInput
+    <Toggle
       changeState={changeAgreeState}
       onChecked={onChecked}
       data={data}
-    ></SignRadioInput>
+    ></Toggle>
   );
 }

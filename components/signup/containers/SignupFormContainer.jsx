@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadSignup } from '@/components/common/sign/modules/signupAuth';
 import Form from '../items/Form';
 import EmailFieldContainer from '../containers/EmailFieldContainer';
-// import FadeInEffect from '../../common/FadeInEffect';
+import FadeInEffect from '../../common/FadeInEffect';
 import NoneAuthFieldContainer from './NoneAuthFieldContainer';
 import AgreeFieldArea from '../AgreeFieldArea';
 import { changeAnnotation } from '@/components/common/sign/modules/field';
@@ -11,19 +11,9 @@ import RegisterButtonContainer from '../containers/RegisterButtonContainer';
 export default function SignupFormContainer() {
   const dispatch = useDispatch();
 
-  // const authState = useSelector(({ signupAuth }) => signupAuth.auth);
+  const authState = useSelector(({ signupAuth }) => signupAuth.auth);
 
-  const formData = useSelector(
-    ({
-      field: {
-        signup: { form },
-      },
-    }) => {
-      return {
-        ...form,
-      };
-    },
-  );
+  const formData = useSelector(({ field }) => field['signup']['form']);
 
   const createUser = (e) => {
     e.preventDefault();
@@ -48,11 +38,11 @@ export default function SignupFormContainer() {
   return (
     <Form onSubmit={createUser}>
       <EmailFieldContainer></EmailFieldContainer>
-      {/* <FadeInEffect $fadeIn={authState}> */}
-      <NoneAuthFieldContainer />
-      <AgreeFieldArea />
-      <RegisterButtonContainer>회원가입</RegisterButtonContainer>
-      {/* </FadeInEffect> */}
+      <FadeInEffect $fadeIn={authState}>
+        <NoneAuthFieldContainer />
+        <AgreeFieldArea />
+        <RegisterButtonContainer>회원가입</RegisterButtonContainer>
+      </FadeInEffect>
     </Form>
   );
 }

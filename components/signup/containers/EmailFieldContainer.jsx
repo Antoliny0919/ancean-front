@@ -54,16 +54,22 @@ export default function EmailFieldContainer() {
         );
       } else {
         // fulfilled
+        dispatch(
+          changeAnnotation({
+            step: STEP,
+            name: 'email',
+            value: '사용 가능한 이메일입니다.',
+          }),
+        );
         setButtonTitle(EMAIL_FIELD_DATA.isSendedButtonTitle);
       }
-      console.log(res);
     });
   };
 
   const reAuthEmail = (e) => {
     e.preventDefault();
     dispatch(clearAuthState());
-    dispatch(changeAnnotation({ step: STEP, name: 'email', value: null }));
+    dispatch(changeAnnotation({ step: STEP, name: 'email', value: '' }));
     setButtonTitle(EMAIL_FIELD_DATA.buttonTitle);
   };
 
@@ -115,7 +121,6 @@ export default function EmailFieldContainer() {
         <Field
           step={STEP}
           inputData={EMAIL_FIELD_DATA.inputData}
-          inputWidth={EMAIL_FIELD_DATA.width}
           button={{
             buttonWidth: 10,
             buttonTitle: buttonTitle,
@@ -126,22 +131,22 @@ export default function EmailFieldContainer() {
           $classState={stateToClassName(isAuthed)}
         ></Field>
       }
-      {/* {!isAuthed && authcode && ( */}
-      <FadeInEffect $fadeIn={!isAuthed}>
-        <Field
-          step={STEP}
-          inputData={AUTHCODE_FIELD_DATA.inputData}
-          inputWidth={AUTHCODE_FIELD_DATA.width}
-          annotation={authcodeAnnotation}
-          button={{
-            buttonWidth: 10,
-            buttonTitle: AUTHCODE_FIELD_DATA.buttonTitle,
-            buttonLogic: authcodeConfirm,
-          }}
-          $classState={stateToClassName(isAuthed)}
-        ></Field>
-      </FadeInEffect>
-      {/* )} */}
+      {!isAuthed && authcode && (
+        <FadeInEffect $fadeIn={!isAuthed}>
+          <Field
+            step={STEP}
+            inputData={AUTHCODE_FIELD_DATA.inputData}
+            inputWidth={AUTHCODE_FIELD_DATA.width}
+            annotation={authcodeAnnotation}
+            button={{
+              buttonWidth: 10,
+              buttonTitle: AUTHCODE_FIELD_DATA.buttonTitle,
+              buttonLogic: authcodeConfirm,
+            }}
+            $classState={stateToClassName(isAuthed)}
+          ></Field>
+        </FadeInEffect>
+      )}
     </>
   );
 }

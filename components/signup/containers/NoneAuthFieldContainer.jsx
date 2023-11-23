@@ -12,7 +12,6 @@ export default function NoneAuthFieldContainer() {
           <Field
             step="signup"
             inputData={data}
-            inputWidth={20}
             key={index}
             annotation={annotation[data.name]}
             button={false}

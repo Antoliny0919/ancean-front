@@ -6,13 +6,13 @@ import Button from '@/components/common/Button';
 const StyledField = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
 `;
 
 export default function Field({
   step,
   inputData,
-  inputWidth,
+  inputWidth = 20,
   annotation,
   button,
   ...rest
