@@ -1,3 +1,5 @@
+import nProgress from 'nprogress';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 
 export default function Test() {
@@ -9,9 +11,19 @@ export default function Test() {
     setUsers(data);
   };
 
+  const router = useRouter();
+
+  const shallowTest = (e) => {
+    e.preventDefault();
+    nProgress.start();
+    router.push('/member/signup/');
+    nProgress.done();
+  };
+
   return (
     <>
       <h1>test</h1>
+      <button onClick={shallowTest}>router shallow test</button>
       {users ? <h1>User Information</h1> : <h1>Show User Information</h1>}
       <br></br>
       {typeof users !== 'object' ? (

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import nProgress from 'nprogress';
 import styled from 'styled-components';
 
 const StyledSocialButtonCover = styled(Link)`
@@ -56,8 +57,17 @@ const StyledSocialButton = styled.div`
 `;
 
 export default function SocialButton({ logo, title, className, href }) {
+  const nprogressTest = (e) => {
+    e.preventDefault();
+    nProgress.start();
+  };
+
   return (
-    <StyledSocialButtonCover className={className} href={href}>
+    <StyledSocialButtonCover
+      className={className}
+      href={href}
+      onClick={nprogressTest}
+    >
       <StyledSocialButton className={className}>{logo}</StyledSocialButton>
       <span>{title}</span>
     </StyledSocialButtonCover>

@@ -12,6 +12,7 @@ export default function SignUp() {
 
   useEffect(() => {
     const oauthEmail = sessionStorage.getItem('oauth');
+    sessionStorage.removeItem('oauth');
     if (oauthEmail) {
       dispatch(
         fillInputandAnnotation({

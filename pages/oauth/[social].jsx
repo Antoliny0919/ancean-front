@@ -23,9 +23,5 @@ export default function Social() {
     });
   }, [social]);
 
-  return (
-    <>
-      <div>{social}</div>
-    </>
-  );
+  return <></>;
 }

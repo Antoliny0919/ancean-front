@@ -47,7 +47,7 @@ const StyledDivideSocialLine = styled.div`
 export default function SignInMain() {
   return (
     <CenterTemplate>
-      <Link href="/member/signup">회원가입 페이지로</Link>
+      <Link href="/group">group 페이지로</Link>
       <StyledSignInArea>
         <h1>로그인 페이지</h1>
         <StyledSignInForm>
