@@ -15,11 +15,6 @@ export default function SignInContainer() {
 
   const message = useSelector(({ signinAuth }) => signinAuth.authError);
 
-  // const { form, message } = useSelector(({ field, signinAuth }) => ({
-  //   form: field['signin']['form'],
-  //   message: signinAuth.authError,
-  // }));
-
   const toKorean = {
     email: '이메일',
     password: '비밀번호',

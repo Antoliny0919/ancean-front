@@ -3,7 +3,6 @@ import wrapper from '@/redux';
 import PropTypes from 'prop-types';
 import type { AppProps } from 'next/app';
 import nProgress from 'nprogress';
-// import NextTopLoader from 'nextjs-toploader';
 import { useSearchParams, usePathname } from 'next/navigation';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
@@ -27,19 +26,6 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <main className={HahmletFont.className}>
           <GlobalStyle />
-          {/* <NextTopLoader
-            color={theme.colors.mainColor[4]}
-            initialPosition={0.08}
-            crawlSpeed={200}
-            height={5}
-            crawl={true}
-            showSpinner={false}
-            easing="ease"
-            speed={200}
-            shadow={`0 0 10px ${theme.colors.mainColor[4]},0 0 5px ${theme.colors.mainColor[4]}`}
-            zIndex={1600}
-            showAtBottom={false}
-          /> */}
           <Component {...props} />
         </main>
       </ThemeProvider>
