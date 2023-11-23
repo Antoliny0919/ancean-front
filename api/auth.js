@@ -8,3 +8,5 @@ export const oauthSignin = ({ social, code }) =>
 
 export const getAuthcode = ({ email }) =>
   client.post('api/mail/code/', { email });
+
+export const loadSignup = (formData) => client.post('api/user/', formData);

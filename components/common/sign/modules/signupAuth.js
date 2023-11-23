@@ -1,12 +1,27 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as authAPI from '@/api/auth';
+import { setJWTToken } from '../../cookies/jwt';
 
 export const getAuthcode = createAsyncThunk(
-  'auth/signup',
+  'auth/getAuthcode',
   async ({ email }, { rejectWithValue }) => {
     let result = null;
     try {
       const response = await authAPI.getAuthcode({ email });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
+
+export const loadSignup = createAsyncThunk(
+  'auth/loadSignup',
+  async (formData, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await authAPI.loadSignup(formData);
       result = response.data;
     } catch (err) {
       result = rejectWithValue(err.response);
@@ -45,6 +60,14 @@ const signupAuthSlice = createSlice({
       let validTime = now + 1000 * 64 * 5;
       state.authcode = { value: payload.authcode, validTime: validTime };
       state.message = payload.message;
+    });
+    builder.addCase(loadSignup.fulfilled, (state, { payload }) => {
+      console.log(payload);
+      setJWTToken(payload.token);
+      alert('congraturation');
+    });
+    builder.addCase(loadSignup.rejected, (_, { payload: { data } }) => {
+      console.log(data);
     });
     // builder.addCase(getAuthcode.rejected, (_, { payload: { data }}) => {
     //   // error response is list type, when multiple errors response --> choose first error

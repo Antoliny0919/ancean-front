@@ -37,9 +37,10 @@ export const StyledButton = styled.button`
 
 export default function Button({
   children,
+  buttonLogic,
+  type = 'button',
   width = 5,
   fontSize = 16,
-  buttonLogic,
   ...rest
 }) {
   return (
@@ -47,6 +48,7 @@ export default function Button({
       width={width}
       fontSize={fontSize}
       onClick={buttonLogic}
+      type={type}
       {...rest}
     >
       {children}

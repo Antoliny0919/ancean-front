@@ -23,7 +23,9 @@ export default function RegisterButtonContainer({ children }) {
   return (
     <StyledRegisterButtonLayout>
       {isAllAgreed ? (
-        <Button width={15}>{children}</Button>
+        <Button width={15} type="submit">
+          {children}
+        </Button>
       ) : (
         <Button width={15} disabled={true}>
           {children}

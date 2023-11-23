@@ -1,37 +1,37 @@
 import styled from 'styled-components';
 import Annotation from '../../common/sign/Annotation';
 import InputContainer from '@/components/common/sign/containers/InputContainer';
-import AuthButtonContainer from '../containers/AuthButtonContainer';
+import Button from '@/components/common/Button';
 
-const StyledAuthField = styled.div`
+const StyledField = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
 `;
 
-export default function AuthField({
+export default function Field({
   step,
   inputData,
   inputWidth,
   annotation,
-  buttonWidth,
-  buttonLogic,
-  buttonTitle,
+  button,
   ...rest
 }) {
   return (
     <>
-      <StyledAuthField>
+      <StyledField>
         <InputContainer
           step={step}
           inputData={inputData}
           width={inputWidth}
           {...rest}
         />
-        <AuthButtonContainer buttonLogic={buttonLogic} width={buttonWidth}>
-          {buttonTitle}
-        </AuthButtonContainer>
-      </StyledAuthField>
+        {button && (
+          <Button buttonLogic={button.buttonLogic} width={button.buttonWidth}>
+            {button.buttonTitle}
+          </Button>
+        )}
+      </StyledField>
       <Annotation state={rest.$classState}>{annotation}</Annotation>
     </>
   );

@@ -11,7 +11,7 @@ import {
   changeAnnotation,
 } from '../../common/sign/modules/field';
 import FadeInEffect from '@/components/common/FadeInEffect';
-import AuthField from '../items/AuthField';
+import Field from '../items/Field';
 import { EMAIL_FIELD_DATA, AUTHCODE_FIELD_DATA } from '../data';
 
 export default function EmailFieldContainer() {
@@ -112,32 +112,36 @@ export default function EmailFieldContainer() {
   return (
     <>
       {
-        <AuthField
+        <Field
           step={STEP}
           inputData={EMAIL_FIELD_DATA.inputData}
           inputWidth={EMAIL_FIELD_DATA.width}
+          button={{
+            buttonWidth: 10,
+            buttonTitle: buttonTitle,
+            buttonLogic: isAuthed ? reAuthEmail : loadGetAuthcode,
+          }}
           annotation={emailAnnotation}
-          buttonWidth={10}
-          buttonTitle={buttonTitle}
-          buttonLogic={isAuthed ? reAuthEmail : loadGetAuthcode}
           readOnly={isAuthed}
           $classState={stateToClassName(isAuthed)}
-        ></AuthField>
+        ></Field>
       }
-      {!isAuthed && authcode && (
-        <FadeInEffect $fadeIn={!isAuthed}>
-          <AuthField
-            step={STEP}
-            inputData={AUTHCODE_FIELD_DATA.inputData}
-            inputWidth={AUTHCODE_FIELD_DATA.width}
-            annotation={authcodeAnnotation}
-            buttonWidth={10}
-            buttonTitle={AUTHCODE_FIELD_DATA.buttonTitle}
-            buttonLogic={authcodeConfirm}
-            $classState={stateToClassName(isAuthed)}
-          ></AuthField>
-        </FadeInEffect>
-      )}
+      {/* {!isAuthed && authcode && ( */}
+      <FadeInEffect $fadeIn={!isAuthed}>
+        <Field
+          step={STEP}
+          inputData={AUTHCODE_FIELD_DATA.inputData}
+          inputWidth={AUTHCODE_FIELD_DATA.width}
+          annotation={authcodeAnnotation}
+          button={{
+            buttonWidth: 10,
+            buttonTitle: AUTHCODE_FIELD_DATA.buttonTitle,
+            buttonLogic: authcodeConfirm,
+          }}
+          $classState={stateToClassName(isAuthed)}
+        ></Field>
+      </FadeInEffect>
+      {/* )} */}
     </>
   );
 }
