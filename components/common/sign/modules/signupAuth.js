@@ -69,10 +69,6 @@ const signupAuthSlice = createSlice({
     builder.addCase(loadSignup.rejected, (_, { payload: { data } }) => {
       console.log(data);
     });
-    // builder.addCase(getAuthcode.rejected, (_, { payload: { data }}) => {
-    //   // error response is list type, when multiple errors response --> choose first error
-    //   data[0]
-    // });
   },
 });
 
