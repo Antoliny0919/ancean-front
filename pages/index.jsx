@@ -14,10 +14,31 @@ export default function Home(props) {
   return (
     <>
       <Modal
+        disable={true}
         image={GivenratTestImage}
         title="회원가입 성공"
         buttonTitle="확인"
       ></Modal>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
+      <h1>hello world</h1>
       <h1>hello world</h1>
       <h1>hello world</h1>
       <h1>hello world</h1>
