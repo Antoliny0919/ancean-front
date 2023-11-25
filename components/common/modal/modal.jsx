@@ -2,18 +2,13 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import Button from '../Button';
 
-const StyledLogo = styled(Image)`
-  width: 30%;
-  height: 30%;
-  background-color: black;
-`;
-
 const StyledBackground = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
 `;
 
 const StyledModal = styled.div`
@@ -32,11 +27,16 @@ const StyledModal = styled.div`
   border-radius: 10px;
 `;
 
+const StyledLogo = styled(Image)`
+  width: 50%;
+  height: 30%;
+`;
+
 export default function Modal({ image, title, buttonTitle, buttonLogic }) {
   return (
     <StyledBackground>
       <StyledModal>
-        <StyledLogo src={image} alt="no"></StyledLogo>
+        <StyledLogo src={image} alt="no" />
         <div>{title}</div>
         <Button width={7} onClick={buttonLogic}>
           {buttonTitle}

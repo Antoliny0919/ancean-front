@@ -34,6 +34,7 @@ const initialState = {
   auth: null,
   authcode: null,
   message: null,
+  state: false,
 };
 
 const signupAuthSlice = createSlice({
@@ -62,9 +63,9 @@ const signupAuthSlice = createSlice({
       state.message = payload.message;
       console.log(payload);
     });
-    builder.addCase(loadSignup.fulfilled, (_, { payload }) => {
+    builder.addCase(loadSignup.fulfilled, (state, { payload }) => {
       setJWTToken(payload.token);
-      alert('congraturation');
+      state.state = true;
     });
     builder.addCase(loadSignup.rejected, (_, { payload: { data } }) => {
       console.log(data);

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import wrapper from '@/redux';
 import Modal from 'components/common/modal/modal';
-import GithubTestImage from 'public/signup/github-mark-white.png';
+import GivenratTestImage from 'public/signup/givenrat_logo.png';
 
 export default function Home(props) {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function Home(props) {
   return (
     <>
       <Modal
-        image={GithubTestImage}
+        image={GivenratTestImage}
         title="회원가입 성공"
         buttonTitle="확인"
       ></Modal>
