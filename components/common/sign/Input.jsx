@@ -10,7 +10,7 @@ const StyledSignInputSet = styled.div`
 const filledText = css`
   color: ${({ theme }) => theme.colors.mainColor[2]};
   font-weight: 900;
-  transform: translate(-5rem, 0.5rem);
+  transform: translate(-7rem, 0.5rem);
   padding: 0 0.3rem 0 0.3rem;
   background-color: #fff;
 `;

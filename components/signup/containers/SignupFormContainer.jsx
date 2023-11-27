@@ -18,11 +18,14 @@ export default function SignupFormContainer() {
   const createUser = (e) => {
     e.preventDefault();
     // authcode used previous loadSignup
-    delete formData.authcode;
-    dispatch(loadSignup(formData)).then((res) => {
+    const body = { ...formData };
+    delete body.authcode;
+
+    dispatch(loadSignup(body)).then((res) => {
       if (res.error) {
         const error_messages = res.payload.data;
-        Object.keys(error_messages).map((key) =>
+        const error_fields = Object.keys(error_messages);
+        error_fields.map((key) =>
           dispatch(
             changeAnnotation({
               step: 'signup',

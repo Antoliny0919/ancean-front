@@ -53,6 +53,9 @@ const signupAuthSlice = createSlice({
       state.auth = null;
       state.message = null;
     },
+    changeState: (state) => {
+      state.state = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getAuthcode.fulfilled, (state, { payload }) => {
@@ -73,6 +76,6 @@ const signupAuthSlice = createSlice({
   },
 });
 
-export const { authcodeAuthSuccess, authFail, clearAuthState } =
+export const { authcodeAuthSuccess, authFail, clearAuthState, changeState } =
   signupAuthSlice.actions;
 export default signupAuthSlice.reducer;

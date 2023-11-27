@@ -54,13 +54,6 @@ export default function EmailFieldContainer() {
         );
       } else {
         // fulfilled
-        dispatch(
-          changeAnnotation({
-            step: STEP,
-            name: 'email',
-            value: '사용 가능한 이메일입니다.',
-          }),
-        );
         setButtonTitle(EMAIL_FIELD_DATA.isSendedButtonTitle);
       }
     });
