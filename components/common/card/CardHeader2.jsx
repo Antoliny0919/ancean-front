@@ -4,6 +4,7 @@ import TestImage1 from '@/public/call-back-hell.jpeg';
 // import TestImage2 from '@/public/js-log.png';
 import { LuWaves } from 'react-icons/lu';
 import { FaRegCommentDots } from 'react-icons/fa';
+import { RxEyeOpen } from 'react-icons/rx';
 
 const StyledCardHeaderArea = styled.div`
   display: flex;
@@ -15,13 +16,6 @@ const StyledCardHeaderArea = styled.div`
 `;
 
 const StyledMinibarArea = styled.div`
-  @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
   padding: 0.5rem;
   font-family: 'GmarketSansMedium';
   margin-left: auto;
@@ -31,11 +25,13 @@ const StyledMinibarArea = styled.div`
 
 const IconWrapper = styled.div`
   font-size: 12px;
-  margin-bottom: 1rem;
   svg {
     width: 100%;
     height: 1.5rem;
     color: ${({ theme }) => theme.colors.mainColor[4]};
+  }
+  & + & {
+    margin-top: 1rem;
   }
 `;
 
@@ -51,6 +47,10 @@ export default function CardHeader2() {
         <IconWrapper>
           <FaRegCommentDots />
           <div>22</div>
+        </IconWrapper>
+        <IconWrapper>
+          <RxEyeOpen />
+          <div>132k</div>
         </IconWrapper>
       </StyledMinibarArea>
     </StyledCardHeaderArea>

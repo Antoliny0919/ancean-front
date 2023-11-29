@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledCardBodyArea = styled.div`
+  width: 90%;
   padding: 1rem;
   .title {
     font-size: 18px;
