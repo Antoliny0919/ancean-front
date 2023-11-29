@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import CardHeader from './CardHeader';
-
-import CardBody from './CardBody';
+// import CardHeader from './CardHeader';
+import CardHeader2 from './CardHeader2';
+// import CardBody from './CardBody';
 
 const StyledCard = styled.div`
   display: flex;
@@ -17,8 +17,9 @@ const StyledCard = styled.div`
 export default function CardMain() {
   return (
     <StyledCard>
-      <CardHeader />
-      <CardBody />
+      {/* <CardHeader /> */}
+      <CardHeader2 />
+      {/* <CardBody /> */}
     </StyledCard>
   );
 }
