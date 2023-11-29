@@ -11,7 +11,6 @@ const StyledCardHeaderArea = styled.div`
   img {
     width: 90%;
     border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
 `;
 
