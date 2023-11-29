@@ -5,8 +5,11 @@ import PostBody from './PostBody';
 
 const StyledPostContainer = styled.div`
   width: 20rem;
-  border: solid red 0.1rem;
+  border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.15rem;
   border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `;
 
 export default function PostMain({ header_image, title, content }) {
