@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ["localhost", "*"]
+    remotePattern: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      }
+    ]
   },
   compiler: {
     styledComponents: true,
