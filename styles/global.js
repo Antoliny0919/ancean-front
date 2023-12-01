@@ -24,16 +24,14 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
-  .swiper-button-prev {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
+  .swiper-slide {
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
-
-  .swiper-button-next {
-    width: 100px;
-    height: 100px;
-    background-color: green;
+  .swiper {
+    width: 500px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   @font-face {

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { useSwiper } from 'swiper/react';
 
-const StyledSlideButtonArea = styled.div`
+const StyledSwiperButton = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,11 +15,17 @@ const StyledSlideButtonArea = styled.div`
   }
 `;
 
-export default function CardSlideButton({ icon, title }) {
+export default function SwiperButton({ icon, title }) {
+  const swiper = useSwiper();
+
   return (
-    <StyledSlideButtonArea>
+    <StyledSwiperButton
+      onClick={
+        title === 'NEXT' ? () => swiper.slideNext() : () => swiper.slidePrev()
+      }
+    >
       {icon}
       <div>{title}</div>
-    </StyledSlideButtonArea>
+    </StyledSwiperButton>
   );
 }
