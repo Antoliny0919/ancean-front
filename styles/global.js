@@ -24,6 +24,17 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
+  .swiper-button-prev {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+
+  .swiper-button-next {
+    width: 100px;
+    height: 100px;
+    background-color: green;
+  }
 
   @font-face {
     font-family: 'Pretendard-Bold';

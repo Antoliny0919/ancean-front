@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSlideButtonArea = styled.button`
+const StyledSlideButtonArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,9 +14,9 @@ const StyledSlideButtonArea = styled.button`
   }
 `;
 
-export default function CardSlideButton({ icon, title, onClick }) {
+export default function CardSlideButton({ icon, title }) {
   return (
-    <StyledSlideButtonArea onClick={onClick}>
+    <StyledSlideButtonArea>
       {icon}
       <div>{title}</div>
     </StyledSlideButtonArea>

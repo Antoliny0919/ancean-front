@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import client from '../../api/client';
-import CardSection from '../../components/common/card/CardSection';
+// import CardSection from '../../components/common/card/CardSection';
+import CardSwiper from '../../components/common/card/CardSwiper';
 
 const PaddingBottom = styled.div`
   padding: 10rem;
@@ -9,7 +10,7 @@ const PaddingBottom = styled.div`
 export default function Index({ data }) {
   return (
     <>
-      <CardSection data={data}></CardSection>
+      <CardSwiper data={data}></CardSwiper>
       <PaddingBottom></PaddingBottom>
     </>
   );

@@ -17,18 +17,20 @@ const StyledCardArea = styled.div`
 export default function CardSection({ data }) {
   const [pageNumber, setPageNumber] = useState(1);
 
-  // const [slideAction, setSlideAction] = useState(true);
+  // const [slideAction, setSlideAction] = useState(false);
 
-  const pageCnt = data.length;
+  // const pageCnt = data.length;
 
   const getPreviousPage = (e) => {
     e.preventDefault();
-    setPageNumber(pageNumber - 1);
+    // setPageNumber(pageNumber - 1);
+    // setSlideAction(true);
   };
 
   const getNextPage = (e) => {
     e.preventDefault();
     setPageNumber(pageNumber + 1);
+    // setSlideAction(true);
   };
 
   return (
@@ -38,13 +40,27 @@ export default function CardSection({ data }) {
         title={'PREVIOUS'}
         onClick={getPreviousPage}
       />
-      {pageNumber && (
-        <CardMain postData={data[pageNumber - 1]} position="start" />
+      {data.map((item, key) => {
+        return <CardMain postData={item} key={key}></CardMain>;
+      })}
+      {/* {pageNumber && (
+        <CardMain 
+        postData={data[pageNumber - 1]} 
+        className={`start ${slideAction && 'slide-left'}`}
+        onAnimationEnd={()=>{
+          setSlideAction(false);
+          setPageNumber(pageNumber - 1);
+        }}/>
       )}
-      <CardMain postData={data[pageNumber]} position="main"></CardMain>
+      <CardMain postData={data[pageNumber]} 
+      className={`main ${slideAction && 'slide-left'}`}
+      onAnimationEnd={()=>{
+        setSlideAction(false);
+        setPageNumber(pageNumber - 1);
+      }}></CardMain>
       {pageNumber !== pageCnt && (
-        <CardMain postData={data[pageNumber + 1]} position="end" />
-      )}
+        <CardMain postData={data[pageNumber + 1]} className="end" />
+      )} */}
       <CardSlideButton
         icon={<FaArrowRightLong />}
         title={'NEXT'}
