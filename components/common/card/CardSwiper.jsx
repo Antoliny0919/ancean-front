@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardMain from './CardMain';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 import SwiperButton from './SwiperButton';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
 
 const StyledCardSwiperArea = styled.div`
   display: flex;
@@ -18,7 +19,19 @@ const StyledCardSwiperArea = styled.div`
 export default function CardSwiper({ data }) {
   return (
     <StyledCardSwiperArea>
-      <Swiper modules={[Navigation, Pagination]} slidesPerView={1}>
+      <Swiper
+        modules={[Navigation, Pagination, EffectCoverflow]}
+        slidesPerView={3}
+        loop={true}
+        effect={'coverflow'}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 150,
+          modifier: 1,
+          slideShadows: true,
+        }}
+      >
         <SwiperButton icon={<FaArrowLeftLong />} title="PREVIOUS" />
         {data.map((item, index) => (
           <SwiperSlide key={index}>

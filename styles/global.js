@@ -27,11 +27,25 @@ export const GlobalStyle = createGlobalStyle`
   .swiper-slide {
     transform: translateZ(0);
     backface-visibility: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
   }
   .swiper {
-    width: 500px;
     margin-left: 0;
     margin-right: 0;
+  }
+  .swiper-wrapper {
+    /* transition-timing-function: linear; */
   }
 
   @font-face {
