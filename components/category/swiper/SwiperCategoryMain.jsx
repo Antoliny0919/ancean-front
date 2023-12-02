@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import CardMain from './CardMain';
 import {
   Navigation,
   Pagination,
   EffectCoverflow,
   Autoplay,
 } from 'swiper/modules';
-import SwiperButton from './SwiperButton';
-import { FaArrowLeftLong } from 'react-icons/fa6';
-import { FaArrowRightLong } from 'react-icons/fa6';
+import SwiperCategory from './SwiperCategory';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -21,7 +18,9 @@ const StyledCardSwiperArea = styled.div`
   justify-content: space-around;
 `;
 
-export default function CardSwiper({ data }) {
+export default function CardSwiper() {
+  const category = [1, 2, 3, 4, 5, 6];
+
   return (
     <StyledCardSwiperArea>
       <Swiper
@@ -39,13 +38,12 @@ export default function CardSwiper({ data }) {
         }}
         autoplay={{ delay: 5000 }}
       >
-        <SwiperButton icon={<FaArrowLeftLong />} title="PREVIOUS" />
-        {data.map((item, index) => (
+        <SwiperCategory></SwiperCategory>
+        {category.map((item, index) => (
           <SwiperSlide key={index}>
-            <CardMain postData={item} data-id={index + 1}></CardMain>
+            <SwiperCategory></SwiperCategory>
           </SwiperSlide>
         ))}
-        <SwiperButton icon={<FaArrowRightLong />} title="NEXT" />
       </Swiper>
     </StyledCardSwiperArea>
   );

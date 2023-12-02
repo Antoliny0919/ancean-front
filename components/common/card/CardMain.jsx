@@ -9,11 +9,17 @@ const StyledCard = styled.div`
   width: 30rem;
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
   border-radius: 10px;
-  /* box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px; */
+  &:hover {
+    border: solid red 0.1rem;
+  }
 `;
 
 export default function CardMain({ postData }) {
   const { header_image, content, title, author } = postData;
+
+  // const movePageTest = (e) => {
+  //   console.log(e.target.dataset);
+  // }
 
   return (
     <StyledCard>

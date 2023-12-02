@@ -45,7 +45,7 @@ export const GlobalStyle = createGlobalStyle`
     margin-right: 0;
   }
   .swiper-wrapper {
-    /* transition-timing-function: linear; */
+    display: flex;
   }
 
   @font-face {
