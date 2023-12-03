@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledCategoryCard = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +12,7 @@ const StyledCategoryCard = styled.div`
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.mainColor[8]};
-  background-color: rgba(169, 195, 205, 0.1);
+  background-color: white;
   svg {
     margin-bottom: 1rem;
     width: 50%;

@@ -17,6 +17,7 @@ const StyledCardSwiperArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: 70%;
 `;
 
 export default function SwiperCategoryMain() {
@@ -30,7 +31,7 @@ export default function SwiperCategoryMain() {
         slideToClickedSlide={true}
         coverflowEffect={{
           rotate: 50,
-          stretch: 0,
+          stretch: 70,
           depth: 200,
           modifier: 0.5,
           slideShadows: false,
