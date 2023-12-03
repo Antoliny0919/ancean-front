@@ -1,9 +1,9 @@
-import CategorySwiperMain from '@/components/category/swiper/CategorySwiperMain';
+import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
 
 export default function Home() {
   return (
     <>
-      <CategorySwiperMain></CategorySwiperMain>
+      <SwiperCategoryMain />
     </>
   );
 }

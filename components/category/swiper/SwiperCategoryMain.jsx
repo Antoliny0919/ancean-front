@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
+import { REPRESENTATIVE_CATEGORY } from '../category';
 
 const StyledCardSwiperArea = styled.div`
   display: flex;
@@ -18,9 +19,7 @@ const StyledCardSwiperArea = styled.div`
   justify-content: space-around;
 `;
 
-export default function CardSwiper() {
-  const category = [1, 2, 3, 4, 5, 6];
-
+export default function SwiperCategoryMain() {
   return (
     <StyledCardSwiperArea>
       <Swiper
@@ -32,16 +31,19 @@ export default function CardSwiper() {
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
-          depth: 150,
-          modifier: 1,
-          slideShadows: true,
+          depth: 200,
+          modifier: 0.5,
+          slideShadows: false,
         }}
         autoplay={{ delay: 5000 }}
       >
-        <SwiperCategory></SwiperCategory>
-        {category.map((item, index) => (
+        {REPRESENTATIVE_CATEGORY.map(({ logo, title }, index) => (
           <SwiperSlide key={index}>
-            <SwiperCategory></SwiperCategory>
+            <SwiperCategory
+              logo={logo}
+              title={title}
+              slideNum={index}
+            ></SwiperCategory>
           </SwiperSlide>
         ))}
       </Swiper>
