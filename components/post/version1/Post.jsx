@@ -14,7 +14,7 @@ const StyledPostArea = styled.div`
   }
 `;
 
-export default function PostMain({ postData }) {
+export default function Post({ postData }) {
   const { header_image, content, title, author } = postData;
 
   return (
