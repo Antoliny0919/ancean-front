@@ -1,5 +1,6 @@
 import NavbarMain from '@/components/home/NavbarMain';
 import Bannermain from '@/components/home/BannerMain';
+import JoinSectionMain from '@/components/home/JoinSectionMain';
 import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       </header>
       <main>
         <Bannermain />
+        <JoinSectionMain />
         <SwiperCategoryMain />
       </main>
     </>

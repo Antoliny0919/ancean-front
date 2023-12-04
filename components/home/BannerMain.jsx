@@ -1,19 +1,21 @@
+import Image from 'next/image';
 import styled from 'styled-components';
 import Wave from 'react-wavify';
+import AnceanLogo from '@/public/ancean-logo.png';
 
 const StyledBannerArea = styled.section`
   padding-top: 5rem;
+
   h1 {
-    padding-left: 10rem;
-    margin: 1rem;
+    margin-top: 1.5rem;
     font-family: 'GmarketSansMedium';
+    text-decoration: dotted;
   }
-  .main-title {
-    font-size: 13vh;
-    color: ${({ theme }) => theme.colors.mainColor[0]};
+  .banner-content {
+    padding-left: 10rem;
   }
   .sub-title {
-    font-size: 8vh;
+    font-size: 9vh;
     color: black;
   }
 `;
@@ -21,8 +23,14 @@ const StyledBannerArea = styled.section`
 export default function BannerMain() {
   return (
     <StyledBannerArea>
-      <h1 className="main-title">ANCean</h1>
-      <h1 className="sub-title">MAKE BIG WAVES</h1>
+      <Image
+        src={AnceanLogo}
+        alt="no-img"
+        className="banner-content"
+        width={900}
+        height={160}
+      ></Image>
+      <h1 className="sub-title banner-content">MAKE BIG WAVES</h1>
       <Wave
         fill={'#155B82'}
         paused={false}

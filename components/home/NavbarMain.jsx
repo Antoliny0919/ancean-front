@@ -1,4 +1,6 @@
+// import Image from 'next/image';
 import styled from 'styled-components';
+// import AnceanLogo from '@/public/ancean-logo-simple.png';
 
 const StyledNavbarArea = styled.section`
   height: 60px;
@@ -15,7 +17,7 @@ const StyledNavbarArea = styled.section`
 export default function NavbarMain() {
   return (
     <StyledNavbarArea>
-      <h1>ANCean</h1>
+      {/* <Image src={AnceanLogo} width={200} heihgt={30}></Image> */}
     </StyledNavbarArea>
   );
 }
