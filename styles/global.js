@@ -90,7 +90,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .post-cards-effect .swiper-pagination-bullet-active {
     opacity: var(--swiper-pagination-bullet-opacity, 1);
-    background: var(--swiper-pagination-color,var(--swiper-theme-color));
+    background: var(--swiper-pagination-color, #388FBF);
   }
 
   .swiper-3d .swiper-slide-shadow {
