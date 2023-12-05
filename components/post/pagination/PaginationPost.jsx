@@ -1,4 +1,4 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCards } from 'swiper/modules';
@@ -27,7 +27,7 @@ const StyledBigWavePostsArea = styled.div`
 `;
 
 export default function PaginationPost() {
-  // const [postNumber, setPostNumber] = useState(0);
+  const [introduceNumber, setIntroduceNumber] = useState(0);
 
   const pagination = {
     clickable: true,
@@ -69,6 +69,10 @@ export default function PaginationPost() {
     },
   ];
 
+  const onShortIntroduceChange = (activePostNum) => {
+    setIntroduceNumber(activePostNum);
+  };
+
   return (
     <StyledBigWavePostsArea>
       <Swiper
@@ -81,7 +85,7 @@ export default function PaginationPost() {
           perSlideOffset: 10,
           perSlideRotate: 1,
         }}
-        onSlideChange={() => console.log('slide-change')}
+        onSlideChange={(e) => onShortIntroduceChange(e.activeIndex)}
       >
         {posts.map((post, index) => (
           <SwiperSlide key={index}>
@@ -89,7 +93,7 @@ export default function PaginationPost() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <PostShortIntroduce></PostShortIntroduce>
+      <PostShortIntroduce data={posts[introduceNumber]}></PostShortIntroduce>
     </StyledBigWavePostsArea>
   );
 }
