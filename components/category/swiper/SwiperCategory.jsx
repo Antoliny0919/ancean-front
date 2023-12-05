@@ -9,21 +9,20 @@ const StyledCategoryCard = styled.div`
   padding: 10rem 5rem 10rem 5rem;
   font-size: 20px;
   font-family: 'Pretendard-Bold';
-  border: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
   border-radius: 10px;
-  color: ${({ theme }) => theme.colors.mainColor[8]};
-  background-color: white;
+  color: white;
+  background: ${(props) => props.color};
   svg {
     margin-bottom: 1rem;
     width: 50%;
     height: 50%;
-    color: ${({ theme }) => theme.colors.mainColor[1]};
+    color: white;
   }
 `;
 
-export default function SwiperCategory({ logo, title, slideNum }) {
+export default function SwiperCategory({ logo, title, color, slideNum }) {
   return (
-    <StyledCategoryCard slideNum={slideNum}>
+    <StyledCategoryCard slideNum={slideNum} color={color}>
       {logo}
       <div>{title}</div>
     </StyledCategoryCard>

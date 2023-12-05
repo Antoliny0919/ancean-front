@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
   }
 
-  .swiper {
+  .post-cards-effect {
     width: 30vw;
     height: 35vw;
     margin-left: 0;
@@ -55,9 +55,14 @@ export const GlobalStyle = createGlobalStyle`
     z-index: 1;
   }
 
+  .swiper-category {
+    width: 100%;
+  }
+
   .swiper-cards {
     overflow: visible;
   }
+
   .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: -20px;
   }

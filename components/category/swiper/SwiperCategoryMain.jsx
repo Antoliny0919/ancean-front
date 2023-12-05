@@ -17,7 +17,7 @@ const StyledCardSwiperArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 70%;
+  width: 60%;
 `;
 
 export default function SwiperCategoryMain() {
@@ -28,6 +28,7 @@ export default function SwiperCategoryMain() {
         slidesPerView={3}
         loop={true}
         effect={'coverflow'}
+        className="swiper-category"
         slideToClickedSlide={true}
         coverflowEffect={{
           rotate: 50,
@@ -38,12 +39,13 @@ export default function SwiperCategoryMain() {
         }}
         autoplay={{ delay: 5000 }}
       >
-        {REPRESENTATIVE_CATEGORY.map(({ logo, title }, index) => (
+        {REPRESENTATIVE_CATEGORY.map(({ logo, title, color }, index) => (
           <SwiperSlide key={index}>
             <SwiperCategory
               logo={logo}
               title={title}
               slideNum={index}
+              color={color}
             ></SwiperCategory>
           </SwiperSlide>
         ))}

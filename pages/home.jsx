@@ -1,7 +1,7 @@
 import NavbarMain from '@/components/home/NavbarMain';
 import Bannermain from '@/components/home/BannerMain';
 import MostBigWavePost from '@/components/home/MostBigWavePost';
-// import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
+import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
       <main>
         <Bannermain />
         <MostBigWavePost />
-        {/* <SwiperCategoryMain /> */}
+        <MostRepresentativeCategory />
       </main>
     </>
   );
