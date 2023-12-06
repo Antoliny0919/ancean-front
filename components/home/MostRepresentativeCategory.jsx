@@ -7,10 +7,15 @@ const StyledMostRepresentativeCategoryArea = styled.section`
   margin-top: 3rem;
   padding-top: 10rem;
   padding-bottom: 10rem;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex: 1;
   flex-direction: column;
   align-items: center;
+  h4 {
+    margin-bottom: 2rem;
+  }
 `;
 
 const StyleSectionTitleArea = styled.div`

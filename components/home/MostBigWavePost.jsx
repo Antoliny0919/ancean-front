@@ -1,11 +1,19 @@
+import React from 'react';
 import styled from 'styled-components';
 import PaginationPost from '@/components/post/pagination/PaginationPost';
 import { MdOutlinePostAdd } from 'react-icons/md';
 
 const StyledMostBigWavePostArea = styled.section`
+  width: 100%;
+  height: 100%;
   text-align: center;
   padding: 3rem;
   font-family: 'NanumBarunGothic';
+  opacity: 0;
+  transition: opacity 1s;
+  h4 {
+    margin-bottom: 2rem;
+  }
 `;
 
 const StyledSectionTitleArea = styled.div`
@@ -27,9 +35,9 @@ const StyledSectionTitleArea = styled.div`
   }
 `;
 
-export default function MostBigWavePost() {
+function MostBigWavePost({ reference }) {
   return (
-    <StyledMostBigWavePostArea>
+    <StyledMostBigWavePostArea ref={reference}>
       <StyledSectionTitleArea>
         <h1>가장 큰 파도를 만든 포스트</h1>
         <MdOutlinePostAdd />
@@ -39,3 +47,5 @@ export default function MostBigWavePost() {
     </StyledMostBigWavePostArea>
   );
 }
+
+export default React.forwardRef(MostBigWavePost);

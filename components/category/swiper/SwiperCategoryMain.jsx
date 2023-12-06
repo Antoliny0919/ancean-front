@@ -42,7 +42,6 @@ export default function SwiperCategoryMain({ category }) {
             <SwiperCategory
               logo={logo}
               title={title}
-              slideNum={index}
               color={color}
             ></SwiperCategory>
           </SwiperSlide>

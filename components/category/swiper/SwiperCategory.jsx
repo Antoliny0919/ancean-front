@@ -20,9 +20,9 @@ const StyledCategoryCard = styled.div`
   }
 `;
 
-export default function SwiperCategory({ logo, title, color, slideNum }) {
+export default function SwiperCategory({ logo, title, color }) {
   return (
-    <StyledCategoryCard slideNum={slideNum} color={color}>
+    <StyledCategoryCard color={color}>
       {logo}
       <div>{title}</div>
     </StyledCategoryCard>
