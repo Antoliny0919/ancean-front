@@ -15,9 +15,6 @@ const StyledPost = styled.div`
   border-radius: 10px;
   width: 30vw;
   height: 35vw;
-  /* &:hover {
-    opacity: 0.5;
-  } */
 `;
 
 const StyledBigWavePostsArea = styled.div`
@@ -74,7 +71,7 @@ export default function PaginationPost() {
   };
 
   return (
-    <StyledBigWavePostsArea>
+    <StyledBigWavePostsArea className="fade-in-slide-down-suspend">
       <Swiper
         pagination={pagination}
         grabCursor={true}

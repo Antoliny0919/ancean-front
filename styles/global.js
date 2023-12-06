@@ -24,6 +24,12 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
+  // IntersectionObserver
+  .fade-in-slide-down-suspend {
+    opacity: 0;
+    transform: translateY(-100px);
+    transition: all 1s;
+  }
 
   // swiper
   .swiper-slide {

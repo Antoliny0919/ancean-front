@@ -1,29 +1,31 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import NavbarMain from '@/components/home/NavbarMain';
 import Bannermain from '@/components/home/BannerMain';
 import MostBigWavePost from '@/components/home/MostBigWavePost';
 import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
 
 export default function Home() {
-  const target = useRef(null);
-
   useEffect(() => {
-    if (target) {
-      let observer = new IntersectionObserver(
-        ([e]) => {
-          if (e.isIntersecting) {
-            console.log(e, 'in');
-            target.current.style.opacity = '1';
+    let div = document.querySelectorAll('.fade-in-slide-down-suspend');
+    console.log(div);
+    let observer = new IntersectionObserver(
+      (e) => {
+        e.forEach((item) => {
+          if (item.isIntersecting) {
+            item.target.style.opacity = '1';
+            item.target.style.transform = 'translateY(0px)';
           } else {
-            target.current.style.opacity = '0';
+            item.target.style.opacity = '0';
+            item.target.style.transform = 'translateY(-100px)';
           }
-        },
-        { threshold: 0.5 },
-      );
-      observer.observe(target.current);
-    }
-  }, [target]);
-
+        });
+      },
+      { threshold: 0.1 },
+    );
+    div.forEach((item) => {
+      observer.observe(item);
+    });
+  });
   return (
     <>
       <header>
@@ -31,7 +33,7 @@ export default function Home() {
       </header>
       <main>
         <Bannermain />
-        <MostBigWavePost reference={target} />
+        <MostBigWavePost />
         <MostRepresentativeCategory />
       </main>
     </>
