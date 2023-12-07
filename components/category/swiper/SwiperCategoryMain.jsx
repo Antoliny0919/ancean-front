@@ -21,13 +21,15 @@ const StyledCardSwiperArea = styled.div`
 
 export default function SwiperCategoryMain({ category }) {
   return (
-    <StyledCardSwiperArea>
+    <StyledCardSwiperArea className="fade-in-slide-down-suspend">
       <Swiper
         modules={[Navigation, Pagination, EffectCoverflow, Autoplay]}
         slidesPerView={3}
         effect={'coverflow'}
         className="swiper-category"
         slideToClickedSlide={true}
+        centeredSlides={true}
+        loop={true}
         coverflowEffect={{
           rotate: 50,
           stretch: 100,
@@ -35,7 +37,7 @@ export default function SwiperCategoryMain({ category }) {
           modifier: 0.5,
           slideShadows: false,
         }}
-        autoplay={{ delay: 10000 }}
+        autoplay={{ delay: 30000 }}
       >
         {category.map(({ logo, title, color }, index) => (
           <SwiperSlide key={index}>

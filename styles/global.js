@@ -72,6 +72,12 @@ export const GlobalStyle = createGlobalStyle`
   .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: -20px;
   }
+  .swiper-category .swiper-slide-active:hover {
+    /* cursor: hover;
+    transition: .4s;  */
+    /* transform: rotateY(180deg);
+    opacity: 0.2; */
+  }
 
   .post-cards-effect .swiper-wrapper {
     position: relative;
@@ -106,6 +112,14 @@ export const GlobalStyle = createGlobalStyle`
 
   .swiper-3d .swiper-slide-shadow {
     border-radius: 10px;
+  }
+
+  .swiper-3d .swiper-slide-shadow-left {
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+  }
+
+  .swiper-3d .swiper-slide-shadow-right {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   }
 
   @font-face {

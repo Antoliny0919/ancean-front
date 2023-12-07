@@ -41,11 +41,13 @@ const StyleSectionTitleArea = styled.div`
 export default function MostRepresentativeCategory() {
   return (
     <StyledMostRepresentativeCategoryArea>
-      <StyleSectionTitleArea>
+      <StyleSectionTitleArea className="fade-in-slide-down-suspend">
         <h1>큰 파도와 함께한 카테고리</h1>
         <BsSignpostFill />
       </StyleSectionTitleArea>
-      <h4>최근 가장 많은 게시글이 있는 카테고리 입니다.</h4>
+      <h4 className="fade-in-slide-down-suspend">
+        최근 가장 많은 게시글이 있는 카테고리 입니다.
+      </h4>
       <SwiperCategoryMain category={REPRESENTATIVE_CATEGORY} />
     </StyledMostRepresentativeCategoryArea>
   );
