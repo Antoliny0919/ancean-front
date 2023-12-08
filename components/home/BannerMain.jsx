@@ -1,20 +1,10 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-// import Wave from 'react-wavify';
+import Wave from 'react-wavify';
 import AnceanLogo from '@/public/ancean-logo.png';
-import WaveVideo from '@/public/wave-video-ver2.mp4';
 
 const StyledBannerArea = styled.section`
-  video {
-    position: relative;
-  }
-  img {
-    position: absolute;
-    top: 20%;
-  }
-
   h1 {
-    position: absolute;
     top: 50%;
     margin-top: 1.5rem;
     font-family: 'GmarketSansMedium';
@@ -32,13 +22,6 @@ const StyledBannerArea = styled.section`
 export default function BannerMain() {
   return (
     <StyledBannerArea>
-      <video
-        autoPlay={true}
-        loop={true}
-        muted={true}
-        src={WaveVideo}
-        style={{ width: '100%', height: '100%' }}
-      ></video>
       <Image
         src={AnceanLogo}
         alt="no-img"
@@ -47,7 +30,7 @@ export default function BannerMain() {
         height={160}
       ></Image>
       <h1 className="sub-title banner-content">MAKE BIG WAVES</h1>
-      {/* <Wave
+      <Wave
         fill={'#155B82'}
         paused={false}
         style={{ display: 'flex', height: '70vh' }}
@@ -57,7 +40,7 @@ export default function BannerMain() {
           speed: 0.5,
           points: 2,
         }}
-      ></Wave> */}
+      ></Wave>
     </StyledBannerArea>
   );
 }
