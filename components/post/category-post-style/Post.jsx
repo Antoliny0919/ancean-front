@@ -2,10 +2,12 @@ import styled, { css } from 'styled-components';
 import PostHeader from './PostHeader';
 
 const StyledPostArea = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 80%;
   height: 300px;
+  // border color linear-gradeint or hex code
   ${(props) =>
     props.color.includes('linear-gradient')
       ? css`
@@ -20,13 +22,37 @@ const StyledPostArea = styled.div`
         `}
   border-radius: 10px;
   & + & {
-    margin-top: 3rem;
+    margin-top: 5rem;
+  }
+`;
+
+const StyledLabel = styled.label`
+  position: absolute;
+  font-size: 18px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  left: 0;
+  top: 0;
+  transform: translate(1.5rem, -1.5rem);
+  transition: all 0.3s;
+  font-family: 'Pretendard-Bold';
+  color: white;
+  background: ${(props) => props.color};
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border-radius: 10px;
+  svg {
+    margin-right: 0.5rem;
   }
 `;
 
 export default function Post({ category }) {
   return (
     <StyledPostArea color={category.color}>
+      <StyledLabel color={category.color}>
+        {category.logo}
+        <span>{category.title}</span>
+      </StyledLabel>
       <PostHeader title={category.title} logo={category.logo} />
     </StyledPostArea>
   );
