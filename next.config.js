@@ -1,5 +1,5 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const nextConfig = {
   images: {
     remotePattern: [
       {
@@ -14,3 +14,8 @@ module.exports = {
   reactStrictMode: false,
   output: 'standalone',
 };
+
+module.exports = nextConfig;
+
+const withVideos = require("next-videos");
+module.exports = withVideos();

@@ -3,6 +3,7 @@ import NavbarMain from '@/components/home/NavbarMain';
 import Bannermain from '@/components/home/BannerMain';
 import MostBigWavePost from '@/components/home/MostBigWavePost';
 import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
+// import BestPostByCategory from '@/components/home/BestPostByCategory';
 
 export default function Home() {
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function Home() {
         <Bannermain />
         <MostBigWavePost />
         <MostRepresentativeCategory />
+        {/* <BestPostByCategory/> */}
       </main>
     </>
   );
