@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PaginationPost from '@/components/post/pagination/PaginationPost';
-import { MdOutlinePostAdd } from 'react-icons/md';
+import { FaCrown } from 'react-icons/fa6';
 
 const StyledMostBigWavePostArea = styled.section`
   width: 100%;
@@ -29,7 +29,7 @@ const StyledSectionTitleArea = styled.div`
     width: 5%;
     height: 5%;
     margin-bottom: 1rem;
-    color: #edba31;
+    color: #dfdf22;
   }
 `;
 
@@ -38,7 +38,8 @@ function MostBigWavePost() {
     <StyledMostBigWavePostArea>
       <StyledSectionTitleArea className="fade-in-slide-down-suspend">
         <h1>가장 큰 파도를 만든 포스트</h1>
-        <MdOutlinePostAdd />
+        {/* <FaCrown /> */}
+        <FaCrown />
       </StyledSectionTitleArea>
       <h4 className="fade-in-slide-down-suspend">
         최근 가장 많은 WAVE지수를 얻은 포스트들 입니다.

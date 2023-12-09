@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
 import { REPRESENTATIVE_CATEGORY } from '@/components/category/category';
-import { BsSignpostFill } from 'react-icons/bs';
+import { FaCrown } from 'react-icons/fa6';
 
 const StyledMostRepresentativeCategoryArea = styled.section`
   margin-top: 3rem;
@@ -33,7 +33,7 @@ const StyleSectionTitleArea = styled.div`
   svg {
     width: 5%;
     height: 5%;
-    color: #745633;
+    color: #dfdf22;
     margin-bottom: 1rem;
   }
 `;
@@ -43,7 +43,7 @@ export default function MostRepresentativeCategory() {
     <StyledMostRepresentativeCategoryArea>
       <StyleSectionTitleArea className="fade-in-slide-down-suspend">
         <h1>큰 파도와 함께한 카테고리</h1>
-        <BsSignpostFill />
+        <FaCrown />
       </StyleSectionTitleArea>
       <h4 className="fade-in-slide-down-suspend">
         최근 가장 많은 게시글이 있는 카테고리 입니다.

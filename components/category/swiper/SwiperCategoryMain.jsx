@@ -28,7 +28,6 @@ export default function SwiperCategoryMain({ category }) {
         effect={'coverflow'}
         className="swiper-category"
         slideToClickedSlide={true}
-        centeredSlides={true}
         loop={true}
         coverflowEffect={{
           rotate: 50,
