@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
-import { REPRESENTATIVE_CATEGORY } from '@/components/category/category';
+// import { REPRESENTATIVE_CATEGORY } from '@/components/category/category';
 import { FaCrown } from 'react-icons/fa6';
 
 const StyledMostRepresentativeCategoryArea = styled.section`
@@ -38,7 +38,7 @@ const StyleSectionTitleArea = styled.div`
   }
 `;
 
-export default function MostRepresentativeCategory() {
+export default function MostRepresentativeCategory({ data }) {
   return (
     <StyledMostRepresentativeCategoryArea>
       <StyleSectionTitleArea className="fade-in-slide-down-suspend">
@@ -48,7 +48,7 @@ export default function MostRepresentativeCategory() {
       <h4 className="fade-in-slide-down-suspend">
         최근 가장 많은 게시글이 있는 카테고리 입니다.
       </h4>
-      <SwiperCategoryMain category={REPRESENTATIVE_CATEGORY} />
+      <SwiperCategoryMain data={data} />
     </StyledMostRepresentativeCategoryArea>
   );
 }

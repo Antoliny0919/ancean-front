@@ -7,9 +7,6 @@ import MostRepresentativeCategory from '@/components/home/MostRepresentativeCate
 import BestPostByCategory from '@/components/home/BestPostByCategory';
 
 export default function Home({ representativeCategory, bestPostByCategory }) {
-  console.log(representativeCategory);
-  console.log(bestPostByCategory);
-
   useEffect(() => {
     let div = document.querySelectorAll('.fade-in-slide-down-suspend');
     console.log(div);
@@ -40,8 +37,11 @@ export default function Home({ representativeCategory, bestPostByCategory }) {
       <main>
         <Bannermain />
         <MostBigWavePost />
-        <MostRepresentativeCategory />
-        <BestPostByCategory />
+        <MostRepresentativeCategory data={representativeCategory} />
+        <BestPostByCategory
+          categories={representativeCategory}
+          posts={bestPostByCategory}
+        />
       </main>
     </>
   );

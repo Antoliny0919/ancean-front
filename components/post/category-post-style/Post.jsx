@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import PostHeader from './PostHeader';
+import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
 
 const StyledPostArea = styled.div`
   position: relative;
@@ -46,14 +47,16 @@ const StyledLabel = styled.label`
   }
 `;
 
-export default function Post({ category }) {
+export default function Post({ name, color, post }) {
+  console.log(post);
+
   return (
-    <StyledPostArea color={category.color}>
-      <StyledLabel color={category.color}>
-        {category.logo}
-        <span>{category.title}</span>
+    <StyledPostArea color={color}>
+      <StyledLabel color={color}>
+        {CATEGORY_LOGO[name]}
+        <span>{name}</span>
       </StyledLabel>
-      <PostHeader title={category.title} logo={category.logo} />
+      <PostHeader />
     </StyledPostArea>
   );
 }

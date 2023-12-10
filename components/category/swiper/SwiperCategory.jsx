@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CATEGORY_LOGO } from '../categoryLogo';
 
 const StyledCategoryCard = styled.div`
   position: relative;
@@ -20,11 +21,11 @@ const StyledCategoryCard = styled.div`
   }
 `;
 
-export default function SwiperCategory({ logo, title, color }) {
+export default function SwiperCategory({ name, color }) {
   return (
     <StyledCategoryCard color={color}>
-      {logo}
-      <div>{title}</div>
+      {CATEGORY_LOGO[name]}
+      <div>{name}</div>
     </StyledCategoryCard>
   );
 }

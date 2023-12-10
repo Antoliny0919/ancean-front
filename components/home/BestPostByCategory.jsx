@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Post from '@/components/post/category-post-style/Post';
-import { REPRESENTATIVE_CATEGORY } from '../category/category';
 
 const StyledBestPostByCategoryArea = styled.section`
   padding: 3rem;
@@ -9,11 +8,13 @@ const StyledBestPostByCategoryArea = styled.section`
   align-items: center;
 `;
 
-export default function BestPostByCategory() {
+export default function BestPostByCategory({ categories, posts }) {
   return (
     <StyledBestPostByCategoryArea>
-      {REPRESENTATIVE_CATEGORY.map((item, index) => {
-        return <Post key={index} category={item}></Post>;
+      {categories.map(({ name, color }, index) => {
+        return (
+          <Post key={index} name={name} color={color} post={posts[name]}></Post>
+        );
       })}
     </StyledBestPostByCategoryArea>
   );
