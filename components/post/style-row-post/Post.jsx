@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import TestImage from '@/public/call-back-hell.jpeg';
+// import TestImage from '@/public/call-back-hell.jpeg';
 import { LuWaves } from 'react-icons/lu';
 import { FaRegCommentDots } from 'react-icons/fa';
 
@@ -65,25 +65,6 @@ const StyledContentHeaderArea = styled.div`
   }
 `;
 
-// const StyledWaveArea = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   div {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     margin-right: 1rem;
-//     svg {
-//       width: 100%;
-//       height: 100%;
-//       color: ${({ theme }) => theme.colors.mainColor[4]};
-//       &:hover {
-//         cursor: pointer;
-//       }
-//     }
-//   }
-// `;
-
 const StyledAuthorDateArea = styled.div`
   display: flex;
   font-size: 16px;
@@ -108,14 +89,24 @@ const StyledAuthorDateArea = styled.div`
 `;
 
 export default function Post({ post }) {
-  // const imageUrl = `http://localhost:5050${post.header_image}`
-  // console.log(imageUrl);
-  // style={{ height: '100%', width: '30%'}}
+  const imageUrl = `http://localhost:5050${post.header_image}`;
   const date = new Date(post.created_at);
+
+  console.log(imageUrl);
+
+  const myLoader = ({ src }) => {
+    return src;
+  };
 
   return (
     <StyledPostArea>
-      <Image src={TestImage} alt="no-img"></Image>
+      <Image
+        loader={myLoader}
+        src={imageUrl}
+        alt="no-img"
+        width={1000}
+        height={1000}
+      ></Image>
       <StyledContentArea>
         <StyledContentHeaderArea>
           <div>

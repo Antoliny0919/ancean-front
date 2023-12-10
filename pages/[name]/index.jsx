@@ -1,17 +1,17 @@
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import client from '../../api/client';
+import UserPageHeader from '../../components/user/UserPageHeader';
+import UserPageBody from '../../components/user/UserPageBody';
 // import CardSection from '../../components/common/card/CardSection';
-import CardSwiper from '../../components/common/card/CardSwiper';
+// import CardSwiper from '../../components/common/card/CardSwiper';
 
-const PaddingBottom = styled.div`
-  padding: 10rem;
-`;
-
-export default function Index({ data }) {
+export default function Index({ data, name }) {
   return (
     <>
-      <CardSwiper data={data}></CardSwiper>
-      <PaddingBottom></PaddingBottom>
+      <UserPageHeader name={name} />
+      <UserPageBody data={data} />
+      {/* <CardSwiper data={data}></CardSwiper>
+      <PaddingBottom></PaddingBottom> */}
     </>
   );
 }
@@ -21,5 +21,5 @@ export const getServerSideProps = async (context) => {
   // get user posts
   const response = await client.get(`http://api-local:8000/api/${name}/posts/`);
   const data = await response.data;
-  return { props: { data } };
+  return { props: { data, name } };
 };
