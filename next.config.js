@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePattern: [
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      }
+    domains: [
+      'localhost'
     ]
   },
   compiler: {

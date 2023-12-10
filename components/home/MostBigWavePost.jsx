@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PaginationPost from '@/components/post/pagination/PaginationPost';
+import PaginationPost from '@/components/post/swiper/PaginationPost';
 import { FaCrown } from 'react-icons/fa6';
 
 const StyledMostBigWavePostArea = styled.section`
@@ -38,7 +38,6 @@ function MostBigWavePost() {
     <StyledMostBigWavePostArea>
       <StyledSectionTitleArea className="fade-in-slide-down-suspend">
         <h1>가장 큰 파도를 만든 포스트</h1>
-        {/* <FaCrown /> */}
         <FaCrown />
       </StyledSectionTitleArea>
       <h4 className="fade-in-slide-down-suspend">

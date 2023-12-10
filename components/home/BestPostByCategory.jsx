@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Post from '@/components/post/category-post-style/Post';
+import VerticalPaginationPostByCategory from '@/components/category/swiper/VerticalPaginationPostByCategory';
 
 const StyledBestPostByCategoryArea = styled.section`
   padding: 3rem;
@@ -13,7 +13,12 @@ export default function BestPostByCategory({ categories, posts }) {
     <StyledBestPostByCategoryArea>
       {categories.map(({ name, color }, index) => {
         return (
-          <Post key={index} name={name} color={color} post={posts[name]}></Post>
+          <VerticalPaginationPostByCategory
+            key={index}
+            name={name}
+            color={color}
+            posts={posts[name]}
+          ></VerticalPaginationPostByCategory>
         );
       })}
     </StyledBestPostByCategoryArea>

@@ -122,6 +122,15 @@ export const GlobalStyle = createGlobalStyle`
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
   }
 
+  // vertical pagination
+
+  .vertical-pagination {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   @font-face {
     font-family: 'Pretendard-Bold';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');

@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import PostHeader from './PostHeader';
-import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
+import VerticalPaginationPost from '../../post/swiper/VerticalPaginationPost';
+import { CATEGORY_LOGO } from '../categoryLogo';
 
-const StyledPostArea = styled.div`
+const StyledVerticalPaginationPostArea = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -27,7 +27,7 @@ const StyledPostArea = styled.div`
   }
 `;
 
-const StyledLabel = styled.label`
+const StyledLabelArea = styled.div`
   position: absolute;
   font-size: 18px;
   pointer-events: none;
@@ -42,21 +42,24 @@ const StyledLabel = styled.label`
   background: ${(props) => props.color};
   padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 10px;
+  z-index: 9;
   svg {
     margin-right: 0.5rem;
   }
 `;
 
-export default function Post({ name, color, post }) {
-  console.log(post);
-
+export default function VerticalPaginationPostByCategory({
+  color,
+  name,
+  posts,
+}) {
   return (
-    <StyledPostArea color={color}>
-      <StyledLabel color={color}>
+    <StyledVerticalPaginationPostArea color={color}>
+      <StyledLabelArea color={color}>
         {CATEGORY_LOGO[name]}
         <span>{name}</span>
-      </StyledLabel>
-      <PostHeader />
-    </StyledPostArea>
+      </StyledLabelArea>
+      <VerticalPaginationPost posts={posts}></VerticalPaginationPost>
+    </StyledVerticalPaginationPostArea>
   );
 }
