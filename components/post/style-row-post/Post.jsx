@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import TestImage from '@/public/call-back-hell.jpeg';
+import { LuWaves } from 'react-icons/lu';
+import { FaRegCommentDots } from 'react-icons/fa';
 
 const StyledPostArea = styled.div`
   width: 100%;
@@ -17,17 +19,10 @@ const StyledPostArea = styled.div`
 const StyledContentArea = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 1rem 1.5rem 1rem 1.5rem;
   width: 65%;
   height: inherit;
-  .title {
-    font-size: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-family: 'Pretendard-Bold';
-    margin-bottom: 0.7rem;
-  }
   .content {
     font-size: 16px;
     overflow: hidden;
@@ -40,10 +35,54 @@ const StyledContentArea = styled.div`
   }
 `;
 
-const StyledWaveArea = styled.div`
+const StyledContentHeaderArea = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  .title {
+    font-family: 'Pretendard-Bold';
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0.7rem;
+  }
+  .icon-area {
+    div {
+      display: inline-flex;
+      font-family: 'SUIT-Regular';
+      margin-right: 1rem;
+      svg {
+        padding-right: 0.3rem;
+        width: 100%;
+        height: 100%;
+        color: ${({ theme }) => theme.colors.mainColor[4]};
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
 `;
+
+// const StyledWaveArea = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   div {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     margin-right: 1rem;
+//     svg {
+//       width: 100%;
+//       height: 100%;
+//       color: ${({ theme }) => theme.colors.mainColor[4]};
+//       &:hover {
+//         cursor: pointer;
+//       }
+//     }
+//   }
+// `;
 
 const StyledAuthorDateArea = styled.div`
   display: flex;
@@ -59,7 +98,7 @@ const StyledAuthorDateArea = styled.div`
     .title {
       font-size: inherit;
       margin-right: 0.3rem;
-      color: ${({ theme }) => theme.colors.mainColor[4]};
+      color: ${({ theme }) => theme.colors.mainColor[8]};
     }
     .content {
       display: inline-block;
@@ -78,11 +117,26 @@ export default function Post({ post }) {
     <StyledPostArea>
       <Image src={TestImage} alt="no-img"></Image>
       <StyledContentArea>
-        <div className="title">{post.title}</div>
+        <StyledContentHeaderArea>
+          <div>
+            <span className="title">{post.title}</span>
+          </div>
+          <div className="icon-area">
+            <div>
+              <span>
+                <LuWaves />
+              </span>
+              <span>{post.wave}</span>
+            </div>
+            <div>
+              <span>
+                <FaRegCommentDots />
+              </span>
+              <span>0</span>
+            </div>
+          </div>
+        </StyledContentHeaderArea>
         <div className="content">{post.content}</div>
-        <StyledWaveArea>
-          <div>wave 지수</div>
-        </StyledWaveArea>
         <StyledAuthorDateArea>
           <div>
             <span className="title">글쓴이:</span>
