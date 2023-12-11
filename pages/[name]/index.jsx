@@ -1,7 +1,6 @@
 // import styled from 'styled-components';
 import client from '../../api/client';
-import UserPageHeader from '../../components/user/UserPageHeader';
-import UserPageBody from '../../components/user/UserPageBody';
+import UserPage from '../../components/user/UserPage';
 // import CardSection from '../../components/common/card/CardSection';
 // import CardSwiper from '../../components/common/card/CardSwiper';
 
@@ -9,8 +8,7 @@ export default function Index({ name, posts }) {
   console.log(posts);
   return (
     <>
-      <UserPageHeader name={name} />
-      <UserPageBody data={posts} />
+      <UserPage name={name} posts={posts}></UserPage>
       {/* <CardSwiper data={data}></CardSwiper>
       <PaddingBottom></PaddingBottom> */}
     </>

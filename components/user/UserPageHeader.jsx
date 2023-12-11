@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
-const StyledUserPageHeaderArea = styled.div`
-  padding: 5rem;
+const StyledUserPageHeaderArea = styled.header`
+  margin-bottom: 7rem;
   h1 {
     font-size: 100px;
-    font-family: 'GmarketSansMedium';
     margin: 0;
   }
   .wave {

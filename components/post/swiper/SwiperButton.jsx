@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import { useSwiper } from 'swiper/react';
 
 const StyledSwiperButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   font-family: 'Pretendard-Bold';
   border: none;
   background-color: white;
@@ -23,8 +20,9 @@ export default function SwiperButton({ icon, title }) {
       onClick={
         title === 'NEXT' ? () => swiper.slideNext() : () => swiper.slidePrev()
       }
+      className={title === 'NEXT' ? 'swiper-button-next' : 'swiper-button-prev'}
     >
-      {icon}
+      <div>{icon}</div>
       <div>{title}</div>
     </StyledSwiperButton>
   );

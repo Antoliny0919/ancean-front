@@ -23,7 +23,7 @@ const StyledBigWavePostsArea = styled.div`
   justify-content: space-evenly;
 `;
 
-export default function PaginationPost() {
+export default function CardsPost() {
   const [introduceNumber, setIntroduceNumber] = useState(0);
 
   const pagination = {

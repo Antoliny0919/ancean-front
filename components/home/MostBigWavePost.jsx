@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import PaginationPost from '@/components/post/swiper/PaginationPost';
+import CardsPost from '@/components/post/swiper/CardsPost';
 import { FaCrown } from 'react-icons/fa6';
 
 const StyledMostBigWavePostArea = styled.section`
@@ -43,7 +43,7 @@ function MostBigWavePost() {
       <h4 className="fade-in-slide-down-suspend">
         최근 가장 많은 WAVE지수를 얻은 포스트들 입니다.
       </h4>
-      <PaginationPost></PaginationPost>
+      <CardsPost></CardsPost>
     </StyledMostBigWavePostArea>
   );
 }

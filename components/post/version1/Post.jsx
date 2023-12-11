@@ -9,9 +9,6 @@ const StyledPostArea = styled.div`
   width: 30rem;
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
   border-radius: 10px;
-  &:hover {
-    border: solid red 0.1rem;
-  }
 `;
 
 export default function Post({ postData }) {

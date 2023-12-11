@@ -131,6 +131,46 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  // coverflow-stretch-post
+
+  .swiper-button-next, .swiper-rtl .swiper-button-prev {
+      right: var(--swiper-navigation-sides-offset, 0px);
+      left: auto;
+  }
+  .swiper-button-prev, .swiper-button-next {
+      position: absolute;
+      top: var(--swiper-navigation-top-offset, 50%);
+      width: calc(var(--swiper-navigation-size) / 44 * 27);
+      height: var(--swiper-navigation-size);
+      margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
+      z-index: 10;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .swiper-button-next {
+    right: 10vw;
+  }
+  .swiper-button-prev {
+    left: 10vw;
+  }
+
+  .swiper-button-next:after {
+    content: ''
+  }
+  .swiper-button-prev:after {
+    content: ''
+  }
+  /* .coverflow-stretch-post {
+    width: 50%;
+    height: 50%;
+    margin: 0;
+    display: flex;
+
+  } */
+
   @font-face {
     font-family: 'Pretendard-Bold';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
