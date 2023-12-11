@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
 
 const StyledPostFooterArea = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 14px;
+  font-size: 13px;
   border-top: solid rgba(73, 73, 73, 0.2) 0.1rem;
   font-family: 'GmarketSansMedium';
   align-items: center;
@@ -17,11 +16,9 @@ const StyledCategoryArea = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin-left: 2rem;
-  color: #2e80a9;
-  width: 100%;
-  svg {
-    height: 10%;
-    width: 10%;
+  width: 60%;
+  span {
+    margin-right: 0.2rem;
   }
 `;
 
@@ -31,7 +28,6 @@ export default function PostFooter({ author, category }) {
       <div className="author">작성자: {author}</div>
       <StyledCategoryArea>
         <span>카테고리: </span>
-        {CATEGORY_LOGO[category]['logo']}
         <span>{category}</span>
       </StyledCategoryArea>
     </StyledPostFooterArea>
