@@ -24,7 +24,7 @@ const StyledCategoryCard = styled.div`
 export default function SwiperCategory({ name, color }) {
   return (
     <StyledCategoryCard color={color}>
-      {CATEGORY_LOGO[name]}
+      {CATEGORY_LOGO[name]['logo']}
       <div>{name}</div>
     </StyledCategoryCard>
   );

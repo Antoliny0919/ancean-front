@@ -28,12 +28,17 @@ const StyledPostBodyArea = styled.div`
   }
 `;
 
-export default function PostBody({ content, title }) {
+export default function PostBody({ content, title, created_at }) {
+  const date = new Date(created_at);
+
   return (
     <StyledPostBodyArea>
       <div className="title">{title}</div>
       <div className="content">{content}</div>
-      <div className="created-date">작성일: 2023년 11월 29일</div>
+      <div className="created-date">
+        작성일: {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}
+        일
+      </div>
     </StyledPostBodyArea>
   );
 }

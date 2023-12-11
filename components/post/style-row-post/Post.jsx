@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-// import TestImage from '@/public/call-back-hell.jpeg';
 import { LuWaves } from 'react-icons/lu';
 import { FaRegCommentDots } from 'react-icons/fa';
 
@@ -9,7 +8,6 @@ const StyledPostArea = styled.div`
   height: 100%;
   display: flex;
   flex-direction: row;
-
   img {
     width: 35%;
     height: 100%;
@@ -136,7 +134,7 @@ export default function Post({ post }) {
           <div>
             <span className="title">작성일:</span>
             <span className="content">
-              {date.getFullYear()}년 {date.getMonth()}월 {date.getDate()}일
+              {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일
             </span>
           </div>
         </StyledAuthorDateArea>

@@ -59,7 +59,7 @@ export default function VerticalPaginationPostByCategory({
       className="fade-in-slide-down-suspend"
     >
       <StyledLabelArea color={color}>
-        {CATEGORY_LOGO[name]}
+        {CATEGORY_LOGO[name]['logo']}
         <span>{name}</span>
       </StyledLabelArea>
       <VerticalPaginationPost posts={posts}></VerticalPaginationPost>

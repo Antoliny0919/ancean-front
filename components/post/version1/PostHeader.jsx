@@ -2,7 +2,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import { LuWaves } from 'react-icons/lu';
 import { FaRegCommentDots } from 'react-icons/fa';
-import { RxEyeOpen } from 'react-icons/rx';
 
 const StyledPostHeaderArea = styled.div`
   display: flex;
@@ -25,7 +24,7 @@ const IconWrapper = styled.div`
   font-size: 12px;
   svg {
     width: 100%;
-    height: 1.5rem;
+    height: 100%;
     color: ${({ theme }) => theme.colors.mainColor[4]};
   }
   & + & {
@@ -33,12 +32,11 @@ const IconWrapper = styled.div`
   }
 `;
 
-export default function PostHeader({ header_image }) {
+export default function PostHeader({ header_image, wave }) {
   const imageSRC = header_image.replace(
     'http://api-local:8000',
     'http://localhost:5050',
   );
-  console.log(imageSRC);
 
   const myLoader = ({ src }) => {
     return src;
@@ -56,15 +54,11 @@ export default function PostHeader({ header_image }) {
       <StyledMinibarArea>
         <IconWrapper>
           <LuWaves />
-          <div>302</div>
+          <div>{wave}</div>
         </IconWrapper>
         <IconWrapper>
           <FaRegCommentDots />
           <div>22</div>
-        </IconWrapper>
-        <IconWrapper>
-          <RxEyeOpen />
-          <div>132k</div>
         </IconWrapper>
       </StyledMinibarArea>
     </StyledPostHeaderArea>

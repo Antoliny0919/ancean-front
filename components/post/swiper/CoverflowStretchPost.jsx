@@ -27,7 +27,7 @@ export default function CoverflowStretchPost({ posts }) {
         slideToClickedSlide={true}
         className="coverflow-stretch-post"
         coverflowEffect={{
-          rotate: 0,
+          rotate: 70,
           stretch: 0,
           depth: 70,
           modifier: 1,
