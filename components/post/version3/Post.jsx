@@ -11,6 +11,7 @@ const StyledPostArea = styled.div`
   border-radius: 0.5rem;
   transform: rotateZ(-1deg);
   border: 2px solid var(--offering-outline-color);
+  background-color: white;
   box-shadow:
     1px 1px 0 0 var(--offering-outline-color),
     2px 2px 0 0 var(--offering-outline-color),
@@ -19,12 +20,12 @@ const StyledPostArea = styled.div`
     5px 5px 0 0 var(--offering-outline-color),
     6px 6px 0 0 var(--offering-outline-color);
   transition:
-    transform 0.3s ease-out,
+    transform 0.5s ease-out,
     background-color 0.35s,
-    box-shadow 0.3s ease-out;
+    box-shadow 0.5s ease-out;
   &:hover {
     transform: rotateZ(0);
-    background-color: var(--offering-active-color);
+    background-color: white;
     box-shadow:
       1px 1px 0 0 var(--offering-outline-color),
       2px 2px 0 0 var(--offering-outline-color),

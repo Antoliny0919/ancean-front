@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const StyledPostBodyArea = styled.div`
   width: 100%;
   padding: 1rem;
-  background-color: white;
   .title {
     font-size: 18px;
     overflow: hidden;

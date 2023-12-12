@@ -5,9 +5,6 @@ import { WaveLogo, CommentLogo } from '../../common/Icon';
 const StyledPostHeaderArea = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: white;
-  border-top-right-radius: 0.5rem;
-  border-top-left-radius: 0.5rem;
   img {
     width: 90%;
     border-top-left-radius: 8px;

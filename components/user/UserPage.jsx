@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import UserPageHeader from './UserPageHeader';
+// import UserPageHeader from './UserPageHeader';
 // import UserPageBody from './UserPageBody';
 import UserPageBody2 from './UserPageBody2';
 
@@ -12,15 +12,15 @@ const StyledUserPageArea = styled.section`
   /* padding: 5rem; */
 `;
 
-export default function UserPage({ posts, name }) {
+export default function UserPage({ posts }) {
   return (
     // <StyledUserPageArea>
     //   <UserPageHeader name={name} />
     //   <UserPageBody posts={posts} name={name} />
     // </StyledUserPageArea>
     <StyledUserPageArea>
-      <UserPageHeader name={name} />
-      <UserPageBody2 posts={posts.popularPost}></UserPageBody2>
+      {/* <UserPageHeader name={name} /> */}
+      <UserPageBody2 posts={posts}></UserPageBody2>
     </StyledUserPageArea>
   );
 }
