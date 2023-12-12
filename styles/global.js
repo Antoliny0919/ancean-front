@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  :root{
+    --offering-outline-color: #273237;
+  }  
   html, body {
     padding: 0;
     margin: 0;

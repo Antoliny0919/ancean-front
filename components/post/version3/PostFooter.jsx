@@ -6,9 +6,12 @@ const StyledPostFooterArea = styled.div`
   width: 100%;
   font-size: 13px;
   border-top: solid rgba(73, 73, 73, 0.2) 0.1rem;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
   font-family: 'GmarketSansMedium';
   align-items: center;
   padding: 0.5rem 1rem 0.5rem 1rem;
+  background-color: white;
 `;
 const StyledCategoryArea = styled.div`
   display: flex;

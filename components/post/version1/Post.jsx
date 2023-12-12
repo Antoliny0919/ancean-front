@@ -28,11 +28,17 @@ export default function Post({ postData }) {
   const { author, category, content, created_at, header_image, title, wave } =
     postData;
 
+  const { logo, color } = CATEGORY_LOGO[category];
+
   return (
-    <StyledPostArea $categoryColor={CATEGORY_LOGO[category]['color']}>
-      <PostHeader header_image={header_image} wave={wave} />
+    <StyledPostArea $categoryColor={color}>
+      <PostHeader header_image={header_image} wave={wave} categoryLogo={logo} />
       <PostBody content={content} title={title} created_at={created_at} />
-      <PostFooter author={author} category={category} />
+      <PostFooter
+        author={author}
+        categoryName={category}
+        categoryColor={color}
+      />
     </StyledPostArea>
   );
 }
