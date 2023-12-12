@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
-import CoverflowStretchPost from '../post/swiper/CoverflowStretchPost';
+import CoverflowStretchPost from '../post/swiper/SlidePaginationPost';
 
 const StyledPopularPostArea = styled.div`
   display: flex;

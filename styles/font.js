@@ -1,5 +1,4 @@
-import { Hahmlet } from 'next/font/google';
-import { Moirai_One } from 'next/font/google';
+import { Hahmlet, Moirai_One, Raleway, Montserrat } from 'next/font/google';
 
 export const HahmletFont = Hahmlet({
   subsets: ['latin'],
@@ -9,4 +8,14 @@ export const HahmletFont = Hahmlet({
 export const MoiraiOneFont = Moirai_One({
   subsets: ['latin'],
   weight: ['400'],
+});
+
+export const RaleWayFont = Raleway({
+  subsets: ['latin'],
+  weight: ['500'],
+});
+
+export const MontserratFont = Montserrat({
+  subsets: ['latin'],
+  weight: ['500'],
 });

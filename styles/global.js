@@ -154,10 +154,10 @@ export const GlobalStyle = createGlobalStyle`
       justify-content: center;
   }
   .swiper-button-next {
-    right: 10vw;
+    right: 5vw;
   }
   .swiper-button-prev {
-    left: 10vw;
+    left: 5vw;
   }
 
   .swiper-button-next:after {

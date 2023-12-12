@@ -1,12 +1,16 @@
 import client from '@/api/client';
 import React, { useEffect } from 'react';
-import NavbarMain from '@/components/home/NavbarMain';
-import Bannermain from '@/components/home/BannerMain';
+// import NavbarMain from '@/components/home/NavbarMain';
+// import Bannermain from '@/components/home/BannerMain';
 import MostBigWavePost from '@/components/home/MostBigWavePost';
 import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
 import BestPostByCategory from '@/components/home/BestPostByCategory';
 
-export default function Home({ representativeCategory, bestPostByCategory }) {
+export default function Home({
+  representativeCategory,
+  bestPostByCategory,
+  posts,
+}) {
   useEffect(() => {
     let div = document.querySelectorAll('.fade-in-slide-down-suspend');
     console.log(div);
@@ -16,9 +20,6 @@ export default function Home({ representativeCategory, bestPostByCategory }) {
           if (item.isIntersecting) {
             item.target.style.opacity = '1';
             item.target.style.transform = 'translateY(0px)';
-          } else {
-            item.target.style.opacity = '0';
-            item.target.style.transform = 'translateY(-100px)';
           }
         });
       },
@@ -31,12 +32,10 @@ export default function Home({ representativeCategory, bestPostByCategory }) {
 
   return (
     <>
-      <header>
-        <NavbarMain />
-      </header>
+      <header>{/* <NavbarMain /> */}</header>
       <main>
-        <Bannermain />
-        <MostBigWavePost />
+        {/* <Bannermain /> */}
+        <MostBigWavePost posts={posts.mostBigWavesPosts} />
         <MostRepresentativeCategory data={representativeCategory} />
         <BestPostByCategory
           categories={representativeCategory}
@@ -49,6 +48,23 @@ export default function Home({ representativeCategory, bestPostByCategory }) {
 
 export const getServerSideProps = async () => {
   // get user posts
+
+  const queries = {
+    mostBigWavesPosts: 'ordering=-wave',
+    latestPosts: 'ordering=-created_at',
+  };
+
+  let posts = {};
+
+  for (const [section, query] of Object.entries(queries)) {
+    const response = await client.get(
+      `http://api-local:8000/api/posts/?${query}`,
+    );
+    const data = response.data;
+    // only get 10posts
+    posts = { ...posts, [section]: data.slice(0, 10) };
+  }
+
   const response = await client.get(`http://api-local:8000/api/category`);
   const data = await response.data;
   const representativeCategory = data.slice(0, 7);
@@ -66,5 +82,5 @@ export const getServerSideProps = async () => {
     };
   }
 
-  return { props: { representativeCategory, bestPostByCategory } };
+  return { props: { representativeCategory, bestPostByCategory, posts } };
 };

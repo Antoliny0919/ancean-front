@@ -1,50 +1,70 @@
+import { Raleway } from 'next/font/google';
 import styled from 'styled-components';
-import CardsPost from '@/components/post/swiper/CardsPost';
-import { FaCrown } from 'react-icons/fa6';
+import SlidePaginationPost from '@/components/post/swiper/SlidePaginationPost';
+import Wave from 'react-wavify';
 
-const StyledMostBigWavePostArea = styled.section`
+export const RaleWayFont = Raleway({
+  subsets: ['latin'],
+  weight: ['500'],
+});
+
+const StyledPopularWritingArea = styled.section`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
   width: 100%;
-  height: 100%;
-  text-align: center;
-  padding: 3rem;
-  font-family: 'NanumBarunGothic';
-  transition: opacity 1s;
-  h4 {
+`;
+
+const HeaderArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 40px;
+  h1 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  h5 {
+    margin: 0;
     margin-bottom: 2rem;
   }
 `;
 
-const StyledSectionTitleArea = styled.div`
+const ContentArea = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  h1 {
-    font-size: 50px;
-    color: ${({ theme }) => theme.colors.mainColor[8]};
-    margin: 0;
-    margin-right: 1rem;
-  }
-  svg {
-    width: 5%;
-    height: 5%;
-    margin-bottom: 1rem;
-    color: #dfdf22;
+  flex-direction: column;
+  width: 100%;
+  .wave {
+    position: absolute;
+    height: 50vw;
+    z-index: 0;
   }
 `;
 
-function MostBigWavePost() {
+function MostBigWavePost({ posts }) {
   return (
-    <StyledMostBigWavePostArea>
-      <StyledSectionTitleArea className="fade-in-slide-down-suspend">
-        <h1>가장 큰 파도를 만든 포스트</h1>
-        <FaCrown />
-      </StyledSectionTitleArea>
-      <h4 className="fade-in-slide-down-suspend">
-        최근 가장 많은 WAVE지수를 얻은 포스트들 입니다.
-      </h4>
-      <CardsPost></CardsPost>
-    </StyledMostBigWavePostArea>
+    <StyledPopularWritingArea>
+      <HeaderArea>
+        <h1 className={RaleWayFont.className}>Popular Writing</h1>
+        <h5 className={RaleWayFont.className}>
+          These are the posts that got the most waves.
+        </h5>
+      </HeaderArea>
+      <ContentArea>
+        <SlidePaginationPost posts={posts} />
+        <Wave
+          fill={'#27566B'}
+          paused={false}
+          className="wave"
+          options={{
+            height: 300,
+            amplitude: 100,
+            speed: 0.5,
+            points: 2,
+          }}
+        ></Wave>
+      </ContentArea>
+    </StyledPopularWritingArea>
   );
 }
 
