@@ -1,33 +1,12 @@
-import { Raleway } from 'next/font/google';
 import styled from 'styled-components';
-import SlidePaginationPost from '@/components/post/swiper/SlidePaginationPost';
 import Wave from 'react-wavify';
-
-export const RaleWayFont = Raleway({
-  subsets: ['latin'],
-  weight: ['500'],
-});
+import SectionHeader from './items/SectionHeader';
+import SlidePaginationPost from '@/components/post/swiper/SlidePaginationPost';
 
 const StyledPopularWritingArea = styled.section`
   display: flex;
   flex-direction: column;
-  background-color: white;
   width: 100%;
-`;
-
-const HeaderArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 40px;
-  h1 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  h5 {
-    margin: 0;
-    margin-bottom: 2rem;
-  }
 `;
 
 const ContentArea = styled.div`
@@ -44,12 +23,24 @@ const ContentArea = styled.div`
 function MostBigWavePost({ posts }) {
   return (
     <StyledPopularWritingArea>
-      <HeaderArea>
-        <h1 className={RaleWayFont.className}>Popular Writing</h1>
-        <h5 className={RaleWayFont.className}>
-          These are the posts that got the most waves.
-        </h5>
-      </HeaderArea>
+      <SectionHeader
+        mainTitle={'Popular Writing'}
+        subTitle={'가장 많은 WAVE를 획득한 포스트입니다.'}
+        color={'hsl(215, 58%, 59%)'}
+        shadow={
+          '1px 1px hsl(215, 58%, 56%), \
+        2px 2px hsl(215, 58%, 53%), \
+        3px 3px hsl(215, 58%, 50%), \
+        4px 4px hsl(215, 58%, 47%), \
+        5px 5px hsl(215, 58%, 43%), \
+        6px 6px hsl(215, 58%, 40%), \
+        7px 7px hsl(215, 58%, 37%), \
+        8px 8px hsl(215, 58%, 34%), \
+        9px 9px hsl(215, 58%, 31%), \
+        10px 10px hsl(215, 58%, 28%), \
+        10px 10px 30px rgba(0,0,0,.7)'
+        }
+      />
       <ContentArea>
         <SlidePaginationPost posts={posts} />
         <Wave

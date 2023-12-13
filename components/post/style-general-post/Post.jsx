@@ -10,7 +10,7 @@ const StyledPostArea = styled.div`
   width: 30rem;
   border-radius: 0.5rem;
   border: 2px solid var(--offering-outline-color);
-  background-color: white;
+  background-color: #fcfcfc;
   box-shadow:
     1px 1px 0 0 var(--offering-outline-color),
     2px 2px 0 0 var(--offering-outline-color),
@@ -54,7 +54,11 @@ export default function Post({ postData, rotate }) {
   const { logo, color } = CATEGORY_LOGO[category];
 
   return (
-    <StyledPostArea $categoryColor={color} rotate={rotate}>
+    <StyledPostArea
+      $categoryColor={color}
+      rotate={rotate}
+      className="fade-in-slide-down-suspend"
+    >
       <PostHeader header_image={header_image} wave={wave} categoryLogo={logo} />
       <PostBody content={content} title={title} created_at={created_at} />
       <PostFooter
