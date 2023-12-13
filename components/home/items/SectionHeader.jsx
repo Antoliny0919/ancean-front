@@ -30,8 +30,10 @@ const StyledSectionHeaderArea = styled.div`
 export default function SectionHeader({ mainTitle, subTitle, color, shadow }) {
   return (
     <StyledSectionHeaderArea color={color} shadow={shadow}>
-      <h1 className={RaleWayFont.className}>{mainTitle}</h1>
-      <h5>{subTitle}</h5>
+      <h1 className={`${RaleWayFont.className} fade-in-slide-down-suspend`}>
+        {mainTitle}
+      </h1>
+      <h5 className="fade-in-slide-down-suspend">{subTitle}</h5>
     </StyledSectionHeaderArea>
   );
 }

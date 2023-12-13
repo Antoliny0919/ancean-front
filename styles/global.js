@@ -2,7 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root{
-    --offering-outline-color: #273237;
+    --shadow-outline-deep-dark: #273237;
+    --shadow-outline-shallow-dart: #39484F;
   }  
   html, body {
     padding: 0;
@@ -66,6 +67,8 @@ export const GlobalStyle = createGlobalStyle`
 
   .swiper-category {
     width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 
   .swiper-cards {
@@ -74,12 +77,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: -20px;
-  }
-  .swiper-category .swiper-slide-active:hover {
-    /* cursor: hover;
-    transition: .4s;  */
-    /* transform: rotateY(180deg);
-    opacity: 0.2; */
   }
 
   .post-cards-effect .swiper-wrapper {
@@ -166,13 +163,6 @@ export const GlobalStyle = createGlobalStyle`
   .swiper-button-prev:after {
     content: ''
   }
-  /* .coverflow-stretch-post {
-    width: 50%;
-    height: 50%;
-    margin: 0;
-    display: flex;
-
-  } */
 
   @font-face {
     font-family: 'Pretendard-Bold';

@@ -9,15 +9,15 @@ const StyledPostArea = styled.div`
   flex-direction: column;
   width: 30rem;
   border-radius: 0.5rem;
-  border: 2px solid var(--offering-outline-color);
+  border: 2px solid var(--shadow-outline-deep-dark);
   background-color: #fcfcfc;
   box-shadow:
-    1px 1px 0 0 var(--offering-outline-color),
-    2px 2px 0 0 var(--offering-outline-color),
-    3px 3px 0 0 var(--offering-outline-color),
-    4px 4px 0 0 var(--offering-outline-color),
-    5px 5px 0 0 var(--offering-outline-color),
-    6px 6px 0 0 var(--offering-outline-color);
+    1px 1px 0 0 var(--shadow-outline-deep-dark),
+    2px 2px 0 0 var(--shadow-outline-deep-dark),
+    3px 3px 0 0 var(--shadow-outline-deep-dark),
+    4px 4px 0 0 var(--shadow-outline-deep-dark),
+    5px 5px 0 0 var(--shadow-outline-deep-dark),
+    6px 6px 0 0 var(--shadow-outline-deep-dark);
   transition:
     transform 0.5s ease-out,
     background-color 0.35s,
@@ -32,18 +32,18 @@ const StyledPostArea = styled.div`
           transform: rotateZ(1deg);
         `}
   &:hover {
-    transform: rotateZ(0);
+    transform: rotateZ(0deg);
     background-color: white;
     box-shadow:
-      1px 1px 0 0 var(--offering-outline-color),
-      2px 2px 0 0 var(--offering-outline-color),
-      3px 3px 0 0 var(--offering-outline-color),
-      4px 4px 0 0 var(--offering-outline-color),
-      5px 5px 0 0 var(--offering-outline-color),
-      6px 6px 0 0 var(--offering-outline-color),
-      7px 7px 0 0 var(--offering-outline-color),
-      8px 8px 0 0 var(--offering-outline-color),
-      9px 9px 0 0 var(--offering-outline-color);
+      1px 1px 0 0 var(--shadow-outline-deep-dark),
+      2px 2px 0 0 var(--shadow-outline-deep-dark),
+      3px 3px 0 0 var(--shadow-outline-deep-dark),
+      4px 4px 0 0 var(--shadow-outline-deep-dark),
+      5px 5px 0 0 var(--shadow-outline-deep-dark),
+      6px 6px 0 0 var(--shadow-outline-deep-dark),
+      7px 7px 0 0 var(--shadow-outline-deep-dark),
+      8px 8px 0 0 var(--shadow-outline-deep-dark),
+      9px 9px 0 0 var(--shadow-outline-deep-dark);
   }
 `;
 
@@ -56,8 +56,8 @@ export default function Post({ postData, rotate }) {
   return (
     <StyledPostArea
       $categoryColor={color}
+      // className="fade-in-slide-down-suspend"
       rotate={rotate}
-      className="fade-in-slide-down-suspend"
     >
       <PostHeader header_image={header_image} wave={wave} categoryLogo={logo} />
       <PostBody content={content} title={title} created_at={created_at} />

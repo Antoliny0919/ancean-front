@@ -4,11 +4,11 @@ import React, { useEffect } from 'react';
 // import Bannermain from '@/components/home/BannerMain';
 import MostBigWavePost from '@/components/home/MostBigWavePost';
 import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
-import BestPostByCategory from '@/components/home/BestPostByCategory';
+// import BestPostByCategory from '@/components/home/BestPostByCategory';
 
 export default function Home({
   representativeCategory,
-  bestPostByCategory,
+  // bestPostByCategory,
   posts,
 }) {
   useEffect(() => {
@@ -37,10 +37,10 @@ export default function Home({
         {/* <Bannermain /> */}
         <MostBigWavePost posts={posts.mostBigWavesPosts} />
         <MostRepresentativeCategory data={representativeCategory} />
-        <BestPostByCategory
+        {/* <BestPostByCategory
           categories={representativeCategory}
           posts={bestPostByCategory}
-        />
+        /> */}
       </main>
     </>
   );
