@@ -19,7 +19,7 @@ const StyledCardSwiperArea = styled.div`
   width: 100%;
 `;
 
-export default function SwiperCategoryMain({ data }) {
+export default function SwiperCategoryMain({ categories }) {
   return (
     <StyledCardSwiperArea className="fade-in-slide-down-suspend">
       <Swiper
@@ -37,7 +37,7 @@ export default function SwiperCategoryMain({ data }) {
         }}
         autoplay={{ delay: 30000 }}
       >
-        {data.map(({ name, color }, index) => (
+        {categories.map(({ name, color }, index) => (
           <SwiperSlide key={index}>
             <SwiperCategory name={name} color={color}></SwiperCategory>
           </SwiperSlide>

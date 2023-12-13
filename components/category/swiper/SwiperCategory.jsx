@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CATEGORY_LOGO } from '../categoryLogo';
 
 const StyledCategoryCard = styled.div`
+  position: relative;
   display: inline-grid;
   color: white;
   transition: transform 1s;
@@ -52,18 +53,15 @@ export default function SwiperCategory({ name, color }) {
 
   const flipCategoryCard = (e) => {
     e.preventDefault();
-    if (target.current.style.transform === 'rotateY(180deg)') {
-      target.current.style.transform = 'rotateY(0deg)';
-    } else {
-      target.current.style.transform = 'rotateY(180deg)';
-    }
+    // console.log(target.current.style.transform);
+    // if (target.current.style.transform === 'rotateY(180deg) translate(35vw, 0vw)') {
+    //   target.current.style.transform = 'rotateY(0deg) translate(0, 0)';
+    // } else {
+    //   target.current.style.transform = 'rotateY(180deg) translate(35vw, 0vw)';
+    // }
   };
 
   return (
-    // <StyledCategoryCard color={color}>
-    //   {CATEGORY_LOGO[name]['logo']}
-    //   <div>{name}</div>
-    // </StyledCategoryCard>
     <StyledCategoryCard color={color} ref={target} onClick={flipCategoryCard}>
       <div className="flip-card-front">
         {CATEGORY_LOGO[name]['logo']}

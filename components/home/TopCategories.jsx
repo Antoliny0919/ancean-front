@@ -2,21 +2,18 @@ import styled from 'styled-components';
 import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
 import SectionHeader from './items/SectionHeader';
 
-const StyledMostRepresentativeCategoryArea = styled.section`
+const StyledTopCategoriesArea = styled.section`
   margin-top: 3rem;
   padding-top: 10rem;
   padding-bottom: 10rem;
-  width: 100%;
-  height: 100%;
   background-color: ${({ theme }) => theme.colors.mainColor[1]};
   display: flex;
   flex-direction: column;
-  align-items: center;
 `;
 
-export default function MostRepresentativeCategory({ data }) {
+export default function TopCategories({ categories }) {
   return (
-    <StyledMostRepresentativeCategoryArea>
+    <StyledTopCategoriesArea>
       <SectionHeader
         mainTitle={'Top Categories'}
         subTitle={'최근 가장 많은 게시글이 있는 카테고리 입니다.'}
@@ -34,7 +31,7 @@ export default function MostRepresentativeCategory({ data }) {
       10px 10px 30px rgba(0,0,0,.7)'
         }
       />
-      <SwiperCategoryMain data={data} />
-    </StyledMostRepresentativeCategoryArea>
+      <SwiperCategoryMain categories={categories} />
+    </StyledTopCategoriesArea>
   );
 }

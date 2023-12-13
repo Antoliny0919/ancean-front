@@ -20,7 +20,7 @@ const ContentArea = styled.div`
   }
 `;
 
-function MostBigWavePost({ posts }) {
+function PopularWriting({ posts }) {
   return (
     <StyledPopularWritingArea>
       <SectionHeader
@@ -59,4 +59,4 @@ function MostBigWavePost({ posts }) {
   );
 }
 
-export default MostBigWavePost;
+export default PopularWriting;

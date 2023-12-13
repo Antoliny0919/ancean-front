@@ -2,8 +2,9 @@ import client from '@/api/client';
 import React, { useEffect } from 'react';
 // import NavbarMain from '@/components/home/NavbarMain';
 // import Bannermain from '@/components/home/BannerMain';
-import MostBigWavePost from '@/components/home/MostBigWavePost';
-import MostRepresentativeCategory from '@/components/home/MostRepresentativeCategory';
+import PopularWriting from '@/components/home/PopularWriting';
+import TopCategories from '@/components/home/TopCategories';
+import LatestPosts from '@/components/home/LatestPosts';
 // import BestPostByCategory from '@/components/home/BestPostByCategory';
 
 export default function Home({
@@ -35,8 +36,9 @@ export default function Home({
       <header>{/* <NavbarMain /> */}</header>
       <main>
         {/* <Bannermain /> */}
-        <MostBigWavePost posts={posts.mostBigWavesPosts} />
-        <MostRepresentativeCategory data={representativeCategory} />
+        <PopularWriting posts={posts.popularWriting} />
+        <TopCategories categories={representativeCategory} />
+        <LatestPosts posts={posts.latestPosts} />
         {/* <BestPostByCategory
           categories={representativeCategory}
           posts={bestPostByCategory}
@@ -50,7 +52,7 @@ export const getServerSideProps = async () => {
   // get user posts
 
   const queries = {
-    mostBigWavesPosts: 'ordering=-wave',
+    popularWriting: 'ordering=-wave',
     latestPosts: 'ordering=-created_at',
   };
 
