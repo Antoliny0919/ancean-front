@@ -1,0 +1,111 @@
+import Image from 'next/image';
+import styled from 'styled-components';
+import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
+
+const StyledLatestPostArea = styled.div`
+  /* .write-date {
+    font-size: 20px;
+    padding: 1rem;
+    font-family: 'SUIT-Regular';
+  } */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 70%;
+  border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
+  img {
+    width: 40%;
+    height: 100%;
+  }
+  .post-content {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+`;
+
+const StyledPostContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  .title {
+    font-family: 'Pretendard-Bold';
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0.7rem;
+  }
+  .content {
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    font-family: 'Pretendard-Light';
+  }
+  .footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    font-size: 14px;
+    .write-date {
+      font-family: 'SUIT-Regular';
+      color: rgba(37, 37, 37, 0.8);
+    }
+    .category {
+      font-family: 'GmarketSansMedium';
+      background: ${(props) => props.$categoryColor};
+      color: white;
+      border-radius: 10px;
+      opacity: 0.8;
+      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+      border: solid var(--shadow-outline-deep-dark) 0.1rem;
+      box-shadow:
+        0 1px 0 0 var(--shadow-outline-deep-dark),
+        0 2px 0 0 var(--shadow-outline-deep-dark),
+        0 3px 0 0 var(--shadow-outline-deep-dark);
+    }
+    .cagegory:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+`;
+
+export default function LatestPost({ post }) {
+  const myLoader = ({ src }) => {
+    return src;
+  };
+
+  const { category, content, created_at, header_image, title } = post;
+
+  const writeDate = new Date(created_at);
+
+  const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
+  console.log(imageUrl);
+  return (
+    <StyledLatestPostArea>
+      <Image
+        loader={myLoader}
+        src={imageUrl}
+        width={1000}
+        height={1000}
+        alt="no-img"
+      ></Image>
+      <StyledPostContent $categoryColor={CATEGORY_LOGO[category]['color']}>
+        <h3 className="title">{title}</h3>
+        <div className="content">{content}</div>
+        <div className="footer">
+          <div className="write-date">
+            작성일: {writeDate.getFullYear()}년 {writeDate.getMonth() + 1}월{' '}
+            {writeDate.getDate()}일
+          </div>
+          <div className="category">{category}</div>
+        </div>
+      </StyledPostContent>
+    </StyledLatestPostArea>
+  );
+}

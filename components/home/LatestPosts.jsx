@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 import SectionHeader from './items/SectionHeader';
+import Post from '@/components/post/style-simple-post/Post';
 
 const StyledLatestPostsArea = styled.section`
   padding: 5rem;
+`;
+
+const StyledSectionBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export default function LatestPosts({ posts }) {
@@ -27,6 +34,9 @@ export default function LatestPosts({ posts }) {
         subTitle={''}
         alignItems={'flex-start'}
       ></SectionHeader>
+      <StyledSectionBody>
+        <Post post={posts[0]}></Post>
+      </StyledSectionBody>
     </StyledLatestPostsArea>
   );
 }
