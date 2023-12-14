@@ -3,24 +3,27 @@ import styled from 'styled-components';
 import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
 
 const StyledLatestPostArea = styled.div`
-  /* .write-date {
-    font-size: 20px;
-    padding: 1rem;
-    font-family: 'SUIT-Regular';
-  } */
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 70%;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  background-color: white;
+  border-radius: 10px;
   img {
-    width: 40%;
+    width: 30%;
     height: 100%;
   }
   .post-content {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+  }
+  & + & {
+    margin-top: 2rem;
   }
 `;
 
@@ -85,7 +88,6 @@ export default function LatestPost({ post }) {
   const writeDate = new Date(created_at);
 
   const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
-  console.log(imageUrl);
   return (
     <StyledLatestPostArea>
       <Image

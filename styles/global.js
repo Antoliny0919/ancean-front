@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root{
     --shadow-outline-deep-dark: #273237;
     --shadow-outline-shallow-dart: #39484F;
+    --shadow-outline-latest-post: #6A6FC8;
   }  
   html, body {
     padding: 0;
