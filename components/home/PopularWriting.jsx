@@ -15,7 +15,7 @@ const ContentArea = styled.div`
   width: 100%;
   .wave {
     position: absolute;
-    height: 50vw;
+    height: 700px;
     z-index: 0;
   }
 `;

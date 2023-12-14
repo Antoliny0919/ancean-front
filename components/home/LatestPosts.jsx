@@ -10,8 +10,8 @@ const StyledSectionBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   border: solid hsl(237, 46%, 60%) 0.2rem;
   background-color: rgba(106, 111, 200, 0.2);
   border-radius: 10px;
@@ -19,8 +19,7 @@ const StyledSectionBody = styled.div`
     1px 1px 0 0 var(--shadow-outline-latest-post),
     2px 2px 0 0 var(--shadow-outline-latest-post),
     3px 3px 0 0 var(--shadow-outline-latest-post),
-    4px 4px 0 0 var(--shadow-outline-latest-post),
-    5px 5px 0 0 var(--shadow-outline-latest-post);
+    4px 4px 0 0 var(--shadow-outline-latest-post);
 `;
 
 export default function LatestPosts({ posts }) {

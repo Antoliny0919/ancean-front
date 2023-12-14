@@ -9,9 +9,13 @@ const StyledLatestPostArea = styled.div`
   width: 70%;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
   box-shadow:
-    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    1px 1px 0 0 var(--shadow-outline-shallow-dart),
+    2px 2px 0 0 var(--shadow-outline-shallow-dart),
+    3px 3px 0 0 var(--shadow-outline-shallow-dart);
   background-color: white;
+  transition:
+    box-shadow 1s,
+    border 1s;
   border-radius: 10px;
   img {
     width: 30%;
@@ -24,6 +28,10 @@ const StyledLatestPostArea = styled.div`
   }
   & + & {
     margin-top: 2rem;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 1px 1px 0 0 var(--shadow-outline-shallow-dart);
   }
 `;
 
@@ -88,6 +96,9 @@ export default function LatestPost({ post }) {
   const writeDate = new Date(created_at);
 
   const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
+
+  const categoryColor = CATEGORY_LOGO[category]['color'];
+
   return (
     <StyledLatestPostArea>
       <Image
@@ -97,7 +108,7 @@ export default function LatestPost({ post }) {
         height={1000}
         alt="no-img"
       ></Image>
-      <StyledPostContent $categoryColor={CATEGORY_LOGO[category]['color']}>
+      <StyledPostContent $categoryColor={categoryColor}>
         <h3 className="title">{title}</h3>
         <div className="content">{content}</div>
         <div className="footer">
