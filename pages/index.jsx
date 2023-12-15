@@ -1,7 +1,7 @@
 import client from '@/api/client';
 import React, { useEffect } from 'react';
 // import NavbarMain from '@/components/home/NavbarMain';
-// import Bannermain from '@/components/home/BannerMain';
+import Bannermain from '@/components/home/BannerMain';
 import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
 import LatestPosts from '@/components/home/LatestPosts';
@@ -35,7 +35,7 @@ export default function Home({
     <>
       <header>{/* <NavbarMain /> */}</header>
       <main>
-        {/* <Bannermain /> */}
+        <Bannermain />
         <PopularWriting posts={posts.popularWriting} />
         <TopCategories categories={representativeCategory} />
         <LatestPosts posts={posts.latestPosts} />
