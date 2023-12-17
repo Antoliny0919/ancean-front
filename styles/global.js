@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root{
-    --color-shadow-letter: #4D7C89;
+    --shadow-logo-color: #67ABDB;
     --shadow-outline-deep-dark: #273237;
     --shadow-outline-shallow-dart: #39484F;
     --shadow-outline-latest-post: #6A6FC8;
