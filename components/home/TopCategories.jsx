@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
 import SectionHeader from './items/SectionHeader';
 
-const StyledTopCategoriesArea = styled.section`
+const StyledTopCategoriesArea = styled.div`
   margin-top: 3rem;
   padding-top: 10rem;
   padding-bottom: 10rem;

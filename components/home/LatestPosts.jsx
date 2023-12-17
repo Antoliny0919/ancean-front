@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import SectionHeader from './items/SectionHeader';
 import Post from '@/components/post/style-simple-post/Post';
 
-const StyledLatestPostsArea = styled.section`
+const StyledLatestPostsArea = styled.div`
   padding: 5rem;
 `;
 

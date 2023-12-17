@@ -1,6 +1,7 @@
 import client from '@/api/client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 // import NavbarMain from '@/components/home/NavbarMain';
+import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
 import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
@@ -12,9 +13,36 @@ export default function Home({
   // bestPostByCategory,
   posts,
 }) {
+  const PopularWritingRef = useRef(null);
+  const TopCategoriesRef = useRef(null);
+  const LatestPostsRef = useRef(null);
+
+  const sections = [
+    {
+      name: 'Popular Writing',
+      color: 'hsl(215, 58%, 59%)',
+      shadow: '#2b5ca1',
+      hoverShadow: 'hsl(215, 58%, 70%)',
+      ref: PopularWritingRef,
+    },
+    {
+      name: 'Top Categories',
+      color: 'hsl(181, 81%, 40%)',
+      shadow: 'hsl(181, 81%, 25%)',
+      hoverShadow: 'hsl(181, 81%, 60%)',
+      ref: TopCategoriesRef,
+    },
+    {
+      name: 'Latest Posts',
+      color: 'hsl(237, 46%, 60%)',
+      shadow: 'hsl(237, 46%, 40%)',
+      hoverShadow: 'hsl(237, 46%, 70%)',
+      ref: LatestPostsRef,
+    },
+  ];
+
   useEffect(() => {
     let div = document.querySelectorAll('.fade-in-slide-down-suspend');
-    console.log(div);
     let observer = new IntersectionObserver(
       (e) => {
         e.forEach((item) => {
@@ -35,14 +63,16 @@ export default function Home({
     <>
       <header>{/* <NavbarMain /> */}</header>
       <main>
-        <Bannermain />
-        <PopularWriting posts={posts.popularWriting} />
-        <TopCategories categories={representativeCategory} />
-        <LatestPosts posts={posts.latestPosts} />
-        {/* <BestPostByCategory
-          categories={representativeCategory}
-          posts={bestPostByCategory}
-        /> */}
+        <Bannermain sections={sections} />
+        <SectionContainer ref={PopularWritingRef}>
+          <PopularWriting posts={posts.popularWriting} />
+        </SectionContainer>
+        <SectionContainer ref={TopCategoriesRef}>
+          <TopCategories categories={representativeCategory} />
+        </SectionContainer>
+        <SectionContainer ref={LatestPostsRef}>
+          <LatestPosts posts={posts.latestPosts} />
+        </SectionContainer>
       </main>
     </>
   );

@@ -3,7 +3,7 @@ import Wave from 'react-wavify';
 import SectionHeader from './items/SectionHeader';
 import SlidePaginationPost from '@/components/post/swiper/SlidePaginationPost';
 
-const StyledPopularWritingArea = styled.section`
+const StyledPopularWritingArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -20,7 +20,7 @@ const ContentArea = styled.div`
   }
 `;
 
-function PopularWriting({ posts }) {
+export default function PopularWriting({ posts }) {
   return (
     <StyledPopularWritingArea>
       <SectionHeader
@@ -58,5 +58,3 @@ function PopularWriting({ posts }) {
     </StyledPopularWritingArea>
   );
 }
-
-export default PopularWriting;
