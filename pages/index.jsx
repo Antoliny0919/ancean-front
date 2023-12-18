@@ -13,6 +13,7 @@ export default function Home({
   // bestPostByCategory,
   posts,
 }) {
+  // Reference required for each section for scroll events
   const PopularWritingRef = useRef(null);
   const TopCategoriesRef = useRef(null);
   const LatestPostsRef = useRef(null);
