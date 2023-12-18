@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CATEGORY_LOGO } from './categoryLogo';
+import { CATEGORY_LOGO } from '../category/categoryLogo';
 
 const StyledCategoryButton = styled.button`
   font-family: 'GmarketSansMedium';

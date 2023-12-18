@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
+import CategoryButton from '../../button/CategoryButton';
 
 const StyledLatestPostArea = styled.div`
   display: flex;
@@ -66,23 +66,6 @@ const StyledPostContent = styled.div`
       font-family: 'SUIT-Regular';
       color: rgba(37, 37, 37, 0.8);
     }
-    .category {
-      font-family: 'GmarketSansMedium';
-      background: ${(props) => props.$categoryColor};
-      color: white;
-      border-radius: 10px;
-      opacity: 0.8;
-      padding: 0.3rem 0.5rem 0.3rem 0.5rem;
-      border: solid var(--shadow-outline-deep-dark) 0.1rem;
-      box-shadow:
-        0 1px 0 0 var(--shadow-outline-deep-dark),
-        0 2px 0 0 var(--shadow-outline-deep-dark),
-        0 3px 0 0 var(--shadow-outline-deep-dark);
-    }
-    .cagegory:hover {
-      cursor: pointer;
-      opacity: 1;
-    }
   }
 `;
 
@@ -97,8 +80,6 @@ export default function LatestPost({ post }) {
 
   const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
 
-  const categoryColor = CATEGORY_LOGO[category]['color'];
-
   return (
     <StyledLatestPostArea>
       <Image
@@ -108,7 +89,7 @@ export default function LatestPost({ post }) {
         height={1000}
         alt="no-img"
       ></Image>
-      <StyledPostContent $categoryColor={categoryColor}>
+      <StyledPostContent>
         <h3 className="title">{title}</h3>
         <div className="content">{content}</div>
         <div className="footer">
@@ -116,7 +97,7 @@ export default function LatestPost({ post }) {
             작성일: {writeDate.getFullYear()}년 {writeDate.getMonth() + 1}월{' '}
             {writeDate.getDate()}일
           </div>
-          <div className="category">{category}</div>
+          <CategoryButton categoryName={category} />
         </div>
       </StyledPostContent>
     </StyledLatestPostArea>

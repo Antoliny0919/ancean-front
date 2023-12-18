@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CategoryButton from '../category/CategoryButton';
+import CategoryButton from '../button/CategoryButton';
 
 const StyledCategoryArea = styled.div`
   display: flex;
