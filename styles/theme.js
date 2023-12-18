@@ -12,6 +12,9 @@ export const theme = {
       '#0C405E',
       '#0C3A55',
     ],
+    editor: {
+      divideLine: 'rgba(44, 91, 124, 0.5)',
+    },
     shallowMainColor: ['rgba(25, 112, 161, 0.1)'],
     socialBackground: '#4A7E9B',
     socialBackgroundHover: '#3C657A',
