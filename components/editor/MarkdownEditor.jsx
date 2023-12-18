@@ -22,12 +22,12 @@ const StyledMarkdownHeaderArea = styled.div`
   height: 25%;
 `;
 
-export default function MarkdownEditor() {
+export default function MarkdownEditor({ categories }) {
   return (
     <StyledMarkdownEditorArea>
       <StyledMarkdownHeaderArea>
         <MarkdownEditorTitle />
-        <MarkdownEditorCategory />
+        <MarkdownEditorCategory categories={categories} />
         <MarkdownEditorToolbar />
       </StyledMarkdownHeaderArea>
       <MarkdownEditorContent />

@@ -223,8 +223,8 @@ Map tag names to components (TypeScript type).
 import type { Element } from 'hast';
 
 type Components = Partial<{
-  [TagName in keyof JSX.IntrinsicElements]: // Class component:
-  | (new (
+  [TagName in keyof JSX.IntrinsicElements]:  // Class component:
+    | (new (
         props: JSX.IntrinsicElements[TagName] & ExtraProps,
       ) => JSX.ElementClass)
     // Function component:
