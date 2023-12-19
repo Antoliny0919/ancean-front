@@ -10,19 +10,22 @@ import rehypeRaw from 'rehype-raw';
 const StyledMarkdownEditorBody = styled.div`
   display: flex;
   flex-direction: row;
-  height: 77%;
+
   width: 100%;
   & > * {
     overflow-y: auto;
   }
-
   .editor-textarea {
     width: 50%;
-    border: solid blue 2px;
+    border: none;
+    resize: none;
+  }
+  .editor-textarea:focus {
+    outline: none;
   }
   .editor-preview {
     width: 50%;
-    border: solid red 2px;
+    background-color: #f0f0f0;
   }
 `;
 

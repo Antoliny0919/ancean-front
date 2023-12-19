@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-// import MarkdownEditorTitle from './MarkdownEditorTitle';
 import MarkdownEditorContent from './MarkdownEditorContent';
-// import MarkdownEditorCategory from './MarkdownEditorCategory';
 // import MarkdownEditorToolbar from './MarkdownEditorToolbar';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import EntireBlockInput from '../input/EntireBlockInput';
@@ -12,18 +10,15 @@ const StyledMarkdownEditorArea = styled.div`
   width: 100vw;
   max-height: 100vh;
   overflow: hidden;
-  & > div {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 `;
 
 const StyledMarkdownHeaderArea = styled.div`
   display: flex;
   flex-direction: row;
-  border-bottom: solid green 2px;
+  border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
   & > * {
     flex: 0.5;
+    padding: 1rem 0rem 1rem 1rem;
   }
 `;
 
