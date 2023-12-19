@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 100%;
     display: block;
   }
+
   // IntersectionObserver
   .fade-in-slide-down-suspend {
     opacity: 0;

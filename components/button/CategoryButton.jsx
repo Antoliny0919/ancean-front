@@ -13,21 +13,22 @@ const StyledCategoryButton = styled.button`
     0 1px 0 0 var(--shadow-outline-deep-dark),
     0 2px 0 0 var(--shadow-outline-deep-dark),
     0 3px 0 0 var(--shadow-outline-deep-dark);
+  transition: opacity 0.7s;
   &:hover {
     cursor: pointer;
     opacity: 1;
   }
 
   & + & {
-    margin-left: 1rem;
+    margin-left: 5rem;
   }
 `;
 
-export default function CategoryButton({ categoryName }) {
+export default function CategoryButton({ categoryName, props = {} }) {
   const categoryColor = CATEGORY_LOGO[categoryName]['color'];
 
   return (
-    <StyledCategoryButton $categoryColor={categoryColor}>
+    <StyledCategoryButton $categoryColor={categoryColor} {...props}>
       {categoryName}
     </StyledCategoryButton>
   );
