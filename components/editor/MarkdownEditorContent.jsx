@@ -10,10 +10,13 @@ import rehypeRaw from 'rehype-raw';
 const StyledMarkdownEditorBody = styled.div`
   display: flex;
   flex-direction: row;
-
   width: 100%;
+  height: 100%;
   & > * {
     overflow-y: auto;
+  }
+  .content {
+    padding: 0rem 1.5rem 0rem 1.5rem;
   }
   .editor-textarea {
     width: 50%;
@@ -26,10 +29,33 @@ const StyledMarkdownEditorBody = styled.div`
   .editor-preview {
     width: 50%;
     background-color: #f0f0f0;
+    blockquote {
+      margin: 2rem 0px;
+      border-left: 4px solid var(--ancean-signature);
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      background: var(--background-shallow);
+      padding: 1rem 1rem 1rem 2rem;
+      color: black;
+    }
+    p img {
+      display: block;
+      margin: 2rem auto;
+      max-width: 100%;
+    }
+    h1 {
+      width: 100%;
+      height: auto;
+    }
+
+    /* pre {
+      padding-top: 2rem;
+      background-color: red;
+    } */
   }
 `;
 
-export default function MarkdownEditorContent() {
+export default function MarkdownEditorContent({ reference }) {
   const [value, setValue] = useState(MARKDOWN);
 
   const onChange = (e) => {
@@ -39,12 +65,13 @@ export default function MarkdownEditorContent() {
   return (
     <StyledMarkdownEditorBody>
       <textarea
-        className="editor-textarea"
+        className="editor-textarea content"
         onChange={onChange}
         value={value}
+        ref={reference}
       ></textarea>
       <ReactMarkdown
-        className="editor-preview"
+        className="editor-preview content"
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw]}
         components={{

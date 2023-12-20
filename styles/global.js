@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root{
+    --ancean-signature: #155B82;
+    --background-shallow: rgba(55, 122, 178, 0.4);
     --shadow-logo-color: #67ABDB;
     --shadow-outline-deep-dark: #273237;
     --shadow-outline-shallow-dart: #39484F;
