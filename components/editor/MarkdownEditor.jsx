@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MarkdownEditorContent2 from './MarkdownEditorContent2';
 // import MarkdownEditorToolbar from './MarkdownEditorToolbar';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
-import EntireBlockInput from '../input/EntireBlockInput';
+import TitleContainer from './container/TitleContainer';
 import CategoryInputContainer from './container/CategoryInputContainer';
 
 const StyledMarkdownEditorArea = styled.div`
@@ -27,7 +27,7 @@ export default function MarkdownEditor({ categories }) {
     <StyledMarkdownEditorArea>
       <StyledMarkdownHeaderArea>
         {/* titleInput */}
-        <EntireBlockInput placeholder={'제목을 입력해주세요..'} />
+        <TitleContainer />
         {/* categoryInput */}
         <CategoryInputContainer
           placeholder={'카테고리를 입력해주세요..'}

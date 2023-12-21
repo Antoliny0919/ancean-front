@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { changeValue, forcedChangeValue } from '../modules/editor';
 import EntireBlockInput from '../../input/EntireBlockInput';
 import CategoryButton from '../../button/CategoryButton';
 import CommonButton from '../../button/CommonButton';
@@ -37,38 +39,53 @@ export default function CategoryInputContainer({ placeholder, categories }) {
     return categories.map((item) => item.name);
   }, []);
 
-  const onClickCategory = useCallback(() => {
-    setSelectedCategoryState(true);
-  }, []);
+  const dispatch = useDispatch();
 
-  const resetCategory = useCallback(() => {
-    setSelectedCategoryState(false);
-    setCategoryButton('');
-    setValue('');
-  }, []);
-
-  const [value, setValue] = useState('');
+  const { fieldCategory, selectedCategory } = useSelector(
+    ({ editor }) => editor,
+  );
 
   const [categoryButton, setCategoryButton] = useState('');
 
-  const [selectedCategoryState, setSelectedCategoryState] = useState(false);
+  const onClickCategory = useCallback(() => {
+    dispatch(
+      forcedChangeValue({ name: 'selectedCategory', value: categoryButton }),
+    );
+  }, [categoryButton]);
+
+  const onChange = useCallback((e) => {
+    dispatch(changeValue(e));
+  }, []);
+
+  const resetCategory = useCallback(() => {
+    dispatch(forcedChangeValue({ name: 'selectedCategory', value: '' }));
+    dispatch(forcedChangeValue({ name: 'fieldCategory', value: '' }));
+    setCategoryButton('');
+  }, []);
+
+  const categoryFieldProps = {
+    placeholder: placeholder,
+    onChange: onChange,
+    name: 'fieldCategory',
+    value: fieldCategory,
+  };
 
   useEffect(() => {
-    if (categoriesName.includes(value.toUpperCase())) {
-      setCategoryButton(value.toUpperCase());
+    if (categoriesName.includes(fieldCategory.toUpperCase())) {
+      setCategoryButton(fieldCategory.toUpperCase());
     } else {
       setCategoryButton('');
     }
-  }, [value]);
+  }, [fieldCategory]);
 
   return (
     <StyledEditorCategoryArea>
-      {selectedCategoryState ? (
+      {selectedCategory ? (
         <StyledSelectedCategoryArea>
           <div>
             <span className="title">카테고리: </span>
             <span className="category">
-              <CategoryButton categoryName={categoryButton} />
+              <CategoryButton>{categoryButton}</CategoryButton>
             </span>
           </div>
           <CommonButton props={{ onClick: resetCategory }}>
@@ -77,18 +94,11 @@ export default function CategoryInputContainer({ placeholder, categories }) {
         </StyledSelectedCategoryArea>
       ) : (
         <>
-          <EntireBlockInput
-            placeholder={placeholder}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-            value={value}
-          />
+          <EntireBlockInput props={categoryFieldProps} />
           {categoryButton && (
-            <CategoryButton
-              categoryName={categoryButton}
-              props={{ onClick: onClickCategory }}
-            />
+            <CategoryButton props={{ onClick: onClickCategory }}>
+              {categoryButton}
+            </CategoryButton>
           )}
         </>
       )}

@@ -105,7 +105,7 @@ export default function MarkdownEditorContent2() {
             class: Image,
             config: {
               endpoints: {
-                byUrl: 'http://localhost:5050/media/js-log.png',
+                byFile: 'http://localhost:5050/media/docker-container.png', // Your backend file uploader endpoint
               },
             },
           },
@@ -189,9 +189,8 @@ export default function MarkdownEditorContent2() {
 
   return (
     <StyledEditorContent>
-      <div id="editorjs">
-        <button onClick={save}>Save</button>
-      </div>
+      <div id="editorjs"></div>
+      <button onClick={save}>Save</button>
     </StyledEditorContent>
   );
 }
