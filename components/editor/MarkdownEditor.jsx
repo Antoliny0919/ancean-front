@@ -10,7 +10,6 @@ const StyledMarkdownEditorArea = styled.div`
   height: 100vh;
   width: 100vw;
   max-height: 100vh;
-  overflow: hidden;
 `;
 
 const StyledMarkdownHeaderArea = styled.div`
