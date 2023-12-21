@@ -1,7 +1,7 @@
-import { useRef } from 'react';
 import styled from 'styled-components';
-import MarkdownEditorContent from './MarkdownEditorContent';
-import MarkdownEditorToolbar from './MarkdownEditorToolbar';
+// import MarkdownEditorContent from './MarkdownEditorContent';
+import MarkdownEditorContent2 from './MarkdownEditorContent2';
+// import MarkdownEditorToolbar from './MarkdownEditorToolbar';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import EntireBlockInput from '../input/EntireBlockInput';
 import CategoryInputContainer from './container/CategoryInputContainer';
@@ -24,8 +24,6 @@ const StyledMarkdownHeaderArea = styled.div`
 `;
 
 export default function MarkdownEditor({ categories }) {
-  const mdRef = useRef(null);
-
   return (
     <StyledMarkdownEditorArea>
       <StyledMarkdownHeaderArea>
@@ -37,8 +35,7 @@ export default function MarkdownEditor({ categories }) {
           categories={categories}
         />
       </StyledMarkdownHeaderArea>
-      <MarkdownEditorToolbar mdRef={mdRef} />
-      <MarkdownEditorContent reference={mdRef} />
+      <MarkdownEditorContent2 />
       <MarkdownEditorFooter />
     </StyledMarkdownEditorArea>
   );

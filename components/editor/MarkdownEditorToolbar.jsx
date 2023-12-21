@@ -1,5 +1,6 @@
 import ToolBase from './tools/ToolBase';
 import { FaBold } from 'react-icons/fa6';
+// import { FaItalic } from "react-icons/fa6";
 
 export default function MarkdownEditorToolbar({ mdRef }) {
   return (

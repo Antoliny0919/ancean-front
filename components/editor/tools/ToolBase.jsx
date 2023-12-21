@@ -16,8 +16,26 @@ const StyledToolBox = styled.div`
 
 export default function ToolBase({ children, mdRef }) {
   const onClick = () => {
-    // console.log(mdRef.current.selectionEnd == mdRef.current.selectionStart);
-    console.log(mdRef);
+    const startPosition = mdRef.current.selectionStart;
+    const endPosition = mdRef.current.selectionEnd;
+    // const draggedLength = endPosition - startPosition;
+
+    if (mdRef.current.selectionEnd === mdRef.current.selectionStart) {
+      console.log(1);
+    } else {
+      const beforeText = mdRef.current.value.substring(startPosition, 0);
+      const draggedText = mdRef.current.value.substring(
+        startPosition,
+        endPosition,
+      );
+      const afterText = mdRef.current.value.substring(endPosition);
+
+      console.log(beforeText, '!!!');
+      console.log(draggedText, '@@@');
+      console.log(afterText, '%%%');
+
+      mdRef.current.value = beforeText + '*' + draggedText + '*' + afterText;
+    }
   };
 
   return <StyledToolBox onClick={onClick}>{children}</StyledToolBox>;
