@@ -1,6 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import * as postAPI from '@/api/post';
+
+export const savePost = createAsyncThunk(
+  'editor/savePost',
+  async ({ title, author, category, content, state }) => {
+    const response = await postAPI.savePost({
+      title,
+      author,
+      category,
+      content,
+      state,
+    });
+    return response.data;
+  },
+);
 
 const initialState = {
+  postId: null,
   title: '',
   fieldCategory: '',
   selectedCategory: '',
@@ -20,7 +36,12 @@ const editorSlice = createSlice({
       state[name] = value;
     },
   },
-  extraReducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(savePost.fulfilled, (state, { payload }) => {
+      state.postId = payload.id;
+      localStorage.setItem('beingWrittenPostId', payload.id);
+    });
+  },
 });
 
 export const { changeValue, forcedChangeValue } = editorSlice.actions;

@@ -1,5 +1,7 @@
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useRef, useEffect, useState } from 'react';
+import { savePost } from './modules/editor';
 
 const StyledEditorContent = styled.div`
   width: 100%;
@@ -178,11 +180,23 @@ export default function MarkdownEditorContent2() {
     }
   }, [isMounted]);
 
+  const dispatch = useDispatch();
+
+  const { title, selectedCategory } = useSelector(({ editor }) => editor);
+
   const save = () => {
     if (ref.current) {
       ref.current.save().then((outputData) => {
-        console.log('Article data: ', outputData);
-        alert(JSON.stringify(outputData));
+        dispatch(
+          savePost({
+            title: title,
+            author: 'lululala0919',
+            category: selectedCategory,
+            content: outputData.blocks,
+            state: false,
+          }),
+        );
+        alert(JSON.stringify(outputData.blocks));
       });
     }
   };
