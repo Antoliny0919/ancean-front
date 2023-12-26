@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-// import MarkdownEditorContent from './MarkdownEditorContent';
-import MarkdownEditorContent2 from './MarkdownEditorContent2';
-// import MarkdownEditorToolbar from './MarkdownEditorToolbar';
+import MarkdownEditorContent from './MarkdownEditorContent';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import TitleContainer from './container/TitleContainer';
 import CategoryInputContainer from './container/CategoryInputContainer';
@@ -34,7 +32,7 @@ export default function MarkdownEditor({ categories }) {
           categories={categories}
         />
       </StyledMarkdownHeaderArea>
-      <MarkdownEditorContent2 />
+      <MarkdownEditorContent />
       <MarkdownEditorFooter />
     </StyledMarkdownEditorArea>
   );

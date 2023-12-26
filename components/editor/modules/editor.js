@@ -1,15 +1,22 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as postAPI from '@/api/post';
 
+export const createPost = createAsyncThunk(
+  'editor/createPost',
+  async (fields) => {
+    const response = await postAPI.createPost({
+      ...fields,
+    });
+    return response.data;
+  },
+);
+
 export const savePost = createAsyncThunk(
   'editor/savePost',
-  async ({ title, author, category, content, state }) => {
+  async ({ postId, fields }) => {
     const response = await postAPI.savePost({
-      title,
-      author,
-      category,
-      content,
-      state,
+      postId,
+      ...fields,
     });
     return response.data;
   },
@@ -37,7 +44,7 @@ const editorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(savePost.fulfilled, (state, { payload }) => {
+    builder.addCase(createPost.fulfilled, (state, { payload }) => {
       state.postId = payload.id;
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
