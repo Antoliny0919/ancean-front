@@ -5,8 +5,7 @@ export const createPost = (fields) =>
     ...fields,
   });
 
-export const savePost = ({ postId, fields }) =>
-  client.patch('api/posts', {
-    id: postId,
+export const savePost = (fields) =>
+  client.patch('api/posts/', {
     ...fields,
   });

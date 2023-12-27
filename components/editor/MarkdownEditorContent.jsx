@@ -1,12 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { useRef, useEffect, useState } from 'react';
-import { createPost, savePost } from './modules/editor';
+import styled from 'styled-components';
 import { initializeEditor } from './EditorJS';
 
 const StyledEditorContent = styled.div`
-  width: 100%;
-  height: 100%;
   padding: 1rem;
   .ce-code__textarea {
     resize: none;
@@ -39,45 +35,13 @@ export default function MarkdownEditorContent() {
     }
   }, [isMounted]);
 
-  const dispatch = useDispatch();
-
-  const { title, selectedCategory } = useSelector(({ editor }) => editor);
-
-  const save = () => {
-    const postId = localStorage.getItem('beingWrittenPostId');
-    const body = {
-      title: title,
-      author: 'lululala0919',
-      is_finish: false,
-      ...(selectedCategory && { category: selectedCategory }),
-    };
-    if (postId) {
-      ref.current.save().then((outputData) => {
-        dispatch(
-          savePost({
-            postId: postId,
-            content: outputData.blocks,
-            ...body,
-          }),
-        );
-      });
-    } else {
-      ref.current.save().then((outputData) => {
-        dispatch(
-          createPost({
-            content: outputData.blocks,
-            ...body,
-          }),
-        );
-      });
-    }
-    alert('전송했습니다.');
-  };
-
   return (
     <StyledEditorContent>
       <div id="editorjs"></div>
-      <button onClick={save}>Save</button>
+      {/* <StyledFooterButtonArea>
+        <CommonButton props={{ onClick: saveOrCreate }}>저장하기</CommonButton>
+        <CommonButton>저장된 포스트</CommonButton>
+      </StyledFooterButtonArea> */}
     </StyledEditorContent>
   );
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledCommonButton = styled.button`
   font-size: 16px;
   font-family: 'NanumBarunGothic';
-  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  padding: 0.7rem 1rem 0.7rem 1rem;
   border-radius: 5px;
   outline: none;
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;

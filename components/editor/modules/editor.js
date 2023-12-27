@@ -11,16 +11,12 @@ export const createPost = createAsyncThunk(
   },
 );
 
-export const savePost = createAsyncThunk(
-  'editor/savePost',
-  async ({ postId, fields }) => {
-    const response = await postAPI.savePost({
-      postId,
-      ...fields,
-    });
-    return response.data;
-  },
-);
+export const savePost = createAsyncThunk('editor/savePost', async (fields) => {
+  const response = await postAPI.savePost({
+    ...fields,
+  });
+  return response.data;
+});
 
 const initialState = {
   postId: null,
