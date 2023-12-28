@@ -9,8 +9,8 @@ const StyledFooterArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
-  div {
+  z-index: 1;
+  .footer-item-block {
     button + button {
       margin-left: 3rem;
     }
@@ -30,13 +30,13 @@ const StyledFooterArea = styled.div`
 export default function MarkdownEditorFooter() {
   return (
     <StyledFooterArea>
-      <div>
+      <div className="footer-item-block">
         <SaveButtonContainer />
         <GetSavedPostsContainer />
       </div>
-      {/* <div>
-        <CommonButton>출간하기</CommonButton>
-      </div> */}
+      {/* <div> */}
+      {/* <button>출간하기</button> */}
+      {/* </div> */}
     </StyledFooterArea>
   );
 }

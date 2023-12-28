@@ -16,6 +16,7 @@ const StyledMarkdownHeaderArea = styled.div`
   & > * {
     flex: 0.5;
     padding: 1rem 0rem 1rem 1rem;
+    margin-right: 1rem;
   }
 `;
 

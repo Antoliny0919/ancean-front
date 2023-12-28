@@ -9,3 +9,5 @@ export const savePost = (fields) =>
   client.patch('api/posts/', {
     ...fields,
   });
+
+export const getSavedPosts = () => client.get('api/posts?is_finish=false');
