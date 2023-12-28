@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 const StyledBackground = styled.div`
   position: absolute;
@@ -12,10 +13,6 @@ const StyledBackground = styled.div`
 `;
 
 const StyledModalBase = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
   position: fixed;
   width: 30vw;
   height: 40vh;
@@ -29,9 +26,23 @@ const StyledModalBase = styled.div`
     props.style && {
       ...props.style,
     }}
+  .close-bar {
+    display: flex;
+    flex-direction: row-reverse;
+    svg {
+      width: 20px;
+      height: 20px;
+      color: #fe4949;
+    }
+  }
 `;
 
-export default function ModalBase({ disable, children, style = {} }) {
+export default function ModalBase({
+  disable,
+  controlModalState,
+  children,
+  style = {},
+}) {
   const [totalWidth, setTotalWidth] = useState(0);
   const [totalHeight, setTotalHeight] = useState(0);
 
@@ -47,7 +58,12 @@ export default function ModalBase({ disable, children, style = {} }) {
 
   return (
     <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
-      <StyledModalBase style={style}>{children}</StyledModalBase>
+      <StyledModalBase style={style}>
+        <div className="close-bar">
+          <IoIosCloseCircle onClick={() => controlModalState(false)} />
+        </div>
+        {children}
+      </StyledModalBase>
     </StyledBackground>
   );
 }

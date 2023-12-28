@@ -22,7 +22,7 @@ export default function GetSavedPostsContainer() {
         저장된 포스트
       </CommonButton>
       {modalState && (
-        <ModalBase disable={modalState}>
+        <ModalBase disable={modalState} controlModalState={setModalState}>
           <SavedPostsModal posts={savedPosts} />
         </ModalBase>
       )}
