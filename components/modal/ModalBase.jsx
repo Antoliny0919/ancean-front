@@ -15,17 +15,13 @@ const StyledBackground = styled.div`
 const StyledModalBase = styled.div`
   position: fixed;
   width: 30vw;
-  height: 40vh;
+  aspect-ratio: 1 / 0.7;
   background-color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.2vw;
   border-radius: 10px;
-  ${(props) =>
-    props.style && {
-      ...props.style,
-    }}
   .close-bar {
     display: flex;
     flex-direction: row-reverse;
@@ -34,6 +30,9 @@ const StyledModalBase = styled.div`
       height: 20px;
       color: #fe4949;
     }
+    svg:hover {
+      cursor: pointer;
+    }
   }
 `;
 
@@ -41,7 +40,7 @@ export default function ModalBase({
   disable,
   controlModalState,
   children,
-  style = {},
+  styleProps = {},
 }) {
   const [totalWidth, setTotalWidth] = useState(0);
   const [totalHeight, setTotalHeight] = useState(0);
@@ -58,7 +57,7 @@ export default function ModalBase({
 
   return (
     <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
-      <StyledModalBase style={style}>
+      <StyledModalBase style={styleProps}>
         <div className="close-bar">
           <IoIosCloseCircle onClick={() => controlModalState(false)} />
         </div>

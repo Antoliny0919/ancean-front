@@ -11,3 +11,5 @@ export const savePost = (fields) =>
   });
 
 export const getSavedPosts = () => client.get('api/posts?is_finish=false');
+
+export const getPost = (id) => client.get(`api/posts?id=${id}`);

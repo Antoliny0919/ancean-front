@@ -1,4 +1,4 @@
-export const initializeEditor = async (ref) => {
+export const initializeEditor = async ({ ref, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
   const Image = (await import('@editorjs/image')).default;
   const Code = (await import('@editorjs/code')).default;
@@ -10,70 +10,12 @@ export const initializeEditor = async (ref) => {
   const Marker = (await import('@editorjs/marker')).default;
   const Warning = (await import('@editorjs/warning')).default;
   const LinkTool = (await import('@editorjs/link')).default;
-
+  ref.current = null;
   if (!ref.current) {
     const editor = new EditorJS({
       holder: 'editorjs',
       data: {
-        blocks: [
-          {
-            id: 'g6_S1HYrl7',
-            type: 'paragraph',
-            data: { text: 'hello my name is sihyun' },
-          },
-          {
-            id: 'wdhkwO0NRk',
-            type: 'paragraph',
-            data: { text: 'it is test post with editor js' },
-          },
-          {
-            id: '1kbB7KgskN',
-            type: 'paragraph',
-            data: {
-              text: '<code class="inline-code">npm install @editor/editorjs</code>',
-            },
-          },
-          {
-            id: 'm3DGlrWgh1',
-            type: 'quote',
-            data: {
-              text: 'test quote block',
-              caption: 'quote author: antoliny0919',
-              alignment: 'left',
-            },
-          },
-          {
-            id: 'jfolhs19lG',
-            type: 'table',
-            data: {
-              withHeadings: false,
-              content: [
-                ['score', 'name', 'graduate'],
-                ['100', 'sihyun', '5'],
-              ],
-            },
-          },
-          {
-            id: 'pUkM1akpc_',
-            type: 'checklist',
-            data: { items: [{ text: 'done homework?', checked: true }] },
-          },
-          {
-            id: 'D_2wOBTk9U',
-            type: 'warning',
-            data: { title: '!!!! Warning', message: 'warning warning' },
-          },
-          {
-            id: 'bwOrrQi7O6',
-            type: 'code',
-            data: { code: 'code block test' },
-          },
-          {
-            id: '994YDkgCMY',
-            type: 'header',
-            data: { text: 'Headline', level: 2 },
-          },
-        ],
+        blocks: content,
       },
       tools: {
         header: {

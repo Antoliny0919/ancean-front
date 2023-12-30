@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { initializeEditor } from './EditorJS';
@@ -12,6 +13,8 @@ const StyledEditorContent = styled.div`
 export default function MarkdownEditorContent() {
   const [isMounted, setIsMounted] = useState(false);
 
+  const content = useSelector(({ editor }) => editor.content);
+
   const ref = useRef();
 
   useEffect(() => {
@@ -22,9 +25,10 @@ export default function MarkdownEditorContent() {
 
   useEffect(() => {
     const init = async () => {
-      await initializeEditor(ref);
+      await initializeEditor({ ref, content });
     };
     if (isMounted) {
+      console.log('init start');
       init();
 
       return () => {
@@ -33,7 +37,7 @@ export default function MarkdownEditorContent() {
         }
       };
     }
-  }, [isMounted]);
+  }, [isMounted, content]);
 
   return (
     <StyledEditorContent>

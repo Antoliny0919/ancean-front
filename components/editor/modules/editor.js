@@ -18,8 +18,12 @@ export const savePost = createAsyncThunk('editor/savePost', async (fields) => {
   return response.data;
 });
 
+export const getPost = createAsyncThunk('editor/getPost', async (id) => {
+  const response = await postAPI.getPost(id);
+  return response.data;
+});
+
 const initialState = {
-  postId: null,
   title: '',
   fieldCategory: '',
   selectedCategory: '',
@@ -32,7 +36,6 @@ const editorSlice = createSlice({
   initialState,
   reducers: {
     changeValue: (state, { payload }) => {
-      console.log(payload);
       state[payload.target.name] = payload.target.value;
     },
     forcedChangeValue: (state, { payload: { name, value } }) => {
@@ -41,8 +44,13 @@ const editorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
-      state.postId = payload.id;
       localStorage.setItem('beingWrittenPostId', payload.id);
+    });
+    builder.addCase(getPost.fulfilled, (state, { payload }) => {
+      const { title, content, author } = payload[0];
+      state = { ...state, title, content, author };
+      console.log(state);
+      return state;
     });
   },
 });
