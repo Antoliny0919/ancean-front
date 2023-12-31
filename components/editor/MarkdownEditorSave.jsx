@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import SaveButtonContainer from './container/SaveButtonContainer';
 import GetSavedPostsContainer from './container/GetSavedPostsContainer';
+import FontButton from '../button/FontButton';
 
 const StyledFooterArea = styled.div`
   width: 100%;
@@ -27,11 +27,11 @@ const StyledFooterArea = styled.div`
   }
 `;
 
-export default function MarkdownEditorSave({ editorRef }) {
+export default function MarkdownEditorSave({ saveLogic }) {
   return (
     <StyledFooterArea>
       <div className="footer-item-block">
-        <SaveButtonContainer editorRef={editorRef} />
+        <FontButton props={{ onClick: saveLogic }}>임시저장</FontButton>
         <GetSavedPostsContainer />
       </div>
       {/* <div> */}
