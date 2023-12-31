@@ -43,12 +43,13 @@ const editorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(createPost.fulfilled, (state, { payload }) => {
+    builder.addCase(createPost.fulfilled, (_, { payload }) => {
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { title, content, category, author } = payload[0];
+      const { id, title, content, category, author } = payload[0];
       state = { ...state, title, selectedCategory: category, content, author };
+      localStorage.setItem('beingWrittenPostId', id);
       return state;
     });
   },

@@ -2,9 +2,12 @@ import { useSelector } from 'react-redux';
 import { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { initializeEditor } from './EditorJS';
+import MarkdownEditorSave from './MarkdownEditorSave';
 
 const StyledEditorContent = styled.div`
-  padding: 1rem;
+  /* padding: 1rem; */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   .ce-code__textarea {
     resize: none;
   }
@@ -15,7 +18,7 @@ export default function MarkdownEditorContent() {
 
   const content = useSelector(({ editor }) => editor.content);
 
-  const ref = useRef();
+  const editorRef = useRef();
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -25,15 +28,14 @@ export default function MarkdownEditorContent() {
 
   useEffect(() => {
     const init = async () => {
-      await initializeEditor({ ref, content });
+      await initializeEditor({ editorRef, content });
     };
     if (isMounted) {
-      console.log('init start');
       init();
 
       return () => {
-        if (ref.current) {
-          ref.current.destroy();
+        if (editorRef.current) {
+          editorRef.current.destroy();
         }
       };
     }
@@ -42,10 +44,7 @@ export default function MarkdownEditorContent() {
   return (
     <StyledEditorContent>
       <div id="editorjs"></div>
-      {/* <StyledFooterButtonArea>
-        <CommonButton props={{ onClick: saveOrCreate }}>저장하기</CommonButton>
-        <CommonButton>저장된 포스트</CommonButton>
-      </StyledFooterButtonArea> */}
+      <MarkdownEditorSave editorRef={editorRef} />
     </StyledEditorContent>
   );
 }

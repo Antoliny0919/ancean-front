@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import TitleContainer from './container/TitleContainer';
-import MarkdownEditorFooter from './MarkdownEditorFooter';
 import CategoryInputContainer from './container/CategoryInputContainer';
 
 const StyledMarkdownEditorArea = styled.div`
@@ -33,8 +32,6 @@ export default function MarkdownEditor({ categories }) {
         />
       </StyledMarkdownHeaderArea>
       <MarkdownEditorContent />
-      {/* <TestBlock/> */}
-      <MarkdownEditorFooter />
     </StyledMarkdownEditorArea>
   );
 }

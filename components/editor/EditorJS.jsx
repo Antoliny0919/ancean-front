@@ -1,4 +1,4 @@
-export const initializeEditor = async ({ ref, content }) => {
+export const initializeEditor = async ({ editorRef, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
   const Image = (await import('@editorjs/image')).default;
   const Code = (await import('@editorjs/code')).default;
@@ -10,8 +10,8 @@ export const initializeEditor = async ({ ref, content }) => {
   const Marker = (await import('@editorjs/marker')).default;
   const Warning = (await import('@editorjs/warning')).default;
   const LinkTool = (await import('@editorjs/link')).default;
-  ref.current = null;
-  if (!ref.current) {
+  editorRef.current = null;
+  if (!editorRef.current) {
     const editor = new EditorJS({
       holder: 'editorjs',
       data: {
@@ -78,6 +78,6 @@ export const initializeEditor = async ({ ref, content }) => {
       },
       placeholder: 'Let`s write an awesome story!',
     });
-    ref.current = editor;
+    editorRef.current = editor;
   }
 };

@@ -27,11 +27,11 @@ const StyledFooterArea = styled.div`
   }
 `;
 
-export default function MarkdownEditorFooter() {
+export default function MarkdownEditorSave({ editorRef }) {
   return (
     <StyledFooterArea>
       <div className="footer-item-block">
-        <SaveButtonContainer />
+        <SaveButtonContainer editorRef={editorRef} />
         <GetSavedPostsContainer />
       </div>
       {/* <div> */}

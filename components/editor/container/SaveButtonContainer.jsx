@@ -1,12 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useRef } from 'react';
 import { savePost, createPost } from '../modules/editor';
 import FontButton from '../../button/FontButton';
 
-export default function SaveButtonContainer() {
+export default function SaveButtonContainer({ editorRef }) {
   const dispatch = useDispatch();
-
-  const ref = useRef();
 
   const { title, selectedCategory } = useSelector(({ editor }) => editor);
 
@@ -19,7 +16,7 @@ export default function SaveButtonContainer() {
       ...(selectedCategory && { category: selectedCategory }),
     };
     if (postId) {
-      ref.current.save().then((outputData) => {
+      editorRef.current.save().then((outputData) => {
         dispatch(
           savePost({
             id: postId,
@@ -29,7 +26,7 @@ export default function SaveButtonContainer() {
         );
       });
     } else {
-      ref.current.save().then((outputData) => {
+      editorRef.current.save().then((outputData) => {
         dispatch(
           createPost({
             content: outputData.blocks,
