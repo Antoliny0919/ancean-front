@@ -23,6 +23,7 @@ export default function GetSavedPostsContainer() {
   const rewriteSavedPost = useCallback((e) => {
     const postId = e.currentTarget.id;
     dispatch(getPost(postId));
+    setModalState(false);
   }, []);
 
   return (

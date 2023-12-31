@@ -47,9 +47,8 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { title, content, author } = payload[0];
-      state = { ...state, title, content, author };
-      console.log(state);
+      const { title, content, category, author } = payload[0];
+      state = { ...state, title, selectedCategory: category, content, author };
       return state;
     });
   },
