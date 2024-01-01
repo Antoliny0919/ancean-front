@@ -12,13 +12,15 @@ const StyledMarkdownEditorArea = styled.div`
 `;
 
 const StyledMarkdownHeaderArea = styled.div`
+  position: relative;
+  height: 80px;
+  z-index: 10;
   display: flex;
   flex-direction: row;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
   & > * {
     flex: 0.5;
-    padding: 1rem 0rem 1rem 1rem;
-    margin-right: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
   }
 `;
 

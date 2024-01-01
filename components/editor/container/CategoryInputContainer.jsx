@@ -13,12 +13,14 @@ const StyledEditorCategoryArea = styled.div`
   align-items: center;
   border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
   width: 100%;
+  background-color: white;
 `;
 
 const StyledSelectedCategoryArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 100%;
   width: 100%;
   padding-right: 1rem;
   div {
@@ -105,7 +107,10 @@ export default function CategoryInputContainer({ placeholder, categories }) {
         </StyledSelectedCategoryArea>
       ) : (
         <>
-          <EntireBlockInput props={categoryFieldProps} />
+          <EntireBlockInput
+            props={categoryFieldProps}
+            styleProps={{ height: '100%' }}
+          />
           {categoryButton && (
             <CategoryButton
               props={{

@@ -20,8 +20,6 @@ export default function NotificationContainer() {
     }
   }, [notificationState]);
 
-  console.log(notificationState);
-
   return (
     <EditorSaveNotification
       disable={disable}

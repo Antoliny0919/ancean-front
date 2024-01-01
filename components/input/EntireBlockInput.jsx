@@ -7,6 +7,12 @@ const StyledBlockInput = styled.input`
   outline: none;
 `;
 
-export default function EntireBlockInput({ props }) {
-  return <StyledBlockInput type="text" {...props}></StyledBlockInput>;
+export default function EntireBlockInput({ props = {}, styleProps = {} }) {
+  return (
+    <StyledBlockInput
+      type="text"
+      {...props}
+      style={styleProps}
+    ></StyledBlockInput>
+  );
 }

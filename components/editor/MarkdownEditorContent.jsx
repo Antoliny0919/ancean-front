@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { savePost, createPost } from './modules/editor';
 import { initializeEditor } from './EditorJS';
 import MarkdownEditorSave from './MarkdownEditorSave';
+import NotificationContainer from './container/NotificationContainer';
 // import useInterval from '../../hooks/useInterval';
 
 const StyledEditorContent = styled.div`
@@ -84,6 +85,7 @@ export default function MarkdownEditorContent() {
 
   return (
     <StyledEditorContent>
+      <NotificationContainer />
       <div id="editorjs"></div>
       <MarkdownEditorSave saveLogic={saveOrCreate} />
     </StyledEditorContent>

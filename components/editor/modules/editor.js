@@ -45,8 +45,6 @@ const initialState = {
   content: '',
   author: '',
   notificationState: null,
-  mainErrorMessage: '',
-  subErrorMessage: '',
 };
 
 const editorSlice = createSlice({
@@ -61,6 +59,8 @@ const editorSlice = createSlice({
     },
     resetNotificationState: (state) => {
       state.notificationState = null;
+      state.notificationMainMessage = '';
+      state.notificationSubMessage = '';
     },
   },
   extraReducers: (builder) => {
@@ -68,12 +68,12 @@ const editorSlice = createSlice({
       state.notificationState = true;
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
-    builder.addCase(createPost.rejected, (state, { payload }) => {
-      console.log(state, payload);
+    builder.addCase(createPost.rejected, (state) => {
       // let errors = payload.data.errors;
-      // let errorsCollection = [];
+      // let packageErrors = Object.keys(errors).map((key) => Object.keys(errors[key]))
+      // console.log(packageErrors);
       state.notificationState = false;
-      state.mainErrorMessage = payload.data.message;
+      // state.notificationSubMessage = payload.data.errors;
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, author } = payload[0];
