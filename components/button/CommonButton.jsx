@@ -18,6 +18,14 @@ const StyledCommonButton = styled.button`
   }
 `;
 
-export default function CommonButton({ children, props = {} }) {
-  return <StyledCommonButton {...props}>{children}</StyledCommonButton>;
+export default function CommonButton({
+  children,
+  props = {},
+  styleProps = {},
+}) {
+  return (
+    <StyledCommonButton style={styleProps} {...props}>
+      {children}
+    </StyledCommonButton>
+  );
 }

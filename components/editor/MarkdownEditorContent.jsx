@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { savePost, createPost } from './modules/editor';
 import { initializeEditor } from './EditorJS';
 import MarkdownEditorSave from './MarkdownEditorSave';
-import useInterval from '../../hooks/useInterval';
+// import useInterval from '../../hooks/useInterval';
 
 const StyledEditorContent = styled.div`
   /* padding: 1rem; */
@@ -31,7 +31,7 @@ export default function MarkdownEditorContent() {
     console.log(title, selectedCategory);
     const body = {
       title: title,
-      author: 'lululala0919',
+      author: '',
       is_finish: false,
       ...(selectedCategory && { category: selectedCategory }),
     };
@@ -80,7 +80,7 @@ export default function MarkdownEditorContent() {
   }, [isMounted, content]);
 
   // autoSave logic interval(5minute)
-  useInterval(() => saveOrCreate(), 500000);
+  // useInterval(() => saveOrCreate(), 30000);
 
   return (
     <StyledEditorContent>

@@ -3,20 +3,35 @@ import * as postAPI from '@/api/post';
 
 export const createPost = createAsyncThunk(
   'editor/createPost',
-  async (fields) => {
-    const response = await postAPI.createPost({
-      ...fields,
-    });
-    return response.data;
+  async (fields, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await postAPI.createPost({
+        ...fields,
+      });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
   },
 );
 
-export const savePost = createAsyncThunk('editor/savePost', async (fields) => {
-  const response = await postAPI.savePost({
-    ...fields,
-  });
-  return response.data;
-});
+export const savePost = createAsyncThunk(
+  'editor/savePost',
+  async (fields, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await postAPI.savePost({
+        ...fields,
+      });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
 
 export const getPost = createAsyncThunk('editor/getPost', async (id) => {
   const response = await postAPI.getPost(id);
@@ -29,6 +44,8 @@ const initialState = {
   selectedCategory: '',
   content: '',
   author: '',
+  mainErrorMessage: '',
+  subErrorMessage: '',
 };
 
 const editorSlice = createSlice({
@@ -45,6 +62,12 @@ const editorSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createPost.fulfilled, (_, { payload }) => {
       localStorage.setItem('beingWrittenPostId', payload.id);
+    });
+    builder.addCase(createPost.rejected, (state, { payload }) => {
+      console.log(state, payload);
+      // let errors = payload.data.errors;
+      // let errorsCollection = [];
+      // state.mainErrorMessage = payload.data.message;
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, author } = payload[0];

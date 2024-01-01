@@ -22,6 +22,7 @@ const StyledModalBase = styled.div`
   transform: translate(-50%, -50%);
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.2vw;
   border-radius: 10px;
+  font-family: 'NanumBarunGothic';
   .close-bar {
     display: flex;
     flex-direction: row-reverse;

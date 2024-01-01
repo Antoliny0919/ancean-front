@@ -5,7 +5,6 @@ const StyledSavedPostsModal = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  font-family: 'NanumBarunGothic';
   h1 {
     margin-top: 0;
     margin-bottom: 2rem;
@@ -34,8 +33,6 @@ const StyledSavedPost = styled.div`
 `;
 
 export default function SavedPostsModal({ posts, postProps = {} }) {
-  console.log(posts);
-
   return (
     <StyledSavedPostsModal>
       <h1>저장된 포스트</h1>
