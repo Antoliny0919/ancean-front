@@ -44,6 +44,7 @@ const initialState = {
   selectedCategory: '',
   content: '',
   author: '',
+  notificationState: null,
   mainErrorMessage: '',
   subErrorMessage: '',
 };
@@ -58,16 +59,21 @@ const editorSlice = createSlice({
     forcedChangeValue: (state, { payload: { name, value } }) => {
       state[name] = value;
     },
+    resetNotificationState: (state) => {
+      state.notificationState = null;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(createPost.fulfilled, (_, { payload }) => {
+    builder.addCase(createPost.fulfilled, (state, { payload }) => {
+      state.notificationState = true;
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
       console.log(state, payload);
       // let errors = payload.data.errors;
       // let errorsCollection = [];
-      // state.mainErrorMessage = payload.data.message;
+      state.notificationState = false;
+      state.mainErrorMessage = payload.data.message;
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, author } = payload[0];
@@ -78,5 +84,6 @@ const editorSlice = createSlice({
   },
 });
 
-export const { changeValue, forcedChangeValue } = editorSlice.actions;
+export const { changeValue, forcedChangeValue, resetNotificationState } =
+  editorSlice.actions;
 export default editorSlice.reducer;

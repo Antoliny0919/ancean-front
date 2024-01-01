@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import GetSavedPostsContainer from './container/GetSavedPostsContainer';
 import FontButton from '../button/FontButton';
+import NotificationContainer from './container/NotificationContainer';
 
 const StyledFooterArea = styled.div`
   width: 100%;
@@ -30,13 +31,11 @@ const StyledFooterArea = styled.div`
 export default function MarkdownEditorSave({ saveLogic }) {
   return (
     <StyledFooterArea>
+      <NotificationContainer />
       <div className="footer-item-block">
         <FontButton props={{ onClick: saveLogic }}>임시저장</FontButton>
         <GetSavedPostsContainer />
       </div>
-      {/* <div> */}
-      {/* <button>출간하기</button> */}
-      {/* </div> */}
     </StyledFooterArea>
   );
 }
