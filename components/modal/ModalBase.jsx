@@ -37,6 +37,11 @@ const StyledModalBase = styled.div`
   }
 `;
 
+export function closeModal(controlModalState) {
+  controlModalState(false);
+  document.body.style = 'overflow: none';
+}
+
 export default function ModalBase({
   disable,
   controlModalState,
@@ -51,8 +56,6 @@ export default function ModalBase({
       document.body.style = 'overflow: hidden';
       setTotalWidth(window.outerWidth);
       setTotalHeight(window.outerHeight);
-    } else {
-      document.body.style = 'overflow: none';
     }
   }, [disable]);
 
@@ -60,7 +63,7 @@ export default function ModalBase({
     <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
       <StyledModalBase style={styleProps}>
         <div className="close-bar">
-          <IoIosCloseCircle onClick={() => controlModalState(false)} />
+          <IoIosCloseCircle onClick={() => closeModal(controlModalState)} />
         </div>
         {children}
       </StyledModalBase>

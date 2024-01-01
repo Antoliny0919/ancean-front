@@ -5,6 +5,7 @@ import { getPost } from '../modules/editor';
 import CommonButton from '../../button/CommonButton';
 import ModalBase from '../../modal/ModalBase';
 import SavedPostsModal from '../../modal/SavedPostsModal';
+import { closeModal } from '../../modal/ModalBase';
 
 export default function GetSavedPostsContainer() {
   const dispatch = useDispatch();
@@ -23,7 +24,7 @@ export default function GetSavedPostsContainer() {
   const rewriteSavedPost = useCallback((e) => {
     const postId = e.currentTarget.id;
     dispatch(getPost(postId));
-    setModalState(false);
+    closeModal(setModalState);
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { getPost } from '../modules/editor';
+import { closeModal } from '../../modal/ModalBase';
 import ContinueWritingPostModal from '../../modal/ContinueWritingPostModal';
 
 export default function ContinueWritingContainer({ controlModalState }) {
@@ -8,11 +9,11 @@ export default function ContinueWritingContainer({ controlModalState }) {
   const continueWriting = () => {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     dispatch(getPost(previousWritingPostId));
-    controlModalState(false);
+    closeModal(controlModalState);
   };
 
   const newWriting = () => {
-    controlModalState(false);
+    closeModal(controlModalState);
     localStorage.removeItem('beingWrittenPostId');
   };
 

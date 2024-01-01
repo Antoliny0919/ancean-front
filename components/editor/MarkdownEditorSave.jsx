@@ -9,6 +9,7 @@ const StyledFooterArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
   z-index: 1;
   box-shadow:
     rgba(0, 0, 0, 0.25) 0px 54px 55px,
