@@ -6,14 +6,14 @@ const StyledEditorSaveNotification = styled.div`
   opacity: 0;
   transform: translateY(-50px);
   text-align: center;
-  color: white;
+  color: #f8f8f8;
   z-index: 0;
   padding: 0.5vw 0 0.5vw 0;
   transition:
     transform 0.7s ease-in-out,
     opacity 0.7s;
   ${(props) =>
-    props.$notificationState
+    props.$notificationColor
       ? css`
           background-color: ${({ theme }) => theme.colors.state.success};
         `
@@ -26,17 +26,19 @@ const StyledEditorSaveNotification = styled.div`
   }
 `;
 
-export default function EditorSaveNotification({ disable, notificationState }) {
+export default function EditorSaveNotification({
+  disable,
+  notificationState,
+  notificationMessage,
+  notificationColor,
+}) {
   return (
     <StyledEditorSaveNotification
       className={disable && 'show'}
       $notificationState={notificationState}
+      $notificationColor={notificationColor}
     >
-      {notificationState ? (
-        <div className="success content">포스트가 임시저장되었습니다.</div>
-      ) : (
-        <div className="fail content">포스트가 임시저장에 실패하였습니다.</div>
-      )}
+      <div>{notificationMessage}</div>
     </StyledEditorSaveNotification>
   );
 }

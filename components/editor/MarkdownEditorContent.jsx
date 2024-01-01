@@ -32,7 +32,7 @@ export default function MarkdownEditorContent() {
     console.log(title, selectedCategory);
     const body = {
       title: title,
-      author: '',
+      author: 'lululala0919',
       is_finish: false,
       ...(selectedCategory && { category: selectedCategory }),
     };

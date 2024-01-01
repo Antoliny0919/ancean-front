@@ -4,15 +4,20 @@ import { resetNotificationState } from '../modules/editor';
 import EditorSaveNotification from '../../notification/EditorSaveNotification';
 
 export default function NotificationContainer() {
+  const [notificationColor, setNotificationColor] = useState(null);
+
   const [disable, setDisable] = useState(false);
 
   const dispatch = useDispatch();
 
-  const { notificationState } = useSelector(({ editor }) => editor);
+  const { notificationState, notificationMessage } = useSelector(
+    ({ editor }) => editor,
+  );
 
   useEffect(() => {
     if (notificationState !== null) {
       setDisable(true);
+      setNotificationColor(notificationState);
       setTimeout(() => {
         setDisable(false);
         dispatch(resetNotificationState());
@@ -24,6 +29,8 @@ export default function NotificationContainer() {
     <EditorSaveNotification
       disable={disable}
       notificationState={notificationState}
+      notificationMessage={notificationMessage}
+      notificationColor={notificationColor}
     ></EditorSaveNotification>
   );
 }
