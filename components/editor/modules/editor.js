@@ -33,6 +33,20 @@ export const savePost = createAsyncThunk(
   },
 );
 
+export const deletePost = createAsyncThunk(
+  'editor/deletePost',
+  async ({ id }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await postAPI.deletePost(id);
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
+
 export const getPost = createAsyncThunk('editor/getPost', async (id) => {
   const response = await postAPI.getPost(id);
   return response.data;

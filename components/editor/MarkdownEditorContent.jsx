@@ -9,8 +9,8 @@ import NotificationContainer from './container/NotificationContainer';
 
 const StyledEditorContent = styled.div`
   /* padding: 1rem; */
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   position: relative;
   z-index: 50;
   .ce-code__textarea {

@@ -37,6 +37,7 @@ const StyledSavedPost = styled.div`
   }
   .delete {
     width: 10%;
+    position: relative;
     display: none;
   }
   & + & {
@@ -54,6 +55,7 @@ const StyledSavedPost = styled.div`
 export default function SavedPostsModal({
   posts,
   currentWritingPostId,
+  selectDeleteSavedPost,
   postProps = {},
 }) {
   return (
@@ -70,7 +72,11 @@ export default function SavedPostsModal({
                 {updatedAt.getDate()}
               </div>
               <div className="title">제목: {post.title}</div>
-              <div className="delete" onClick={() => console.log('delete')}>
+              <div
+                className="delete"
+                id={post.id}
+                onClick={selectDeleteSavedPost}
+              >
                 <FaRegTrashCan />
               </div>
             </StyledSavedPost>

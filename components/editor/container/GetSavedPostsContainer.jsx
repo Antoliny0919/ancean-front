@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState, useCallback, useMemo } from 'react';
 import * as postAPI from '@/api/post';
-import { getPost } from '../modules/editor';
+import { getPost, deletePost } from '../modules/editor';
 import CommonButton from '../../button/CommonButton';
 import ModalBase from '../../modal/ModalBase';
 import SavedPostsModal from '../../modal/SavedPostsModal';
@@ -26,13 +26,23 @@ export default function GetSavedPostsContainer() {
     const posts = response.data;
     setSavedPosts(posts);
     setModalState(true);
-  }, [modalState]);
+  }, [dispatch, modalState]);
 
   const rewriteSavedPost = useCallback((e) => {
     const postId = e.currentTarget.id;
     dispatch(getPost(postId));
     closeModal(setModalState);
   }, []);
+
+  const selectDeleteSavedPost = (e) => {
+    e.stopPropagation();
+    let response = confirm('정말 삭제하시겠습니까?');
+    if (response) {
+      let postId = e.currentTarget.id;
+      dispatch(deletePost({ id: postId }));
+      closeModal(setModalState);
+    }
+  };
 
   return (
     <>
@@ -48,6 +58,7 @@ export default function GetSavedPostsContainer() {
           <SavedPostsModal
             posts={savedPosts}
             currentWritingPostId={currentWritingPostId}
+            selectDeleteSavedPost={selectDeleteSavedPost}
             postProps={{ onClick: rewriteSavedPost }}
           />
         </ModalBase>
