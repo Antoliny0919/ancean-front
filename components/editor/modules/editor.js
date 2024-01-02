@@ -65,8 +65,8 @@ const editorSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
       state.notificationState = true;
-      state.notificationMessage = payload.data.message;
-      localStorage.setItem('beingWrittenPostId', payload.data.id);
+      state.notificationMessage = payload.message;
+      localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
       state.notificationState = false;

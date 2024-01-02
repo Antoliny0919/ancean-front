@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import * as postAPI from '@/api/post';
 import { getPost } from '../modules/editor';
 import CommonButton from '../../button/CommonButton';
@@ -13,6 +13,13 @@ export default function GetSavedPostsContainer() {
   const [savedPosts, setSavedPosts] = useState();
 
   const [modalState, setModalState] = useState(false);
+
+  let currentWritingPostId = useMemo(() => {
+    if (typeof window !== 'undefined') {
+      let postId = Number(localStorage.getItem('beingWrittenPostId'));
+      return postId;
+    }
+  }, [dispatch, savedPosts]);
 
   const getSavedPosts = useCallback(async () => {
     const response = await postAPI.getSavedPosts();
@@ -40,6 +47,7 @@ export default function GetSavedPostsContainer() {
         >
           <SavedPostsModal
             posts={savedPosts}
+            currentWritingPostId={currentWritingPostId}
             postProps={{ onClick: rewriteSavedPost }}
           />
         </ModalBase>

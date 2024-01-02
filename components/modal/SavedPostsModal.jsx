@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FaRegTrashCan } from 'react-icons/fa6';
 
 const StyledSavedPostsModal = styled.div`
   display: flex;
@@ -10,13 +11,20 @@ const StyledSavedPostsModal = styled.div`
     margin-bottom: 2rem;
     border-bottom: solid black 2px;
   }
+  .content {
+    width: 100%;
+    height: 25vw;
+    overflow: scroll;
+  }
 `;
 
 const StyledSavedPost = styled.div`
   display: flex;
+  font-size: 15px;
   flex-direction: row;
   justify-content: flex-start;
   border-bottom: solid rgba(230, 230, 230, 0.8) 1.5px;
+  transition: border-bottom 0.7s;
   width: 100%;
   .date {
     width: 20%;
@@ -25,29 +33,50 @@ const StyledSavedPost = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    width: 80%;
+    width: 70%;
+  }
+  .delete {
+    width: 10%;
+    display: none;
   }
   & + & {
     margin-top: 1.2rem;
   }
+  &:hover {
+    cursor: pointer;
+    border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 1.5px;
+  }
+  &:hover .delete {
+    display: block;
+  }
 `;
 
-export default function SavedPostsModal({ posts, postProps = {} }) {
+export default function SavedPostsModal({
+  posts,
+  currentWritingPostId,
+  postProps = {},
+}) {
   return (
     <StyledSavedPostsModal>
       <h1>저장된 포스트</h1>
-      {posts.map((post, index) => {
-        let updatedAt = new Date(post.updated_at);
-        return (
-          <StyledSavedPost key={index} id={post.id} {...postProps}>
-            <div className="date">
-              {updatedAt.getFullYear()}.{updatedAt.getMonth() + 1}.
-              {updatedAt.getDate()}
-            </div>
-            <div className="title">제목: {post.title}</div>
-          </StyledSavedPost>
-        );
-      })}
+      <div className="content">
+        {posts.map((post, index) => {
+          let updatedAt = new Date(post.updated_at);
+          if (currentWritingPostId === post.id) return;
+          return (
+            <StyledSavedPost key={index} id={post.id} {...postProps}>
+              <div className="date">
+                {updatedAt.getFullYear()}.{updatedAt.getMonth() + 1}.
+                {updatedAt.getDate()}
+              </div>
+              <div className="title">제목: {post.title}</div>
+              <div className="delete" onClick={() => console.log('delete')}>
+                <FaRegTrashCan />
+              </div>
+            </StyledSavedPost>
+          );
+        })}
+      </div>
     </StyledSavedPostsModal>
   );
 }

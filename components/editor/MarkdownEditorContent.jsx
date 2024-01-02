@@ -11,6 +11,8 @@ const StyledEditorContent = styled.div`
   /* padding: 1rem; */
   padding-top: 1rem;
   padding-bottom: 1rem;
+  position: relative;
+  z-index: 50;
   .ce-code__textarea {
     resize: none;
   }

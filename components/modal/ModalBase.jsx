@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { IoIosCloseCircle } from 'react-icons/io';
 
@@ -6,10 +6,10 @@ const StyledBackground = styled.div`
   position: absolute;
   bottom: 0%;
   left: 0%;
-  width: ${(props) => props.$totalWidth}px;
-  height: ${(props) => props.$totalHeight}px;
+  width: 100vw;
+  height: 100vh;
   background-color: rgba(255, 255, 255, 0.5);
-  z-index: 10;
+  z-index: 100;
 `;
 
 const StyledModalBase = styled.div`
@@ -48,19 +48,20 @@ export default function ModalBase({
   children,
   styleProps = {},
 }) {
-  const [totalWidth, setTotalWidth] = useState(0);
-  const [totalHeight, setTotalHeight] = useState(0);
+  // const [totalWidth, setTotalWidth] = useState(0);
+  // const [totalHeight, setTotalHeight] = useState(0);
 
   useEffect(() => {
     if (disable) {
       document.body.style = 'overflow: hidden';
-      setTotalWidth(window.outerWidth);
-      setTotalHeight(window.outerHeight);
+      // setTotalWidth(window.outerWidth);
+      // setTotalHeight(window.outerHeight);
     }
-  }, [disable]);
+  }, [disable, window.outerWidth, window.outerHeight]);
 
   return (
-    <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
+    // <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
+    <StyledBackground>
       <StyledModalBase style={styleProps}>
         <div className="close-bar">
           <IoIosCloseCircle onClick={() => closeModal(controlModalState)} />
