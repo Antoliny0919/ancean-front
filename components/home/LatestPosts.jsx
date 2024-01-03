@@ -23,7 +23,6 @@ const StyledSectionBody = styled.div`
 `;
 
 export default function LatestPosts({ posts }) {
-  console.log(posts);
   return (
     <StyledLatestPostsArea>
       <SectionHeader

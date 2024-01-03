@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CATEGORY_LOGO } from '../category/categoryLogo';
 
 const StyledCategoryButton = styled.button`
   font-family: 'GmarketSansMedium';
@@ -24,5 +25,11 @@ const StyledCategoryButton = styled.button`
 `;
 
 export default function CategoryButton({ children, props = {} }) {
-  return <StyledCategoryButton {...props}>{children}</StyledCategoryButton>;
+  const categoryColor = CATEGORY_LOGO[children]['color'];
+
+  return (
+    <StyledCategoryButton $categoryColor={categoryColor} {...props}>
+      {children}
+    </StyledCategoryButton>
+  );
 }

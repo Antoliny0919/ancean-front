@@ -19,22 +19,23 @@ export default function GetSavedPostsContainer() {
       let postId = Number(localStorage.getItem('beingWrittenPostId'));
       return postId;
     }
-  }, [dispatch, savedPosts]);
+  }, [savedPosts]);
 
   const getSavedPosts = useCallback(async () => {
     const response = await postAPI.getSavedPosts();
     const posts = response.data;
     setSavedPosts(posts);
     setModalState(true);
-  }, [dispatch, modalState]);
+  }, [modalState]);
 
   const rewriteSavedPost = useCallback((e) => {
     const postId = e.currentTarget.id;
+    // current writing post save process need
     dispatch(getPost(postId));
     closeModal(setModalState);
   }, []);
 
-  const selectDeleteSavedPost = (e) => {
+  const selectDeleteSavedPost = useCallback((e) => {
     e.stopPropagation();
     let response = confirm('정말 삭제하시겠습니까?');
     if (response) {
@@ -42,7 +43,7 @@ export default function GetSavedPostsContainer() {
       dispatch(deletePost({ id: postId }));
       closeModal(setModalState);
     }
-  };
+  }, []);
 
   return (
     <>

@@ -48,7 +48,7 @@ const StyledPostArea = styled.div`
 `;
 
 export default function Post({ postData, rotate }) {
-  const { author, category, content, created_at, header_image, title, wave } =
+  const { author, category, introduce, created_at, header_image, title, wave } =
     postData;
 
   const { logo, color } = CATEGORY_LOGO[category];
@@ -60,7 +60,7 @@ export default function Post({ postData, rotate }) {
       rotate={rotate}
     >
       <PostHeader header_image={header_image} wave={wave} categoryLogo={logo} />
-      <PostBody content={content} title={title} created_at={created_at} />
+      <PostBody content={introduce} title={title} created_at={created_at} />
       <PostFooter
         author={author}
         categoryName={category}

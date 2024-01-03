@@ -5,6 +5,7 @@ import ContinueWritingContainer from './container/ContinueWritingContainer';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import TitleContainer from './container/TitleContainer';
 import CategoryInputContainer from './container/CategoryInputContainer';
+import NotificationContainer from './container/NotificationContainer';
 
 const StyledMarkdownEditorArea = styled.div`
   height: 100vh;
@@ -55,6 +56,7 @@ export default function MarkdownEditor({ categories }) {
           categories={categories}
         />
       </StyledMarkdownHeaderArea>
+      <NotificationContainer />
       <MarkdownEditorContent />
     </StyledMarkdownEditorArea>
   );

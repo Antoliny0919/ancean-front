@@ -17,9 +17,12 @@ const StyledLatestPostArea = styled.div`
     box-shadow 1s,
     border 1s;
   border-radius: 10px;
-  img {
+  .header-img {
     width: 30%;
-    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .post-content {
     display: flex;
@@ -38,13 +41,16 @@ const StyledLatestPostArea = styled.div`
 const StyledPostContent = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   padding: 1rem;
+  min-height: 20rem;
+  width: 70%;
   .title {
     font-family: 'Pretendard-Bold';
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-bottom: 0.7rem;
+    margin: 0;
   }
   .content {
     font-size: 16px;
@@ -74,7 +80,7 @@ export default function LatestPost({ post }) {
     return src;
   };
 
-  const { category, content, created_at, header_image, title } = post;
+  const { category, introduce, created_at, header_image, title } = post;
 
   const writeDate = new Date(created_at);
 
@@ -82,22 +88,24 @@ export default function LatestPost({ post }) {
 
   return (
     <StyledLatestPostArea>
-      <Image
-        loader={myLoader}
-        src={imageUrl}
-        width={1000}
-        height={1000}
-        alt="no-img"
-      ></Image>
+      <div className="header-img">
+        <Image
+          loader={myLoader}
+          src={imageUrl}
+          width={1000}
+          height={1000}
+          alt="no-img"
+        ></Image>
+      </div>
       <StyledPostContent>
         <h3 className="title">{title}</h3>
-        <div className="content">{content}</div>
+        <div className="content">{introduce}</div>
         <div className="footer">
           <div className="write-date">
             작성일: {writeDate.getFullYear()}년 {writeDate.getMonth() + 1}월{' '}
             {writeDate.getDate()}일
           </div>
-          <CategoryButton categoryName={category} />
+          <CategoryButton categoryName={category}>{category}</CategoryButton>
         </div>
       </StyledPostContent>
     </StyledLatestPostArea>

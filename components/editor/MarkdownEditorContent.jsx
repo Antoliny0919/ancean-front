@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { savePost, createPost } from './modules/editor';
 import { initializeEditor } from './EditorJS';
 import MarkdownEditorSave from './MarkdownEditorSave';
-import NotificationContainer from './container/NotificationContainer';
 // import useInterval from '../../hooks/useInterval';
 
 const StyledEditorContent = styled.div`
@@ -12,7 +11,7 @@ const StyledEditorContent = styled.div`
   padding-top: 3rem;
   padding-bottom: 3rem;
   position: relative;
-  z-index: 50;
+  z-index: 15;
   .ce-code__textarea {
     resize: none;
   }
@@ -87,7 +86,6 @@ export default function MarkdownEditorContent() {
 
   return (
     <StyledEditorContent>
-      <NotificationContainer />
       <div id="editorjs"></div>
       <MarkdownEditorSave saveLogic={saveOrCreate} />
     </StyledEditorContent>

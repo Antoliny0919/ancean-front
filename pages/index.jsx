@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 // import NavbarMain from '@/components/home/NavbarMain';
 import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
+import Test from '@/components/home/Test';
 import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
 import LatestPosts from '@/components/home/LatestPosts';
@@ -68,6 +69,7 @@ export default function Home({
         <SectionContainer ref={PopularWritingRef}>
           <PopularWriting posts={posts.popularWriting} />
         </SectionContainer>
+        <Test posts={posts.popularWriting} />
         <SectionContainer ref={TopCategoriesRef}>
           <TopCategories categories={representativeCategory} />
         </SectionContainer>
