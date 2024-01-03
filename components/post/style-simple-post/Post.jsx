@@ -39,20 +39,19 @@ const StyledLatestPostArea = styled.div`
 `;
 
 const StyledPostContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
   padding: 1rem;
-  min-height: 20rem;
+  height: 20rem;
   width: 70%;
   .title {
+    height: 15%;
+    display: block;
     font-family: 'Pretendard-Bold';
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin: 0;
   }
   .content {
+    height: 55%;
     font-size: 16px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -62,6 +61,7 @@ const StyledPostContent = styled.div`
     font-family: 'Pretendard-Light';
   }
   .footer {
+    height: 10%;
     display: flex;
     flex-direction: row;
     align-items: center;
