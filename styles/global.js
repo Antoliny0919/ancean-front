@@ -15,6 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1.6;
     font-size: 16px;
     background-color: #fff;
+    max-width: 2048px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   main {

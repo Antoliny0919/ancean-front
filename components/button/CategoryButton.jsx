@@ -24,11 +24,19 @@ const StyledCategoryButton = styled.button`
   }
 `;
 
-export default function CategoryButton({ children, props = {} }) {
+export default function CategoryButton({
+  children,
+  props = {},
+  styleProps = {},
+}) {
   const categoryColor = CATEGORY_LOGO[children]['color'];
 
   return (
-    <StyledCategoryButton $categoryColor={categoryColor} {...props}>
+    <StyledCategoryButton
+      $categoryColor={categoryColor}
+      {...props}
+      style={styleProps}
+    >
       {children}
     </StyledCategoryButton>
   );

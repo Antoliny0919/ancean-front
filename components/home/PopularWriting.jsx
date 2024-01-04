@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
 import SectionHeader from './items/SectionHeader';
-import SlidePaginationPost from '@/components/post/swiper/SlidePaginationPost';
+import SlidePaginationPost from '@/components/minipost/swiper/SlidePaginationPost';
 
 const StyledPopularWritingArea = styled.div`
   display: flex;

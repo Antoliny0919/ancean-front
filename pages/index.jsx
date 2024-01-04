@@ -1,5 +1,5 @@
-import client from '@/api/client';
 import React, { useEffect, useRef } from 'react';
+import { noneClient } from '@/api/client';
 // import NavbarMain from '@/components/home/NavbarMain';
 import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
@@ -92,23 +92,21 @@ export const getServerSideProps = async () => {
   let posts = {};
 
   for (const [section, query] of Object.entries(queries)) {
-    const response = await client.get(
-      `http://api-local:8000/api/posts/?${query}`,
-    );
+    const response = await noneClient.get(`/api/posts/?${query}`);
     const data = response.data;
     // only get 10posts
     posts = { ...posts, [section]: data.slice(0, 10) };
   }
 
-  const response = await client.get(`http://api-local:8000/api/category`);
+  const response = await noneClient.get(`/api/category`);
   const data = await response.data;
   const representativeCategory = data.slice(0, 7);
 
   let bestPostByCategory = {};
 
   for (const category of representativeCategory) {
-    const response = await client.get(
-      `http://api-local:8000/api/category/${category.name}/posts`,
+    const response = await noneClient.get(
+      `/api/category/${category.name}/posts`,
     );
     const data = await response.data;
     bestPostByCategory = {
