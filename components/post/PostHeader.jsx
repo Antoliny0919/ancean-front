@@ -5,8 +5,10 @@ import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 
 const StyledPostHeader = styled.div`
-  padding: 5rem;
-  width: 100%;
+  width: 80%;
+  padding-top: 5rem;
+  margin-right: auto;
+  margin-left: auto;
   height: 40rem;
   background-color: white;
   color: black;
@@ -30,14 +32,16 @@ const StyledPostHeader = styled.div`
       display: flex;
       align-items: center;
     }
+    svg {
+      margin-right: 5px;
+    }
   }
 `;
 
 const StyledHeaderWave = styled.div`
+  position: relative;
+  bottom: 250px;
   .wave {
-    position: relative;
-    /* top: 100px; */
-    bottom: 250px;
     height: 400px;
     z-index: 0;
   }

@@ -3,7 +3,7 @@ import PostContent from '../../components/post/PostContent';
 import PostHeader from '../../components/post/PostHeader';
 
 export default function Post({ post }) {
-  const { title, updated_at, author, category } = post[0];
+  const { title, updated_at, author, category, content } = post[0];
 
   console.log(post);
 
@@ -15,7 +15,7 @@ export default function Post({ post }) {
         author={author}
         category={category}
       ></PostHeader>
-      <PostContent content={post.content}></PostContent>
+      <PostContent content={content}></PostContent>
     </>
   );
 }
