@@ -239,4 +239,35 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 14px;
   }
 
+  .ce-block__content {
+    margin: 2rem 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cdx-quote {
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    padding: 0.7rem 0.7rem 0.7rem 1.5rem;
+    margin: 0;
+    border-left: solid ${({ theme }) => theme.colors.post[3]} 4px;
+    background-color: ${({ theme }) => theme.colors.post[0]};
+    /* box-shadow: 1px 1px hsl(212, 65%, 35%), 
+    2px 2px hsl(212, 65%, 32%), 
+    3px 3px hsl(212, 65%, 29%); */
+    margin: 2rem 0;
+  }
+
+  .cdx-quote .cdx-quote__text {
+    padding: 0;
+    border: none;
+    webkit-box-shadow: none;
+    box-shadow: none;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  .cdx-quote__caption {
+    display: none;
+  }
 `;

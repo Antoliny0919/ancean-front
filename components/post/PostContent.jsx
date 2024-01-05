@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Paragraph from './item/Paragraph';
 import Header from './item/Header';
 import Code from './item/Code';
+import Quote from './item/Quote';
 
 const StyledPostContent = styled.div`
   width: 650px;
@@ -29,7 +30,10 @@ export default function PostContent({ content }) {
       let { code } = data;
       return <Code>{code}</Code>;
     },
-    // 'quote': (data) => console.log(3),
+    quote: (data) => {
+      const { text } = data;
+      return <Quote>{text}</Quote>;
+    },
     // 'checklist': (data) => console.log(4),
     // 'table': (data) => console.log(5),
     // 'linkTool': (data) => console.log(6),
