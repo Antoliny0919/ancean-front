@@ -203,4 +203,40 @@ export const GlobalStyle = createGlobalStyle`
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
   }
+
+
+  // editor js
+
+  .ce-paragraph {
+    font-family: 'Pretendard-Light';
+    font-size: 16px;
+    line-height: 1.6em;
+    outline: none;
+  }
+  .cdx-block {
+    padding: 0.3em 0;
+  }
+
+  .ce-block__content .ce-header {
+    font-family: 'Pretendard-Bold';
+    padding: 0.3em 0 0.3em;
+    margin-bottom: 3px;
+    margin-top: 0;
+    line-height: 1.25em;
+    outline: none;
+    /* background-color: red; */
+  }
+
+  .ce-block__content {
+    position: relative;
+    max-width: 650px;
+    margin: 0 auto;
+    -webkit-transition: background-color .15s ease;
+    transition: background-color .15s ease;
+  } 
+
+  code {
+    font-size: 14px;
+  }
+
 `;

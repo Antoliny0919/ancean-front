@@ -5,8 +5,6 @@ import PostHeader from '../../components/post/PostHeader';
 export default function Post({ post }) {
   const { title, updated_at, author, category, content } = post[0];
 
-  console.log(post);
-
   return (
     <>
       <PostHeader

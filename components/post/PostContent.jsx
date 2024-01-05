@@ -1,21 +1,46 @@
 import styled from 'styled-components';
+import Paragraph from './item/Paragraph';
+import Header from './item/Header';
+import Code from './item/Code';
 
 const StyledPostContent = styled.div`
-  width: 50%;
+  width: 650px;
   position: relative;
-  bottom: 230px;
+  bottom: 220px;
   margin-left: auto;
   margin-right: auto;
-  font-size: 9px;
   font-family: 'Pretendard-Light';
 `;
 
 export default function PostContent({ content }) {
   console.log(content);
+  console.log(content[0]['data']);
+
+  const parser = {
+    paragraph: (data) => {
+      let { text } = data;
+      return <Paragraph>{text}</Paragraph>;
+    },
+    header: (data) => {
+      let { text, level } = data;
+      return <Header level={level}>{text}</Header>;
+    },
+    code: (data) => {
+      let { code } = data;
+      return <Code>{code}</Code>;
+    },
+    // 'quote': (data) => console.log(3),
+    // 'checklist': (data) => console.log(4),
+    // 'table': (data) => console.log(5),
+    // 'linkTool': (data) => console.log(6),
+    // 'warning': (data) => console.log(7),
+  };
 
   return (
     <StyledPostContent>
-      <h1>한국의 삶</h1>
+      {content.map(({ data, type }) => {
+        return parser[type](data);
+      })}
     </StyledPostContent>
   );
 }
