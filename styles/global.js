@@ -224,7 +224,6 @@ export const GlobalStyle = createGlobalStyle`
     margin-top: 0;
     line-height: 1.25em;
     outline: none;
-    /* background-color: red; */
   }
 
   .ce-block__content {
@@ -235,27 +234,20 @@ export const GlobalStyle = createGlobalStyle`
     transition: background-color .15s ease;
   } 
 
-  code {
-    font-size: 14px;
+  .ce-block__content > .ce-code {
+    margin: 1.5rem 0;
   }
 
-  .ce-block__content {
-    margin: 2rem 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cdx-quote {
+  .ce-block__content > .cdx-quote {
     font-family: 'Pretendard-Bold';
+    margin: 1.5rem 0;
     font-size: 20px;
     padding: 0.7rem 0.7rem 0.7rem 1.5rem;
-    margin: 0;
     border-left: solid ${({ theme }) => theme.colors.post[3]} 4px;
     background-color: ${({ theme }) => theme.colors.post[0]};
     /* box-shadow: 1px 1px hsl(212, 65%, 35%), 
     2px 2px hsl(212, 65%, 32%), 
     3px 3px hsl(212, 65%, 29%); */
-    margin: 2rem 0;
   }
 
   .cdx-quote .cdx-quote__text {
@@ -265,6 +257,37 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: none;
     min-height: 0;
     margin-bottom: 0;
+  }
+  
+  .cdx-block > a {
+    color: rgba(66, 124, 190, 0.7);
+    transition: color 0.7s;
+    text-decoration: underline;
+    font-weight: 900;
+  }
+
+  .cdx-block > a:hover {
+    color: rgba(66, 124, 190, 1);
+  }
+
+  .cdx-block > .cdx-marker {
+    background-color: rgba(66, 124, 190, 0.2);
+  }
+  
+  .cdx-block > .inline-code {
+    background: rgba(66, 177, 190, 0.2);
+    color: rgba(66, 177, 190, 1);
+    padding: 3px 4px;
+    border-radius: 5px;
+    margin: 0 1px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .3px;
+  }
+
+  code {
+    font-size: 14px;
   }
 
   .cdx-quote__caption {

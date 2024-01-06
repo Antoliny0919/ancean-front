@@ -34,10 +34,6 @@ export default function PostContent({ content }) {
       const { text } = data;
       return <Quote>{text}</Quote>;
     },
-    // 'checklist': (data) => console.log(4),
-    // 'table': (data) => console.log(5),
-    // 'linkTool': (data) => console.log(6),
-    // 'warning': (data) => console.log(7),
   };
 
   return (
