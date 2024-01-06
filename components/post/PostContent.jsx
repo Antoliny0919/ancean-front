@@ -3,6 +3,7 @@ import Paragraph from './item/Paragraph';
 import Header from './item/Header';
 import Code from './item/Code';
 import Quote from './item/Quote';
+import List from './item/List';
 
 const StyledPostContent = styled.div`
   width: 650px;
@@ -33,6 +34,14 @@ export default function PostContent({ content }) {
     quote: (data) => {
       const { text } = data;
       return <Quote>{text}</Quote>;
+    },
+    list: (data) => {
+      const { items, style } = data;
+      console.log(items, style);
+      return <List></List>;
+    },
+    warning: (data) => {
+      console.log(data);
     },
   };
 

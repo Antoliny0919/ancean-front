@@ -6,7 +6,7 @@ import {
   EffectCoverflow,
   Autoplay,
 } from 'swiper/modules';
-import SwiperCategory from './SwiperCategory';
+import CategoryCard from './CategoryCard';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -39,7 +39,7 @@ export default function SwiperCategoryMain({ categories }) {
       >
         {categories.map(({ name, color }, index) => (
           <SwiperSlide key={index}>
-            <SwiperCategory name={name} color={color}></SwiperCategory>
+            <CategoryCard name={name} color={color}></CategoryCard>
           </SwiperSlide>
         ))}
       </Swiper>

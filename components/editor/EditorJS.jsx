@@ -4,6 +4,8 @@ export const initializeEditor = async ({ editorRef, content }) => {
   const Code = (await import('@editorjs/code')).default;
   const Header = (await import('@editorjs/header')).default;
   const InlineCode = (await import('@editorjs/inline-code')).default;
+  const Warning = (await import('@editorjs/warning')).default;
+  const NestedList = (await import('@editorjs/nested-list')).default;
   const Quote = (await import('@editorjs/quote')).default;
   const Marker = (await import('@editorjs/marker')).default;
   editorRef.current = null;
@@ -31,6 +33,21 @@ export const initializeEditor = async ({ editorRef, content }) => {
           },
         },
         code: Code,
+        warning: {
+          class: Warning,
+          inlineToolbar: true,
+          config: {
+            titlePlaceholder: 'Title',
+            messagePlaceholder: 'Message',
+          },
+        },
+        list: {
+          class: NestedList,
+          inlineToolbar: true,
+          config: {
+            defaultStyle: 'unordered',
+          },
+        },
         quote: {
           class: Quote,
           inlineToolbar: true,

@@ -48,7 +48,7 @@ const StyledCategoryCard = styled.div`
   }
 `;
 
-export default function SwiperCategory({ name, color }) {
+export default function CategoryCard({ name, color }) {
   const target = useRef(null);
 
   const flipCategoryCard = (e) => {
