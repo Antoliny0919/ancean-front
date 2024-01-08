@@ -1,10 +1,16 @@
 import { noneClient } from '../../api/client';
 import CategoryPage from '../../components/category/page/CategoryPage';
+import Navbar from '../../components/common/Navbar';
 
 export default function Name(props) {
   const { posts, name, postCnt } = props;
 
-  return <CategoryPage posts={posts} name={name} postCnt={postCnt} />;
+  return (
+    <>
+      <Navbar></Navbar>
+      <CategoryPage posts={posts} name={name} postCnt={postCnt} />
+    </>
+  );
 }
 
 export const getStaticPaths = async () => {

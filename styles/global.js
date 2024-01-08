@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --background-shallow: rgba(55, 122, 178, 0.4);
     --shadow-logo-color: #67ABDB;
     --shadow-outline-deep-dark: #273237;
-    --shadow-outline-shallow-dart: #39484F;
+    --shadow-outline-shallow-dark: #39484F;
     --shadow-outline-latest-post: #6A6FC8;
   }  
   html, body {

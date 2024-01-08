@@ -55,11 +55,12 @@ const StyledCategoryPageBody = styled.div`
             background: linear-gradient(#fff, #fff), ${(props) => props.color};
             background-origin: border-box;
             background-clip: content-box, border-box;
-            border: solid transparent 0.3rem;
+            border: solid transparent 0.2rem;
           `
         : css`
-            border: solid ${(props) => props.color} 0.3rem;
+            border: solid ${(props) => props.color} 0.2rem;
           `}
+    box-shadow: ${(props) => props.$boxShadow};
   }
   .posts-content {
     display: flex;
@@ -89,12 +90,8 @@ export default function CategoryPage({ posts, name }) {
       <StyledCategoryPageBody
         color={color}
         $transparentColor={transparentColor}
+        $boxShadow={textShadow}
       >
-        {/* <div className="test"> */}
-        {/* {postsToArray.map((post, index) => {
-            return <Post key={index} post={post}/>
-          })} */}
-        {/* </div> */}
         <div className="posts-border">
           <div className="posts-content">
             {postsToArray.map((post, index) => {

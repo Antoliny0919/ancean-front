@@ -7,7 +7,7 @@ const BodoniFont = Bodoni_Moda({
 
 const StyledLogoArea = styled.div`
   h1 {
-    font-size: ${(props) => props.fontsize}px;
+    font-size: ${(props) => props.$fontSize}px;
     letter-spacing: 5px;
     color: #205a82;
     margin: 0;
@@ -31,9 +31,9 @@ const StyledLogoArea = styled.div`
   }
 `;
 
-export default function Logo({ fontsize }) {
+export default function Logo({ fontSize }) {
   return (
-    <StyledLogoArea fontsize={fontsize}>
+    <StyledLogoArea $fontSize={fontSize}>
       <h1 className={BodoniFont.className}>AnCean</h1>
     </StyledLogoArea>
   );

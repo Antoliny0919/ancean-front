@@ -7,11 +7,12 @@ const StyledLatestPostArea = styled.div`
   flex-direction: row;
   align-items: center;
   width: 70%;
-  border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.1rem;
   box-shadow:
-    1px 1px 0 0 var(--shadow-outline-shallow-dart),
-    2px 2px 0 0 var(--shadow-outline-shallow-dart),
-    3px 3px 0 0 var(--shadow-outline-shallow-dart);
+    1px 1px 0 0 var(--shadow-outline-shallow-dark),
+    2px 2px 0 0 var(--shadow-outline-shallow-dark),
+    3px 3px 0 0 var(--shadow-outline-shallow-dark),
+    4px 4px 0 0 var(--shadow-outline-shallow-dark),
+    5px 5px 0 0 var(--shadow-outline-shallow-dark);
   background-color: white;
   transition:
     box-shadow 1s,
@@ -34,7 +35,7 @@ const StyledLatestPostArea = styled.div`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 0 0 var(--shadow-outline-shallow-dart);
+    box-shadow: 2px 2px 0 0 var(--shadow-outline-shallow-dark);
   }
 `;
 
