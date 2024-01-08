@@ -34,20 +34,21 @@ const StyledSectionButton = styled.button`
   }
 `;
 
-export default function BannerSectionButton({ sectionData }) {
-  const onScrollSection = () => {
-    console.log(sectionData.ref);
-    sectionData.ref.current.scrollIntoView({ behavior: 'smooth' });
-  };
-
+export default function ThreeDimensionalButton({
+  children,
+  color,
+  shadow,
+  hoverShadow,
+  props = {},
+}) {
   return (
     <StyledSectionButton
-      color={sectionData.color}
-      shadow={sectionData.shadow}
-      $hoverShadow={sectionData.hoverShadow}
-      onClick={onScrollSection}
+      color={color}
+      shadow={shadow}
+      $hoverShadow={hoverShadow}
+      {...props}
     >
-      {sectionData.name}
+      {children}
     </StyledSectionButton>
   );
 }
