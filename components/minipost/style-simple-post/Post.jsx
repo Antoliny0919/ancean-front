@@ -59,6 +59,7 @@ const StyledPostContent = styled.div`
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     font-family: 'Pretendard-Light';
+    background-color: white;
   }
   .footer {
     height: 10%;

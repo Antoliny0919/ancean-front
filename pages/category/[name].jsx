@@ -1,18 +1,10 @@
 import { noneClient } from '../../api/client';
-import CategoryPageHeader from '../../components/category/page/CategoryPageHeader';
-import CategoryPageBody from '../../components/category/page/CategoryPageBody';
+import CategoryPage from '../../components/category/page/CategoryPage';
 
 export default function Name(props) {
   const { posts, name, postCnt } = props;
 
-  console.log(posts);
-
-  return (
-    <>
-      <CategoryPageHeader name={name} postCnt={postCnt} />
-      <CategoryPageBody posts={posts}></CategoryPageBody>
-    </>
-  );
+  return <CategoryPage posts={posts} name={name} postCnt={postCnt} />;
 }
 
 export const getStaticPaths = async () => {

@@ -13,6 +13,7 @@ export const CATEGORY_LOGO = {
   REACT: {
     logo: <FaReact />,
     color: '#7cc5d9',
+    transparentColor: 'rgba(124, 197, 217, 0.3)',
     textShadow:
       '1px 1px hsl(193, 43%, 60%), \
   2px 2px hsl(193, 43%, 55%), \
@@ -28,6 +29,7 @@ export const CATEGORY_LOGO = {
   DOCKER: {
     logo: <SiDocker />,
     color: '#0db7ed',
+    transparentColor: 'rgba(13, 183, 237, 0.3)',
     textShadow:
       '1px 1px hsl(194, 95%, 45%), \
   2px 2px hsl(194, 95%, 42%), \
@@ -43,6 +45,7 @@ export const CATEGORY_LOGO = {
   RUST: {
     logo: <FaRust />,
     color: '#242424',
+    transparentColor: 'rgba(36, 36, 36, 0.3)',
     textShadow:
       '1px 1px hsl(0, 0%, 16%), \
   2px 2px hsl(0, 0%, 18%), \
@@ -58,6 +61,8 @@ export const CATEGORY_LOGO = {
   PYTHON: {
     logo: <FaPython />,
     color: 'linear-gradient(to right, #306998 50%, #FFD43B 50%)',
+    transparentColor:
+      'linear-gradient(to right, rgba(48, 105, 152, 0.3) 50%, rgba(255, 212, 59, 0.3) 50%)',
     textShadow:
       '1px 1px hsl(207, 68%, 36%), \
     2px 2px hsl(207, 68%, 30%), \
@@ -73,6 +78,7 @@ export const CATEGORY_LOGO = {
   DJANGO: {
     logo: <SiDjango />,
     color: '#092e20',
+    transparentColor: 'rgba(9, 46, 32, 0.3)',
     textShadow:
       '1px 1px hsl(157, 80%, 13%), \
   2px 2px hsl(157, 80%, 16%), \
@@ -88,6 +94,7 @@ export const CATEGORY_LOGO = {
   SPRING: {
     logo: <SiSpring />,
     color: '#7CBB5D',
+    transparentColor: 'rgba(124, 187, 93, 0.3)',
     textShadow:
       '1px 1px hsl(100, 50%, 50%), \
   2px 2px hsl(100, 50%, 47%), \
@@ -103,6 +110,7 @@ export const CATEGORY_LOGO = {
   KUBERNETES: {
     logo: <SiKubernetes />,
     color: '#3970e4',
+    transparentColor: 'rgba(57, 112, 228, 0.3)',
     textShadow:
       '1px 1px hsl(221, 75%, 52%), \
   2px 2px hsl(221, 75%, 48%), \
@@ -118,6 +126,8 @@ export const CATEGORY_LOGO = {
   MONGODB: {
     logo: <SiMongodb />,
     color: 'linear-gradient(to right, #00ED64 50%, #00684A 50%)',
+    transparentColor:
+      'linear-gradient(to right, rgba(0, 237, 100, 0.3) 50%, rgba(0, 104, 74, 0.3) 50%)',
     textShadow:
       '1px 1px hsl(145, 100%, 42%), \
     2px 2px hsl(145, 100%, 39%), \
@@ -133,6 +143,7 @@ export const CATEGORY_LOGO = {
   JAVASCRIPT: {
     logo: <SiJavascript />,
     color: '#F0DB4F',
+    transparentColor: 'rgba(240, 219, 79, 0.3)',
     textShadow:
       '1px 1px hsl(52, 67%, 59%), \
   2px 2px hsl(52, 67%, 55%), \
@@ -148,6 +159,7 @@ export const CATEGORY_LOGO = {
   'NEXT.JS': {
     logo: <SiNextdotjs />,
     color: '#242424',
+    transparentColor: 'rgba(36, 36, 36, 0.3)',
     textShadow:
       '1px 1px hsl(0, 0%, 16%), \
   2px 2px hsl(0, 0%, 18%), \
