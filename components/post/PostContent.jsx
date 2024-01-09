@@ -4,9 +4,10 @@ import Header from './item/Header';
 import Code from './item/Code';
 import Quote from './item/Quote';
 import Warning from './item/Warning';
+import ImageTool from './item/ImageTool';
 
 const StyledPostContent = styled.div`
-  width: 650px;
+  width: 768px;
   position: relative;
   bottom: 220px;
   margin-left: auto;
@@ -38,6 +39,11 @@ export default function PostContent({ content }) {
     warning: (data) => {
       const { message, title } = data;
       return <Warning message={message} title={title}></Warning>;
+    },
+    image: (data) => {
+      const { file } = data;
+
+      return <ImageTool url={file.url}></ImageTool>;
     },
   };
 

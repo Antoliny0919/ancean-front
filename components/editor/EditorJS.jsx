@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const initializeEditor = async ({ editorRef, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
   const Image = (await import('@editorjs/image')).default;
@@ -37,20 +39,40 @@ export const initializeEditor = async ({ editorRef, content }) => {
           shortcut: 'CMD+SHIFT+H',
         },
         code: Code,
-        image: {
-          class: Image,
-          config: {
-            endpoints: {
-              byFile: 'http://localhost:5050/media/docker-container.png', // Your backend file uploader endpoint
-            },
-          },
-        },
         warning: {
           class: Warning,
           inlineToolbar: true,
           config: {
             titlePlaceholder: 'Title',
             messagePlaceholder: 'Message',
+          },
+        },
+        image: {
+          class: Image,
+          config: {
+            // endpoints: {
+            //   byFile: 'http://localhost:5050/media/', // Your backend file uploader endpoint
+            // },
+            uploader: {
+              async uploadByFile(file) {
+                const formData = new FormData();
+                formData.append('file', file);
+                console.log(file);
+                const response = await axios.post(
+                  `http://localhost:5050/api/uploadImage/`,
+                  formData,
+                  {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                    withCredentials: false,
+                  },
+                );
+                if (response.data.success === 1) {
+                  return response.data;
+                }
+              },
+            },
           },
         },
       },

@@ -207,6 +207,10 @@ export const GlobalStyle = createGlobalStyle`
 
   // editor js
 
+  .ce-toolbar__content {
+    max-width: 768px;
+  }
+
   .ce-paragraph {
     font-family: 'Pretendard-Light';
     font-size: 16px;
@@ -229,7 +233,7 @@ export const GlobalStyle = createGlobalStyle`
 
   .ce-block__content {
     position: relative;
-    max-width: 650px;
+    max-width: 768px;
     margin: 0 auto;
     -webkit-transition: background-color .15s ease;
     transition: background-color .15s ease;
@@ -334,5 +338,33 @@ export const GlobalStyle = createGlobalStyle`
   .cdx-warning__message:hover {
     background-color: rgba(255, 219, 40, 0.3);
   }
+
+  // editorJS(Image Block)
+
+  .image-tool {
+    --bg-color: #cdd1e0;
+    --front-color: #388ae5;
+    --border-color: #e8e8eb;
+  }
+
+  .image-tool__image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .image-tool__caption {
+    display: none;
+  }
+
+  .image-tool__image-picture {
+    max-width: 100%;
+    vertical-align: bottom;
+    display: block;
+  }
+
 
 `;
