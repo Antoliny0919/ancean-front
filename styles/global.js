@@ -215,6 +215,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   .cdx-block {
     padding: 0.3em 0;
+    font-family: 'Pretendard-Light';
   }
 
   .ce-block__content .ce-header {
@@ -293,4 +294,45 @@ export const GlobalStyle = createGlobalStyle`
   .cdx-quote__caption {
     display: none;
   }
+
+  // editorJS(Warning Block)
+
+  .ce-block__content > .cdx-warning {
+    margin: 1.5rem 0;
+    padding: 0;
+  }
+  .ce-block__content > .cdx-warning::before {
+    background-image: none;
+  }
+
+  .cdx-warning__title {
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    color: #EE801A;
+    background-color: white;
+    padding: 10px 12px;
+  }
+  .cdx-warning > .cdx-warning__title {
+    margin-bottom: 0;
+    border: none;
+    border-radius: 0;
+    border: solid #EE801A 1px;
+    border-left: solid #EE801A 4px;
+  }
+
+  .cdx-warning__message {
+    background-color: rgba(255, 219, 40, 0.1);
+    transition: background-color 0.7s;
+  }
+
+  .cdx-warning > .cdx-warning__message {
+    border: none;
+    border-radius: 0;
+    padding: 14px 16px;
+  }
+
+  .cdx-warning__message:hover {
+    background-color: rgba(255, 219, 40, 0.3);
+  }
+
 `;

@@ -5,7 +5,6 @@ export const initializeEditor = async ({ editorRef, content }) => {
   const Header = (await import('@editorjs/header')).default;
   const InlineCode = (await import('@editorjs/inline-code')).default;
   const Warning = (await import('@editorjs/warning')).default;
-  const NestedList = (await import('@editorjs/nested-list')).default;
   const Quote = (await import('@editorjs/quote')).default;
   const Marker = (await import('@editorjs/marker')).default;
   editorRef.current = null;
@@ -16,37 +15,13 @@ export const initializeEditor = async ({ editorRef, content }) => {
         blocks: content,
       },
       tools: {
-        header: {
-          class: Header,
-          shortcut: 'CMD+SHIFT+H',
-        },
         inlineCode: {
           class: InlineCode,
           shortcut: 'CMD+SHIFT+M',
         },
-        image: {
-          class: Image,
-          config: {
-            endpoints: {
-              byFile: 'http://localhost:5050/media/docker-container.png', // Your backend file uploader endpoint
-            },
-          },
-        },
-        code: Code,
-        warning: {
-          class: Warning,
-          inlineToolbar: true,
-          config: {
-            titlePlaceholder: 'Title',
-            messagePlaceholder: 'Message',
-          },
-        },
-        list: {
-          class: NestedList,
-          inlineToolbar: true,
-          config: {
-            defaultStyle: 'unordered',
-          },
+        Marker: {
+          class: Marker,
+          shortcut: 'CMD+SHIFT+M',
         },
         quote: {
           class: Quote,
@@ -57,9 +32,26 @@ export const initializeEditor = async ({ editorRef, content }) => {
             captionPlaceholder: "Quote's author",
           },
         },
-        Marker: {
-          class: Marker,
-          shortcut: 'CMD+SHIFT+M',
+        header: {
+          class: Header,
+          shortcut: 'CMD+SHIFT+H',
+        },
+        code: Code,
+        image: {
+          class: Image,
+          config: {
+            endpoints: {
+              byFile: 'http://localhost:5050/media/docker-container.png', // Your backend file uploader endpoint
+            },
+          },
+        },
+        warning: {
+          class: Warning,
+          inlineToolbar: true,
+          config: {
+            titlePlaceholder: 'Title',
+            messagePlaceholder: 'Message',
+          },
         },
       },
       placeholder: 'Let`s write an awesome story!',

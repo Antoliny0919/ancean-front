@@ -16,7 +16,6 @@
     "@editorjs/image": "^2.9.0",
     "@editorjs/inline-code": "^1.5.0",
     "@editorjs/marker": "^1.4.0",
-    "@editorjs/nested-list": "^1.4.2",
     "@editorjs/paragraph": "^2.11.3",
     "@editorjs/quote": "^2.6.0",
     "@editorjs/warning": "^1.4.0",
