@@ -12,12 +12,10 @@ export const theme = {
       '#0C405E',
       '#0C3A55',
     ],
-    post: [
-      'rgba(66, 124, 190, 0.1)',
-      'rgba(66, 124, 190, 0.2)',
-      'rgba(66, 124, 190, 0.5)',
-      'rgba(66, 125, 190, 1)',
-    ],
+    post: {
+      shallow: '#F3F9FF',
+      deep: '#427cbe',
+    },
     editor: {
       divideLine: 'rgba(44, 91, 124, 0.5)',
     },
