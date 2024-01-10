@@ -248,11 +248,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 1.5rem 0;
     font-size: 20px;
     padding: 0.7rem 0.7rem 0.7rem 1.5rem;
-    border-left: solid ${({ theme }) => theme.colors.post[3]} 4px;
-    background-color: ${({ theme }) => theme.colors.post[0]};
-    /* box-shadow: 1px 1px hsl(212, 65%, 35%), 
-    2px 2px hsl(212, 65%, 32%), 
-    3px 3px hsl(212, 65%, 29%); */
+    border-left: solid ${({ theme }) => theme.colors.post.deep} 4px;
+    background-color: ${({ theme }) => theme.colors.post.shallow};
   }
 
   .cdx-quote .cdx-quote__text {

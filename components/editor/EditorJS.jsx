@@ -3,7 +3,7 @@ import axios from 'axios';
 export const initializeEditor = async ({ editorRef, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
   const Image = (await import('@editorjs/image')).default;
-  const Code = (await import('@editorjs/code')).default;
+  const CodeTool = (await import('@editorjs/code')).default;
   const Header = (await import('@editorjs/header')).default;
   const InlineCode = (await import('@editorjs/inline-code')).default;
   const Warning = (await import('@editorjs/warning')).default;
@@ -38,7 +38,13 @@ export const initializeEditor = async ({ editorRef, content }) => {
           class: Header,
           shortcut: 'CMD+SHIFT+H',
         },
-        code: Code,
+        code: {
+          class: CodeTool,
+          config: {
+            placeholder:
+              'First, enter the code language you want to use, then enter the "#$*" character and write the code.',
+          },
+        },
         warning: {
           class: Warning,
           inlineToolbar: true,
@@ -50,9 +56,6 @@ export const initializeEditor = async ({ editorRef, content }) => {
         image: {
           class: Image,
           config: {
-            // endpoints: {
-            //   byFile: 'http://localhost:5050/media/', // Your backend file uploader endpoint
-            // },
             uploader: {
               async uploadByFile(file) {
                 const formData = new FormData();
