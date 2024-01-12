@@ -1,11 +1,14 @@
-import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Logo from './Logo';
+import Link from 'next/link';
 import { flexBox } from '../../styles/variable';
-// import ThreeDimensionalButton from '../button/ThreeDimensionalButton';
 
 const StyledNavbar = styled.nav`
-  position: absolute;
+  ${(props) =>
+    props.$pathName === '/' &&
+    css`
+      position: absolute;
+    `}
   width: 100%;
   height: 66px;
   padding: 0.5rem 3rem;
@@ -78,7 +81,6 @@ const StyledNavSideBar = styled.div`
 const StyledAboutMeButton = styled.button`
   /* CSS */
   ${flexBox.flex()}
-  position: relative;
   background-color: #f4f4f4;
   border: 2px solid #3e3e3e;
   border-radius: 30px;
@@ -129,7 +131,9 @@ const StyledAboutMeButton = styled.button`
   }
 `;
 
-export default function Navbar() {
+export default function Navbar({ pathName }) {
+  const exceptRoute = ['/posts/newpost'];
+
   const sideBarProps = [
     {
       name: 'CATEGORY',
@@ -144,20 +148,28 @@ export default function Navbar() {
   ];
 
   return (
-    <StyledNavbar>
-      <Logo fontSize={40} markSize={30} />
-      <StyledNavSideBar>
-        {sideBarProps.map(({ name, href, className }, index) => {
-          return (
-            <Link key={index} href={href} className={className}>
-              <div>{name}</div>
+    <>
+      {exceptRoute.includes(pathName) || (
+        <StyledNavbar $pathName={pathName}>
+          {pathName !== '/' ? (
+            <Logo fontSize={40} markSize={30} />
+          ) : (
+            <div></div>
+          )}
+          <StyledNavSideBar>
+            {sideBarProps.map(({ name, href, className }, index) => {
+              return (
+                <Link key={index} href={href} className={className}>
+                  <div>{name}</div>
+                </Link>
+              );
+            })}
+            <Link href={'/'}>
+              <StyledAboutMeButton role="button"></StyledAboutMeButton>
             </Link>
-          );
-        })}
-        <Link href={'/'}>
-          <StyledAboutMeButton role="button"></StyledAboutMeButton>
-        </Link>
-      </StyledNavSideBar>
-    </StyledNavbar>
+          </StyledNavSideBar>
+        </StyledNavbar>
+      )}
+    </>
   );
 }

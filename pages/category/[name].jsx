@@ -1,14 +1,17 @@
 import { noneClient } from '../../api/client';
-import CategoryPage from '../../components/category/page/CategoryPage';
-import Navbar from '../../components/common/Navbar';
+import CategoryPage from '../../components/category/CategoryPage';
 
 export default function Name(props) {
-  const { posts, name, postCnt } = props;
+  const {
+    posts: { results, next },
+    name,
+  } = props;
+
+  const nextPost = next.replace('http://api-local:8000', '');
 
   return (
     <>
-      <Navbar></Navbar>
-      <CategoryPage posts={posts} name={name} postCnt={postCnt} />
+      <CategoryPage posts={results} name={name} nextPost={nextPost} />
     </>
   );
 }
@@ -30,9 +33,8 @@ export const getStaticProps = async ({ params }) => {
     `api/posts?category__name=${params.name}`,
   );
   const categoryPosts = response.data;
-  const postCnt = response.data.length;
 
   return {
-    props: { posts: { ...categoryPosts }, name: params.name, postCnt: postCnt },
+    props: { posts: { ...categoryPosts }, name: params.name },
   };
 };

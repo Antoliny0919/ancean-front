@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { noneClient } from '@/api/client';
 import CategoryButton from '../../button/CategoryButton';
 
 const StyledLatestPostArea = styled.div`
@@ -77,7 +78,7 @@ const StyledPostContent = styled.div`
   }
 `;
 
-export default function LatestPost({ post }) {
+export default function LatestPost({ post, reference }) {
   const myLoader = ({ src }) => {
     return src;
   };
@@ -86,10 +87,15 @@ export default function LatestPost({ post }) {
 
   const writeDate = new Date(created_at);
 
-  const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
+  const imageUrl = header_image.includes(noneClient.defaults.baseURL)
+    ? header_image.replace('api-local:8000', 'localhost:5050')
+    : header_image;
+
+  // const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
+  // console.log(imageUrl, category, introduce, created_at, 'he;lo');
 
   return (
-    <StyledLatestPostArea>
+    <StyledLatestPostArea ref={reference}>
       <div className="header-img">
         <Image
           loader={myLoader}

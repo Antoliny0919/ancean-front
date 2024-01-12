@@ -1,6 +1,8 @@
+import client from '../../api/client';
+import { useState, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { CATEGORY_LOGO } from '../categoryLogo';
-import Post from '../../minipost/style-simple-post/Post';
+import { CATEGORY_LOGO } from './categoryLogo';
+import Post from '../minipost/style-simple-post/Post';
 
 const StyledCategoryPageArea = styled.div`
   padding: 3rem 5rem;
@@ -72,11 +74,38 @@ const StyledCategoryPageBody = styled.div`
   }
 `;
 
-export default function CategoryPage({ posts, name }) {
-  const postsToArray = Object.keys(posts).map((key) => posts[key]);
+export default function CategoryPage({ posts, name, nextPost }) {
+  const [categoryPosts, setCategoryPosts] = useState(posts);
+
+  const [nextPosts, setNextPosts] = useState(nextPost);
+
+  const target = useRef(null);
 
   const { color, textShadow, transparentColor } =
     CATEGORY_LOGO[name.toUpperCase()];
+
+  const readMorePosts = async () => {
+    const response = await client.get(nextPosts);
+    const posts = response.data;
+    return posts;
+  };
+
+  const entries = (entries) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        let { next, results } = await readMorePosts();
+        setNextPosts(next);
+        setCategoryPosts([...categoryPosts, ...results]);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const lastPostObserver = new IntersectionObserver(entries, {
+      threshold: 0.5,
+    });
+    lastPostObserver.observe(target.current);
+  }, [categoryPosts, nextPosts]);
 
   return (
     <StyledCategoryPageArea>
@@ -94,8 +123,14 @@ export default function CategoryPage({ posts, name }) {
       >
         <div className="posts-border">
           <div className="posts-content">
-            {postsToArray.map((post, index) => {
-              return <Post key={index} post={post} />;
+            {categoryPosts.map((post, index) => {
+              return (
+                <Post
+                  key={index}
+                  post={post}
+                  reference={categoryPosts.length === index + 1 ? target : null}
+                />
+              );
             })}
           </div>
         </div>

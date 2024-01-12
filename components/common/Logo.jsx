@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Bodoni_Moda } from 'next/font/google';
 import styled from 'styled-components';
 import { flexBox } from '@/styles/variable';
@@ -53,22 +54,24 @@ const StyledLogoArea = styled.div`
 
 export default function Logo({ fontSize, markSize }) {
   return (
-    <StyledLogoArea $fontSize={fontSize} $markSize={markSize}>
-      <div className="waterball">
-        <Wave
-          fill={'#27566B'}
-          paused={false}
-          className="wave"
-          options={{
-            height: markSize / 2,
-            amplitude: 3,
-            speed: 0.4,
-            points: 2,
-          }}
-        ></Wave>
-      </div>
-      <h1 className={`${BodoniFont.className} before`}>An</h1>
-      <h1 className={`${BodoniFont.className} after`}>Cean</h1>
-    </StyledLogoArea>
+    <Link href="/">
+      <StyledLogoArea $fontSize={fontSize} $markSize={markSize}>
+        <div className="waterball">
+          <Wave
+            fill={'#27566B'}
+            paused={false}
+            className="wave"
+            options={{
+              height: markSize / 2,
+              amplitude: 3,
+              speed: 0.4,
+              points: 2,
+            }}
+          ></Wave>
+        </div>
+        <h1 className={`${BodoniFont.className} before`}>An</h1>
+        <h1 className={`${BodoniFont.className} after`}>Cean</h1>
+      </StyledLogoArea>
+    </Link>
   );
 }
