@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Logo from './Logo';
+import { flexBox } from '../../styles/variable';
 // import ThreeDimensionalButton from '../button/ThreeDimensionalButton';
 
 const StyledNavbar = styled.nav`
+  position: absolute;
+  width: 100%;
   height: 66px;
-  padding: 1rem 3rem;
+  padding: 0.5rem 3rem;
   display: flex;
   align-items: center;
-  box-sizing: content-box;
   justify-content: space-between;
   font-family: 'Pretendard-Bold';
 `;
@@ -24,6 +26,7 @@ const StyledNavSideBar = styled.div`
   }
   .category {
     color: hsl(177, 75%, 50%);
+    transition: transform 0.7s;
     text-shadow:
       0.5px 0.5px hsl(177, 75%, 45%),
       1px 1px hsl(177, 75%, 40%),
@@ -32,9 +35,13 @@ const StyledNavSideBar = styled.div`
       2.5px 2.5px hsl(177, 75%, 25%),
       3px 3px hsl(177, 75%, 20%);
   }
+  .category:hover {
+    transform: translateY(-15px);
+  }
 
   .writing {
     color: hsl(190, 75%, 50%);
+    transition: text-shadow 0.5s;
     text-shadow:
       0.5px 0.5px hsl(190, 75%, 45%),
       1px 1px hsl(190, 75%, 40%),
@@ -43,9 +50,21 @@ const StyledNavSideBar = styled.div`
       2.5px 2.5px hsl(190, 75%, 25%),
       3px 3px hsl(190, 75%, 20%);
   }
+  .writing:hover {
+    text-shadow:
+      0.5px 0.5px hsl(190, 75%, 45%),
+      1px 1px hsl(190, 75%, 40%),
+      1.5px 1.5px hsl(190, 75%, 35%),
+      2px 2px hsl(190, 75%, 30%),
+      2.5px 2.5px hsl(190, 75%, 25%),
+      3px 3px hsl(190, 75%, 20%),
+      3.5px 3.5px hsl(190, 75%, 17%),
+      4px 4px hsl(190, 75%, 14%),
+      4.5px 4.5px hsl(190, 75%, 11%),
+      5px 5px hsl(190, 75%, 8%);
+  }
   .about-me {
     color: hsl(212, 75%, 50%);
-    transition: text-shadow 0.5s;
     text-shadow:
       0.5px 0.5px hsl(212, 75%, 45%),
       1px 1px hsl(212, 75%, 40%),
@@ -54,18 +73,59 @@ const StyledNavSideBar = styled.div`
       2.5px 2.5px hsl(212, 75%, 25%),
       3px 3px hsl(212, 75%, 20%);
   }
-  .about-me:hover {
-    text-shadow:
-      0.5px 0.5px hsl(212, 75%, 45%),
-      1px 1px hsl(212, 75%, 40%),
-      1.5px 1.5px hsl(212, 75%, 35%),
-      2px 2px hsl(212, 75%, 30%),
-      2.5px 2.5px hsl(212, 75%, 25%),
-      3px 3px hsl(212, 75%, 20%),
-      3.5px 3.5px hsl(212, 75%, 17%),
-      4px 4px hsl(212, 75%, 14%),
-      4.5px 4.5px hsl(212, 75%, 11%),
-      5px 5px hsl(212, 75%, 8%);
+`;
+
+const StyledAboutMeButton = styled.button`
+  /* CSS */
+  ${flexBox.flex()}
+  position: relative;
+  background-color: #f4f4f4;
+  border: 2px solid #3e3e3e;
+  border-radius: 30px;
+  box-shadow: #3e3e3e 3px 3px 0 0;
+  color: #3e3e3e;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.8rem 1rem;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  &:hover {
+    &::before {
+      opacity: 0;
+    }
+    &::after {
+      opacity: 1;
+    }
+    background-color: #fff;
+  }
+
+  &:active {
+    box-shadow: #3e3e3e 2px 2px 0 0;
+    transform: translate(2px, 2px);
+  }
+  &::before {
+    position: absolute;
+    content: 'ABOUT ME';
+    transition-property: opacity;
+    transition-delay: 0.15s;
+    transition-duration: 0.5s;
+    width: inherit;
+    z-index: 0;
+  }
+
+  &::after {
+    position: relative;
+    content: 'ANTOLINY0919';
+    opacity: 0;
+    z-index: 5;
+    font-size: 14px;
+    transition-property: opacity;
+    transition-delay: 0.15s;
+    transition-duration: 0.5s;
   }
 `;
 
@@ -81,11 +141,6 @@ export default function Navbar() {
       href: '/posts',
       className: 'writing',
     },
-    {
-      name: 'ABOUT ME',
-      href: '/',
-      className: 'about-me',
-    },
   ];
 
   return (
@@ -99,23 +154,10 @@ export default function Navbar() {
             </Link>
           );
         })}
-        {/* <Link href={'/'}><ThreeDimensionalButton 
-        color={'hsl(212, 75%, 50%)'}
-        shadow={'hsl(212, 75%, 40%)'}
-        hoverShadow={'hsl(212, 75%, 70%)'}
-        ><div className={'about-me'}>ABOUT ME</div></ThreeDimensionalButton></Link> */}
+        <Link href={'/'}>
+          <StyledAboutMeButton role="button"></StyledAboutMeButton>
+        </Link>
       </StyledNavSideBar>
-      {/* <Wave
-        fill={'#27566B'}
-        paused={false}
-        className="wave"
-        options={{
-          height: 300,
-          amplitude: 100,
-          speed: 0.5,
-          points: 2,
-        }}
-      ></Wave> */}
     </StyledNavbar>
   );
 }

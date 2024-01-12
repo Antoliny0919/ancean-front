@@ -9,6 +9,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { HahmletFont } from '../styles/font';
+import Navbar from '../components/common/Navbar';
 import 'styles/nprogress.scss';
 
 function App({ Component, pageProps }: AppProps) {
@@ -26,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <main className={HahmletFont.className}>
           <GlobalStyle />
+          <Navbar />
           <Component {...props} />
         </main>
       </ThemeProvider>

@@ -6,10 +6,10 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 
 const StyledPostHeader = styled.div`
   width: 80%;
-  padding-top: 5rem;
+  padding-top: 10rem;
   margin-right: auto;
   margin-left: auto;
-  height: 40rem;
+  height: 42rem;
   background-color: white;
   color: black;
   font-size: 32px;
