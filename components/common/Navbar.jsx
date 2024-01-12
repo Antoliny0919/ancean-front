@@ -26,7 +26,7 @@ const StyledNavSideBar = styled.div`
   }
   .category {
     color: hsl(177, 75%, 50%);
-    transition: transform 0.7s;
+    transition: text-shadow 0.5s;
     text-shadow:
       0.5px 0.5px hsl(177, 75%, 45%),
       1px 1px hsl(177, 75%, 40%),
@@ -36,7 +36,17 @@ const StyledNavSideBar = styled.div`
       3px 3px hsl(177, 75%, 20%);
   }
   .category:hover {
-    transform: translateY(-15px);
+    text-shadow:
+      0.5px 0.5px hsl(177, 75%, 45%),
+      1px 1px hsl(177, 75%, 40%),
+      1.5px 1.5px hsl(177, 75%, 35%),
+      2px 2px hsl(177, 75%, 30%),
+      2.5px 2.5px hsl(177, 75%, 25%),
+      3px 3px hsl(177, 75%, 20%),
+      3.5px 3.5px hsl(177, 75%, 17%),
+      4px 4px hsl(177, 75%, 14%),
+      4.5px 4.5px hsl(177, 75%, 11%),
+      5px 5px hsl(177, 75%, 8%);
   }
 
   .writing {
@@ -62,16 +72,6 @@ const StyledNavSideBar = styled.div`
       4px 4px hsl(190, 75%, 14%),
       4.5px 4.5px hsl(190, 75%, 11%),
       5px 5px hsl(190, 75%, 8%);
-  }
-  .about-me {
-    color: hsl(212, 75%, 50%);
-    text-shadow:
-      0.5px 0.5px hsl(212, 75%, 45%),
-      1px 1px hsl(212, 75%, 40%),
-      1.5px 1.5px hsl(212, 75%, 35%),
-      2px 2px hsl(212, 75%, 30%),
-      2.5px 2.5px hsl(212, 75%, 25%),
-      3px 3px hsl(212, 75%, 20%);
   }
 `;
 
@@ -145,7 +145,7 @@ export default function Navbar() {
 
   return (
     <StyledNavbar>
-      <Logo fontSize={40} />
+      <Logo fontSize={40} markSize={30} />
       <StyledNavSideBar>
         {sideBarProps.map(({ name, href, className }, index) => {
           return (

@@ -28,7 +28,7 @@ export default function BannerMain({ sections }) {
     <StyledBannerArea>
       <Image src={BannerImage} alt="no-image" style={{ width: '100%' }}></Image>
       <div className="banner-content">
-        <Logo fontSize={100} />
+        <Logo fontSize={100} markSize={80} />
         <p>안톨리니의 경험으로 만들어진 바다에 당신을 초대합니다.</p>
         <StyledHomePageSectionLink>
           {sections.map((section, index) => {
