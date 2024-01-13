@@ -16,8 +16,16 @@ export default function CategoryPageContainer({ posts, name, nextPost }) {
   const readMorePosts = async () => {
     const response = await client.get(nextPosts);
     const posts = response.data;
-    console.log(posts);
     return posts;
+  };
+
+  const sortPosts = async (sortField) => {
+    const response = await client.get(
+      `/api/posts/?category__name=${name}&limit=3&ordering=${sortField}`,
+    );
+    const { next, results } = response.data;
+    setCategoryPosts([...results]);
+    setNextPosts(next);
   };
 
   useEffect(() => {
@@ -53,6 +61,7 @@ export default function CategoryPageContainer({ posts, name, nextPost }) {
         $transparentColor: transparentColor,
         $boxShadow: textShadow,
       }}
+      sortPosts={sortPosts}
     />
   );
 }

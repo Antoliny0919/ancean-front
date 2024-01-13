@@ -7,7 +7,7 @@ export default function Name(props) {
     name,
   } = props;
 
-  const nextPost = next.replace('http://api-local:8000', '');
+  const nextPost = next && next.replace('http://api-local:8000', '');
 
   return (
     <>

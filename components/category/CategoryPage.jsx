@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import Post from '../minipost/style-simple-post/Post';
+import ThreeDimensionalButton from '../button/ThreeDimensionalButton';
 
 const StyledCategoryPageArea = styled.div`
   padding: 3rem 5rem;
@@ -76,6 +77,7 @@ export default function CategoryPage({
   target,
   headerProps = {},
   bodyProps = {},
+  sortPosts,
 }) {
   return (
     <StyledCategoryPageArea>
@@ -85,6 +87,18 @@ export default function CategoryPage({
       <StyledCategoryPageBody {...bodyProps}>
         <div className="posts-border">
           <div className="posts-content">
+            <div>
+              <ThreeDimensionalButton
+                props={{ onClick: () => sortPosts('-wave') }}
+              >
+                인기순
+              </ThreeDimensionalButton>
+              <ThreeDimensionalButton
+                props={{ onClick: () => sortPosts('-created_at') }}
+              >
+                최신순
+              </ThreeDimensionalButton>
+            </div>
             {categoryPosts.map((post, index) => {
               return (
                 <Post
