@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import wrapper from '@/redux';
 import PropTypes from 'prop-types';
 import type { AppProps } from 'next/app';
-import nProgress from 'nprogress';
+import NextNProgress from 'nextjs-progressbar';
 import { usePathname } from 'next/navigation';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
@@ -17,16 +16,17 @@ function App({ Component, pageProps }: AppProps) {
 
   const { store, props } = wrapper.useWrappedStore(pageProps);
 
-  useEffect(() => {
-    console.log(1);
-    nProgress.done();
-  }, []);
-
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <main className={HahmletFont.className}>
           <GlobalStyle />
+          <NextNProgress
+            color="#155B82"
+            startPosition={0.3}
+            height={4}
+            showOnShallow={true}
+          />
           <Navbar pathName={pathname} />
           <Component {...props} />
         </main>
