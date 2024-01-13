@@ -8,7 +8,6 @@ export default function MoveSectionButtonContainer({
   reference,
 }) {
   const onScrollSection = () => {
-    console.log(reference);
     reference.current.scrollIntoView({ behavior: 'smooth' });
   };
 

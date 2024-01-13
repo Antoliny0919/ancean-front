@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import Post from '../minipost/style-simple-post/Post';
 import ThreeDimensionalButton from '../button/ThreeDimensionalButton';
+import { flexBox } from '../../styles/variable';
 
 const StyledCategoryPageArea = styled.div`
   padding: 3rem 5rem;
@@ -63,12 +64,16 @@ const StyledCategoryPageBody = styled.div`
     box-shadow: ${(props) => props.$boxShadow};
   }
   .posts-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 5rem;
+    ${flexBox.flex('column')};
     padding-bottom: 5rem;
     background: ${(props) => props.$transparentColor};
+    .sort-button-area {
+      width: 100%;
+      ${flexBox.flex('row', 'flex-end')};
+      padding-right: 2rem;
+      padding-top: 1rem;
+      margin-bottom: 4rem;
+    }
   }
 `;
 
@@ -87,13 +92,19 @@ export default function CategoryPage({
       <StyledCategoryPageBody {...bodyProps}>
         <div className="posts-border">
           <div className="posts-content">
-            <div>
+            <div className="sort-button-area">
               <ThreeDimensionalButton
+                color={'hsl(208, 60%, 50%)'}
+                shadow={'hsl(208, 60%, 30%)'}
+                hoverShadow={'hsl(208, 60%, 65%)'}
                 props={{ onClick: () => sortPosts('-wave') }}
               >
                 인기순
               </ThreeDimensionalButton>
               <ThreeDimensionalButton
+                color={'hsl(225, 54%, 53%)'}
+                shadow={'hsl(225, 54%, 33%)'}
+                hoverShadow={'hsl(225, 54%, 68%)'}
                 props={{ onClick: () => sortPosts('-created_at') }}
               >
                 최신순

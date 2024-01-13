@@ -22,7 +22,7 @@ export default function Home({
     {
       name: 'Popular Writing',
       color: 'hsl(215, 58%, 59%)',
-      shadow: '#2b5ca1',
+      shadow: 'hsl(215, 58%, 40%)',
       hoverShadow: 'hsl(215, 58%, 70%)',
       ref: PopularWritingRef,
     },
