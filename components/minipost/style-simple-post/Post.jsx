@@ -91,9 +91,6 @@ export default function LatestPost({ post, reference }) {
     ? header_image.replace('api-local:8000', 'localhost:5050')
     : header_image;
 
-  // const imageUrl = header_image.replace('api-local:8000', 'localhost:5050');
-  // console.log(imageUrl, category, introduce, created_at, 'he;lo');
-
   return (
     <StyledLatestPostArea ref={reference}>
       <div className="header-img">

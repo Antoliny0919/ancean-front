@@ -1,5 +1,5 @@
 import { noneClient } from '../../api/client';
-import CategoryPage from '../../components/category/CategoryPage';
+import CategoryPageContainer from '../../components/category/container/CategoryPageContainer';
 
 export default function Name(props) {
   const {
@@ -11,7 +11,7 @@ export default function Name(props) {
 
   return (
     <>
-      <CategoryPage posts={results} name={name} nextPost={nextPost} />
+      <CategoryPageContainer posts={results} name={name} nextPost={nextPost} />
     </>
   );
 }
@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const response = await noneClient.get(
-    `api/posts?category__name=${params.name}`,
+    `api/posts?category__name=${params.name}&limit=3`,
   );
   const categoryPosts = response.data;
 

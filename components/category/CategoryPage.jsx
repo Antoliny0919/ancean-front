@@ -1,7 +1,4 @@
-import client from '../../api/client';
-import { useState, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { CATEGORY_LOGO } from './categoryLogo';
 import Post from '../minipost/style-simple-post/Post';
 
 const StyledCategoryPageArea = styled.div`
@@ -74,53 +71,18 @@ const StyledCategoryPageBody = styled.div`
   }
 `;
 
-export default function CategoryPage({ posts, name, nextPost }) {
-  const [categoryPosts, setCategoryPosts] = useState(posts);
-
-  const [nextPosts, setNextPosts] = useState(nextPost);
-
-  const target = useRef(null);
-
-  const { color, textShadow, transparentColor } =
-    CATEGORY_LOGO[name.toUpperCase()];
-
-  const readMorePosts = async () => {
-    const response = await client.get(nextPosts);
-    const posts = response.data;
-    return posts;
-  };
-
-  const entries = (entries) => {
-    entries.forEach(async (entry) => {
-      if (entry.isIntersecting) {
-        let { next, results } = await readMorePosts();
-        setNextPosts(next);
-        setCategoryPosts([...categoryPosts, ...results]);
-      }
-    });
-  };
-
-  useEffect(() => {
-    const lastPostObserver = new IntersectionObserver(entries, {
-      threshold: 0.5,
-    });
-    lastPostObserver.observe(target.current);
-  }, [categoryPosts, nextPosts]);
-
+export default function CategoryPage({
+  categoryPosts,
+  target,
+  headerProps = {},
+  bodyProps = {},
+}) {
   return (
     <StyledCategoryPageArea>
-      <StyledCategoryPageHeader
-        color={color}
-        $textShadow={textShadow}
-        $categoryName={name.toUpperCase()}
-      >
+      <StyledCategoryPageHeader {...headerProps}>
         <h1 className="name"></h1>
       </StyledCategoryPageHeader>
-      <StyledCategoryPageBody
-        color={color}
-        $transparentColor={transparentColor}
-        $boxShadow={textShadow}
-      >
+      <StyledCategoryPageBody {...bodyProps}>
         <div className="posts-border">
           <div className="posts-content">
             {categoryPosts.map((post, index) => {
