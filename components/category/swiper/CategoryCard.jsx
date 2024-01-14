@@ -21,7 +21,9 @@ const StyledCategoryCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20rem;
+    /* width: 35vw; */
+    height: 60vh;
+    aspect-ratio: 100 / 140;
     padding: 10rem 5rem 10rem 5rem;
     font-family: 'Pretendard-Bold';
     font-size: 20px;
