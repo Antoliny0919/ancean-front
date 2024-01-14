@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
+import { flexBox } from '../../styles/variable';
 
 const StyledFlipCard = styled.div`
   position: relative;
@@ -7,25 +8,13 @@ const StyledFlipCard = styled.div`
   color: white;
   transition: transform 1s;
   transform-style: preserve-3d;
-  border-radius: 10px;
-  /* box-shadow:
-    1px 1px 0 0 var(--shadow-outline-deep-dark),
-    2px 2px 0 0 var(--shadow-outline-deep-dark),
-    3px 3px 0 0 var(--shadow-outline-deep-dark),
-    4px 4px 0 0 var(--shadow-outline-deep-dark),
-    5px 5px 0 0 var(--shadow-outline-deep-dark),
-    6px 6px 0 0 var(--shadow-outline-deep-dark); */
   & > * {
     grid-area: 1 / 1 / 1 / 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    ${flexBox.flex()}
     height: 60vh;
     aspect-ratio: 100 / 140;
-    padding: 10rem 5rem 10rem 5rem;
     font-family: 'Pretendard-Bold';
     font-size: 20px;
-    border-radius: 10px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
@@ -33,45 +22,36 @@ const StyledFlipCard = styled.div`
     cursor: pointer;
   }
   .flip-card-front {
-    /* background: ${(props) => props.color};
-    svg {
-      margin-bottom: 1rem;
-      width: 60%;
-      height: 60%;
-      color: white;
-    } */
   }
   .flip-card-back {
-    /* color: black; */
-    /* background: ${(props) => props.color}; */
     transform: rotateY(180deg);
   }
 `;
 
-export default function FlipCard({ front, back }) {
+export default function FlipCard({
+  frontComponent,
+  backComponent,
+  cardStyle = {},
+}) {
   const target = useRef(null);
 
   const flipCategoryCard = (e) => {
     e.preventDefault();
-    // console.log(target.current.style.transform);
-    // if (target.current.style.transform === 'rotateY(180deg) translate(35vw, 0vw)') {
-    //   target.current.style.transform = 'rotateY(0deg) translate(0, 0)';
-    // } else {
-    //   target.current.style.transform = 'rotateY(180deg) translate(35vw, 0vw)';
-    // }
+    if (target.current.style.transform === 'rotateY(180deg)') {
+      target.current.style.transform = 'rotateY(0deg)';
+    } else {
+      target.current.style.transform = 'rotateY(180deg)';
+    }
   };
 
   return (
-    <StyledFlipCard ref={target} onClick={flipCategoryCard}>
-      <div className="flip-card-front">
-        {/* {CATEGORY_LOGO[name]['logo']}
-        <div>{name}</div> */}
-        {front}
-      </div>
-      <div className="flip-card-back">
-        {/* <div>helloworld</div> */}
-        {back}
-      </div>
+    <StyledFlipCard
+      ref={target}
+      onClick={flipCategoryCard}
+      style={{ ...cardStyle }}
+    >
+      <div className="flip-card-front">{frontComponent}</div>
+      <div className="flip-card-back">{backComponent}</div>
     </StyledFlipCard>
   );
 }
