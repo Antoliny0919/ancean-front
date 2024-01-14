@@ -11,8 +11,7 @@ const StyledFlipCard = styled.div`
   & > * {
     grid-area: 1 / 1 / 1 / 1;
     ${flexBox.flex()}
-    height: 60vh;
-    aspect-ratio: 100 / 140;
+    aspect-ratio: 140 / 200;
     font-family: 'Pretendard-Bold';
     font-size: 20px;
     -webkit-backface-visibility: hidden;
@@ -22,8 +21,12 @@ const StyledFlipCard = styled.div`
     cursor: pointer;
   }
   .flip-card-front {
+    width: 100%;
+    height: 100%;
   }
   .flip-card-back {
+    width: 100%;
+    height: 100%;
     transform: rotateY(180deg);
   }
 `;
@@ -31,7 +34,7 @@ const StyledFlipCard = styled.div`
 export default function FlipCard({
   frontComponent,
   backComponent,
-  cardStyle = {},
+  style = {},
 }) {
   const target = useRef(null);
 
@@ -48,7 +51,7 @@ export default function FlipCard({
     <StyledFlipCard
       ref={target}
       onClick={flipCategoryCard}
-      style={{ ...cardStyle }}
+      style={{ ...style }}
     >
       <div className="flip-card-front">{frontComponent}</div>
       <div className="flip-card-back">{backComponent}</div>

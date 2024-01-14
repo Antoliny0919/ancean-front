@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { SwiperSlide, Swiper } from 'swiper/react';
-import CategoryCard from '../swiper/CategoryCard';
+import CategoryCard from '../CategoryCard';
 import { EffectCoverflow } from 'swiper/modules';
 import SwiperButton from '../../button/SwiperButton';
 import CategoryText from '../CategoryText';
@@ -17,6 +17,10 @@ const StyledCategoryPage = styled.div`
   transition: background 1s;
   .swiper-coverflow-single-category {
     box-sizing: border-box;
+    .swiper-wrapper {
+      height: 60vh;
+      box-sizing: border-box;
+    }
   }
   .swiper-controller {
     margin-top: 13vh;
@@ -83,7 +87,7 @@ export default function CategoryPage({ categories }) {
             color={color}
             shadow={textShadow}
             name={categoryName}
-            style={{ 'font-size': '3vw', 'letter-spacing': '10px' }}
+            style={{ 'font-size': '50px', 'letter-spacing': '10px' }}
           />
           <SwiperButton type="next"></SwiperButton>
         </div>

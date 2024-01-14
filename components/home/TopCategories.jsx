@@ -1,6 +1,11 @@
 import styled from 'styled-components';
-import SwiperCategoryMain from '@/components/category/swiper/SwiperCategoryMain';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import FlipCategoryCard from '../category/FlipCategoryCard';
+import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import SectionHeader from './items/SectionHeader';
+
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
 
 const StyledTopCategoriesArea = styled.div`
   margin-top: 3rem;
@@ -31,7 +36,29 @@ export default function TopCategories({ categories }) {
       10px 10px 30px rgba(0,0,0,.7)'
         }
       />
-      <SwiperCategoryMain categories={categories} />
+      <div className="fade-in-slide-down-suspend">
+        <Swiper
+          modules={[EffectCoverflow, Autoplay]}
+          slidesPerView={3}
+          effect={'coverflow'}
+          className="swiper-category"
+          loop={true}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 100,
+            depth: 200,
+            modifier: 0.5,
+            slideShadows: false,
+          }}
+          autoplay={{ delay: 30000 }}
+        >
+          {categories.map(({ name, color }, index) => (
+            <SwiperSlide key={index}>
+              <FlipCategoryCard name={name} color={color}></FlipCategoryCard>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </StyledTopCategoriesArea>
   );
 }

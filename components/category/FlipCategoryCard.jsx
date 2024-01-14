@@ -11,7 +11,7 @@ const StyledCategoryCard = styled.div`
   align-items: center;
   background: ${(props) => props.color};
   border-radius: 10px;
-  font-size: 3vh;
+  font-size: 20px;
   letter-spacing: 0.5vh;
   box-shadow:
     1px 1px 0 0 var(--shadow-outline-deep-dark),
@@ -21,8 +21,8 @@ const StyledCategoryCard = styled.div`
     5px 5px 0 0 var(--shadow-outline-deep-dark),
     6px 6px 0 0 var(--shadow-outline-deep-dark);
   svg {
-    width: 10vh;
-    height: 10vh;
+    width: 50px;
+    height: 50px;
     margin-bottom: 10px;
   }
 `;
@@ -41,10 +41,7 @@ export default function FlipCategoryCard({ name, color }) {
           <div>it is back</div>
         </StyledCategoryCard>
       }
-      // cardStyle={{
-      //   'width': '25vw',
-      //   'height': '60vh'
-      // }}
+      style={{ width: '300px' }}
     />
   );
 }
