@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import client from '../../../api/client';
 import { CATEGORY_LOGO } from '../categoryLogo';
-import CategoryNamePage from '../CategoryNamePage';
+import CategoryNamePage from '../page/CategoryNamePage';
 
 export default function CategoryNamePageContainer({ posts, name, nextPost }) {
   const [categoryPosts, setCategoryPosts] = useState(posts);
@@ -51,10 +51,10 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
     <CategoryNamePage
       categoryPosts={categoryPosts}
       target={target}
-      headerProps={{
+      categoryTextProps={{
         color: color,
-        $textShadow: textShadow,
-        $categoryName: name.toUpperCase(),
+        shadow: textShadow,
+        name: name.toUpperCase(),
       }}
       bodyProps={{
         color: color,

@@ -1,5 +1,5 @@
 import { noneClient } from '../../api/client';
-import CategoryPage from '../../components/category/CategoryPage';
+import CategoryPage from '../../components/category/page/CategoryPage';
 
 export default function Index({ categories }) {
   return <CategoryPage categories={categories} />;

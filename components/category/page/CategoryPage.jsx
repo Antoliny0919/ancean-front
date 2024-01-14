@@ -1,11 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useState } from 'react';
 import { SwiperSlide, Swiper } from 'swiper/react';
-import CategoryCard from './swiper/CategoryCard';
+import CategoryCard from '../swiper/CategoryCard';
 import { EffectCoverflow } from 'swiper/modules';
-import SwiperButton from '../button/SwiperButton';
-import { flexBox } from '../../styles/variable';
-import { CATEGORY_LOGO } from './categoryLogo';
+import SwiperButton from '../../button/SwiperButton';
+import CategoryText from '../CategoryText';
+import { flexBox } from '../../../styles/variable';
+import { CATEGORY_LOGO } from '../categoryLogo';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -13,7 +14,7 @@ import 'swiper/css/effect-coverflow';
 const StyledCategoryPage = styled.div`
   padding-top: 15vh;
   background: ${(props) => props.background};
-  transition: background 0.7s;
+  transition: background 1s;
   .swiper-coverflow-single-category {
     box-sizing: border-box;
   }
@@ -25,31 +26,7 @@ const StyledCategoryPage = styled.div`
     svg {
       height: 3vw;
       width: 3vw;
-      color: black;
-    }
-    .category-name {
-      font-family: 'Pretendard-Bold';
-      font-size: 3vw;
-    }
-    .category-name::after {
-      content: '${(props) => props.$categoryName}';
-      position: relative;
-      text-shadow: ${(props) => props.$categoryShadow};
-    }
-    .category-name::before {
-      content: '${(props) => props.$categoryName}';
-      position: absolute;
-      ${(props) =>
-        props.$categoryColor && props.$categoryColor.includes('linear-gradient')
-          ? css`
-              background: ${(props) => props.$categoryColor};
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-            `
-          : css`
-              color: ${(props) => props.$categoryColor};
-            `}
-      z-index: 10;
+      color: ${({ theme }) => theme.colors.mainColor[4]};
     }
     .prev {
       margin-left: 2rem;
@@ -66,18 +43,19 @@ export default function CategoryPage({ categories }) {
   const { color, textShadow, transparentColor } =
     categoryName && CATEGORY_LOGO[categoryName];
 
+  const changeCategory = (slide) => {
+    let { name } = slide.visibleSlides[0].dataset;
+    setCategoryName(name);
+  };
+
   return (
-    <StyledCategoryPage
-      $categoryColor={color}
-      $categoryShadow={textShadow}
-      $categoryName={categoryName}
-      background={transparentColor}
-    >
+    <StyledCategoryPage background={transparentColor}>
       <Swiper
         modules={[EffectCoverflow]}
         slidesPerView={1}
         effect={'coverflow'}
         className="swiper-coverflow-single-category"
+        speed={2000}
         coverflowEffect={{
           rotate: 50,
           stretch: 100,
@@ -85,9 +63,11 @@ export default function CategoryPage({ categories }) {
           modifier: 2,
           slideShadows: false,
         }}
+        onSwiper={(slide) => {
+          changeCategory(slide);
+        }}
         onSlideChange={(slide) => {
-          let { name } = slide.visibleSlides[0].dataset;
-          setCategoryName(name);
+          changeCategory(slide);
         }}
       >
         {categories.map(({ name, color }, index) => {
@@ -99,7 +79,12 @@ export default function CategoryPage({ categories }) {
         })}
         <div className="swiper-controller">
           <SwiperButton type="prev"></SwiperButton>
-          <div className="category-name"></div>
+          <CategoryText
+            color={color}
+            shadow={textShadow}
+            name={categoryName}
+            style={{ 'font-size': '3vw', 'letter-spacing': '10px' }}
+          />
           <SwiperButton type="next"></SwiperButton>
         </div>
       </Swiper>
