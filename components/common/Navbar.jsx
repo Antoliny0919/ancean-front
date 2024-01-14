@@ -132,7 +132,7 @@ const StyledAboutMeButton = styled.button`
 `;
 
 export default function Navbar({ pathName }) {
-  const exceptRoute = ['/posts/newpost'];
+  const exceptRoute = ['/posts/newpost', '/category'];
 
   const sideBarProps = [
     {

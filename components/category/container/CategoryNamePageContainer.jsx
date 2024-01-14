@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import client from '../../../api/client';
 import { CATEGORY_LOGO } from '../categoryLogo';
-import CategoryPage from '../CategoryPage';
+import CategoryNamePage from '../CategoryNamePage';
 
-export default function CategoryPageContainer({ posts, name, nextPost }) {
+export default function CategoryNamePageContainer({ posts, name, nextPost }) {
   const [categoryPosts, setCategoryPosts] = useState(posts);
 
   const [nextPosts, setNextPosts] = useState(nextPost);
@@ -48,7 +48,7 @@ export default function CategoryPageContainer({ posts, name, nextPost }) {
   }, [categoryPosts, nextPosts]);
 
   return (
-    <CategoryPage
+    <CategoryNamePage
       categoryPosts={categoryPosts}
       target={target}
       headerProps={{

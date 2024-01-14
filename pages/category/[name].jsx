@@ -1,5 +1,5 @@
 import { noneClient } from '../../api/client';
-import CategoryPageContainer from '../../components/category/container/CategoryPageContainer';
+import CategoryNamePageContainer from '../../components/category/container/CategoryNamePageContainer';
 
 export default function Name(props) {
   const {
@@ -11,7 +11,11 @@ export default function Name(props) {
 
   return (
     <>
-      <CategoryPageContainer posts={results} name={name} nextPost={nextPost} />
+      <CategoryNamePageContainer
+        posts={results}
+        name={name}
+        nextPost={nextPost}
+      />
     </>
   );
 }

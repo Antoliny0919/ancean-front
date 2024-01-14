@@ -60,9 +60,6 @@ export default function Home({
     });
   });
 
-  console.log(posts.latestPosts);
-  console.log(posts.popularWriting);
-
   return (
     <>
       <header>{/* <NavbarMain /> */}</header>
