@@ -9,7 +9,7 @@ import {
   SiNextdotjs,
 } from 'react-icons/si';
 
-export const CATEGORY_LOGO = {
+export const CATEGORY_DATA = {
   REACT: {
     logo: <FaReact />,
     color: '#7cc5d9',

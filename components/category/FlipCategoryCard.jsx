@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import FlipCard from '../card/FlipCard';
-import { CATEGORY_LOGO } from './categoryLogo';
+import { CATEGORY_DATA } from './data';
 
 const StyledCategoryCard = styled.div`
   width: 100%;
@@ -32,7 +32,7 @@ export default function FlipCategoryCard({ name, color }) {
     <FlipCard
       frontComponent={
         <StyledCategoryCard color={color}>
-          {CATEGORY_LOGO[name]['logo']}
+          {CATEGORY_DATA[name]['logo']}
           <div>{name}</div>
         </StyledCategoryCard>
       }

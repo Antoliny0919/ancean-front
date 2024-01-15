@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import client from '../../../api/client';
-import { CATEGORY_LOGO } from '../categoryLogo';
+import { CATEGORY_DATA } from '../data';
 import CategoryNamePage from '../page/CategoryNamePage';
 
 export default function CategoryNamePageContainer({ posts, name, nextPost }) {
@@ -11,7 +11,7 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
   const target = useRef(null);
 
   const { color, textShadow, transparentColor } =
-    CATEGORY_LOGO[name.toUpperCase()];
+    CATEGORY_DATA[name.toUpperCase()];
 
   const readMorePosts = async () => {
     const response = await client.get(nextPosts);

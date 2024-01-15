@@ -6,7 +6,7 @@ import { EffectCoverflow } from 'swiper/modules';
 import SwiperButton from '../../button/SwiperButton';
 import CategoryText from '../CategoryText';
 import { flexBox } from '../../../styles/variable';
-import { CATEGORY_LOGO } from '../categoryLogo';
+import { CATEGORY_DATA } from '../data';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -27,17 +27,6 @@ const StyledCategoryPage = styled.div`
     height: 7vh;
     margin-bottom: 5vh;
     ${flexBox.flex('row', 'space-between')}
-    svg {
-      height: 3vw;
-      width: 3vw;
-      color: ${({ theme }) => theme.colors.mainColor[4]};
-    }
-    .prev {
-      margin-left: 2rem;
-    }
-    .next {
-      margin-right: 2rem;
-    }
   }
 `;
 
@@ -45,7 +34,7 @@ export default function CategoryPage({ categories }) {
   const [categoryName, setCategoryName] = useState('');
 
   const { color, textShadow, transparentColor } =
-    categoryName && CATEGORY_LOGO[categoryName];
+    categoryName && CATEGORY_DATA[categoryName];
 
   const changeCategory = (slide) => {
     let { name } = slide.visibleSlides[0].dataset;
@@ -87,7 +76,11 @@ export default function CategoryPage({ categories }) {
             color={color}
             shadow={textShadow}
             name={categoryName}
-            style={{ 'font-size': '50px', 'letter-spacing': '10px' }}
+            style={{
+              'font-size': '50px',
+              'letter-spacing': '10px',
+              'margin-bottom': '10px',
+            }}
           />
           <SwiperButton type="next"></SwiperButton>
         </div>

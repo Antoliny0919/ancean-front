@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import PostHeader from './PostHeader';
 import PostBody from './PostBody';
 import PostFooter from './PostFooter';
-import { CATEGORY_LOGO } from '@/components/category/categoryLogo';
+import { CATEGORY_DATA } from '@/components/category/data';
 
 const StyledPostArea = styled.div`
   display: flex;
@@ -51,7 +51,7 @@ export default function Post({ postData, rotate }) {
   const { author, category, introduce, created_at, header_image, title, wave } =
     postData;
 
-  const { logo, color } = CATEGORY_LOGO[category];
+  const { logo, color } = CATEGORY_DATA[category];
 
   return (
     <StyledPostArea

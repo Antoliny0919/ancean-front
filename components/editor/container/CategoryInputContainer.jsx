@@ -5,7 +5,7 @@ import { changeValue, forcedChangeValue } from '../modules/editor';
 import EntireBlockInput from '../../input/EntireBlockInput';
 import CategoryButton from '../../button/CategoryButton';
 import CommonButton from '../../button/CommonButton';
-import { CATEGORY_LOGO } from '../../category/categoryLogo';
+import { CATEGORY_DATA } from '../../category/data';
 
 const StyledEditorCategoryArea = styled.div`
   display: flex;
@@ -51,10 +51,10 @@ export default function CategoryInputContainer({ placeholder, categories }) {
   const [categoryButton, setCategoryButton] = useState('');
 
   const categoryColor = useMemo(() => {
-    if (CATEGORY_LOGO[selectedCategory]) {
-      return CATEGORY_LOGO[selectedCategory]['color'];
-    } else if (CATEGORY_LOGO[categoryButton]) {
-      return CATEGORY_LOGO[categoryButton]['color'];
+    if (CATEGORY_DATA[selectedCategory]) {
+      return CATEGORY_DATA[selectedCategory]['color'];
+    } else if (CATEGORY_DATA[categoryButton]) {
+      return CATEGORY_DATA[categoryButton]['color'];
     }
   }, [selectedCategory, categoryButton]);
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from '../card/Card';
-import { CATEGORY_LOGO } from './categoryLogo';
+import { CATEGORY_DATA } from './data';
 import { flexBox } from '../../styles/variable';
 
 const StyledCategoryCard = styled.div`
@@ -27,7 +27,7 @@ export default function CategoryCard({ name, color }) {
   return (
     <Card style={{ width: '280px' }}>
       <StyledCategoryCard color={color}>
-        <div>{CATEGORY_LOGO[name]['logo']}</div>
+        <div>{CATEGORY_DATA[name]['logo']}</div>
         <div>{name}</div>
       </StyledCategoryCard>
     </Card>

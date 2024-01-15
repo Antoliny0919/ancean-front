@@ -17,3 +17,33 @@ export const codeBlock = {
   background-color: ${backgroundColor}
   `,
 };
+
+export const post = {
+  shadow: () =>
+    `
+    box-shadow:
+    2px 2px 0 0 var(--shadow-outline-deep-dark),
+    3px 3px 0 0 var(--shadow-outline-deep-dark),
+    4px 4px 0 0 var(--shadow-outline-deep-dark),
+    5px 5px 0 0 var(--shadow-outline-deep-dark),
+    6px 6px 0 0 var(--shadow-outline-deep-dark);
+  `,
+  shadowBorder: () =>
+    `
+    border: 2px solid var(--shadow-outline-deep-dark);
+  `,
+  titleEllipsis: () =>
+    `
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  `,
+  contentEllipsis: (line = 5) =>
+    `
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: ${line};
+    -webkit-box-orient: vertical;
+  `,
+};
