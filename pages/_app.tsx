@@ -9,7 +9,6 @@ import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { HahmletFont } from '../styles/font';
 import Navbar from '../components/common/Navbar';
-import 'styles/nprogress.scss';
 
 function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();

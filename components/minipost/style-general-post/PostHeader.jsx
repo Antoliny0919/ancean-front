@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { client, server } from '@/api/client';
 import styled from 'styled-components';
 import { WaveLogo, CommentLogo } from '../../common/Icon';
 
@@ -33,10 +34,9 @@ const StyledMinibarArea = styled.div`
 `;
 
 export default function PostHeader({ header_image, wave, categoryColor }) {
-  const imageSRC = header_image.replace(
-    'http://api-local:8000',
-    'http://localhost:5050',
-  );
+  const imageUrl = header_image.includes(server.defaults.baseURL)
+    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
+    : header_image;
 
   const myLoader = ({ src }) => {
     return src;
@@ -46,7 +46,7 @@ export default function PostHeader({ header_image, wave, categoryColor }) {
     <StyledPostHeaderArea>
       <Image
         loader={myLoader}
-        src={imageSRC}
+        src={imageUrl}
         alt="no-img"
         height={250}
         width={200}

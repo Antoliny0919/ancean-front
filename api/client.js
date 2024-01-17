@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-export const noneClient = axios.create();
+export const server = axios.create();
 
-const client = axios.create();
+export const client = axios.create();
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-noneClient.defaults.baseURL = isProduction ? '' : 'http://api-local:8000';
+server.defaults.baseURL = isProduction
+  ? 'http://host.docker.internal:80'
+  : 'http://api-local:8000';
 
-client.defaults.baseURL = isProduction ? '' : 'http://localhost:5050';
-
-// client.defaults.baseURL = isProduction ? '' : 'http://api-local:8000';
-
-export default client;
+client.defaults.baseURL = isProduction
+  ? 'http://localhost:80'
+  : 'http://localhost:5050';

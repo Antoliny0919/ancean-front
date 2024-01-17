@@ -1,4 +1,4 @@
-import { noneClient } from '../../api/client';
+import { client, server } from '../../api/client';
 import CategoryNamePageContainer from '../../components/category/container/CategoryNamePageContainer';
 
 export default function Name(props) {
@@ -7,7 +7,8 @@ export default function Name(props) {
     name,
   } = props;
 
-  const nextPost = next && next.replace('http://api-local:8000', '');
+  const nextPost =
+    next && next.replace(server.defaults.baseURL, client.defaults.baseURL);
 
   return (
     <>
@@ -21,7 +22,7 @@ export default function Name(props) {
 }
 
 export const getStaticPaths = async () => {
-  const response = await noneClient.get('/api/category');
+  const response = await server.get('/api/category/');
   const categories = response.data;
 
   const paths = categories.map((category) => {
@@ -33,9 +34,10 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const response = await noneClient.get(
+  const response = await server.get(
     `api/posts?category__name=${params.name}&limit=3`,
   );
+
   const categoryPosts = response.data;
 
   return {

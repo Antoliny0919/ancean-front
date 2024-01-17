@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { noneClient } from '../api/client';
+import { server } from '../api/client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCards } from 'swiper/modules';
 import PostCard from '../components/minipost/PostCard';
@@ -97,7 +97,7 @@ export default function Test({ posts }) {
 }
 
 export const getServerSideProps = async () => {
-  const response = await noneClient.get(
+  const response = await server.get(
     '/api/posts/?category__name=PYTHON&limit=5',
   );
   const { results } = response.data;

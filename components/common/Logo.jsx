@@ -1,16 +1,13 @@
 import Link from 'next/link';
-import { Bodoni_Moda } from 'next/font/google';
 import styled from 'styled-components';
-import { flexBox } from '@/styles/variable';
 import Wave from 'react-wavify';
-
-const BodoniFont = Bodoni_Moda({
-  subsets: ['latin'],
-});
+import { flexBox } from '@/styles/variable';
 
 const StyledLogoArea = styled.div`
   ${flexBox.flex('row', 'flex-start')};
   h1 {
+    font-family: 'Bodoni Moda';
+    font-weight: 100;
     font-size: ${(props) => props.$fontSize}px;
     letter-spacing: 8px;
     color: #205a82;
@@ -69,8 +66,8 @@ export default function Logo({ fontSize, markSize }) {
             }}
           ></Wave>
         </div>
-        <h1 className={`${BodoniFont.className} before`}>An</h1>
-        <h1 className={`${BodoniFont.className} after`}>Cean</h1>
+        <h1 className={`before`}>An</h1>
+        <h1 className={`after`}>Cean</h1>
       </StyledLogoArea>
     </Link>
   );

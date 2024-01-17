@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { noneClient } from '@/api/client';
+import { server } from '@/api/client';
 // import NavbarMain from '@/components/home/NavbarMain';
 import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
@@ -88,12 +88,12 @@ export const getStaticProps = async () => {
   let posts = {};
 
   for (const [section, query] of Object.entries(queries)) {
-    const response = await noneClient.get(`/api/posts/?${query}`);
+    const response = await server.get(`/api/posts/?${query}`);
     const { results } = response.data;
     posts = { ...posts, [section]: results };
   }
 
-  const response = await noneClient.get(
+  const response = await server.get(
     `/api/category/?ordering=-post_count&limit=7`,
   );
   const data = await response.data;
@@ -101,40 +101,3 @@ export const getStaticProps = async () => {
 
   return { props: { representativeCategory, posts } };
 };
-
-// export const getServerSideProps = async () => {
-//   // get user posts
-
-//   const queries = {
-//     popularWriting: 'ordering=-wave',
-//     latestPosts: 'ordering=-created_at',
-//   };
-
-//   let posts = {};
-
-//   for (const [section, query] of Object.entries(queries)) {
-//     const response = await noneClient.get(`/api/posts/?${query}`);
-//     const data = response.data;
-//     // only get 10posts
-//     posts = { ...posts, [section]: data.slice(0, 10) };
-//   }
-
-//   const response = await noneClient.get(`/api/category`);
-//   const data = await response.data;
-//   const representativeCategory = data.slice(0, 7);
-
-//   let bestPostByCategory = {};
-
-//   for (const category of representativeCategory) {
-//     const response = await noneClient.get(
-//       `/api/category/${category.name}/posts`,
-//     );
-//     const data = await response.data;
-//     bestPostByCategory = {
-//       ...bestPostByCategory,
-//       [category.name]: data.slice(0, 5),
-//     };
-//   }
-
-//   return { props: { representativeCategory, bestPostByCategory, posts } };
-// };

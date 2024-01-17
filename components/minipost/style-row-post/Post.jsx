@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { client, server } from '../../../api/client';
 import { LuWaves } from 'react-icons/lu';
 import { FaRegCommentDots } from 'react-icons/fa';
 
@@ -87,10 +88,11 @@ const StyledAuthorDateArea = styled.div`
 `;
 
 export default function Post({ post }) {
-  const imageUrl = `http://localhost:5050${post.header_image}`;
+  const { header_image } = post;
+  const imageUrl = header_image.includes(server.defaults.baseURL)
+    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
+    : header_image;
   const date = new Date(post.created_at);
-
-  console.log(imageUrl);
 
   const myLoader = ({ src }) => {
     return src;

@@ -54,11 +54,7 @@ export default function Post({ postData, rotate }) {
   const { logo, color } = CATEGORY_DATA[category];
 
   return (
-    <StyledPostArea
-      $categoryColor={color}
-      // className="fade-in-slide-down-suspend"
-      rotate={rotate}
-    >
+    <StyledPostArea $categoryColor={color} rotate={rotate}>
       <PostHeader header_image={header_image} wave={wave} categoryLogo={logo} />
       <PostBody content={introduce} title={title} created_at={created_at} />
       <PostFooter

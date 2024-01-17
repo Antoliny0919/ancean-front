@@ -149,6 +149,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 
+
   // editor js
 
   .ce-toolbar__content {

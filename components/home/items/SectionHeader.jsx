@@ -1,9 +1,4 @@
-import { Raleway } from 'next/font/google';
 import styled from 'styled-components';
-
-const RaleWayFont = Raleway({
-  subsets: ['latin'],
-});
 
 const StyledSectionHeaderArea = styled.div`
   display: flex;
@@ -14,6 +9,7 @@ const StyledSectionHeaderArea = styled.div`
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    font-family: 'Raleway', sans-serif;
     letter-spacing: 15px;
     text-transform: uppercase;
     color: ${(props) => props.color};
@@ -40,9 +36,7 @@ export default function SectionHeader({
       shadow={shadow}
       $alignItems={alignItems}
     >
-      <h1 className={`${RaleWayFont.className} fade-in-slide-down-suspend`}>
-        {mainTitle}
-      </h1>
+      <h1 className={`fade-in-slide-down-suspend`}>{mainTitle}</h1>
       <h5 className="fade-in-slide-down-suspend">{subTitle}</h5>
     </StyledSectionHeaderArea>
   );

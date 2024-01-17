@@ -1,4 +1,4 @@
-import { noneClient } from '../../api/client';
+import { server } from '../../api/client';
 import PostContent from '../../components/post/PostContent';
 import PostHeader from '../../components/post/PostHeader';
 
@@ -19,7 +19,7 @@ export default function Post({ post }) {
 }
 
 export const getStaticPaths = async () => {
-  const response = await noneClient.get(`/api/posts/`);
+  const response = await server.get(`/api/posts/`);
   const posts = response.data;
 
   const paths = posts.map((post) => ({
@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const response = await noneClient.get(`/api/posts?id=${params.id}`);
+  const response = await server.get(`/api/posts?id=${params.id}`);
   const post = response.data;
 
   return { props: { post } };

@@ -16,8 +16,7 @@ const StyledPostContent = styled.div`
 `;
 
 export default function PostContent({ content }) {
-  console.log(content);
-  console.log(content[0]['data']);
+  const haveContent = Object.keys(content);
 
   const parser = {
     paragraph: (data) => {
@@ -48,10 +47,16 @@ export default function PostContent({ content }) {
   };
 
   return (
-    <StyledPostContent>
-      {content.map(({ data, type }) => {
-        return parser[type](data);
-      })}
-    </StyledPostContent>
+    <>
+      {haveContent.length !== 0 ? (
+        <StyledPostContent>
+          {content.map(({ data, type }) => {
+            return parser[type](data);
+          })}
+        </StyledPostContent>
+      ) : (
+        <div>no contente</div>
+      )}
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { noneClient } from '../../api/client';
+import { server, client } from '../../api/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -80,8 +80,8 @@ export default function PostCard({ post }) {
 
   const createDate = new Date(created_at);
 
-  const imageUrl = header_image.includes(noneClient.defaults.baseURL)
-    ? header_image.replace('api-local:8000', 'localhost:5050')
+  const imageUrl = header_image.includes(server.defaults.baseURL)
+    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
     : header_image;
 
   return (

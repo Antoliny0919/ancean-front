@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import client from '../../../api/client';
+import { client } from '../../../api/client';
 import { CATEGORY_DATA } from '../data';
 import CategoryNamePage from '../page/CategoryNamePage';
 
