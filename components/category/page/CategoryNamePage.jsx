@@ -55,7 +55,7 @@ const StyledCategoryPageBody = styled.div`
 export default function CategoryNamePage({
   categoryPosts,
   target,
-  categoryTextProps = {},
+  categoryName,
   bodyProps = {},
   sortPosts,
 }) {
@@ -63,7 +63,7 @@ export default function CategoryNamePage({
     <StyledCategoryPageArea>
       <StyledCategoryPageHeader>
         <CategoryText
-          {...categoryTextProps}
+          name={categoryName}
           style={{
             'font-size': '100px',
             margin: '3rem 0',

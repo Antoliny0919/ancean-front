@@ -51,11 +51,7 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
     <CategoryNamePage
       categoryPosts={categoryPosts}
       target={target}
-      categoryTextProps={{
-        color: color,
-        shadow: textShadow,
-        name: name.toUpperCase(),
-      }}
+      categoryName={name.toUpperCase()}
       bodyProps={{
         color: color,
         $transparentColor: transparentColor,

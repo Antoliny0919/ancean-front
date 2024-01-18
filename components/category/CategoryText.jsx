@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { CATEGORY_DATA } from './data';
 
 const StyledCategoryText = styled.div`
   font-family: 'Pretendard-Bold';
@@ -25,12 +26,12 @@ const StyledCategoryText = styled.div`
   }
 `;
 
-export default function CategoryText({ name, color, shadow, style = {} }) {
+export default function CategoryText({ name, style = {} }) {
   return (
     <StyledCategoryText
       name={name}
-      color={color}
-      shadow={shadow}
+      color={CATEGORY_DATA[name]['color']}
+      shadow={CATEGORY_DATA[name]['textShadow']}
       style={{ ...style }}
     />
   );

@@ -33,8 +33,7 @@ const StyledCategoryPage = styled.div`
 export default function CategoryPage({ categories, categoryPosts }) {
   const [categoryName, setCategoryName] = useState('');
 
-  const { color, textShadow, transparentColor } =
-    categoryName && CATEGORY_DATA[categoryName];
+  const { transparentColor } = categoryName && CATEGORY_DATA[categoryName];
 
   const changeCategory = (slide) => {
     let { name } = slide.visibleSlides[0].dataset;
@@ -75,8 +74,6 @@ export default function CategoryPage({ categories, categoryPosts }) {
         <div className="swiper-controller">
           <SwiperButton type="prev"></SwiperButton>
           <CategoryText
-            color={color}
-            shadow={textShadow}
             name={categoryName}
             style={{
               'font-size': '50px',
