@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { SwiperSlide, Swiper } from 'swiper/react';
-import CategoryCard from '../CategoryCard';
 import { EffectCoverflow } from 'swiper/modules';
 import SwiperButton from '../../button/SwiperButton';
 import CategoryText from '../CategoryText';
+import CategoryCardSwiper from '../swiper/CategoryCardSwiper';
 import { flexBox } from '../../../styles/variable';
 import { CATEGORY_DATA } from '../data';
 
@@ -30,7 +30,7 @@ const StyledCategoryPage = styled.div`
   }
 `;
 
-export default function CategoryPage({ categories }) {
+export default function CategoryPage({ categories, categoryPosts }) {
   const [categoryName, setCategoryName] = useState('');
 
   const { color, textShadow, transparentColor } =
@@ -63,10 +63,12 @@ export default function CategoryPage({ categories }) {
           changeCategory(slide);
         }}
       >
-        {categories.map(({ name, color }, index) => {
+        {categories.map(({ name }, index) => {
           return (
             <SwiperSlide key={index} data-name={name}>
-              <CategoryCard name={name} color={color}></CategoryCard>
+              <CategoryCardSwiper
+                posts={categoryPosts[name]}
+              ></CategoryCardSwiper>
             </SwiperSlide>
           );
         })}

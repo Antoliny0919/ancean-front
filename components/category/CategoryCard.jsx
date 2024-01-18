@@ -23,10 +23,10 @@ const StyledCategoryCard = styled.div`
     6px 6px 0 0 var(--shadow-outline-deep-dark);
 `;
 
-export default function CategoryCard({ name, color }) {
+export default function CategoryCard({ name }) {
   return (
     <Card style={{ width: '280px' }}>
-      <StyledCategoryCard color={color}>
+      <StyledCategoryCard color={CATEGORY_DATA[name]['color']}>
         <div>{CATEGORY_DATA[name]['logo']}</div>
         <div>{name}</div>
       </StyledCategoryCard>

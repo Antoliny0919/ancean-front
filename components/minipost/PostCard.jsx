@@ -7,6 +7,8 @@ import { post, flexBox } from '../../styles/variable';
 import { WaveLogo, CommentLogo } from '../common/Icon';
 
 const StyledPostCardImage = styled(Image)`
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   border-radius: 10px;
   ${post.shadow()};
@@ -71,8 +73,6 @@ const StyledPostCardCover = styled.div`
 
 export default function PostCard({ post }) {
   const { header_image, author, title, created_at, id, introduce, wave } = post;
-
-  console.log(wave);
 
   const myLoader = ({ src }) => {
     return src;
