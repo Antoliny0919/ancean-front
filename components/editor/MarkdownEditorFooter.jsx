@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import GetSavedPostsContainer from './container/GetSavedPostsContainer';
 import SavePostContainer from './container/SavePostContainer';
+import GetSavedPostsContainer from './container/GetSavedPostsContainer';
 
 const StyledFooterArea = styled.div`
   width: 100%;
@@ -27,7 +27,7 @@ const StyledFooterArea = styled.div`
   }
 `;
 
-export default function MarkdownEditorSave() {
+export default function MarkdownEditorFooter() {
   return (
     <StyledFooterArea>
       <div className="footer-left-item-block">

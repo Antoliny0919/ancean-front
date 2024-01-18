@@ -1,10 +1,8 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useRef, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect, useState, useContext } from 'react';
 import styled from 'styled-components';
-import { savePost, createPost } from './modules/editor';
+import { EditorContext } from './MarkdownEditor';
 import { initializeEditor } from './EditorJS';
-import MarkdownEditorSave from './MarkdownEditorSave';
-// import useInterval from '../../hooks/useInterval';
 
 const StyledEditorContent = styled.div`
   /* padding: 1rem; */
@@ -18,47 +16,11 @@ const StyledEditorContent = styled.div`
 `;
 
 export default function MarkdownEditorContent() {
-  const dispatch = useDispatch();
-
   const [isMounted, setIsMounted] = useState(false);
 
   const content = useSelector(({ editor }) => editor.content);
 
-  const editorRef = useRef();
-
-  const { title, selectedCategory } = useSelector(({ editor }) => editor);
-
-  const saveOrCreate = () => {
-    const postId = localStorage.getItem('beingWrittenPostId');
-    console.log(title, selectedCategory);
-    const body = {
-      title: title,
-      author: 'lululala0919',
-      is_finish: false,
-      ...(selectedCategory && { category: selectedCategory }),
-    };
-    if (postId) {
-      editorRef.current.save().then((outputData) => {
-        dispatch(
-          savePost({
-            id: postId,
-            content: outputData.blocks,
-            ...body,
-          }),
-        );
-      });
-    } else {
-      editorRef.current.save().then((outputData) => {
-        dispatch(
-          createPost({
-            content: outputData.blocks,
-            ...body,
-          }),
-        );
-      });
-    }
-    alert('전송했습니다.');
-  };
+  const editorRef = useContext(EditorContext);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -87,7 +49,7 @@ export default function MarkdownEditorContent() {
   return (
     <StyledEditorContent>
       <div id="editorjs"></div>
-      <MarkdownEditorSave saveLogic={saveOrCreate} />
+      {/* <MarkdownEditorSave saveLogic={saveOrCreate} /> */}
     </StyledEditorContent>
   );
 }

@@ -48,7 +48,10 @@ const StyledCategoryCardSwiper = styled.div`
   }
   .swiper-pagination-bullet-active {
     opacity: var(--swiper-pagination-bullet-opacity, 1);
-    background: var(--swiper-pagination-color, #388fbf);
+    background: var(
+      --swiper-pagination-color,
+      ${({ theme }) => theme.colors.mainColor[4]}
+    );
   }
 `;
 

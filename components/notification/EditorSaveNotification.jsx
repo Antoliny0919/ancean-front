@@ -1,13 +1,14 @@
 import styled, { css } from 'styled-components';
 
 const StyledEditorSaveNotification = styled.div`
-  position: relative;
+  position: fixed;
+  top: 0;
   width: 100%;
   opacity: 0;
   transform: translateY(-50px);
   text-align: center;
   color: #f8f8f8;
-  z-index: 0;
+  z-index: 100;
   padding: 0.5vw 0 0.5vw 0;
   transition:
     transform 0.7s ease-in-out,

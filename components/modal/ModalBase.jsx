@@ -48,19 +48,13 @@ export default function ModalBase({
   children,
   styleProps = {},
 }) {
-  // const [totalWidth, setTotalWidth] = useState(0);
-  // const [totalHeight, setTotalHeight] = useState(0);
-
   useEffect(() => {
     if (disable) {
       document.body.style = 'overflow: hidden';
-      // setTotalWidth(window.outerWidth);
-      // setTotalHeight(window.outerHeight);
     }
   }, [disable, window.outerWidth, window.outerHeight]);
 
   return (
-    // <StyledBackground $totalWidth={totalWidth} $totalHeight={totalHeight}>
     <StyledBackground>
       <StyledModalBase style={styleProps}>
         <div className="close-bar">

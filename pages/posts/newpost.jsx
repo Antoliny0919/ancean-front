@@ -1,5 +1,5 @@
 import { server } from '@/api/client';
-import MarkdownEditor from '@/components/editor/MarkdownEditor';
+import MarkdownEditor from '../../components/editor/MarkdownEditor';
 
 export default function newpost({ categories }) {
   return <MarkdownEditor categories={categories} />;
