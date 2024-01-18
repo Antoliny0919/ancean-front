@@ -7,7 +7,7 @@ import ModalBase from '../../modal/ModalBase';
 import SavedPostsModal from '../../modal/SavedPostsModal';
 import { closeModal } from '../../modal/ModalBase';
 
-export default function GetSavedPostsContainer() {
+export default function GetSavedPostsContainer({ children }) {
   const dispatch = useDispatch();
 
   const [savedPosts, setSavedPosts] = useState();
@@ -47,14 +47,12 @@ export default function GetSavedPostsContainer() {
 
   return (
     <>
-      <CommonButton props={{ onClick: getSavedPosts }}>
-        저장된 포스트
-      </CommonButton>
+      <CommonButton props={{ onClick: getSavedPosts }}>{children}</CommonButton>
       {modalState && (
         <ModalBase
           disable={modalState}
           controlModalState={setModalState}
-          styleProps={{ width: '45vw' }}
+          styleProps={{ width: '700px' }}
         >
           <SavedPostsModal
             posts={savedPosts}

@@ -49,7 +49,6 @@ export default function MarkdownEditorContent() {
   return (
     <StyledEditorContent>
       <div id="editorjs"></div>
-      {/* <MarkdownEditorSave saveLogic={saveOrCreate} /> */}
     </StyledEditorContent>
   );
 }
