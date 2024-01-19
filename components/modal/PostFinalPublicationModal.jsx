@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { FaRegImage } from 'react-icons/fa6';
 import CategoryText from '../category/CategoryText';
 import { flexBox, post } from '../../styles/variable';
+import CommonButton from '../button/CommonButton';
+import FontButton from '../button/FontButton';
 
 const StyledPostFinalPublicationModal = styled.div`
   position: absolute;
@@ -77,7 +79,75 @@ const StyledTopArea = styled.div`
   }
 `;
 
-export default function PostFinalPublicationModal({ modalState }) {
+const StyledBottomArea = styled.div`
+  padding: 0 1rem;
+  .bottom-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: solid #dedede 1px;
+    & > * {
+      margin-right: 2rem;
+      display: flex;
+    }
+    .field-name {
+      font-size: 18px;
+      width: 15%;
+    }
+    .field-name > div {
+      background-color: ${({ theme }) => theme.colors.mainColor[4]};
+      color: #fff;
+      padding: 0.1em 0.5em;
+      border-radius: 10px;
+    }
+    input[type='radio'] {
+      appearance: none;
+      width: 1.25em;
+      height: 1.25em;
+      border-radius: 50%;
+      border: max(2px, 0.2em) solid grey;
+      transition:
+        border 0.5s ease-in-out,
+        box-shadow 0.5s;
+    }
+
+    input[type='radio']:checked {
+      border: 0.4em solid ${({ theme }) => theme.colors.mainColor[4]};
+    }
+    input[type='radio']:hover {
+      box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+      cursor: pointer;
+    }
+
+    input[type='radio']:hover + span {
+      cursor: pointer;
+    }
+    input[type='radio']:disabled {
+      background-color: lightgray;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+    input[type='radio']:disabled + span {
+      cursor: default;
+      opacity: 0.7;
+    }
+  }
+`;
+
+const StyledFooterArea = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1rem 1.5rem;
+  & > * {
+    margin-left: 2rem;
+  }
+`;
+
+export default function PostFinalPublicationModal({ modalState, closeModal }) {
+  const publicationData = new Date();
+
   const { title, selectedCategory } = useSelector(({ editor }) => editor);
 
   return (
@@ -96,17 +166,63 @@ export default function PostFinalPublicationModal({ modalState }) {
             ></input>
           </div>
           <div className="post-info">
-            {selectedCategory && (
+            {selectedCategory ? (
               <CategoryText
                 name={selectedCategory}
                 style={{ 'font-size': '40px' }}
               ></CategoryText>
+            ) : (
+              <div>no-category</div>
             )}
-            <h3>{title}하하ㅏ하 테스트 진행</h3>
-            <textarea placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대한 간단한 설명을 입력해주세요!"></textarea>
+            <h3>{title}</h3>
+            <textarea placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"></textarea>
           </div>
         </StyledTopArea>
         <div className="divide-line"></div>
+        <StyledBottomArea>
+          <div className="bottom-field">
+            <div className="field-name">
+              <div>공개설정</div>
+            </div>
+            <label htmlFor="radio-input-published">
+              <input
+                type="radio"
+                id="radio-input-published"
+                name="contact"
+                checked
+              ></input>
+              <span>공개</span>
+            </label>
+            <label htmlFor="radio-input-none-published">
+              <input
+                type="radio"
+                id="radio-input-none-published"
+                name="contact"
+                disabled
+              ></input>
+              <span>비공개</span>
+            </label>
+          </div>
+          <div className="bottom-field">
+            <div className="field-name">
+              <div>출간일</div>
+            </div>
+            <div>
+              {publicationData.getFullYear()}년 {publicationData.getMonth() + 1}
+              월 {publicationData.getDate()}일
+            </div>
+          </div>
+          <div className="bottom-field">
+            <div className="field-name">
+              <div>작성자</div>
+            </div>
+            <div>Antoliny0919</div>
+          </div>
+        </StyledBottomArea>
+        <StyledFooterArea>
+          <CommonButton>출간하기</CommonButton>
+          <FontButton props={{ onClick: closeModal }}>취소</FontButton>
+        </StyledFooterArea>
       </div>
     </StyledPostFinalPublicationModal>
   );

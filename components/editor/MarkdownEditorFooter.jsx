@@ -44,7 +44,10 @@ export default function MarkdownEditorFooter() {
         <CommonButton props={{ onClick: () => setModalState(true) }}>
           출간하기
         </CommonButton>
-        <PostFinalPublicationModal modalState={modalState} />
+        <PostFinalPublicationModal
+          modalState={modalState}
+          closeModal={() => setModalState(false)}
+        />
       </div>
     </StyledFooterArea>
   );
