@@ -189,19 +189,18 @@ const StyledFooterArea = styled.div`
 export default function PostFinalPublicationModal({ modalState, closeModal }) {
   const dispatch = useDispatch();
 
-  const [headerImageName, setHeaderImageName] = useState('');
+  const [headerImagePath, setHeaderImagePath] = useState('');
 
   const { headerImage } = useSelector(({ editor }) => editor);
 
   const onSelectedImageFile = (e) => {
     let selectedFile = e.target.files[0];
-    setHeaderImageName(selectedFile.name);
     const formData = new FormData();
     formData.append('file', selectedFile);
-    upLoadHeaderImage(formData);
+    upLoadHeaderImage(formData, selectedFile.name);
   };
 
-  const upLoadHeaderImage = async (formData) => {
+  const upLoadHeaderImage = async (formData, fileName) => {
     const response = await client.post('/api/uploadImage/', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -210,14 +209,14 @@ export default function PostFinalPublicationModal({ modalState, closeModal }) {
     });
     const data = response.data;
     if (data.success === 1) {
-      dispatch(
-        forcedChangeValue({ name: 'headerImage', value: data.file.url }),
-      );
+      setHeaderImagePath(data.file.url);
+      console.log();
+      dispatch(forcedChangeValue({ name: 'headerImage', value: fileName }));
     }
   };
 
   const resetHeaderImage = () => {
-    setHeaderImageName('');
+    setHeaderImagePath('');
     dispatch(forcedChangeValue({ name: 'headerImage', value: '' }));
   };
 
@@ -232,13 +231,13 @@ export default function PostFinalPublicationModal({ modalState, closeModal }) {
   return (
     <StyledPostFinalPublicationModal className={modalState && 'on'}>
       <div className="content-area">
-        <StyledTopArea $haveHeaderImage={headerImage}>
+        <StyledTopArea $haveHeaderImage={headerImagePath}>
           <div>
-            {headerImage ? (
+            {headerImagePath ? (
               <>
                 <div className="image-block">
                   <Image
-                    src={headerImage}
+                    src={headerImagePath}
                     loader={myLoader}
                     alt="no-img"
                     width={0}
@@ -274,9 +273,9 @@ export default function PostFinalPublicationModal({ modalState, closeModal }) {
             <textarea placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"></textarea>
           </div>
         </StyledTopArea>
-        {headerImage && (
+        {headerImagePath && (
           <StyledHeaderImageSideBar>
-            <div>선택된 이미지: {headerImageName}</div>
+            <div>선택된 이미지: {headerImage}</div>
             <button onClick={resetHeaderImage}>이미지 다시 선택</button>
           </StyledHeaderImageSideBar>
         )}

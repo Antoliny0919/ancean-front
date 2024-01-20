@@ -15,7 +15,11 @@ export default function SavePostContainer({
 
   const dispatch = useDispatch();
 
-  const { title, selectedCategory } = useSelector(({ editor }) => editor);
+  const { title, selectedCategory, headerImage } = useSelector(
+    ({ editor }) => editor,
+  );
+
+  console.log(headerImage);
 
   const saveOrCreate = () => {
     const postId = localStorage.getItem('beingWrittenPostId');
@@ -23,6 +27,7 @@ export default function SavePostContainer({
       title: title,
       author: 'lululala0919',
       is_finish: is_finish,
+      ...(headerImage && { header_image: headerImage }),
       ...(selectedCategory && { category: selectedCategory }),
     };
     if (postId) {
@@ -55,11 +60,6 @@ export default function SavePostContainer({
         });
       });
     }
-    // if (is_finish) {
-    //   localStorage.removeItem('beingWrittenPostId');
-    //   router.push('/posts');
-    // }
-    // else alert('전송했습니다.');
   };
 
   // autoSave logic interval(5minute)
