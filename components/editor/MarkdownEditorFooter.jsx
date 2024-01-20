@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import SavePostContainer from './container/SavePostContainer';
 import GetSavedPostsContainer from './container/GetSavedPostsContainer';
 import CommonButton from '../button/CommonButton';
+import FontButton from '../button/FontButton';
 import PostFinalPublicationModal from '../modal/PostFinalPublicationModal';
 
 const StyledFooterArea = styled.div`
@@ -37,7 +38,9 @@ export default function MarkdownEditorFooter() {
   return (
     <StyledFooterArea>
       <div className="footer-left-item-block">
-        <SavePostContainer>임시저장</SavePostContainer>
+        <SavePostContainer is_finish={false} buttonComponent={FontButton}>
+          임시저장
+        </SavePostContainer>
         <GetSavedPostsContainer>저장된 포스트</GetSavedPostsContainer>
       </div>
       <div>

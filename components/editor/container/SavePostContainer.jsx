@@ -1,10 +1,16 @@
 import { useContext } from 'react';
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditorContext } from '../MarkdownEditor';
-import FontButton from '../../button/FontButton';
 import { savePost, createPost } from '../modules/editor';
 
-export default function SavePostContainer({ children }) {
+export default function SavePostContainer({
+  children,
+  is_finish,
+  buttonComponent,
+}) {
+  const router = useRouter();
+
   const editorRef = useContext(EditorContext);
 
   const dispatch = useDispatch();
@@ -16,7 +22,7 @@ export default function SavePostContainer({ children }) {
     const body = {
       title: title,
       author: 'lululala0919',
-      is_finish: false,
+      is_finish: is_finish,
       ...(selectedCategory && { category: selectedCategory }),
     };
     if (postId) {
@@ -27,7 +33,12 @@ export default function SavePostContainer({ children }) {
             content: outputData.blocks,
             ...body,
           }),
-        );
+        ).then(({ payload }) => {
+          if (is_finish) {
+            let { redirect_path } = payload;
+            router.push(redirect_path);
+          }
+        });
       });
     } else {
       editorRef.current.save().then((outputData) => {
@@ -36,14 +47,30 @@ export default function SavePostContainer({ children }) {
             content: outputData.blocks,
             ...body,
           }),
-        );
+        ).then(({ payload }) => {
+          if (is_finish) {
+            let { redirect_path } = payload;
+            router.push(redirect_path);
+          }
+        });
       });
     }
-    alert('전송했습니다.');
+    // if (is_finish) {
+    //   localStorage.removeItem('beingWrittenPostId');
+    //   router.push('/posts');
+    // }
+    // else alert('전송했습니다.');
   };
 
   // autoSave logic interval(5minute)
   // useInterval(() => saveOrCreate(), 30000);
 
-  return <FontButton props={{ onClick: saveOrCreate }}>{children}</FontButton>;
+  return (
+    <>
+      {buttonComponent({
+        children: children,
+        props: { onClick: saveOrCreate },
+      })}
+    </>
+  );
 }

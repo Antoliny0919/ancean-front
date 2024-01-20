@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { server, client } from '@/api/client';
 import CategoryButton from '../../button/CategoryButton';
 
-const StyledLatestPostArea = styled.div`
+const StyledPostArea = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -78,7 +78,7 @@ const StyledPostContent = styled.div`
   }
 `;
 
-export default function LatestPost({ post, reference }) {
+export default function Post({ post, reference }) {
   const myLoader = ({ src }) => {
     return src;
   };
@@ -92,7 +92,7 @@ export default function LatestPost({ post, reference }) {
     : header_image;
 
   return (
-    <StyledLatestPostArea ref={reference}>
+    <StyledPostArea ref={reference}>
       <div className="header-img">
         <Image
           loader={myLoader}
@@ -113,6 +113,6 @@ export default function LatestPost({ post, reference }) {
           <CategoryButton categoryName={category}>{category}</CategoryButton>
         </div>
       </StyledPostContent>
-    </StyledLatestPostArea>
+    </StyledPostArea>
   );
 }

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as postAPI from '@/api/post';
 
+// const router = useRouter();
+
 export const createPost = createAsyncThunk(
   'editor/createPost',
   async (fields, { rejectWithValue }) => {
@@ -56,6 +58,7 @@ const initialState = {
   title: '',
   fieldCategory: '',
   selectedCategory: '',
+  headerImage: '',
   content: '',
   author: '',
   notificationState: null,
@@ -78,6 +81,9 @@ const editorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
+      if (payload.redirect_path) {
+        return;
+      }
       state.notificationState = true;
       state.notificationMessage = payload.message;
       localStorage.setItem('beingWrittenPostId', payload.id);
@@ -87,7 +93,9 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.data.message;
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      if (payload.redirect_path) {
+        localStorage.removeItem('beingWrittenPostId', payload.id);
+      }
       state.notificationState = true;
       state.notificationMessage = payload.message;
     });
