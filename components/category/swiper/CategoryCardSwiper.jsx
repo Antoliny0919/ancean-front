@@ -19,8 +19,8 @@ const StyledCategoryCardSwiper = styled.div`
     box-sizing: content-box;
   }
   .swiper-cards {
-    padding: 10px 0;
-    width: 280px;
+    padding: 15px 0;
+    width: 270px;
   }
   .swiper-slide {
     overflow: visible;

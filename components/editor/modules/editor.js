@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as postAPI from '@/api/post';
-
-// const router = useRouter();
+import * as imageAPI from '@/api/image';
 
 export const createPost = createAsyncThunk(
   'editor/createPost',
@@ -54,11 +53,20 @@ export const getPost = createAsyncThunk('editor/getPost', async (id) => {
   return response.data;
 });
 
+export const uploadHeaderImage = createAsyncThunk(
+  'editor/uploadHeaderImage',
+  async ({ formData }) => {
+    const response = await imageAPI.uploadImage({ formData });
+    return response.data;
+  },
+);
+
 const initialState = {
   title: '',
   fieldCategory: '',
   selectedCategory: '',
   headerImage: '',
+  headerImagePath: '',
   content: '',
   author: '',
   notificationState: null,
@@ -77,6 +85,10 @@ const editorSlice = createSlice({
     },
     resetNotificationState: (state) => {
       state.notificationState = null;
+    },
+    resetHeaderImageState: (state) => {
+      state.headerImagePath = '';
+      state.headerImage = '';
     },
   },
   extraReducers: (builder) => {
@@ -105,9 +117,17 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', id);
       return state;
     });
+    builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {
+      state['headerImagePath'] = payload.file.url;
+      state['headerImage'] = payload.file.name;
+    });
   },
 });
 
-export const { changeValue, forcedChangeValue, resetNotificationState } =
-  editorSlice.actions;
+export const {
+  changeValue,
+  forcedChangeValue,
+  resetNotificationState,
+  resetHeaderImageState,
+} = editorSlice.actions;
 export default editorSlice.reducer;

@@ -7,25 +7,25 @@ import { post, flexBox } from '../../styles/variable';
 import { WaveLogo, CommentLogo } from '../common/Icon';
 
 const StyledPostCardImage = styled(Image)`
-  width: 100%;
-  height: 100%;
+  position: absolute;
   background-color: #fff;
   border-radius: 10px;
+  aspect-ratio: 1 / 1.4;
   ${post.shadow()};
   ${post.shadowBorder()};
-  z-index: 10;
   transition: opacity 0.7s;
+  z-index: 10;
   &:hover {
     opacity: 0.15;
   }
 `;
 
 const StyledPostCardCover = styled.div`
-  position: absolute;
+  position: relative;
   background-color: #fff;
+  z-index: 0;
   width: 100%;
   height: 100%;
-  z-index: 0;
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 10px;
@@ -85,9 +85,15 @@ export default function PostCard({ post }) {
     : header_image;
 
   return (
-    <Link href={`/posts/${id}`} style={{ width: '100%' }}>
-      <Card style={{ width: '100%' }}>
-        <StyledPostCardImage src={imageUrl} loader={myLoader} fill alt={'no'} />
+    <Link href={`/posts/${id}`}>
+      <Card style={{ width: '270px' }}>
+        <StyledPostCardImage
+          src={imageUrl}
+          loader={myLoader}
+          fill
+          objectFit="contain"
+          alt={'no'}
+        />
         <StyledPostCardCover>
           <div className="title">{title}</div>
           <div className="content">{introduce}</div>

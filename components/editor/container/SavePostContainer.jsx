@@ -19,8 +19,6 @@ export default function SavePostContainer({
     ({ editor }) => editor,
   );
 
-  console.log(headerImage);
-
   const saveOrCreate = () => {
     const postId = localStorage.getItem('beingWrittenPostId');
     const body = {

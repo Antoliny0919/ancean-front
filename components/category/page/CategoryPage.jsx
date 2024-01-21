@@ -40,6 +40,8 @@ export default function CategoryPage({ categories, categoryPosts }) {
     setCategoryName(name);
   };
 
+  console.log(categoryName);
+
   return (
     <StyledCategoryPage background={transparentColor}>
       <Swiper
@@ -73,14 +75,16 @@ export default function CategoryPage({ categories, categoryPosts }) {
         })}
         <div className="swiper-controller">
           <SwiperButton type="prev"></SwiperButton>
-          <CategoryText
-            name={categoryName}
-            style={{
-              'font-size': '50px',
-              'letter-spacing': '10px',
-              'margin-bottom': '10px',
-            }}
-          />
+          {categoryName && (
+            <CategoryText
+              name={categoryName}
+              style={{
+                'font-size': '50px',
+                'letter-spacing': '10px',
+                'margin-bottom': '10px',
+              }}
+            />
+          )}
           <SwiperButton type="next"></SwiperButton>
         </div>
       </Swiper>
