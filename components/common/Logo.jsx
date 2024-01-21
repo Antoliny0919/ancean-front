@@ -49,10 +49,14 @@ const StyledLogoArea = styled.div`
   }
 `;
 
-export default function Logo({ fontSize, markSize }) {
+export default function Logo({ fontSize, markSize, style = {} }) {
   return (
     <Link href="/">
-      <StyledLogoArea $fontSize={fontSize} $markSize={markSize}>
+      <StyledLogoArea
+        $fontSize={fontSize}
+        $markSize={markSize}
+        style={{ ...style }}
+      >
         <div className="waterball">
           <Wave
             fill={'#27566B'}

@@ -60,11 +60,8 @@ export default function Home({
     });
   });
 
-  console.log(posts.latestPosts);
-
   return (
     <>
-      <header>{/* <NavbarMain /> */}</header>
       <main>
         <Bannermain sections={sections} />
         <SectionContainer ref={PopularWritingRef}>
