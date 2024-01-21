@@ -6,6 +6,7 @@ const StyledFooterBox = styled.div`
 `;
 
 export default function FooterBox({
+  children,
   boxTitle,
   fontSize,
   colorHSL,
@@ -22,6 +23,7 @@ export default function FooterBox({
       >
         {boxTitle}
       </SignatureText>
+      {children}
     </StyledFooterBox>
   );
 }
