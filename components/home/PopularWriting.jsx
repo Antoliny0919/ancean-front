@@ -26,20 +26,7 @@ export default function PopularWriting({ posts }) {
       <SectionHeader
         mainTitle={'Popular Writing'}
         subTitle={'가장 많은 WAVE를 획득한 포스트입니다.'}
-        color={'hsl(215, 58%, 59%)'}
-        shadow={
-          '1px 1px hsl(215, 58%, 56%), \
-        2px 2px hsl(215, 58%, 53%), \
-        3px 3px hsl(215, 58%, 50%), \
-        4px 4px hsl(215, 58%, 47%), \
-        5px 5px hsl(215, 58%, 43%), \
-        6px 6px hsl(215, 58%, 40%), \
-        7px 7px hsl(215, 58%, 37%), \
-        8px 8px hsl(215, 58%, 34%), \
-        9px 9px hsl(215, 58%, 31%), \
-        10px 10px hsl(215, 58%, 28%), \
-        10px 10px 30px rgba(0,0,0,.7)'
-        }
+        colorHSL={{ hue: 215, saturation: 58, lightness: 59 }}
       />
       <ContentArea>
         <SlidePaginationPost posts={posts} />

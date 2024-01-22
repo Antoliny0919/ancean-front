@@ -1,20 +1,10 @@
 import styled from 'styled-components';
+import SignatureText from '@/components/common/SignatureText';
 
 const StyledSectionHeaderArea = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => props.$alignItems};
-  h1 {
-    font-size: 64px;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing: 15px;
-    text-transform: uppercase;
-    color: ${(props) => props.color};
-    text-shadow: ${(props) => props.shadow};
-  }
+  align-items: center;
   h5 {
     margin: 0;
     font-family: 'GmarketSansMedium';
@@ -26,17 +16,25 @@ const StyledSectionHeaderArea = styled.div`
 export default function SectionHeader({
   mainTitle,
   subTitle,
-  color,
-  shadow,
-  alignItems = 'center',
+  colorHSL,
+  style = {},
 }) {
   return (
-    <StyledSectionHeaderArea
-      color={color}
-      shadow={shadow}
-      $alignItems={alignItems}
-    >
-      <h1 className={`fade-in-slide-down-suspend`}>{mainTitle}</h1>
+    <StyledSectionHeaderArea style={{ ...style }}>
+      <SignatureText
+        fontSize={80}
+        colorHSL={colorHSL}
+        props={{ className: 'fade-in-slide-down-suspend' }}
+        style={{
+          'font-family': 'Raleway',
+          'letter-spacing': '15px',
+          'margin-top': '2rem',
+          'margin-bottom': '1rem',
+        }}
+      >
+        {mainTitle}
+      </SignatureText>
+      {/* <h1 className={`fade-in-slide-down-suspend`}>{mainTitle}</h1> */}
       <h5 className="fade-in-slide-down-suspend">{subTitle}</h5>
     </StyledSectionHeaderArea>
   );

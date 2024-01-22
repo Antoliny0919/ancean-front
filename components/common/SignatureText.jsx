@@ -42,7 +42,7 @@ export default function SignatureText({
       $fontSize={fontSize}
       $fontColor={fontColor}
       $textShadow={textShadow}
-      props={{ ...props }}
+      {...props}
       style={{ ...style }}
     >
       {children}
