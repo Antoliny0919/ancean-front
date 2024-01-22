@@ -1,4 +1,4 @@
-import Footer from '../components/common/Footer';
+import Footer from '../components/footer/Footer';
 
 export default function Test() {
   return <Footer />;

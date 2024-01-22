@@ -9,7 +9,7 @@ import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { HahmletFont } from '../styles/font';
 import Navbar from '../components/common/Navbar';
-// import Footer from '../components/common/Footer';
+import Footer from '../components/footer/Footer';
 
 function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps) {
           />
           <Navbar pathName={pathname} />
           <Component {...props} />
-          {/* <Footer/> */}
+          <Footer />
         </main>
       </ThemeProvider>
     </Provider>

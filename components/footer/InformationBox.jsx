@@ -1,20 +1,28 @@
 import styled from 'styled-components';
-import SignatureText from './SignatureText';
+import SignatureText from '../common/SignatureText';
 
-const StyledFooterBox = styled.div`
+const StyledInformationBox = styled.div`
+  height: 100%;
+  width: 100%;
+  border: solid ${(props) => props.$borderColor} 5px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-export default function FooterBox({
+export default function InformationBox({
   children,
   boxTitle,
   fontSize,
+  borderColor,
   colorHSL,
   signatureTextProps = {},
   signatureTextStyle = {},
 }) {
   return (
-    <StyledFooterBox>
+    <StyledInformationBox $borderColor={borderColor}>
       <SignatureText
         fontSize={fontSize}
         colorHSL={colorHSL}
@@ -24,6 +32,6 @@ export default function FooterBox({
         {boxTitle}
       </SignatureText>
       {children}
-    </StyledFooterBox>
+    </StyledInformationBox>
   );
 }
