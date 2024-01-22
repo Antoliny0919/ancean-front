@@ -1,12 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { server } from '@/api/client';
-// import NavbarMain from '@/components/home/NavbarMain';
 import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
 import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
 import LatestPosts from '@/components/home/LatestPosts';
-// import BestPostByCategory from '@/components/home/BestPostByCategory';
 
 export default function Home({
   representativeCategory,

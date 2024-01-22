@@ -26,16 +26,18 @@ const StyledCategoryButton = styled.button`
 
 export default function CategoryButton({
   children,
+  name,
   props = {},
-  styleProps = {},
+  style = {},
 }) {
-  const categoryColor = CATEGORY_DATA[children]['color'];
+  const categoryColor = CATEGORY_DATA[name]['color'];
 
   return (
     <StyledCategoryButton
+      name={name}
       $categoryColor={categoryColor}
       {...props}
-      style={styleProps}
+      style={style}
     >
       {children}
     </StyledCategoryButton>

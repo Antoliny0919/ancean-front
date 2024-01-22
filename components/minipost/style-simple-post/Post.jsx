@@ -110,7 +110,7 @@ export default function Post({ post, reference }) {
             작성일: {writeDate.getFullYear()}년 {writeDate.getMonth() + 1}월{' '}
             {writeDate.getDate()}일
           </div>
-          <CategoryButton categoryName={category}>{category}</CategoryButton>
+          <CategoryButton name={category}>{category}</CategoryButton>
         </div>
       </StyledPostContent>
     </StyledPostArea>

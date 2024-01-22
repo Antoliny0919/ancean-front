@@ -2,6 +2,8 @@ import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import FlipCard from '../card/FlipCard';
 import { CATEGORY_DATA } from './data';
+import { linearGradient } from '@/styles/variable';
+import CategoryButton from '../button/CategoryButton';
 
 const StyledCategoryCard = styled.div`
   width: 100%;
@@ -28,29 +30,21 @@ const StyledCategoryCard = styled.div`
     4px 4px 0 0 var(--shadow-outline-deep-dark),
     5px 5px 0 0 var(--shadow-outline-deep-dark),
     6px 6px 0 0 var(--shadow-outline-deep-dark);
+  & > * {
+    margin-bottom: 10px;
+  }
   ${(props) =>
     props.back &&
     css`
-      & > * {
-        margin-bottom: 10px;
-        color: ${(props) => props.color};
-      }
-      button {
-        border: none;
-        font-size: 16px;
-        padding: 10px 20px;
-        border-radius: 10px;
-        color: ${(props) => props.color};
-        background: ${(props) => props.$buttonBackground};
-        border: solid ${(props) => props.color} 2px;
-        transition:
-          color 0.7s,
-          background 0.7s;
-      }
-      button:hover {
-        cursor: pointer;
-        color: white;
-        background: ${(props) => props.color};
+      div {
+        ${(props) =>
+          props.color && props.color.includes('linear-gradient')
+            ? css`
+                ${linearGradient.text(props.color)};
+              `
+            : css`
+                color: ${props.color};
+              `}
       }
     `}
   svg {
@@ -61,24 +55,28 @@ const StyledCategoryCard = styled.div`
 `;
 
 export default function FlipCategoryCard({ name, postCount, props = {} }) {
+  const category = CATEGORY_DATA[name];
+
   return (
     <FlipCard
       frontComponent={
-        <StyledCategoryCard $backgroundColor={CATEGORY_DATA[name]['color']}>
-          {CATEGORY_DATA[name]['logo']}
+        <StyledCategoryCard $backgroundColor={category['color']}>
+          {category['logo']}
           <div>{name}</div>
         </StyledCategoryCard>
       }
       backComponent={
         <StyledCategoryCard
           back={true}
-          color={CATEGORY_DATA[name]['color']}
-          $buttonBackground={CATEGORY_DATA[name]['transparentColor']}
+          color={category['color']}
+          $buttonBackground={category['transparentColor']}
         >
           <div>{name}</div>
           <div>{postCount}개의 포스트</div>
           <Link href={`/category/${name.toLowerCase()}`}>
-            <button>GO CATEGORY</button>
+            <CategoryButton style={{ padding: '8px 12px' }} name={name}>
+              GO {name}
+            </CategoryButton>
           </Link>
         </StyledCategoryCard>
       }

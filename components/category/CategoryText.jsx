@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { CATEGORY_DATA } from './data';
+import { linearGradient } from '../../styles/variable';
 
 const StyledCategoryText = styled.div`
   font-family: 'Pretendard-Bold';
@@ -15,9 +16,7 @@ const StyledCategoryText = styled.div`
     ${(props) =>
       props.color && props.color.includes('linear-gradient')
         ? css`
-            background: ${(props) => props.color};
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            ${linearGradient.text(props.color)}
           `
         : css`
             color: ${(props) => props.color};

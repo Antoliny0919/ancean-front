@@ -57,3 +57,12 @@ export const footer = {
   font-family: 'GmarketSansMedium';
   `,
 };
+
+export const linearGradient = {
+  text: (color) =>
+    `
+  background: ${color};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  `,
+};
