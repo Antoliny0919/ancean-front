@@ -67,14 +67,15 @@ export default function TopCategories({ categories }) {
           onSlideChange={(slide) => {
             changeCategory(slide);
           }}
-          autoplay={{ delay: 30000 }}
+          // autoplay={{ delay: 30000 }}
         >
-          {categories.map(({ name, color }, index) => (
+          {categories.map(({ name, color, post_count }, index) => (
             <SwiperSlide key={index} data-name={name}>
               {({ isActive }) => (
                 <FlipCategoryCard
                   name={name}
                   color={color}
+                  postCount={post_count}
                   props={{ isActive: isActive }}
                 ></FlipCategoryCard>
               )}
