@@ -9,6 +9,7 @@ const StyledCategoryCard = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
   background: ${(props) => props.color};
   border-radius: 10px;
   font-size: 20px;
@@ -27,21 +28,24 @@ const StyledCategoryCard = styled.div`
   }
 `;
 
-export default function FlipCategoryCard({ name, color }) {
+export default function FlipCategoryCard({ name, props = {} }) {
+  console.log(CATEGORY_DATA[name]['color']);
+
   return (
     <FlipCard
       frontComponent={
-        <StyledCategoryCard color={color}>
+        <StyledCategoryCard color={CATEGORY_DATA[name]['color']}>
           {CATEGORY_DATA[name]['logo']}
           <div>{name}</div>
         </StyledCategoryCard>
       }
       backComponent={
-        <StyledCategoryCard color={color}>
+        <StyledCategoryCard color={CATEGORY_DATA[name]['color']} back={true}>
           <div>it is back</div>
         </StyledCategoryCard>
       }
       style={{ width: '300px' }}
+      props={props}
     />
   );
 }

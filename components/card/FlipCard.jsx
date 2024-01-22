@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import styled from 'styled-components';
+import { useEffect, useRef } from 'react';
+import styled, { css } from 'styled-components';
 import { flexBox } from '../../styles/variable';
 
 const StyledFlipCard = styled.div`
@@ -8,6 +8,12 @@ const StyledFlipCard = styled.div`
   color: white;
   transition: transform 1s;
   transform-style: preserve-3d;
+  opacity: 0.5;
+  ${(props) =>
+    props.isActive &&
+    css`
+      opacity: 1;
+    `};
   & > * {
     grid-area: 1 / 1 / 1 / 1;
     ${flexBox.flex()}
@@ -35,11 +41,11 @@ export default function FlipCard({
   frontComponent,
   backComponent,
   style = {},
+  props = {},
 }) {
   const target = useRef(null);
 
-  const flipCategoryCard = (e) => {
-    e.preventDefault();
+  const flipCategoryCard = () => {
     if (target.current.style.transform === 'rotateY(180deg)') {
       target.current.style.transform = 'rotateY(0deg)';
     } else {
@@ -47,11 +53,16 @@ export default function FlipCard({
     }
   };
 
+  useEffect(() => {
+    target.current.style.transform = 'rotateY(0deg)';
+  }, [props.isActive]);
+
   return (
     <StyledFlipCard
       ref={target}
       onClick={flipCategoryCard}
       style={{ ...style }}
+      {...props}
     >
       <div className="flip-card-front">{frontComponent}</div>
       <div className="flip-card-back">{backComponent}</div>
