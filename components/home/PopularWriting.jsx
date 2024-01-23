@@ -52,6 +52,7 @@ export default function PopularWriting({ posts }) {
           <Swiper
             modules={[Navigation]}
             slidesPerView={2}
+            spaceBetween={0}
             loop={true}
             className="slide-news-style-post"
           >

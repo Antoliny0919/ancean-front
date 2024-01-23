@@ -1,4 +1,5 @@
-import Image from 'next/image';
+// import Image from 'next/image';
+import Image from '../common/Image';
 import styled from 'styled-components';
 import BannerImage from '@/public/banner-image.jpg';
 import Logo from '@/components/common/Logo';
@@ -7,6 +8,10 @@ import MoveSectionButtonContainer from './container/MoveSectionButtonContainer';
 const StyledBannerArea = styled.section`
   width: 100%;
   height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
   .banner-content {
     position: relative;
     flex-direction: column;
@@ -26,7 +31,7 @@ const StyledHomePageSectionLink = styled.div`
 export default function BannerMain({ sections }) {
   return (
     <StyledBannerArea>
-      <Image src={BannerImage} alt="no-image" style={{ width: '100%' }}></Image>
+      <Image src={BannerImage}></Image>
       <div className="banner-content">
         <Logo fontSize={100} markSize={80} />
         <p>안톨리니의 경험으로 만들어진 바다에 당신을 초대합니다.</p>

@@ -36,6 +36,18 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  @media screen and (min-width: 280px) {
+    font-size: 8px;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 10px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 12px;
+  }
+
   // IntersectionObserver
   .fade-in-slide-down-suspend {
     opacity: 0;
