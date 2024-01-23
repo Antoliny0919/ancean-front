@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper/modules';
 import SectionHeader from './items/SectionHeader';
-import SlidePaginationPost from '@/components/minipost/swiper/SlidePaginationPost';
+import NewsStylePost from '../minipost/NewsStylePost';
+import SwiperButton from '../button/SwiperButton';
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const StyledPopularWritingArea = styled.div`
   display: flex;
@@ -16,7 +21,21 @@ const ContentArea = styled.div`
   .wave {
     position: absolute;
     height: 700px;
+    max-width: 2048px;
     z-index: 0;
+  }
+`;
+
+const StyledPostSwiper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .slide-news-style-post {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    .swiper-button-next,
+    .swiper-button-prev {
+    }
   }
 `;
 
@@ -29,7 +48,29 @@ export default function PopularWriting({ posts }) {
         colorHSL={{ hue: 215, saturation: 58, lightness: 59 }}
       />
       <ContentArea>
-        <SlidePaginationPost posts={posts} />
+        <StyledPostSwiper>
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={2}
+            loop={true}
+            className="slide-news-style-post"
+          >
+            {posts.map((item, index) => (
+              <SwiperSlide key={index}>
+                <NewsStylePost
+                  postData={item}
+                  rotate={index % 2 === 0 ? 'under-degree' : 'up-degree'}
+                ></NewsStylePost>
+              </SwiperSlide>
+            ))}
+            <div className="swiper-button-prev">
+              <SwiperButton type="prev" />
+            </div>
+            <div className="swiper-button-next">
+              <SwiperButton type="next" />
+            </div>
+          </Swiper>
+        </StyledPostSwiper>
         <Wave
           fill={'#27566B'}
           paused={false}

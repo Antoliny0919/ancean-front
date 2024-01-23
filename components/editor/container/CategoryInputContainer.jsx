@@ -5,7 +5,6 @@ import { changeValue, forcedChangeValue } from '../modules/editor';
 import EntireBlockInput from '../../input/EntireBlockInput';
 import CategoryButton from '../../button/CategoryButton';
 import CommonButton from '../../button/CommonButton';
-import { CATEGORY_DATA } from '../../category/data';
 
 const StyledEditorCategoryArea = styled.div`
   display: flex;
@@ -50,14 +49,6 @@ export default function CategoryInputContainer({ placeholder, categories }) {
 
   const [categoryButton, setCategoryButton] = useState('');
 
-  const categoryColor = useMemo(() => {
-    if (CATEGORY_DATA[selectedCategory]) {
-      return CATEGORY_DATA[selectedCategory]['color'];
-    } else if (CATEGORY_DATA[categoryButton]) {
-      return CATEGORY_DATA[categoryButton]['color'];
-    }
-  }, [selectedCategory, categoryButton]);
-
   const onClickCategory = useCallback(() => {
     dispatch(
       forcedChangeValue({ name: 'selectedCategory', value: categoryButton }),
@@ -96,7 +87,7 @@ export default function CategoryInputContainer({ placeholder, categories }) {
           <div>
             <span className="title">카테고리: </span>
             <span className="category">
-              <CategoryButton props={{ $categoryColor: categoryColor }}>
+              <CategoryButton name={selectedCategory}>
                 {selectedCategory}
               </CategoryButton>
             </span>
@@ -113,9 +104,9 @@ export default function CategoryInputContainer({ placeholder, categories }) {
           />
           {categoryButton && (
             <CategoryButton
+              name={categoryButton}
               props={{
                 onClick: onClickCategory,
-                $categoryColor: categoryColor,
               }}
             >
               {categoryButton}

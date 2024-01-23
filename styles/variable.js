@@ -22,11 +22,25 @@ export const post = {
   shadow: () =>
     `
     box-shadow:
+    1px 1px 0 0 var(--shadow-outline-deep-dark),
     2px 2px 0 0 var(--shadow-outline-deep-dark),
     3px 3px 0 0 var(--shadow-outline-deep-dark),
     4px 4px 0 0 var(--shadow-outline-deep-dark),
     5px 5px 0 0 var(--shadow-outline-deep-dark),
     6px 6px 0 0 var(--shadow-outline-deep-dark);
+  `,
+  hoverShadow: () =>
+    `
+    box-shadow:
+    1px 1px 0 0 var(--shadow-outline-deep-dark),
+    2px 2px 0 0 var(--shadow-outline-deep-dark),
+    3px 3px 0 0 var(--shadow-outline-deep-dark),
+    4px 4px 0 0 var(--shadow-outline-deep-dark),
+    5px 5px 0 0 var(--shadow-outline-deep-dark),
+    6px 6px 0 0 var(--shadow-outline-deep-dark),
+    7px 7px 0 0 var(--shadow-outline-deep-dark),
+    8px 8px 0 0 var(--shadow-outline-deep-dark),
+    9px 9px 0 0 var(--shadow-outline-deep-dark);
   `,
   shadowBorder: () =>
     `

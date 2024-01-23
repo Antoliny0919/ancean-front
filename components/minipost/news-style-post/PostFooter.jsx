@@ -21,18 +21,16 @@ const StyledCategoryArea = styled.div`
     margin-right: 0.2rem;
   }
   .category {
-    /* background: ${(props) => props.$categoryColor}; */
     padding-left: 0.3rem;
     padding-right: 0.3rem;
-    color: ${(props) => props.$categoryColor};
   }
 `;
 
-export default function PostFooter({ author, categoryName, categoryColor }) {
+export default function PostFooter({ author, categoryName }) {
   return (
     <StyledPostFooterArea>
       <div className="author">작성자: {author}</div>
-      <StyledCategoryArea $categoryColor={categoryColor}>
+      <StyledCategoryArea>
         <span>카테고리: </span>
         <span className="category">{categoryName}</span>
       </StyledCategoryArea>

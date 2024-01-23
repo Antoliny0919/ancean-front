@@ -66,7 +66,7 @@ export default function PostHeader({ title, updated_at, author, category }) {
             {updatedAt.getFullYear()}년{updatedAt.getMonth() + 1}월
             {updatedAt.getDate()}일
           </div>
-          <CategoryButton styleProps={{ 'font-size': '20px' }}>
+          <CategoryButton name={category} style={{ 'font-size': '20px' }}>
             {category}
           </CategoryButton>
         </div>

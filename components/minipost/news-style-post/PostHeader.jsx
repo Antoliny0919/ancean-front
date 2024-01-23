@@ -33,7 +33,7 @@ const StyledMinibarArea = styled.div`
   }
 `;
 
-export default function PostHeader({ header_image, wave, categoryColor }) {
+export default function PostHeader({ header_image, wave }) {
   const imageUrl = header_image.includes(server.defaults.baseURL)
     ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
     : header_image;
@@ -51,7 +51,7 @@ export default function PostHeader({ header_image, wave, categoryColor }) {
         height={250}
         width={200}
       ></Image>
-      <StyledMinibarArea $categoryColor={categoryColor}>
+      <StyledMinibarArea>
         <div className="state">
           {WaveLogo}
           <div>{wave}</div>
