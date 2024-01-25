@@ -22,6 +22,11 @@ export const StyledOceanWaveButton = styled.div`
     4px 4px 0 0 var(--shadow-outline-deep-dark),
     5px 5px 0 0 var(--shadow-outline-deep-dark),
     6px 6px 0 0 var(--shadow-outline-deep-dark);
+  transition: background-color 0.7s;
+  &:hover {
+    cursor: pointer;
+    background-color: ${(props) => props.$hoverBackgroundColor};
+  }
   .title {
     margin-top: 0.5em;
   }
@@ -36,12 +41,22 @@ export const StyledOceanWaveButton = styled.div`
 
 export default function OceanWaveButton({
   children,
-  waveColor,
-  backgroundColor,
+  rgb,
   waveOption,
+  props = {},
 }) {
+  let { red, green, blue } = rgb;
+
+  let waveColor = `rgb(${red}, ${green}, ${blue})`;
+  let backgroundColor = `rgba(${red}, ${green}, ${blue}, 0.3)`;
+  let hoverBackgroundColor = `rgba(${red}, ${green}, ${blue}, 0.5)`;
+
   return (
-    <StyledOceanWaveButton $backgroundColor={backgroundColor}>
+    <StyledOceanWaveButton
+      $backgroundColor={backgroundColor}
+      $hoverBackgroundColor={hoverBackgroundColor}
+      {...props}
+    >
       <div className="title">{children}</div>
       <Wave
         fill={waveColor}

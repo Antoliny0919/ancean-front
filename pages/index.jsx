@@ -1,68 +1,27 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, createContext } from 'react';
 import { server } from '@/api/client';
 import SectionContainer from '@/components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
+import AboutMe from '@/components/home/AboutMe';
 import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
 import LatestPosts from '@/components/home/LatestPosts';
 
+export const SectionRefContext = createContext();
+
 export default function Home({ representativeCategory, posts }) {
   // Reference required for each section for scroll events
-  const AboutMeRef = useRef(null);
-  const PopularWritingRef = useRef(null);
-  const TopCategoriesRef = useRef(null);
-  const LatestPostsRef = useRef(null);
+  const aboutMeRef = useRef(null);
+  const popularWritingRef = useRef(null);
+  const topCategoriesRef = useRef(null);
+  const latestPostsRef = useRef(null);
 
-  const sections = [
-    {
-      name: 'About Me',
-      color: 'rgb(100, 184, 201)',
-      background: 'rgba(100, 184, 201, 0.3)',
-      waveOption: {
-        height: 5,
-        amplitude: 10,
-        speed: 0.3,
-        points: 2,
-      },
-      ref: AboutMeRef,
-    },
-    {
-      name: 'Popular Writing',
-      color: 'rgb(90, 140, 211)',
-      background: 'rgba(90, 140, 211, 0.3)',
-      waveOption: {
-        height: 15,
-        amplitude: 3,
-        speed: 0.5,
-        points: 2,
-      },
-      ref: PopularWritingRef,
-    },
-    {
-      name: 'Top Categories',
-      color: 'rgb(19, 181, 185)',
-      background: 'rgba(19, 181, 185, 0.3)',
-      waveOption: {
-        height: 7,
-        amplitude: 5,
-        speed: 0.3,
-        points: 2,
-      },
-      ref: TopCategoriesRef,
-    },
-    {
-      name: 'Latest Posts',
-      color: 'rgb(106, 111, 200)',
-      background: 'rgba(106, 111, 200, 0.3)',
-      waveOption: {
-        height: 15,
-        amplitude: 1,
-        speed: 0.8,
-        points: 2,
-      },
-      ref: LatestPostsRef,
-    },
-  ];
+  const sectionsRef = {
+    aboutMe: aboutMeRef,
+    popularWriting: popularWritingRef,
+    topCategories: topCategoriesRef,
+    latestPosts: latestPostsRef,
+  };
 
   useEffect(() => {
     let div = document.querySelectorAll('.fade-in-slide-down-suspend');
@@ -83,20 +42,23 @@ export default function Home({ representativeCategory, posts }) {
   });
 
   return (
-    <>
+    <SectionRefContext.Provider value={sectionsRef}>
       <main>
-        <Bannermain sections={sections} />
-        <SectionContainer ref={PopularWritingRef}>
+        <Bannermain />
+        <SectionContainer ref={aboutMeRef}>
+          <AboutMe />
+        </SectionContainer>
+        <SectionContainer ref={popularWritingRef}>
           <PopularWriting posts={posts.popularWriting} />
         </SectionContainer>
-        <SectionContainer ref={TopCategoriesRef}>
+        <SectionContainer ref={topCategoriesRef}>
           <TopCategories categories={representativeCategory} />
         </SectionContainer>
-        <SectionContainer ref={LatestPostsRef}>
+        <SectionContainer ref={latestPostsRef}>
           <LatestPosts posts={posts.latestPosts} />
         </SectionContainer>
       </main>
-    </>
+    </SectionRefContext.Provider>
   );
 }
 

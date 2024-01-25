@@ -7,6 +7,7 @@ import { flexBox } from '../../styles/variable';
 const StyledNavbar = styled.nav`
   @media screen and (max-width: 768px) {
     justify-content: center;
+    height: 66px;
   }
   @media screen and (min-width: 1024px) {
     font-size: 24px;
@@ -18,17 +19,21 @@ const StyledNavbar = styled.nav`
       z-index: 10;
     `}
   width: 100%;
-  height: 66px;
+  height: 100px;
   padding: 0.5em 3em;
+  max-width: 2048px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Pretendard-Bold';
   ${StyledLogoArea} {
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 768px) {
       font-size: 40px;
     }
-    font-size: 30px;
+    @media screen and (min-width: 1024px) {
+      font-size: 50px;
+    }
+    font-size: 50px;
   }
 `;
 
@@ -169,11 +174,7 @@ export default function Navbar({ currentPathName }) {
     <>
       {exceptRoute.includes(currentPathName) || (
         <StyledNavbar $currentPathName={currentPathName}>
-          {currentPathName !== '/' ? (
-            <Logo fontSize={40} markSize={30} />
-          ) : (
-            <div></div>
-          )}
+          {currentPathName !== '/' ? <Logo /> : <div></div>}
           <StyledNavSideBar>
             {sideBarProps.map(({ name, href, className }, index) => {
               return (

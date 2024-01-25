@@ -2,9 +2,8 @@ import styled, { css } from 'styled-components';
 import { CATEGORY_DATA } from './data';
 import { linearGradient } from '../../styles/variable';
 
-const StyledCategoryText = styled.div`
+export const StyledCategoryText = styled.div`
   font-family: 'Pretendard-Bold';
-  /* font-size: 3vw; */
   &::after {
     content: '${(props) => props.name}';
     position: relative;

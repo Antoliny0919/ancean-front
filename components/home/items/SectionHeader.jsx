@@ -34,9 +34,9 @@ export default function SectionHeader({
         colorHSL={colorHSL}
         props={{ className: 'fade-in-slide-down-suspend' }}
         style={{
-          'font-family': 'Raleway',
-          'margin-top': '2rem',
-          'margin-bottom': '1rem',
+          fontFamily: 'Raleway',
+          marginTop: '2rem',
+          marginBottom: '1rem',
         }}
       >
         {mainTitle}

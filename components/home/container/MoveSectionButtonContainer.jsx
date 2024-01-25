@@ -1,10 +1,9 @@
-import ThreeDimensionalButton from '../../button/ThreeDimensionalButton';
+import OceanWaveButton from '../../button/OceanWaveButton';
 
 export default function MoveSectionButtonContainer({
   children,
-  color,
-  shadow,
-  hoverShadow,
+  rgb,
+  waveOption,
   reference,
 }) {
   const onScrollSection = () => {
@@ -12,13 +11,12 @@ export default function MoveSectionButtonContainer({
   };
 
   return (
-    <ThreeDimensionalButton
-      color={color}
-      shadow={shadow}
-      hoverShadow={hoverShadow}
+    <OceanWaveButton
+      rgb={rgb}
+      waveOption={waveOption}
       props={{ onClick: onScrollSection }}
     >
       {children}
-    </ThreeDimensionalButton>
+    </OceanWaveButton>
   );
 }
