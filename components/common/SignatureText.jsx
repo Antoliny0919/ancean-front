@@ -1,8 +1,20 @@
 import styled from 'styled-components';
 
-const StyledSignatureText = styled.div`
-  font-size: ${(props) => `${props.$fontSize}px`};
-  letter-spacing: 5px;
+export const StyledSignatureText = styled.h1`
+  font-size: 24px;
+  letter-spacing: 3px;
+  @media screen and (min-width: 450px) {
+    font-size: 36px;
+    letter-spacing: 7px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 40px;
+    letter-spacing: 10px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 64px;
+    letter-spacing: 15px;
+  }
   font-family: 'Pretendard-Bold';
   text-transform: uppercase;
   color: ${(props) => props.$fontColor};

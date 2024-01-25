@@ -1,27 +1,43 @@
 import styled, { css } from 'styled-components';
 import Logo from './Logo';
 import Link from 'next/link';
+import { StyledLogoArea } from './Logo';
 import { flexBox } from '../../styles/variable';
 
 const StyledNavbar = styled.nav`
+  @media screen and (max-width: 768px) {
+    justify-content: center;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 24px;
+  }
   ${(props) =>
-    props.$pathName === '/' &&
+    props.$currentPathName === '/' &&
     css`
       position: absolute;
+      z-index: 10;
     `}
   width: 100%;
   height: 66px;
-  padding: 0.5rem 3rem;
+  padding: 0.5em 3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Pretendard-Bold';
+  ${StyledLogoArea} {
+    @media screen and (min-width: 1024px) {
+      font-size: 40px;
+    }
+    font-size: 30px;
+  }
 `;
 
 const StyledNavSideBar = styled.div`
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
   display: flex;
   align-items: center;
-  font-size: 26px;
   letter-spacing: 2px;
   font-weight: 700;
   a + a {
@@ -80,6 +96,9 @@ const StyledNavSideBar = styled.div`
 
 const StyledAboutMeButton = styled.button`
   /* CSS */
+  @media screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
   ${flexBox.flex()}
   background-color: #f4f4f4;
   border: 2px solid #3e3e3e;
@@ -88,8 +107,8 @@ const StyledAboutMeButton = styled.button`
   color: #3e3e3e;
   cursor: pointer;
   font-weight: 600;
-  padding: 0.8rem 1rem;
-  font-size: 16px;
+  font-size: 13px;
+  padding: 0.5em 0.8em;
   text-align: center;
   text-decoration: none;
   user-select: none;
@@ -124,14 +143,13 @@ const StyledAboutMeButton = styled.button`
     content: 'ANTOLINY0919';
     opacity: 0;
     z-index: 5;
-    font-size: 14px;
     transition-property: opacity;
     transition-delay: 0.15s;
     transition-duration: 0.5s;
   }
 `;
 
-export default function Navbar({ pathName }) {
+export default function Navbar({ currentPathName }) {
   const exceptRoute = ['/posts/newpost', '/category'];
 
   const sideBarProps = [
@@ -149,9 +167,9 @@ export default function Navbar({ pathName }) {
 
   return (
     <>
-      {exceptRoute.includes(pathName) || (
-        <StyledNavbar $pathName={pathName}>
-          {pathName !== '/' ? (
+      {exceptRoute.includes(currentPathName) || (
+        <StyledNavbar $currentPathName={currentPathName}>
+          {currentPathName !== '/' ? (
             <Logo fontSize={40} markSize={30} />
           ) : (
             <div></div>

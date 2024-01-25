@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledSectionButton = styled.button`
   border-radius: 10px;
-  padding: 0.7rem 1rem 0.7rem 1rem;
+  padding: 0.7em 1em 0.7em 1em;
   font-size: 16px;
   color: #f8f8f8;
   border: none;

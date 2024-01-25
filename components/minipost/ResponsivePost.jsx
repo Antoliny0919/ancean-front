@@ -1,13 +1,19 @@
-import Image from 'next/image';
+import Image from '../common/Image';
 import styled from 'styled-components';
-import { server, client } from '@/api/client';
-import CategoryButton from '../../button/CategoryButton';
+import CategoryButton from '../button/CategoryButton';
 
 const StyledPostArea = styled.div`
+  @media screen and (min-width: 450px) {
+    width: 18em;
+  }
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 70%;
+  }
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  width: 70%;
+  width: 15em;
   box-shadow:
     1px 1px 0 0 var(--shadow-outline-shallow-dark),
     2px 2px 0 0 var(--shadow-outline-shallow-dark),
@@ -20,8 +26,18 @@ const StyledPostArea = styled.div`
     border 1s;
   border-radius: 10px;
   .header-img {
-    width: 30%;
+    @media screen and (min-width: 768px) {
+      width: 30%;
+      height: 100%;
+      border-bottom: none;
+    }
+    width: 100%;
+    height: 10em;
+    aspect-ratio: 1 / 0.7;
+    border-bottom: solid rgba(73, 73, 73, 0.2) 0.1em;
+    /* height: 150px; */
     img {
+      border-radius: 10px;
       width: 100%;
       height: 100%;
     }
@@ -29,7 +45,6 @@ const StyledPostArea = styled.div`
   .post-content {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
   }
   & + & {
     margin-top: 2rem;
@@ -41,11 +56,24 @@ const StyledPostArea = styled.div`
 `;
 
 const StyledPostContent = styled.div`
-  padding: 1rem;
-  height: 20rem;
+  @media screen and (min-width: 768px) {
+    padding: 1rem;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 20rem;
+    padding: 1rem;
+  }
+  height: 13rem;
   width: 70%;
   .title {
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 22px;
+    }
     height: 15%;
+    font-size: 14px;
     display: block;
     font-family: 'Pretendard-Bold';
     overflow: hidden;
@@ -54,7 +82,13 @@ const StyledPostContent = styled.div`
   }
   .content {
     height: 55%;
-    font-size: 16px;
+    @media screen and (min-width: 768px) {
+      font-size: 12px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
+    }
+    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -64,13 +98,19 @@ const StyledPostContent = styled.div`
     background-color: white;
   }
   .footer {
+    @media screen and (min-width: 768px) {
+      font-size: 10px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 14px;
+    }
     height: 10%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 14px;
+    margin-top: 1em;
+    font-size: 8px;
     .write-date {
       font-family: 'SUIT-Regular';
       color: rgba(37, 37, 37, 0.8);
@@ -78,29 +118,15 @@ const StyledPostContent = styled.div`
   }
 `;
 
-export default function Post({ post, reference }) {
-  const myLoader = ({ src }) => {
-    return src;
-  };
-
+export default function ResponsivePost({ post, reference }) {
   const { category, introduce, created_at, header_image, title } = post;
 
   const writeDate = new Date(created_at);
 
-  const imageUrl = header_image.includes(server.defaults.baseURL)
-    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
-    : header_image;
-
   return (
     <StyledPostArea ref={reference}>
       <div className="header-img">
-        <Image
-          loader={myLoader}
-          src={imageUrl}
-          width={1000}
-          height={1000}
-          alt="no-img"
-        ></Image>
+        <Image src={header_image}></Image>
       </div>
       <StyledPostContent>
         <h3 className="title">{title}</h3>

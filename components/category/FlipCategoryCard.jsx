@@ -6,8 +6,12 @@ import { linearGradient } from '@/styles/variable';
 import CategoryButton from '../button/CategoryButton';
 
 const StyledCategoryCard = styled.div`
-  width: 100%;
-  height: 100%;
+  @media screen and (min-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
+  height: 70%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: center;

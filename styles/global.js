@@ -16,8 +16,18 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     background-color: #fff;
     max-width: 2048px;
+    min-width: 280px;
     margin-left: auto;
     margin-right: auto;
+  }
+  @media only screen and (min-width: 280px) {
+    font-size: 30px;
+    h1 {
+      font-size: 500px;
+    }
+    h5 {
+      font-size: 12px;
+    }
   }
 
   main {
@@ -34,18 +44,6 @@ export const GlobalStyle = createGlobalStyle`
   img {
     max-width: 100%;
     display: block;
-  }
-
-  @media screen and (min-width: 280px) {
-    font-size: 8px;
-  }
-
-  @media screen and (min-width: 768px) {
-    font-size: 10px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    font-size: 12px;
   }
 
   // IntersectionObserver
@@ -72,13 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-align-items: center;
     align-items: center;
   }
-
-  .swiper-category {
-    width: 100%;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
+  
   .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: -20px;
   }

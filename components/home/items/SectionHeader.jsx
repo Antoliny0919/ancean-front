@@ -6,10 +6,18 @@ const StyledSectionHeaderArea = styled.div`
   flex-direction: column;
   align-items: center;
   h5 {
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      margin-bottom: 1.5em;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 20px;
+      margin-bottom: 2em;
+    }
+    font-size: 12px;
+    margin-bottom: 1em;
     margin: 0;
     font-family: 'GmarketSansMedium';
-    font-size: 18px;
-    margin-bottom: 2rem;
   }
 `;
 
@@ -27,14 +35,12 @@ export default function SectionHeader({
         props={{ className: 'fade-in-slide-down-suspend' }}
         style={{
           'font-family': 'Raleway',
-          'letter-spacing': '15px',
           'margin-top': '2rem',
           'margin-bottom': '1rem',
         }}
       >
         {mainTitle}
       </SignatureText>
-      {/* <h1 className={`fade-in-slide-down-suspend`}>{mainTitle}</h1> */}
       <h5 className="fade-in-slide-down-suspend">{subTitle}</h5>
     </StyledSectionHeaderArea>
   );

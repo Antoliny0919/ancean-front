@@ -8,11 +8,10 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
 import { HahmletFont } from '../styles/font';
-import Navbar from '../components/common/Navbar';
-import Footer from '../components/footer/Footer';
+import Layout from '../components/common/Layout';
 
 function App({ Component, pageProps }: AppProps) {
-  const pathname = usePathname();
+  const currentPathName = usePathname();
 
   const { store, props } = wrapper.useWrappedStore(pageProps);
 
@@ -27,9 +26,9 @@ function App({ Component, pageProps }: AppProps) {
             height={4}
             showOnShallow={true}
           />
-          <Navbar pathName={pathname} />
-          <Component {...props} />
-          <Footer />
+          <Layout currentPathName={currentPathName}>
+            <Component {...props} />
+          </Layout>
         </main>
       </ThemeProvider>
     </Provider>

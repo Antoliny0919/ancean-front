@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import Post from '../../minipost/style-simple-post/Post';
+import RowStylePost from '../../minipost/RowStylePost';
 import ThreeDimensionalButton from '../../button/ThreeDimensionalButton';
 import CategoryText from '../CategoryText';
 import { flexBox } from '../../../styles/variable';
@@ -94,7 +94,7 @@ export default function CategoryNamePage({
             </div>
             {categoryPosts.map((post, index) => {
               return (
-                <Post
+                <RowStylePost
                   key={index}
                   post={post}
                   reference={categoryPosts.length === index + 1 ? target : null}

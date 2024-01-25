@@ -8,8 +8,13 @@ import Link from 'next/link';
 const StyledPostArea = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30rem;
-  border-radius: 0.5rem;
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    width: 25em;
+  }
+  font-size: 12px;
+  width: 20em;
+  border-radius: 10px;
   background-color: #fcfcfc;
   color: #171717;
   ${post.shadowBorder()};

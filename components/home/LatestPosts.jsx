@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 import SectionHeader from './items/SectionHeader';
-import Post from '@/components/minipost/style-simple-post/Post';
+import ResponsivePost from '../minipost/ResponsivePost';
 
 const StyledLatestPostsArea = styled.div`
-  padding: 5rem;
+  @media screen and (min-width: 768px) {
+    padding: 2rem 3rem;
+  }
 `;
 
 const StyledSectionBody = styled.div`
+  @media screen and (min-width: 768px) {
+    padding: 3rem 0;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 5rem 0;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding: 1rem 0;
   border: solid hsl(237, 46%, 60%) 0.2rem;
   background-color: rgba(106, 111, 200, 0.2);
   border-radius: 10px;
@@ -32,8 +39,8 @@ export default function LatestPosts({ posts }) {
         style={{ 'align-items': 'flex-start' }}
       ></SectionHeader>
       <StyledSectionBody>
-        {posts.slice(0, 3).map((post, index) => {
-          return <Post key={index} post={post}></Post>;
+        {posts.map((post, index) => {
+          return <ResponsivePost key={index} post={post}></ResponsivePost>;
         })}
       </StyledSectionBody>
     </StyledLatestPostsArea>

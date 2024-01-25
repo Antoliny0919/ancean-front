@@ -6,36 +6,60 @@ import PopularWriting from '@/components/home/PopularWriting';
 import TopCategories from '@/components/home/TopCategories';
 import LatestPosts from '@/components/home/LatestPosts';
 
-export default function Home({
-  representativeCategory,
-  // bestPostByCategory,
-  posts,
-}) {
+export default function Home({ representativeCategory, posts }) {
   // Reference required for each section for scroll events
+  const AboutMeRef = useRef(null);
   const PopularWritingRef = useRef(null);
   const TopCategoriesRef = useRef(null);
   const LatestPostsRef = useRef(null);
 
   const sections = [
     {
+      name: 'About Me',
+      color: 'rgb(100, 184, 201)',
+      background: 'rgba(100, 184, 201, 0.3)',
+      waveOption: {
+        height: 5,
+        amplitude: 10,
+        speed: 0.3,
+        points: 2,
+      },
+      ref: AboutMeRef,
+    },
+    {
       name: 'Popular Writing',
-      color: 'hsl(215, 58%, 59%)',
-      shadow: 'hsl(215, 58%, 40%)',
-      hoverShadow: 'hsl(215, 58%, 70%)',
+      color: 'rgb(90, 140, 211)',
+      background: 'rgba(90, 140, 211, 0.3)',
+      waveOption: {
+        height: 15,
+        amplitude: 3,
+        speed: 0.5,
+        points: 2,
+      },
       ref: PopularWritingRef,
     },
     {
       name: 'Top Categories',
-      color: 'hsl(181, 81%, 40%)',
-      shadow: 'hsl(181, 81%, 25%)',
-      hoverShadow: 'hsl(181, 81%, 60%)',
+      color: 'rgb(19, 181, 185)',
+      background: 'rgba(19, 181, 185, 0.3)',
+      waveOption: {
+        height: 7,
+        amplitude: 5,
+        speed: 0.3,
+        points: 2,
+      },
       ref: TopCategoriesRef,
     },
     {
       name: 'Latest Posts',
-      color: 'hsl(237, 46%, 60%)',
-      shadow: 'hsl(237, 46%, 40%)',
-      hoverShadow: 'hsl(237, 46%, 70%)',
+      color: 'rgb(106, 111, 200)',
+      background: 'rgba(106, 111, 200, 0.3)',
+      waveOption: {
+        height: 20,
+        amplitude: 1,
+        speed: 0.8,
+        points: 2,
+      },
       ref: LatestPostsRef,
     },
   ];

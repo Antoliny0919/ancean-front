@@ -4,25 +4,34 @@ const StyledPostBodyArea = styled.div`
   width: 100%;
   padding: 1rem;
   .title {
-    font-size: 18px;
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+    font-size: 12px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     font-family: 'Pretendard-Bold';
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.7em;
   }
   .content {
-    font-size: 14px;
+    @media screen and (min-width: 768px) {
+      font-size: 14px;
+    }
+    font-size: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     font-family: 'Pretendard-Light';
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.7em;
   }
   .created-date {
-    font-size: 12px;
+    @media screen and (min-width: 768px) {
+      font-size: 12px;
+    }
+    font-size: 9px;
     font-family: 'Pretendard-Light';
     color: rgba(57, 57, 57, 0.7);
   }

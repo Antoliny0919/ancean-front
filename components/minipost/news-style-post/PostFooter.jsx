@@ -4,25 +4,28 @@ const StyledPostFooterArea = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 13px;
-  border-top: solid rgba(73, 73, 73, 0.2) 0.1rem;
+  font-size: 10px;
+  padding: 0.5em 1em 0.5em 1em;
+  @media screen and (min-width: 768px) {
+    font-size: 13px;
+    padding: 0.5em 1em 0.5em 1em;
+  }
+  border-top: solid rgba(73, 73, 73, 0.2) 0.1em;
   font-family: 'GmarketSansMedium';
   align-items: center;
-  padding: 0.5rem 1rem 0.5rem 1rem;
 `;
 const StyledCategoryArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  margin-left: 2rem;
-  width: 60%;
+  width: 50%;
   span {
-    margin-right: 0.2rem;
+    margin-right: 0.2em;
   }
   .category {
-    padding-left: 0.3rem;
-    padding-right: 0.3rem;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
   }
 `;
 

@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import FlipCategoryCard from '../category/FlipCategoryCard';
@@ -10,9 +10,20 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
 const StyledTopCategoriesArea = styled.div`
-  margin-top: 3rem;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  @media screen and (min-width: 768px) {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  .swiper-category {
+    @media screen and (min-width: 768px) {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    padding-top: 0;
+    padding-bottom: 0;
+  }
   background: ${(props) => props.$backgroundColor};
   display: flex;
   flex-direction: column;
@@ -26,13 +37,10 @@ export default function TopCategories({ categories }) {
 
   const swiperRef = useRef(null);
 
-  const slidesPerView = useMemo(() => {
-    return 3;
-  }, []);
-
   const changeCategory = useCallback((slide) => {
-    let activeSlideNum = Math.floor(slidesPerView / 2);
-    let { name } = slide.visibleSlides[activeSlideNum].dataset;
+    let activeSlideNum = slide.activeIndex;
+    let slides = slide.slides;
+    let { name } = slides[activeSlideNum].dataset;
     setCategoryName(name);
   }, []);
 
@@ -47,7 +55,6 @@ export default function TopCategories({ categories }) {
         <Swiper
           ref={swiperRef}
           modules={[EffectCoverflow, Autoplay]}
-          slidesPerView={slidesPerView}
           effect={'coverflow'}
           className="swiper-category"
           slideToClickedSlide={true}
@@ -60,6 +67,17 @@ export default function TopCategories({ categories }) {
             modifier: 0.5,
             slideShadows: false,
           }}
+          breakpoints={{
+            280: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            },
+          }}
           onSwiper={(slide) => {
             console.log(slide);
             changeCategory(slide);
@@ -67,7 +85,7 @@ export default function TopCategories({ categories }) {
           onSlideChange={(slide) => {
             changeCategory(slide);
           }}
-          // autoplay={{ delay: 30000 }}
+          autoplay={{ delay: 30000 }}
         >
           {categories.map(({ name, color, post_count }, index) => (
             <SwiperSlide key={index} data-name={name}>

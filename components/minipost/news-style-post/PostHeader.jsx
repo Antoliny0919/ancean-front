@@ -1,5 +1,4 @@
-import Image from 'next/image';
-import { client, server } from '@/api/client';
+import Image from '../../common/Image';
 import styled from 'styled-components';
 import { WaveLogo, CommentLogo } from '../../common/Icon';
 
@@ -9,6 +8,10 @@ const StyledPostHeaderArea = styled.div`
   img {
     width: 90%;
     border-top-left-radius: 8px;
+    height: 150px;
+    @media screen and (min-width: 768px) {
+      height: 250px;
+    }
   }
 `;
 
@@ -19,12 +22,12 @@ const StyledMinibarArea = styled.div`
   align-items: center;
   justify-content: flex-end;
   width: 10%;
-  margin-bottom: 1rem;
+  margin-bottom: 1em;
   .state {
     text-align: center;
     svg {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1em;
+      height: 1em;
       color: ${({ theme }) => theme.colors.mainColor[8]};
     }
   }
@@ -34,23 +37,9 @@ const StyledMinibarArea = styled.div`
 `;
 
 export default function PostHeader({ header_image, wave }) {
-  const imageUrl = header_image.includes(server.defaults.baseURL)
-    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
-    : header_image;
-
-  const myLoader = ({ src }) => {
-    return src;
-  };
-
   return (
     <StyledPostHeaderArea>
-      <Image
-        loader={myLoader}
-        src={imageUrl}
-        alt="no-img"
-        height={250}
-        width={200}
-      ></Image>
+      <Image src={header_image}></Image>
       <StyledMinibarArea>
         <div className="state">
           {WaveLogo}
@@ -58,7 +47,7 @@ export default function PostHeader({ header_image, wave }) {
         </div>
         <div className="state">
           {CommentLogo}
-          <div>22</div>
+          <div>0</div>
         </div>
       </StyledMinibarArea>
     </StyledPostHeaderArea>

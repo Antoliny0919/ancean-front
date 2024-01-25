@@ -12,15 +12,24 @@ const StyledPopularWritingArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media screen and (min-width: 768px) {
+    height: 700px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 800px;
+  }
+  height: 550px;
 `;
 
 const ContentArea = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   .wave {
-    position: absolute;
-    height: 700px;
+    height: 400px;
+    bottom: 400px;
+    position: relative;
     max-width: 2048px;
     z-index: 0;
   }
@@ -51,10 +60,17 @@ export default function PopularWriting({ posts }) {
         <StyledPostSwiper>
           <Swiper
             modules={[Navigation]}
-            slidesPerView={2}
             spaceBetween={0}
             loop={true}
             className="slide-news-style-post"
+            breakpoints={{
+              768: {
+                slidesPerView: 1,
+              },
+              1024: {
+                slidesPerView: 2,
+              },
+            }}
           >
             {posts.map((item, index) => (
               <SwiperSlide key={index}>
@@ -77,8 +93,8 @@ export default function PopularWriting({ posts }) {
           paused={false}
           className="wave"
           options={{
-            height: 300,
-            amplitude: 100,
+            height: 100,
+            amplitude: 70,
             speed: 0.5,
             points: 2,
           }}

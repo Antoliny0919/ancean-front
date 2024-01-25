@@ -4,8 +4,12 @@ import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
 
 const StyledSwiperButton = styled.div`
   svg {
-    height: 3rem;
-    width: 3rem;
+    @media screen and (min-width: 768px) {
+      height: 3rem;
+      width: 3rem;
+    }
+    height: 1.5rem;
+    width: 1.5rem;
     color: ${({ theme }) => theme.colors.mainColor[4]};
     transition: color 0.7s;
   }

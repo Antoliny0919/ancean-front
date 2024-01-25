@@ -66,8 +66,7 @@ export const footer = {
   smallBox: () =>
     `
   width: 100%;
-  height: 60px;
-  font-size: 16px;
+  font-size: 8px;
   font-family: 'GmarketSansMedium';
   `,
 };
