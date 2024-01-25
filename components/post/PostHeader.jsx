@@ -3,32 +3,57 @@ import CategoryButton from '../button/CategoryButton';
 import Wave from 'react-wavify';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import { post } from '../../styles/variable';
+// import StyledCategory
 
 const StyledPostHeader = styled.div`
+  @media screen and (min-width: 768px) {
+    font-size: 32px;
+    padding-top: 4em;
+  }
   width: 80%;
-  padding-top: 10rem;
+  font-size: 20px;
+  padding-top: 1em;
   margin-right: auto;
   margin-left: auto;
-  height: 42rem;
+  height: 20em;
   background-color: white;
   color: black;
-  font-size: 32px;
   font-family: 'Pretendard-Bold';
   .post-main {
     position: relative;
     z-index: 100;
+    h1 {
+      @media screen and (min-width: 450px) {
+        font-size: 32px;
+      }
+      @media screen and (min-width: 768px) {
+        font-size: 64px;
+        text-align: start;
+      }
+      ${post.contentEllipsis(2)};
+      font-size: 24px;
+      max-height: 300px;
+      text-align: center;
+    }
   }
   .title {
-    max-height: 370px;
-    overflow: hidden;
   }
   .sub-title {
+    @media screen and (min-width: 450px) {
+      font-size: 12px;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      justify-content: flex-start;
+    }
     display: flex;
     flex-direction: row;
-    font-size: 20px;
+    font-size: 8px;
     align-items: center;
+    justify-content: center;
     & > * {
-      margin-left: 1.5rem;
+      margin-right: 1.5em;
       display: flex;
       align-items: center;
     }
@@ -42,7 +67,13 @@ const StyledHeaderWave = styled.div`
   position: relative;
   bottom: 250px;
   .wave {
-    height: 400px;
+    @media screen and (min-width: 450px) {
+      height: 300px;
+    }
+    @media screen and (min-width: 768px) {
+      height: 400px;
+    }
+    height: 250px;
     z-index: 0;
   }
 `;
@@ -54,7 +85,7 @@ export default function PostHeader({ title, updated_at, author, category }) {
     <>
       <StyledPostHeader>
         <div className="title post-main">
-          <h1>{title}</h1>
+          <h1>{title}킬리만자로의 표범과 함께 사냥을 나서는 시현</h1>
         </div>
         <div className="sub-title post-main">
           <div className="author">
@@ -66,9 +97,7 @@ export default function PostHeader({ title, updated_at, author, category }) {
             {updatedAt.getFullYear()}년{updatedAt.getMonth() + 1}월
             {updatedAt.getDate()}일
           </div>
-          <CategoryButton name={category} style={{ 'font-size': '20px' }}>
-            {category}
-          </CategoryButton>
+          <CategoryButton name={category}>{category}</CategoryButton>
         </div>
       </StyledPostHeader>
       <StyledHeaderWave>
@@ -78,7 +107,7 @@ export default function PostHeader({ title, updated_at, author, category }) {
           className="wave"
           options={{
             height: 70,
-            amplitude: 100,
+            amplitude: 50,
             speed: 0.5,
             points: 2,
           }}

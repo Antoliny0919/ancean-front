@@ -7,7 +7,7 @@ import { flexBox } from '../../styles/variable';
 const StyledNavbar = styled.nav`
   @media screen and (max-width: 768px) {
     justify-content: center;
-    height: 66px;
+    height: 100px;
   }
   @media screen and (min-width: 1024px) {
     font-size: 24px;
@@ -27,13 +27,16 @@ const StyledNavbar = styled.nav`
   justify-content: space-between;
   font-family: 'Pretendard-Bold';
   ${StyledLogoArea} {
+    @media screen and (min-width: 450px) {
+      font-size: 50px;
+    }
     @media screen and (min-width: 768px) {
       font-size: 40px;
     }
     @media screen and (min-width: 1024px) {
       font-size: 50px;
     }
-    font-size: 50px;
+    font-size: 40px;
   }
 `;
 

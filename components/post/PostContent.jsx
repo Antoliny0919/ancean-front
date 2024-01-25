@@ -7,13 +7,14 @@ import Warning from './item/Warning';
 import ImageTool from './item/ImageTool';
 
 const StyledPostContent = styled.div`
-  width: 768px;
   position: relative;
-  bottom: 220px;
+  bottom: 100px;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Pretendard-Light';
 `;
+
+const StyledMoveQuote = styled.div``;
 
 export default function PostContent({ content }) {
   const haveContent = Object.keys(content);
@@ -49,13 +50,16 @@ export default function PostContent({ content }) {
   return (
     <>
       {haveContent.length !== 0 ? (
-        <StyledPostContent>
-          {content.map(({ data, type }) => {
-            return parser[type](data);
-          })}
-        </StyledPostContent>
+        <>
+          <StyledPostContent>
+            {content.map(({ data, type }) => {
+              return parser[type](data);
+            })}
+            <StyledMoveQuote>hello</StyledMoveQuote>
+          </StyledPostContent>
+        </>
       ) : (
-        <div>no contente</div>
+        <div>no content</div>
       )}
     </>
   );

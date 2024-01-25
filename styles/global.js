@@ -156,33 +156,74 @@ export const GlobalStyle = createGlobalStyle`
 
   // editor js
 
-  .ce-toolbar__content {
-    max-width: 768px;
-  }
+  // editor js <p/> tag global option
 
+  // paragrapth <p/>
   .ce-paragraph {
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
     font-family: 'Pretendard-Light';
-    font-size: 16px;
+    padding: 0.3em 0;
+    font-size: 14px;
+    max-width: 768px;
     line-height: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
     outline: none;
   }
-  .cdx-block {
-    padding: 0.3em 0;
-    font-family: 'Pretendard-Light';
-  }
 
+  // ce-block__content --> <h/>tag, <code/>
   .ce-block__content .ce-header {
     font-family: 'Pretendard-Bold';
     padding: 0.3em 0 0.3em;
-    margin-bottom: 3px;
-    margin-top: 0;
     line-height: 1.25em;
     outline: none;
+  }
+
+  // ce-header --> <h/> tag
+  // default <h/> tag font-size used em, but default font size is to small(16px) so <h4, 5, 6> tag is are too small
+  h1.ce-header {
+    @media screen and (min-width: 768px) {
+      font-size: 36px;
+    }
+    font-size: 30px;
+  }
+  h2.ce-header{
+    @media screen and (min-width: 768px) {
+      font-size: 30px;
+    }
+    font-size: 26px;
+  }
+  h3.ce-header{
+    @media screen and (min-width: 768px) {
+      font-size: 26px;
+    }
+    font-size: 22px;
+  }
+  h4.ce-header {
+    @media screen and (min-width: 768px) {
+      font-size: 22px;
+    }
+    font-size: 18px;
+  }
+  h5.ce-header {
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+    }
+    font-size: 16px;
+  }
+  h6.ce-header {
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
+    font-size: 14px;
   }
 
   .ce-block__content {
     position: relative;
     max-width: 768px;
+    margin: 7px 0;
     margin: 0 auto;
     -webkit-transition: background-color .15s ease;
     transition: background-color .15s ease;
@@ -190,24 +231,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .ce-block__content > .ce-code {
     margin: 1.5rem 0;
-  }
-
-  .ce-block__content > .cdx-quote {
-    font-family: 'Pretendard-Bold';
-    margin: 1.5rem 0;
-    font-size: 20px;
-    padding: 0.7rem 0.7rem 0.7rem 1.5rem;
-    border-left: solid ${({ theme }) => theme.colors.post.deep} 4px;
-    background-color: ${({ theme }) => theme.colors.post.shallow};
-  }
-
-  .cdx-quote .cdx-quote__text {
-    padding: 0;
-    border: none;
-    webkit-box-shadow: none;
-    box-shadow: none;
-    min-height: 0;
-    margin-bottom: 0;
   }
   
   .cdx-block > a {
@@ -237,12 +260,35 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: .3px;
   }
 
-  code {
-    font-size: 14px;
-  }
-
+  // quote default style remove
   .cdx-quote__caption {
     display: none;
+  }
+
+  .cdx-quote .cdx-quote__text {
+    padding: 0;
+    border: none;
+    webkit-box-shadow: none;
+    box-shadow: none;
+    min-height: 0;
+    margin-bottom: 0;
+  }
+
+  // quote
+
+  .ce-block__content > .cdx-quote {
+    font-family: 'Pretendard-Bold';
+    margin: 1.5rem 0;
+    padding: 0.7rem 0.7rem 0.7rem 1.5rem;
+    border-left: solid ${({ theme }) => theme.colors.post.deep} 4px;
+    background-color: ${({ theme }) => theme.colors.post.shallow};
+  }
+
+  .cdx-quote, .cdx-warning__title {
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+    }
+    font-size: 16px;
   }
 
   // editorJS(Warning Block)
@@ -257,7 +303,6 @@ export const GlobalStyle = createGlobalStyle`
 
   .cdx-warning__title {
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
     color: #EE801A;
     background-color: white;
     padding: 10px 12px;
@@ -276,9 +321,14 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   .cdx-warning > .cdx-warning__message {
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+      padding: 14px 16px;
+    }
     border: none;
     border-radius: 0;
-    padding: 14px 16px;
+    font-size: 14px;
+    padding: 10px 12px;
   }
 
   .cdx-warning__message:hover {

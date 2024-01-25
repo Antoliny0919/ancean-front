@@ -8,8 +8,12 @@ import { flexBox, codeBlock } from '../../../styles/variable';
 import '@/node_modules/highlight.js/styles/googlecode.css';
 
 const StyledCodeBlock = styled.div`
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+  font-size: 12px;
+  margin-top: 1em;
+  margin-bottom: 1em;
   box-shadow:
     1px 1px hsl(212, 65%, 35%),
     2px 2px hsl(212, 65%, 32%),
@@ -18,7 +22,7 @@ const StyledCodeBlock = styled.div`
     5px 5px hsl(212, 65%, 23%);
   border-radius: 10px;
   pre {
-    margin-top: 0;
+    margin: 0;
   }
   .content {
     padding-bottom: 1rem;
@@ -26,19 +30,17 @@ const StyledCodeBlock = styled.div`
     border-bottom-right-radius: 10px;
   }
   code {
+    height: 100%;
+    font-size: inherit;
     background-color: ${({ theme }) => theme.colors.post.shallow};
     transition: background-color 0.7s;
   }
 `;
 
-// const StyledCodeBlockInfo = styled.div`
-//   ${flexBox()}
-//   border-radius: 5px;
-//   padding: 2.5px 8px;
-
-// `
-
 const StyledCodeBlockHeader = styled.div`
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -46,14 +48,17 @@ const StyledCodeBlockHeader = styled.div`
   align-items: center;
   width: 100%;
   height: 35px;
-  font-size: 12px;
+  font-size: 10px;
   background-color: ${({ theme }) => theme.colors.post.deep};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  padding: 0px 15px;
+  padding: 0 1.5em;
   .header-left-side {
-    display: flex;
-    align-items: flex-end;
+    @media screen and (min-width: 768px) {
+      display: flex;
+      align-items: flex-end;
+    }
+    display: none;
     width: 100%;
     height: 100%;
     .mac-web-interface {
@@ -133,7 +138,7 @@ export default function Code({ children }) {
   };
 
   return (
-    <StyledCodeBlock>
+    <StyledCodeBlock className="ce-block__content">
       <StyledCodeBlockHeader>
         <div className="header-left-side">
           <div className="mac-web-interface">
