@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
 
-const StyledOceanWaveButton = styled.div`
+export const StyledOceanWaveButton = styled.div`
   font-size: 16px;
-  /* padding: 2em 1em; */
+  font-family: 'Raleway';
   color: #f8f8f8;
   width: 7em;
   border-radius: 10px;
@@ -26,9 +26,9 @@ const StyledOceanWaveButton = styled.div`
     margin-top: 0.5em;
   }
   .wave {
-    height: 50px;
+    height: 3em;
     svg {
-      height: 50px;
+      height: 3em;
       border-radius: 10px;
     }
   }

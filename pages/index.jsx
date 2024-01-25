@@ -55,7 +55,7 @@ export default function Home({ representativeCategory, posts }) {
       color: 'rgb(106, 111, 200)',
       background: 'rgba(106, 111, 200, 0.3)',
       waveOption: {
-        height: 20,
+        height: 15,
         amplitude: 1,
         speed: 0.8,
         points: 2,
