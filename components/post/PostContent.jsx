@@ -5,7 +5,6 @@ import Code from './item/Code';
 import Quote from './item/Quote';
 import Warning from './item/Warning';
 import ImageTool from './item/ImageTool';
-import { post } from '../../styles/variable';
 import Link from 'next/link';
 
 const StyledPostContent = styled.div`
@@ -16,20 +15,31 @@ const StyledPostContent = styled.div`
   font-family: 'Pretendard-Light';
 `;
 
-const StyledMoveQuote = styled.div`
+const StyledMoveQuoteSidebar = styled.div`
+  @media screen and (max-width: 1280px) {
+    display: none;
+  }
   position: sticky;
-  z-index: 10;
+  font-family: 'NanumBarunGothic';
   top: 100px;
-  left: 100%;
+  left: 80%;
+  z-index: 10;
   width: 240px;
-  border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
-  font-size: 12px;
+  max-height: calc(100vh - 256px);
   padding: 1rem 0;
+  font-size: 12px;
+  border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
   .move-quote-text {
     margin-left: 10px;
-    color: #e7e7e7;
     padding: 0.2rem 0;
-    ${post.titleEllipsis()};
+    transition:
+      transform 0.7s,
+      color 0.7s;
+    color: #bbbbbb;
+  }
+  .move-quote-text:hover {
+    transform: scale(1.05);
+    color: #626262;
   }
 `;
 
@@ -66,7 +76,7 @@ export default function PostContent({ content }) {
 
   return (
     <>
-      <StyledMoveQuote>
+      <StyledMoveQuoteSidebar>
         {content.map(({ data, type }, index) => {
           if (type === 'quote') {
             const { text } = data;
@@ -77,7 +87,7 @@ export default function PostContent({ content }) {
             );
           }
         })}
-      </StyledMoveQuote>
+      </StyledMoveQuoteSidebar>
       {haveContent.length !== 0 ? (
         <>
           <StyledPostContent>
@@ -87,7 +97,7 @@ export default function PostContent({ content }) {
           </StyledPostContent>
         </>
       ) : (
-        <div>no content</div>
+        <></>
       )}
     </>
   );
