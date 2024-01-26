@@ -5,6 +5,8 @@ import Code from './item/Code';
 import Quote from './item/Quote';
 import Warning from './item/Warning';
 import ImageTool from './item/ImageTool';
+import { post } from '../../styles/variable';
+import Link from 'next/link';
 
 const StyledPostContent = styled.div`
   position: relative;
@@ -14,7 +16,22 @@ const StyledPostContent = styled.div`
   font-family: 'Pretendard-Light';
 `;
 
-const StyledMoveQuote = styled.div``;
+const StyledMoveQuote = styled.div`
+  position: sticky;
+  z-index: 10;
+  top: 100px;
+  left: 100%;
+  width: 240px;
+  border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
+  font-size: 12px;
+  padding: 1rem 0;
+  .move-quote-text {
+    margin-left: 10px;
+    color: #e7e7e7;
+    padding: 0.2rem 0;
+    ${post.titleEllipsis()};
+  }
+`;
 
 export default function PostContent({ content }) {
   const haveContent = Object.keys(content);
@@ -49,13 +66,24 @@ export default function PostContent({ content }) {
 
   return (
     <>
+      <StyledMoveQuote>
+        {content.map(({ data, type }, index) => {
+          if (type === 'quote') {
+            const { text } = data;
+            return (
+              <div className="move-quote-text" key={index}>
+                <Link href={`#${text}`}>{text}</Link>
+              </div>
+            );
+          }
+        })}
+      </StyledMoveQuote>
       {haveContent.length !== 0 ? (
         <>
           <StyledPostContent>
             {content.map(({ data, type }) => {
               return parser[type](data);
             })}
-            <StyledMoveQuote>hello</StyledMoveQuote>
           </StyledPostContent>
         </>
       ) : (
