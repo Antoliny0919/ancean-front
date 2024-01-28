@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
 import { resetHeaderImageState } from '../../editor/modules/editor';
 import { EditorContext } from '../../editor/MarkdownEditor';
-import CategorySelect from '../../category/CategorySelect';
+import CategorySelectContainer from '../../editor/container/CategorySelectContainer';
 import CategoryText from '../../category/CategoryText';
 import { flexBox, post } from '../../../styles/variable';
 
@@ -47,6 +47,12 @@ const StyledTopArea = styled.div`
     width: 60%;
     display: flex;
     flex-direction: column;
+    .post-category-select {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-around;
+    }
     h3 {
       margin: 10px 0px;
       width: 100%;
@@ -122,14 +128,17 @@ export default function Top({
           )}
         </div>
         <div className="post-info">
-          {selectedCategory ? (
-            <CategoryText
-              name={selectedCategory}
-              style={{ fontSize: '40px' }}
-            ></CategoryText>
-          ) : (
-            <CategorySelect categories={categories}></CategorySelect>
-          )}
+          <div className="post-category-select">
+            {selectedCategory && (
+              <CategoryText
+                name={selectedCategory}
+                style={{ fontSize: '30px' }}
+              ></CategoryText>
+            )}
+            <CategorySelectContainer
+              categories={categories}
+            ></CategorySelectContainer>
+          </div>
           <h3>{title}</h3>
           <textarea placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"></textarea>
         </div>

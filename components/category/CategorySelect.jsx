@@ -9,14 +9,27 @@ const StyledOption = styled.li`
   transition: 0.7s;
 `;
 
-export default function CategorySelect({ categories }) {
+export default function CategorySelect({
+  categories,
+  selectedCategory,
+  defaultData,
+  optionProps = {},
+  selectState,
+  setSelectState,
+}) {
   return (
-    <CommonSelect>
+    <CommonSelect
+      selectedData={selectedCategory}
+      defaultData={defaultData}
+      selectState={selectState}
+      setSelectState={setSelectState}
+    >
       {categories.map((category, index) => {
         return (
           <StyledOption
             key={index}
             $backgroundColor={CATEGORY_DATA[category.name]['color']}
+            {...optionProps}
           >
             {category.name}
           </StyledOption>

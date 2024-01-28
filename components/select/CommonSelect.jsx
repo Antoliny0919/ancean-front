@@ -53,10 +53,18 @@ const StyledCommonSelect = styled.div`
   }
 `;
 
-export default function CommonSelect({ children }) {
+export default function CommonSelect({
+  children,
+  selectedData,
+  defaultData,
+  selectState,
+  setSelectState,
+}) {
   return (
-    <StyledCommonSelect>
-      <button className="label">hello</button>
+    <StyledCommonSelect $selectState={selectState}>
+      <button className="label" onClick={setSelectState}>
+        {selectedData ? selectedData : defaultData}
+      </button>
       <ul className="option-list">{children}</ul>
     </StyledCommonSelect>
   );
