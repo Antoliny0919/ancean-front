@@ -25,7 +25,7 @@ const StyledMoveQuoteSidebar = styled.div`
   left: 80%;
   z-index: 10;
   width: 240px;
-  max-height: calc(100vh - 256px);
+  /* max-height: calc(100vh - 256px); */
   padding: 1rem 0;
   font-size: 12px;
   border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;

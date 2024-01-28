@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import TitleContainer from './container/TitleContainer';
-import CategoryInputContainer from './container/CategoryInputContainer';
+// import CategoryInputContainer from './container/CategoryInputContainer';
 import NotificationContainer from './container/NotificationContainer';
 import { useRef } from 'react';
 
@@ -16,21 +16,25 @@ const StyledMarkdownEditorArea = styled.div`
 `;
 
 const StyledMarkdownHeaderArea = styled.div`
+  @media screen and (min-width: 768px) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 36px;
+  }
   position: relative;
-  height: 80px;
+  width: 100%;
+  font-size: 16px;
   z-index: 10;
-  display: flex;
-  flex-direction: row;
   border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
   & > * {
-    flex: 0.5;
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 0.5em 1em 0.5em 1em;
   }
 `;
 
 export const EditorContext = createContext();
 
-export default function MarkdownEditor({ categories }) {
+export default function MarkdownEditor() {
   const editorRef = useRef();
 
   // const [modalState, setModalState] = useState(false);
@@ -61,10 +65,10 @@ export default function MarkdownEditor({ categories }) {
           {/* titleInput */}
           <TitleContainer />
           {/* categoryInput */}
-          <CategoryInputContainer
+          {/* <CategoryInputContainer
             placeholder={'카테고리를 입력해주세요..'}
             categories={categories}
-          />
+          /> */}
         </StyledMarkdownHeaderArea>
         <MarkdownEditorContent />
         <MarkdownEditorFooter />

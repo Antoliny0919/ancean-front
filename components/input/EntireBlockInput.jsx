@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledBlockInput = styled.input`
   width: inherit;
-  font-size: 32px;
+  font-size: inherit;
   border: none;
   outline: none;
 `;

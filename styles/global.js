@@ -363,5 +363,30 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
-
+  // eidtor Toolbar
+  
+  .ce-toolbar__content {
+    max-width: 768px;
+  }
+  .ce-toolbar__actions {
+    right: auto;
+  }
+  .ce-toolbar__plus {
+    position: static;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    background-color: #fff;
+    border: 1px solid #E8E8EB;
+    box-shadow: 0 3px 15px -3px #0d142121;
+  }
+  .ce-toolbar__settings-btn {
+    position: static;
+    width: 36px;
+    height: 36px;
+    z-index: 2;
+    background-color: #fff;
+    border: 1px solid #E8E8EB;
+    box-shadow: 0 3px 15px -3px #0d142121;
+  }
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledFontButton = styled.button`
+export const StyledFontButton = styled.button`
   background: none;
   border: none;
   color: ${({ theme }) => theme.colors.mainColor[4]};

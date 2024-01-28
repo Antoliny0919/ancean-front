@@ -7,10 +7,13 @@ import CategoryButton from '../../button/CategoryButton';
 import CommonButton from '../../button/CommonButton';
 
 const StyledEditorCategoryArea = styled.div`
+  @media screen and (min-width: 768px) {
+    border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
+  }
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
+  border-left: none;
   width: 100%;
   background-color: white;
 `;
