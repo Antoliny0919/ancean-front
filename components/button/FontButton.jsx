@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledFontButton = styled.button`
   background: none;
@@ -6,11 +6,21 @@ export const StyledFontButton = styled.button`
   color: ${({ theme }) => theme.colors.mainColor[4]};
   font-size: 18px;
   font-weight: 900;
-  transition: color 0.7s;
-  &:hover {
-    cursor: pointer;
-    color: #28baaf;
-  }
+  transition:
+    color 0.7s,
+    opacity 0.7s;
+  ${(props) =>
+    props.disabled
+      ? css`
+          opacity: 0.7;
+        `
+      : css`
+          opacity: 1;
+          &:hover {
+            cursor: pointer;
+            color: #28baaf;
+          }
+        `}
 `;
 
 export default function FontButton({ children, props = {} }) {

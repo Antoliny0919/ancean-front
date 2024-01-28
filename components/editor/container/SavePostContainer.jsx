@@ -67,7 +67,7 @@ export default function SavePostContainer({
     <>
       {buttonComponent({
         children: children,
-        props: { onClick: saveOrCreate },
+        props: title ? { onClick: saveOrCreate } : { disabled: true },
       })}
     </>
   );

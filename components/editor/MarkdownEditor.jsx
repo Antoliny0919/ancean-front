@@ -6,14 +6,8 @@ import styled from 'styled-components';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import TitleContainer from './container/TitleContainer';
-// import CategoryInputContainer from './container/CategoryInputContainer';
 import NotificationContainer from './container/NotificationContainer';
 import { useRef } from 'react';
-
-const StyledMarkdownEditorArea = styled.div`
-  height: 100vh;
-  width: 100vw;
-`;
 
 const StyledMarkdownHeaderArea = styled.div`
   @media screen and (min-width: 768px) {
@@ -53,7 +47,7 @@ export default function MarkdownEditor({ categories }) {
   // }, []);
 
   return (
-    <StyledMarkdownEditorArea>
+    <>
       <EditorContext.Provider value={contextProps}>
         {/* Notification Save Message */}
         <NotificationContainer />
@@ -70,14 +64,10 @@ export default function MarkdownEditor({ categories }) {
           {/* titleInput */}
           <TitleContainer />
           {/* categoryInput */}
-          {/* <CategoryInputContainer
-            placeholder={'카테고리를 입력해주세요..'}
-            categories={categories}
-          /> */}
         </StyledMarkdownHeaderArea>
         <MarkdownEditorContent />
         <MarkdownEditorFooter categories={categories} />
       </EditorContext.Provider>
-    </StyledMarkdownEditorArea>
+    </>
   );
 }

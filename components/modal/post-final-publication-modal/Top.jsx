@@ -10,10 +10,16 @@ import CategoryText from '../../category/CategoryText';
 import { flexBox, post } from '../../../styles/variable';
 
 const StyledTopArea = styled.div`
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
   height: 100%;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   h3 {
     margin: 10px;
   }
@@ -33,8 +39,8 @@ const StyledTopArea = styled.div`
     border-radius: 10px;
     color: black;
     img {
-      width: 100%;
-      height: 100%;
+      width: inherit;
+      height: inherit;
     }
     svg {
       width: 100px;
@@ -43,15 +49,22 @@ const StyledTopArea = styled.div`
     }
   }
   .post-info {
-    padding-left: 2rem;
     width: 60%;
     display: flex;
     flex-direction: column;
+    padding-left: 2em;
+
     .post-category-select {
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-around;
+        padding: 0.5em 0;
+      }
       display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-around;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em 0;
     }
     h3 {
       margin: 10px 0px;
@@ -59,7 +72,7 @@ const StyledTopArea = styled.div`
       ${post.titleEllipsis()};
     }
     textarea {
-      height: 50%;
+      min-height: 100px;
       border: none;
       outline: none;
       resize: none;
@@ -68,9 +81,14 @@ const StyledTopArea = styled.div`
 `;
 
 const StyledTopImageSideBar = styled.div`
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+  }
   display: flex;
   flex-direction: row;
-  padding: 1rem 1rem 0 1rem;
+  justify-content: center;
+  padding: 1em 1em 0 1em;
+  font-size: inherit;
   & > * {
     margin-right: 1rem;
     vertical-align: center;

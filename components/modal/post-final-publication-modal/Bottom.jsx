@@ -1,26 +1,38 @@
 import styled from 'styled-components';
 
 const StyledBottomArea = styled.div`
-  padding: 0 1rem;
+  padding: 0 1em;
+  font-size: inherit;
   .bottom-field {
+    @media screen and (min-width: 768px) {
+      justify-content: flex-start;
+    }
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    font-size: inherit;
+    /* justify-content: center; */
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
     border-bottom: solid #dedede 1px;
     & > * {
-      margin-right: 2rem;
+      margin-right: 2em;
       display: flex;
     }
     .field-name {
-      font-size: 18px;
-      width: 15%;
+      @media screen and (min-width: 768px) {
+        width: 15%;
+        flex-direction: row;
+      }
+      font-size: inherit;
+      width: 40%;
+      flex-direction: row-reverse;
     }
     .field-name > div {
       background-color: ${({ theme }) => theme.colors.mainColor[4]};
       color: #fff;
-      padding: 0.1em 0.5em;
+      padding: 0.2em 0.7em;
       border-radius: 10px;
     }
     input[type='radio'] {

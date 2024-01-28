@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import SavePostContainer from './container/SavePostContainer';
 import GetSavedPostsContainer from './container/GetSavedPostsContainer';
@@ -52,6 +53,8 @@ const StyledFooterArea = styled.div`
 export default function MarkdownEditorFooter() {
   const [modalState, setModalState] = useState(false);
 
+  const { title } = useSelector(({ editor }) => editor);
+
   return (
     <StyledFooterArea>
       <div className="footer-left-item-block">
@@ -61,7 +64,11 @@ export default function MarkdownEditorFooter() {
         <GetSavedPostsContainer>저장된 포스트</GetSavedPostsContainer>
       </div>
       <div>
-        <CommonButton props={{ onClick: () => setModalState(true) }}>
+        <CommonButton
+          props={
+            title ? { onClick: () => setModalState(true) } : { disabled: true }
+          }
+        >
           출간하기
         </CommonButton>
         <PostFinalPublicationModal

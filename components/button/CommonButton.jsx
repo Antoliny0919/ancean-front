@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledCommonButton = styled.button`
   font-size: 16px;
@@ -10,12 +10,21 @@ export const StyledCommonButton = styled.button`
   background-color: ${({ theme }) => theme.colors.mainColor[6]};
   transition:
     color 0.7s,
-    background-color 0.7s;
+    background-color 0.7s,
+    opacity 0.7s;
   color: white;
-  &:hover {
-    color: black;
-    background-color: white;
-  }
+  ${(props) =>
+    props.disabled
+      ? css`
+          opacity: 0.7;
+        `
+      : css`
+          opacity: 1;
+          &:hover {
+            color: black;
+            background-color: white;
+          }
+        `}
 `;
 
 export default function CommonButton({

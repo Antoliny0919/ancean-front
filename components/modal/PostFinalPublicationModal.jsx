@@ -17,13 +17,21 @@ const StyledPostFinalPublicationModal = styled.div`
   -webkit-box-align: center;
   align-items: center;
   position: fixed;
+  overflow: scroll;
   &.on {
     transform: translateY(0vh);
   }
   .content-area {
+    @media screen and (min-width: 450px) {
+      font-size: 12px;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
     width: 768px;
     display: flex;
     flex-direction: column;
+    font-size: 10px;
     .divide-line {
       width: 100%;
       margin: 15px 0;
