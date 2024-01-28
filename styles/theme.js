@@ -12,6 +12,16 @@ export const theme = {
       '#0C405E',
       '#0C3A55',
     ],
+    lightMainColor: ['#EBF4FF', '#E2EFFF', '#B7D2F3', '#A1C5F0', '#7DACE5'],
+    lightWhite: 'FFF',
+    white: '#F8F8F8',
+    lightBlack: '#282828',
+    black: '#151515',
+    state: {
+      success: '#276C27',
+      fail: '#bd2d2d',
+      warning: '#D27E30',
+    },
     post: {
       shallow: '#F3F9FF',
       deep: '#427cbe',
@@ -22,10 +32,5 @@ export const theme = {
     shallowMainColor: ['rgba(25, 112, 161, 0.1)'],
     socialBackground: '#4A7E9B',
     socialBackgroundHover: '#3C657A',
-    state: {
-      success: '#276C27',
-      fail: '#bd2d2d',
-      warning: '#D27E30',
-    },
   },
 };

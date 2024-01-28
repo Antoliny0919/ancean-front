@@ -1,8 +1,11 @@
-import Image from 'next/image';
+import Image from '../../common/Image';
+import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
 import { resetHeaderImageState } from '../../editor/modules/editor';
+import { EditorContext } from '../../editor/MarkdownEditor';
+import CategorySelect from '../../category/CategorySelect';
 import CategoryText from '../../category/CategoryText';
 import { flexBox, post } from '../../../styles/variable';
 
@@ -89,11 +92,9 @@ export default function Top({
 }) {
   const dispatch = useDispatch();
 
-  const { title, selectedCategory } = useSelector(({ editor }) => editor);
+  const categories = useContext(EditorContext).categories;
 
-  const myLoader = ({ src }) => {
-    return src;
-  };
+  const { title, selectedCategory } = useSelector(({ editor }) => editor);
 
   return (
     <>
@@ -102,13 +103,7 @@ export default function Top({
           {headerImagePath ? (
             <>
               <div className="image-block">
-                <Image
-                  src={headerImagePath}
-                  loader={myLoader}
-                  alt="no-img"
-                  width={0}
-                  height={0}
-                ></Image>
+                <Image src={headerImagePath}></Image>
               </div>
             </>
           ) : (
@@ -133,7 +128,7 @@ export default function Top({
               style={{ fontSize: '40px' }}
             ></CategoryText>
           ) : (
-            <div>no-category</div>
+            <CategorySelect categories={categories}></CategorySelect>
           )}
           <h3>{title}</h3>
           <textarea placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"></textarea>

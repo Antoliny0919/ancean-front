@@ -34,8 +34,13 @@ const StyledMarkdownHeaderArea = styled.div`
 
 export const EditorContext = createContext();
 
-export default function MarkdownEditor() {
+export default function MarkdownEditor({ categories }) {
   const editorRef = useRef();
+
+  const contextProps = {
+    editorRef: editorRef,
+    categories: categories,
+  };
 
   // const [modalState, setModalState] = useState(false);
 
@@ -49,7 +54,7 @@ export default function MarkdownEditor() {
 
   return (
     <StyledMarkdownEditorArea>
-      <EditorContext.Provider value={editorRef}>
+      <EditorContext.Provider value={contextProps}>
         {/* Notification Save Message */}
         <NotificationContainer />
         {/* {modalState && (
@@ -71,7 +76,7 @@ export default function MarkdownEditor() {
           /> */}
         </StyledMarkdownHeaderArea>
         <MarkdownEditorContent />
-        <MarkdownEditorFooter />
+        <MarkdownEditorFooter categories={categories} />
       </EditorContext.Provider>
     </StyledMarkdownEditorArea>
   );

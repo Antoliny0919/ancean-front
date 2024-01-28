@@ -20,7 +20,7 @@ export default function MarkdownEditorContent() {
 
   const content = useSelector(({ editor }) => editor.content);
 
-  const editorRef = useContext(EditorContext);
+  const editorRef = useContext(EditorContext).editorRef;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
