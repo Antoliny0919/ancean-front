@@ -7,8 +7,8 @@ const StyledPostFinalPublicationModal = styled.div`
   background-color: #f8f8f8;
   bottom: 0%;
   left: 0%;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   transform: translateY(100vh);
   transition: transform 1s;
   display: flex;

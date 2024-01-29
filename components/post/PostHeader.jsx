@@ -97,7 +97,9 @@ export default function PostHeader({ title, updated_at, author, category }) {
             {updatedAt.getFullYear()}년{updatedAt.getMonth() + 1}월
             {updatedAt.getDate()}일
           </div>
-          <CategoryButton name={category}>{category}</CategoryButton>
+          {category && (
+            <CategoryButton name={category}>{category}</CategoryButton>
+          )}
         </div>
       </StyledPostHeader>
       <StyledHeaderWave>

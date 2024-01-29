@@ -11,7 +11,7 @@ export default function SavePostContainer({
 }) {
   const router = useRouter();
 
-  const editorRef = useContext(EditorContext);
+  const editorRef = useContext(EditorContext).editorRef;
 
   const dispatch = useDispatch();
 
@@ -36,7 +36,7 @@ export default function SavePostContainer({
             content: outputData.blocks,
             ...body,
           }),
-        ).then(({ payload }) => {
+        ).then(async ({ payload }) => {
           if (is_finish) {
             let { redirect_path } = payload;
             router.push(redirect_path);

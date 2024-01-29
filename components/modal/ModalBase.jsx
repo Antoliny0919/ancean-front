@@ -14,7 +14,6 @@ const StyledBackground = styled.div`
 
 const StyledModalBase = styled.div`
   position: fixed;
-  width: 30vw;
   aspect-ratio: 1 / 0.7;
   background-color: white;
   top: 50%;

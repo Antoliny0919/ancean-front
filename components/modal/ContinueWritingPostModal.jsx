@@ -2,12 +2,21 @@ import styled from 'styled-components';
 import { FaExclamation } from 'react-icons/fa';
 import { FcIdea } from 'react-icons/fc';
 import CommonButton from '../button/CommonButton';
+import { StyledCommonButton } from '../button/CommonButton';
 
 const StyledContinueWritingPostModal = styled.div`
+  @media screen and (min-width: 450px) {
+    font-size: 8px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 6px;
+  padding: 1em 3em;
   .logo {
     width: 20%;
     height: 20%;
@@ -15,10 +24,10 @@ const StyledContinueWritingPostModal = styled.div`
   .header {
     display: flex;
     align-items: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
     div {
-      font-size: 18px;
+      font-size: inherit;
       font-weight: 900;
     }
     svg {
@@ -26,16 +35,21 @@ const StyledContinueWritingPostModal = styled.div`
     }
   }
   .content {
-    font-size: 14px;
+    font-size: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
   }
   .footer {
     button + button {
-      margin-left: 1.5rem;
+      margin-left: 1.5em;
     }
+  }
+  ${StyledCommonButton} {
+    font-size: inherit;
+    padding: 0.5em 1em;
+    min-width: 5em;
   }
 `;
 
@@ -54,18 +68,8 @@ export default function ContinueWritingPostModal({ trueLogic, falseLogic }) {
         </span>
       </div>
       <div className="footer">
-        <CommonButton
-          styleProps={{ width: '5rem' }}
-          props={{ onClick: trueLogic }}
-        >
-          예
-        </CommonButton>
-        <CommonButton
-          styleProps={{ width: '5rem' }}
-          props={{ onClick: falseLogic }}
-        >
-          아니오
-        </CommonButton>
+        <CommonButton props={{ onClick: trueLogic }}>예</CommonButton>
+        <CommonButton props={{ onClick: falseLogic }}>아니오</CommonButton>
       </div>
     </StyledContinueWritingPostModal>
   );

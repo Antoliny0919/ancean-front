@@ -1,8 +1,8 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 import styled from 'styled-components';
-// import ModalBase from '../modal/ModalBase';
-// import ContinueWritingContainer from './container/ContinueWritingContainer';
+import ModalBase from '../modal/ModalBase';
+import ContinueWritingContainer from './container/ContinueWritingContainer';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import TitleContainer from './container/TitleContainer';
@@ -36,30 +36,26 @@ export default function MarkdownEditor({ categories }) {
     categories: categories,
   };
 
-  // const [modalState, setModalState] = useState(false);
+  const [modalState, setModalState] = useState(false);
 
-  // useEffect(() => {
-  //   const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
-  //   if (previousWritingPostId) {
-  //     setModalState(true);
-  //     return;
-  //   }
-  // }, []);
+  useEffect(() => {
+    const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
+    if (previousWritingPostId) {
+      setModalState(true);
+      return;
+    }
+  }, []);
 
   return (
     <>
       <EditorContext.Provider value={contextProps}>
         {/* Notification Save Message */}
         <NotificationContainer />
-        {/* {modalState && (
-          <ModalBase
-            disable={modalState}
-            controlModalState={setModalState}
-            styleProps={{ width: '30vw' }}
-          >
+        {modalState && (
+          <ModalBase disable={modalState} controlModalState={setModalState}>
             <ContinueWritingContainer controlModalState={setModalState} />
           </ModalBase>
-        )} */}
+        )}
         <StyledMarkdownHeaderArea>
           {/* titleInput */}
           <TitleContainer />
