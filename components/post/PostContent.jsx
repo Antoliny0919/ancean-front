@@ -46,6 +46,13 @@ const StyledMoveQuoteSidebar = styled.div`
 export default function PostContent({ content }) {
   const haveContent = Object.keys(content);
 
+  const contentTypes = haveContent.map((index) => {
+    let { type } = content[index];
+    return type;
+  });
+
+  const haveQuote = contentTypes.includes('quote');
+
   const parser = {
     paragraph: (data) => {
       let { text } = data;
@@ -70,24 +77,27 @@ export default function PostContent({ content }) {
     image: (data) => {
       const { file } = data;
 
+      console.log(file);
       return <ImageTool url={file.url}></ImageTool>;
     },
   };
 
   return (
     <>
-      <StyledMoveQuoteSidebar>
-        {content.map(({ data, type }, index) => {
-          if (type === 'quote') {
-            const { text } = data;
-            return (
-              <div className="move-quote-text" key={index}>
-                <Link href={`#${text}`}>{text}</Link>
-              </div>
-            );
-          }
-        })}
-      </StyledMoveQuoteSidebar>
+      {haveQuote && (
+        <StyledMoveQuoteSidebar>
+          {content.map(({ data, type }, index) => {
+            if (type === 'quote') {
+              const { text } = data;
+              return (
+                <div className="move-quote-text" key={index}>
+                  <Link href={`#${text}`}>{text}</Link>
+                </div>
+              );
+            }
+          })}
+        </StyledMoveQuoteSidebar>
+      )}
       {haveContent.length !== 0 ? (
         <>
           <StyledPostContent>

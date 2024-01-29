@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { client, server } from '../../api/client';
 
-export default function NextImage({ src, props = {} }) {
+export default function NextImage({ src, props = {}, style }) {
   const myLoader = ({ src }) => {
     return src;
   };
@@ -17,7 +17,7 @@ export default function NextImage({ src, props = {} }) {
       alt="no-img"
       width={0}
       height={0}
-      // style={{ width: 'auto', height: 'auto' }}
+      style={{ ...style }}
       {...props}
     ></Image>
   );

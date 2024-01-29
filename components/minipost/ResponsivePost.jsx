@@ -136,7 +136,9 @@ export default function ResponsivePost({ post, reference }) {
             작성일: {writeDate.getFullYear()}년 {writeDate.getMonth() + 1}월{' '}
             {writeDate.getDate()}일
           </div>
-          <CategoryButton name={category}>{category}</CategoryButton>
+          {category && (
+            <CategoryButton name={category}>{category}</CategoryButton>
+          )}
         </div>
       </StyledPostContent>
     </StyledPostArea>

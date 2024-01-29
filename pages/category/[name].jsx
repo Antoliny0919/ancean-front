@@ -35,7 +35,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const response = await server.get(
-    `api/posts?category__name=${params.name}&limit=3`,
+    `api/posts?category__name=${params.name}&limit=3&is_finish=true`,
   );
 
   const categoryPosts = response.data;

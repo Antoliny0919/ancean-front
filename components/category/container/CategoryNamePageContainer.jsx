@@ -8,6 +8,8 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
 
   const [nextPosts, setNextPosts] = useState(nextPost);
 
+  console.log(nextPosts);
+
   const target = useRef(null);
 
   const { color, textShadow, transparentColor } =
@@ -21,7 +23,7 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
 
   const sortPosts = async (sortField) => {
     const response = await client.get(
-      `/api/posts/?category__name=${name}&limit=3&ordering=${sortField}`,
+      `/api/posts/?category__name=${name}&limit=3&ordering=${sortField}&is_finish=true`,
     );
     const { next, results } = response.data;
     setCategoryPosts([...results]);

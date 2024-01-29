@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 
   for (const category of categories) {
     const response = await server.get(
-      `/api/posts?category__name=${category.name}&limit=5`,
+      `/api/posts?category__name=${category.name}&limit=5&is_finish=true`,
     );
     const { results } = response.data;
     categoryPosts = {

@@ -71,7 +71,7 @@ export const getStaticProps = async () => {
   let posts = {};
 
   for (const [section, query] of Object.entries(queries)) {
-    const response = await server.get(`/api/posts/?${query}`);
+    const response = await server.get(`/api/posts/?${query}&is_finish=true`);
     const { results } = response.data;
     posts = { ...posts, [section]: results };
   }

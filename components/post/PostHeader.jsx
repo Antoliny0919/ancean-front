@@ -85,7 +85,7 @@ export default function PostHeader({ title, updated_at, author, category }) {
     <>
       <StyledPostHeader>
         <div className="title post-main">
-          <h1>{title}킬리만자로의 표범과 함께 사냥을 나서는 시현</h1>
+          <h1>{title}</h1>
         </div>
         <div className="sub-title post-main">
           <div className="author">
