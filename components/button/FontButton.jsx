@@ -4,7 +4,7 @@ export const StyledFontButton = styled.button`
   background: none;
   border: none;
   color: ${({ theme }) => theme.colors.mainColor[4]};
-  font-size: 18px;
+  font-size: inherit;
   font-weight: 900;
   transition:
     color 0.7s,

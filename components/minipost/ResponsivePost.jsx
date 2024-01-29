@@ -1,8 +1,9 @@
 import Image from '../common/Image';
 import styled from 'styled-components';
 import CategoryButton from '../button/CategoryButton';
+import Link from 'next/link';
 
-const StyledPostArea = styled.div`
+const StyledPostArea = styled(Link)`
   @media screen and (min-width: 450px) {
     width: 18em;
   }
@@ -119,12 +120,12 @@ const StyledPostContent = styled.div`
 `;
 
 export default function ResponsivePost({ post, reference }) {
-  const { category, introduce, created_at, header_image, title } = post;
+  const { id, category, introduce, created_at, header_image, title } = post;
 
   const writeDate = new Date(created_at);
 
   return (
-    <StyledPostArea ref={reference}>
+    <StyledPostArea ref={reference} href={`/posts/${id}`}>
       <div className="header-img">
         <Image src={header_image}></Image>
       </div>

@@ -1,10 +1,12 @@
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import CategoryButton from '../button/CategoryButton';
 import Wave from 'react-wavify';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import FontButton from '../button/FontButton';
+import { deletePost } from '../../api/post';
 import { post } from '../../styles/variable';
-// import StyledCategory
 
 const StyledPostHeader = styled.div`
   @media screen and (min-width: 768px) {
@@ -37,8 +39,6 @@ const StyledPostHeader = styled.div`
       text-align: center;
     }
   }
-  .title {
-  }
   .sub-title {
     @media screen and (min-width: 450px) {
       font-size: 12px;
@@ -61,6 +61,9 @@ const StyledPostHeader = styled.div`
       margin-right: 5px;
     }
   }
+  .control-post {
+    margin: 1em 0;
+  }
 `;
 
 const StyledHeaderWave = styled.div`
@@ -78,8 +81,24 @@ const StyledHeaderWave = styled.div`
   }
 `;
 
-export default function PostHeader({ title, updated_at, author, category }) {
+export default function PostHeader({
+  id,
+  title,
+  updated_at,
+  author,
+  category,
+}) {
+  const router = useRouter();
+
   const updatedAt = new Date(updated_at);
+
+  const onDeletePost = () => {
+    let confirmState = confirm('정말로 포스트를 삭제하시겠습니까?');
+    if (confirmState) {
+      deletePost(id);
+      router.back();
+    }
+  };
 
   return (
     <>
@@ -100,6 +119,10 @@ export default function PostHeader({ title, updated_at, author, category }) {
           {category && (
             <CategoryButton name={category}>{category}</CategoryButton>
           )}
+        </div>
+        <div className="sub-title control-post">
+          <FontButton>수정</FontButton>
+          <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
         </div>
       </StyledPostHeader>
       <StyledHeaderWave>

@@ -10,11 +10,12 @@ export default function Post({ post }) {
     return <div></div>;
   }
 
-  const { title, updated_at, author, category, content } = post[0];
+  const { id, title, updated_at, author, category, content } = post[0];
 
   return (
     <>
       <PostHeader
+        id={id}
         title={title}
         updated_at={updated_at}
         author={author}
