@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import MySkill from '../skill/MySkill';
 import SectionHeader from './items/SectionHeader';
-import IntroduceButton from '../introduce/IntroduceButton';
+import MyIntroduce from '../introduce/MyIntroduce';
 
 import 'swiper/css';
 import 'swiper/css/effect-cube';
@@ -31,7 +31,7 @@ export default function AboutMe() {
       ></SectionHeader>
       <div className="my-introduce">
         <StyledMyInfoSection>
-          <IntroduceButton />
+          <MyIntroduce />
         </StyledMyInfoSection>
         <StyledMyInfoSection>
           <MySkill />
