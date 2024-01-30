@@ -30,8 +30,9 @@ const StyledIntroduceMiniBlock = styled.div`
   position: relative;
   height: 2.5em;
   width: 2.5em;
+  max-width: 600px;
   display: flex;
-  font-size: 18px;
+  font-size: inherit;
   font-family: 'NanumBarunGothic';
   left: 50%;
   transform: translateX(-50%);
@@ -79,7 +80,7 @@ const StyledIntroduceMiniBlock = styled.div`
   .short-introduce {
     width: 100%;
     display: flex;
-    font-size: 15px;
+    font-size: inherit;
     opacity: 0;
     flex-direction: column;
     justify-content: center;
@@ -91,8 +92,14 @@ const StyledIntroduceMiniBlock = styled.div`
         animation-fill-mode: forwards;
       `}
     .sub-title {
+      @media screen and (min-width: 768px) {
+        font-size: 10px;
+      }
+      @media screen and (min-width: 1024px) {
+        font-size: 13px;
+      }
       margin-top: 0.5em;
-      font-size: 13px;
+      font-size: 8px;
       color: ${({ theme }) => theme.colors.subTitleBlack};
     }
   }

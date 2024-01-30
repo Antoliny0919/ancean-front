@@ -7,8 +7,18 @@ import IntroduceMiniBlock from './IntroduceMiniBlock';
 import Link from 'next/link';
 
 const StyledMyIntroduce = styled.div`
+  @media screen and (min-width: 450px) {
+    font-size: 10px;
+  }
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 15px;
+  }
   height: 100%;
   width: 100%;
+  font-size: 8px;
   padding: 1em 2em;
   display: flex;
   justify-content: center;

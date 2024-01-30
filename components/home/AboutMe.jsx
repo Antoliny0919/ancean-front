@@ -11,12 +11,20 @@ const StyledAboutMe = styled.div`
   width: 100%;
   font-size: 18px;
   .my-introduce {
+    @media screen and (min-width: 768px) {
+      flex-direction: row;
+    }
     display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
   }
 `;
 
 const StyledMyInfoSection = styled.div`
-  width: 50%;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export default function AboutMe() {

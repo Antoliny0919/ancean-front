@@ -6,17 +6,23 @@ import SkillSwiperButton from './SkillSwiperButton';
 import { MY_SKILL_DATA } from './data';
 
 const StyledMySkill = styled.div`
-  font-size: inherit;
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 16px;
+  }
+  font-size: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   font-family: 'Pretendard-Bold';
-  height: 600px;
+  height: 35em;
   width: 100%;
   .swiper {
+    width: 28em;
     height: inherit;
-    width: 75%;
     background-color: ${({ theme }) => theme.colors.mainColor[4]};
     border: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
     border-radius: 10px;
@@ -38,11 +44,17 @@ const StyledMySkill = styled.div`
     justify-content: flex-start;
   }
   .skill-section {
+    @media screen and (min-width: 768px) {
+      font-size: 24px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 32px;
+    }
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 1em 0;
-    font-size: 32px;
+    font-size: 20px;
     letter-spacing: 3px;
     color: ${({ theme }) => theme.colors.lightWhite};
     text-shadow:
