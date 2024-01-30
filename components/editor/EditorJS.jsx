@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { client } from '../../api/client';
 
 export const initializeEditor = async ({ editorRef, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
@@ -60,9 +60,8 @@ export const initializeEditor = async ({ editorRef, content }) => {
               async uploadByFile(file) {
                 const formData = new FormData();
                 formData.append('file', file);
-                console.log(file);
-                const response = await axios.post(
-                  `http://localhost:5050/api/uploadImage/`,
+                const response = await client.post(
+                  `/api/uploadImage/`,
                   formData,
                   {
                     headers: {

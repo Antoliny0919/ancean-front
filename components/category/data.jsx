@@ -1,4 +1,4 @@
-import { FaReact, FaRust, FaPython } from 'react-icons/fa';
+import { FaReact, FaRust, FaPython, FaSass } from 'react-icons/fa';
 import {
   SiDocker,
   SiDjango,
@@ -7,6 +7,13 @@ import {
   SiMongodb,
   SiJavascript,
   SiNextdotjs,
+  SiTypescript,
+  SiHelm,
+  SiPrometheus,
+  SiGrafana,
+  SiJenkins,
+  SiRedux,
+  SiFlask,
 } from 'react-icons/si';
 
 export const CATEGORY_DATA = {
@@ -155,6 +162,38 @@ export const CATEGORY_DATA = {
   8px 8px hsl(52, 67%, 32%), \
   9px 9px hsl(52, 67%, 28%), \
   10px 10px 30px rgba(0, 0, 0, 0.7);',
+  },
+  TYPESCRIPT: {
+    logo: <SiTypescript />,
+    color: '#007acc',
+  },
+  HELM: {
+    logo: <SiHelm />,
+    color: '#002493',
+  },
+  PROMETHEUS: {
+    logo: <SiPrometheus />,
+    color: '#ff4646',
+  },
+  GRAFANA: {
+    logo: <SiGrafana />,
+    color: '#E56D2D',
+  },
+  JENKINS: {
+    logo: <SiJenkins />,
+    color: '#D33834',
+  },
+  SCSS: {
+    logo: <FaSass />,
+    color: '#cc6699',
+  },
+  REDUX: {
+    logo: <SiRedux />,
+    color: '#764ABC',
+  },
+  FLASK: {
+    logo: <SiFlask />,
+    color: '#242424',
   },
   'NEXT.JS': {
     logo: <SiNextdotjs />,

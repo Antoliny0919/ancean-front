@@ -13,13 +13,14 @@ const StyledPostHeader = styled.div`
     font-size: 32px;
     padding-top: 4em;
   }
+  position: relative;
+  z-index: 10;
   width: 80%;
   font-size: 20px;
   padding-top: 1em;
   margin-right: auto;
   margin-left: auto;
   height: 20em;
-  background-color: white;
   color: black;
   font-family: 'Pretendard-Bold';
   .post-main {
@@ -92,6 +93,11 @@ export default function PostHeader({
 
   const updatedAt = new Date(updated_at);
 
+  const onPatchPost = async () => {
+    localStorage.setItem('patchPostId', id);
+    router.push('/posts/newpost');
+  };
+
   const onDeletePost = () => {
     let confirmState = confirm('정말로 포스트를 삭제하시겠습니까?');
     if (confirmState) {
@@ -121,7 +127,7 @@ export default function PostHeader({
           )}
         </div>
         <div className="sub-title control-post">
-          <FontButton>수정</FontButton>
+          <FontButton props={{ onClick: onPatchPost }}>수정</FontButton>
           <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
         </div>
       </StyledPostHeader>

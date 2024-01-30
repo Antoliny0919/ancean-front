@@ -13,9 +13,10 @@ export const theme = {
       '#0C3A55',
     ],
     lightMainColor: ['#EBF4FF', '#E2EFFF', '#B7D2F3', '#A1C5F0', '#7DACE5'],
-    lightWhite: 'FFF',
+    lightWhite: '#FFF',
     white: '#F8F8F8',
     lightBlack: '#282828',
+    divideLineColor: '#DDDDDD',
     black: '#151515',
     state: {
       success: '#276C27',

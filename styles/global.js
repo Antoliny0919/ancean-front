@@ -329,6 +329,7 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     border-radius: 0;
     font-size: 14px;
+    font-family: 'Pretendard-Light';
     padding: 10px 12px;
   }
 
@@ -389,4 +390,5 @@ export const GlobalStyle = createGlobalStyle`
     border: 1px solid #E8E8EB;
     box-shadow: 0 3px 15px -3px #0d142121;
   }
+
 `;

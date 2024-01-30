@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { createContext } from 'react';
+import { useState, useEffect, useRef, createContext } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { getPost } from './modules/editor';
 import ModalBase from '../modal/ModalBase';
 import ContinueWritingContainer from './container/ContinueWritingContainer';
 import MarkdownEditorContent from './MarkdownEditorContent';
 import MarkdownEditorFooter from './MarkdownEditorFooter';
 import TitleContainer from './container/TitleContainer';
 import NotificationContainer from './container/NotificationContainer';
-import { useRef } from 'react';
 
 const StyledMarkdownHeaderArea = styled.div`
   @media screen and (min-width: 768px) {
@@ -29,6 +29,8 @@ const StyledMarkdownHeaderArea = styled.div`
 export const EditorContext = createContext();
 
 export default function MarkdownEditor({ categories }) {
+  const dispatch = useDispatch();
+
   const editorRef = useRef();
 
   const contextProps = {
@@ -40,6 +42,12 @@ export default function MarkdownEditor({ categories }) {
 
   useEffect(() => {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
+    const requestPatchPostId = localStorage.getItem('patchPostId');
+    if (requestPatchPostId) {
+      dispatch(getPost(requestPatchPostId));
+      localStorage.removeItem('patchPostId');
+      return;
+    }
     if (previousWritingPostId) {
       setModalState(true);
       return;

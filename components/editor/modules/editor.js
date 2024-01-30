@@ -63,11 +63,10 @@ export const uploadHeaderImage = createAsyncThunk(
 
 const initialState = {
   title: '',
-  fieldCategory: '',
   selectedCategory: '',
   headerImage: '',
   headerImagePath: '',
-  content: '',
+  content: [],
   author: '',
   notificationState: null,
   notificationMessage: '',
@@ -112,9 +111,16 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.message;
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { id, title, content, category, author } = payload[0];
-      state = { ...state, title, selectedCategory: category, content, author };
+      const { id, title, content, category, header_image } = payload[0];
+      state = {
+        notificationState: state.notificationState,
+        title,
+        selectedCategory: category,
+        headerImagePath: header_image,
+        content,
+      };
       localStorage.setItem('beingWrittenPostId', id);
+      console.log(state);
       return state;
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {
