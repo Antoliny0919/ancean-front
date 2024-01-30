@@ -4,6 +4,10 @@ import ProgressBar from '../common/ProgressBar';
 import SectionHeader from './items/SectionHeader';
 import { CATEGORY_DATA } from '../category/data';
 
+import 'swiper/css';
+import 'swiper/css/effect-cube';
+import 'swiper/css/pagination';
+
 const StyledAboutMe = styled.div`
   width: 100%;
   font-size: 18px;
@@ -18,8 +22,12 @@ const StyledMyInfo = styled.div`
 
 const StyledMySkill = styled.div`
   font-size: inherit;
-  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-family: 'Pretendard-Bold';
+  height: 600px;
   width: 50%;
   .swiper {
     width: 70%;
@@ -27,23 +35,44 @@ const StyledMySkill = styled.div`
     background-color: ${({ theme }) => theme.colors.mainColor[4]};
     border: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
     border-radius: 10px;
+    box-shadow:
+      1px 1px 0 0 var(--shadow-outline-deep-dark),
+      2px 2px 0 0 var(--shadow-outline-deep-dark),
+      3px 3px 0 0 var(--shadow-outline-deep-dark),
+      4px 4px 0 0 var(--shadow-outline-deep-dark),
+      5px 5px 0 0 var(--shadow-outline-deep-dark),
+      6px 6px 0 0 var(--shadow-outline-deep-dark),
+      7px 7px 0 0 var(--shadow-outline-deep-dark),
+      8px 8px 0 0 var(--shadow-outline-deep-dark),
+      9px 9px 0 0 var(--shadow-outline-deep-dark);
+    overflow-y: scroll;
   }
   .swiper-slide {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
   }
+  .skill-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 1em 0;
+    font-size: 32px;
+    letter-spacing: 3px;
+    color: ${({ theme }) => theme.colors.lightWhite};
+    text-shadow:
+      1px 1px hsl(0, 0%, 14%),
+      2px 2px hsl(0, 0%, 12%),
+      3px 3px hsl(0, 0%, 10%),
+      4px 4px hsl(0, 0%, 8%);
+  }
   ul {
     width: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0;
-    justify-content: center;
-    font-size: 24px;
   }
   li {
     color: ${({ theme }) => theme.colors.white};
     width: 100%;
+    font-size: inherit;
     padding: 0 1em;
     letter-spacing: 2px;
     margin-bottom: 20px;
@@ -147,38 +176,34 @@ export default function AboutMe() {
         colorHSL={{ hue: 190, saturation: 48, lightness: 59 }}
       ></SectionHeader>
       <div className="my-introduce">
-        <StyledMyInfo>
-          <div>hello</div>
-        </StyledMyInfo>
+        <StyledMyInfo></StyledMyInfo>
         <StyledMySkill>
-          <Swiper
-            onSlideChange={(swiper) => {
-              console.log(swiper);
-            }}
-          >
+          <Swiper>
             {Object.keys(mySkillPercentage).map((name, index) => {
               return (
                 <>
                   <SwiperSlide key={index}>
-                    <ul>{name}</ul>
-                    {mySkillPercentage[name].map((skill, index) => {
-                      return (
-                        <li key={index}>
-                          <StyledProgressLabel
-                            color={CATEGORY_DATA[skill.name]['color']}
-                          >
-                            <div className="logo">
-                              {CATEGORY_DATA[skill.name]['logo']}
-                            </div>
-                            <div className="name">{skill.name}</div>
-                          </StyledProgressLabel>
-                          <ProgressBar
-                            percentage={skill.percentage}
-                            color={CATEGORY_DATA[skill.name]['color']}
-                          />
-                        </li>
-                      );
-                    })}
+                    <div className="skill-section">&lt;{name}&#47;&gt;</div>
+                    <ul>
+                      {mySkillPercentage[name].map((skill, index) => {
+                        return (
+                          <li key={index}>
+                            <StyledProgressLabel
+                              color={CATEGORY_DATA[skill.name]['color']}
+                            >
+                              <div className="logo">
+                                {CATEGORY_DATA[skill.name]['logo']}
+                              </div>
+                              <div className="name">{skill.name}</div>
+                            </StyledProgressLabel>
+                            <ProgressBar
+                              percentage={skill.percentage}
+                              color={CATEGORY_DATA[skill.name]['color']}
+                            />
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </SwiperSlide>
                 </>
               );

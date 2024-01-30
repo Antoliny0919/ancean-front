@@ -47,6 +47,11 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  ul {
+    padding-left: 0px;
+    list-style: none;
+  }
+
   // IntersectionObserver
   .fade-in-slide-down-suspend {
     opacity: 0;
