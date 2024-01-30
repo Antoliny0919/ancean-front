@@ -30,7 +30,7 @@ export default function SectionHeader({
   return (
     <StyledSectionHeaderArea style={{ ...style }}>
       <SignatureText
-        fontSize={80}
+        fontSize={24}
         colorHSL={colorHSL}
         props={{ className: 'fade-in-slide-down-suspend' }}
         style={{

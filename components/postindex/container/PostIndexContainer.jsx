@@ -1,17 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { client } from '../../../api/client';
-import { CATEGORY_DATA } from '../data';
-import CategoryNamePage from '../page/CategoryNamePage';
+import PostIndex from '../PostIndex';
 
-export default function CategoryNamePageContainer({ posts, name, nextPost }) {
-  const [categoryPosts, setCategoryPosts] = useState(posts);
+export default function PostIndexContainer({ posts, nextPost }) {
+  const [currentPosts, setCurrentPosts] = useState(posts);
 
   const [nextPosts, setNextPosts] = useState(nextPost);
 
   const target = useRef(null);
-
-  const { color, textShadow, transparentColor } =
-    CATEGORY_DATA[name.toUpperCase()];
 
   const readMorePosts = async () => {
     const response = await client.get(nextPosts);
@@ -21,10 +17,10 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
 
   const sortPosts = async (sortField) => {
     const response = await client.get(
-      `/api/posts/?category__name=${name}&limit=3&ordering=${sortField}&is_finish=true`,
+      `/api/posts/?limit=3&ordering=${sortField}&is_finish=true`,
     );
     const { next, results } = response.data;
-    setCategoryPosts([...results]);
+    setCurrentPosts([...results]);
     setNextPosts(next);
   };
 
@@ -35,7 +31,7 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
           if (entry.isIntersecting) {
             let { next, results } = await readMorePosts();
             setNextPosts(next);
-            setCategoryPosts([...categoryPosts, ...results]);
+            setCurrentPosts([...currentPosts, ...results]);
             observer.unobserve(target.current);
           }
         });
@@ -45,19 +41,13 @@ export default function CategoryNamePageContainer({ posts, name, nextPost }) {
       },
     );
     nextPosts && lastPostObserver.observe(target.current);
-  }, [categoryPosts, nextPosts]);
+  }, [currentPosts, nextPosts]);
 
   return (
-    <CategoryNamePage
-      categoryPosts={categoryPosts}
+    <PostIndex
+      posts={currentPosts}
       target={target}
-      categoryName={name.toUpperCase()}
-      bodyProps={{
-        color: color,
-        $transparentColor: transparentColor,
-        $boxShadow: textShadow,
-      }}
       sortPosts={sortPosts}
-    />
+    ></PostIndex>
   );
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
@@ -28,38 +29,13 @@ const fadeInAnimation = keyframes`
 
 const StyledIntroduceMiniBlock = styled.div`
   position: relative;
+  height: 2.5em;
   width: 2.5em;
   display: flex;
-  font-size: 20px;
+  font-size: 18px;
   left: 50%;
   transform: translateX(-50%);
   transition: width 1s;
-  ${(props) =>
-    props.$isOdd
-      ? css`
-          animation: ${slideAnimation('left')} 3s 0s 1;
-          animation-fill-mode: forwards;
-          svg {
-            position: relative;
-          }
-        `
-      : css`
-          animation: ${slideAnimation('right')} 3s 0s 1;
-          animation-fill-mode: forwards;
-          flex-direction: row-reverse;
-        `}
-  ${(props) =>
-    props.color
-      ? css`
-          background-color: ${(props) => props.color};
-          color: ${({ theme }) => theme.colors.white};
-          svg {
-            color: white;
-          }
-        `
-      : css`
-          background-color: ${({ theme }) => theme.colors.white};
-        `}
   box-sizing: content-box;
   padding: 1em;
   border-radius: 10px;
@@ -68,7 +44,34 @@ const StyledIntroduceMiniBlock = styled.div`
     2px 2px 0 0 var(--shadow-outline-deep-dark),
     3px 3px 0 0 var(--shadow-outline-deep-dark),
     4px 4px 0 0 var(--shadow-outline-deep-dark);
-  margin: 0.5em 0em;
+  margin: 1em 0em;
+  ${(props) =>
+    props.$isOdd === false &&
+    css`
+      flex-direction: row-reverse;
+    `}
+  ${(props) =>
+    props.$isOdd && props.$animationState
+      ? css`
+          animation: ${slideAnimation('left')} 3s 0s 1;
+          animation-fill-mode: forwards;
+        `
+      : css`
+          animation: ${slideAnimation('right')} 3s 0s 1;
+          animation-fill-mode: forwards;
+        `}
+  ${(props) =>
+    props.color
+      ? css`
+          background-color: ${(props) => props.color};
+          color: ${({ theme }) => theme.colors.white};
+          svg {
+            color: ${({ theme }) => theme.colors.white};
+          }
+        `
+      : css`
+          background-color: ${({ theme }) => theme.colors.white};
+        `}
   svg {
     width: 2.5em;
     height: 2.5em;
@@ -76,6 +79,8 @@ const StyledIntroduceMiniBlock = styled.div`
   .short-introduce {
     width: 100%;
     display: flex;
+    font-size: 16px;
+    flex-direction: column;
     justify-content: center;
     transition: width 1s;
     ${(props) =>
@@ -83,12 +88,18 @@ const StyledIntroduceMiniBlock = styled.div`
       css`
         animation: ${fadeInAnimation} 1s 0s 1;
       `}
+    .sub-title {
+      margin-top: 0.5em;
+      font-size: 13px;
+    }
   }
 `;
 
 export default function IntroduceMiniBlock({
   children,
   position,
+  animationState,
+  subTitle,
   isOdd,
   color,
 }) {
@@ -99,12 +110,20 @@ export default function IntroduceMiniBlock({
       position={position}
       color={color}
       $isOdd={isOdd}
+      $animationState={animationState}
       $textState={textState}
       onAnimationEnd={() => setTextState(true)}
     >
       {children}
       {textState && (
-        <div className="short-introduce">hello this is my world</div>
+        <div className="short-introduce">
+          <div className="title">hello</div>
+          {subTitle.includes('https') ? (
+            <Link href={subTitle}></Link>
+          ) : (
+            <div className="sub-title">{subTitle}</div>
+          )}
+        </div>
       )}
     </StyledIntroduceMiniBlock>
   );

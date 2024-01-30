@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const StyledSignatureText = styled.h1`
-  font-size: 24px;
+  font-size: ${(props) => props.$fontSize * 1}px;
   letter-spacing: 3px;
   @media screen and (min-width: 450px) {
-    font-size: 36px;
+    font-size: ${(props) => props.$fontSize * 1.5}px;
     letter-spacing: 7px;
   }
   @media screen and (min-width: 768px) {
-    font-size: 40px;
+    font-size: ${(props) => props.$fontSize * 2}px;
     letter-spacing: 10px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 64px;
+    font-size: ${(props) => props.$fontSize * 3}px;
     letter-spacing: 15px;
   }
   font-family: 'Pretendard-Bold';
@@ -28,7 +28,7 @@ export default function SignatureText({
   style = {},
   colorHSL = {},
 }) {
-  const shadowSize = fontSize * 0.01;
+  const shadowSize = fontSize * 0.025;
 
   const { hue, saturation, lightness } = colorHSL;
 

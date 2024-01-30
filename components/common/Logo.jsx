@@ -4,7 +4,6 @@ import Wave from 'react-wavify';
 import { flexBox } from '@/styles/variable';
 
 export const StyledLogoArea = styled.div`
-  ${flexBox.flex('row', 'flex-start')};
   @media screen and (min-width: 768px) {
     font-size: 48px;
     letter-spacing: 7px;
@@ -15,6 +14,7 @@ export const StyledLogoArea = styled.div`
   }
   font-size: 32px;
   letter-spacing: 5px;
+  ${flexBox.flex('row', 'flex-start')};
   h1 {
     font-size: inherit;
     font-family: 'Bodoni Moda';
