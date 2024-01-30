@@ -25,7 +25,7 @@ export default function AboutMe() {
       <SectionHeader
         mainTitle={'About Me'}
         subTitle={
-          '프로그래밍 개발과 희로애락을 함께하는 Antoliny, 이시현입니다.'
+          '프로그래밍 개발과 희로애락을 함께하는 이시현, Antoliny입니다.'
         }
         colorHSL={{ hue: 190, saturation: 48, lightness: 59 }}
       ></SectionHeader>

@@ -6,7 +6,6 @@ export const StyledOceanWaveButton = styled.div`
   font-family: 'Raleway';
   color: #f8f8f8;
   width: 7em;
-  height: 5em;
   border-radius: 10px;
   display: flex;
   flex-direction: column;

@@ -49,11 +49,11 @@ const StyledCategoryPageHeader = styled.div`
     display: flex;
     margin-bottom: 2em;
     margin-left: 0;
-    /* & + & {
-      margin-left: 2em;
-    } */
   }
   ${StyledLogoArea} {
+    @media screen and (min-width: 450px) {
+      font-size: 50px;
+    }
     @media screen and (min-width: 768px) {
       font-size: 64px;
       letter-spacing: 7px;
@@ -108,7 +108,7 @@ export default function PostIndex({ posts, target, sortPosts }) {
         <Logo />
         <div className="title">
           <SignatureText
-            fontSize={50}
+            fontSize={45}
             colorHSL={{ hue: 207, saturation: 78, lightness: 41 }}
           >
             POSTS

@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { FaBirthdayCake, FaMale, FaLinkedin } from 'react-icons/fa';
 import { IoLogoGithub } from 'react-icons/io';
 import IntroduceMiniBlock from './IntroduceMiniBlock';
+import Link from 'next/link';
 
 const StyledMyIntroduce = styled.div`
   height: 100%;
@@ -13,35 +14,36 @@ const StyledMyIntroduce = styled.div`
   justify-content: center;
   text-align: center;
   flex-direction: column;
-  /* .introduce-mini-block {
-    display: flex;
-    flex-direction: column;
-  } */
 `;
 
 export default function MyIntroduce() {
   const MY_INTRODUCE_INFO_DATA = [
     {
       logo: <FaBirthdayCake />,
-      title: '',
+      title: '프로그래밍 개발을 공부하는 이시현, Antoliny입니다.',
       subTitle: '2000.09.19',
     },
     {
       logo: <FaMale />,
-      subTitle: '이시현',
+      title: '웹 프로그래밍을 즐겨하며 다양한 분야에 관심이 많습니다.',
+      subTitle: '이시현, Antoliny',
     },
     {
       logo: <FcGoogle />,
+      title:
+        '그중에서도 전체적인 구조를 다루는 인프라, DevOps분야를 가장 좋아합니다.',
       subTitle: 'antoliny0919@gmail.com',
     },
     {
       logo: <IoLogoGithub />,
-      subTitle: 'https://github.com/Antoliny0919',
+      title: 'Github에서 Antoliny의 작업물을 확인할 수 있습니다.',
+      href: 'https://github.com/Antoliny0919',
       color: '#24292e',
     },
     {
       logo: <FaLinkedin />,
-      subTitle: 'https://www.linkedin.com/in/antoliny0919',
+      title: 'LinkedIn에서 Antoliny의 비지니스를 확인할 수 있습니다.',
+      href: 'https://www.linkedin.com/in/antoliny0919',
       color: '#0a66c2',
     },
   ];
@@ -61,7 +63,7 @@ export default function MyIntroduce() {
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.01 },
     );
     introduceBlockObserver.observe(target.current);
   });
@@ -70,12 +72,27 @@ export default function MyIntroduce() {
     <StyledMyIntroduce>
       <div className="introduce-mini-block" ref={target}>
         {MY_INTRODUCE_INFO_DATA.map((item, index) => {
+          if (item.href) {
+            return (
+              <Link key={index} href={item.href}>
+                <IntroduceMiniBlock
+                  animationState={introduceBlockAnimationState}
+                  title={item.title}
+                  subTitle={null}
+                  color={item.color}
+                  isOdd={(index + 1) % 2 === 1}
+                >
+                  {item.logo}
+                </IntroduceMiniBlock>
+              </Link>
+            );
+          }
           return (
             <IntroduceMiniBlock
               key={index}
               animationState={introduceBlockAnimationState}
+              title={item.title}
               subTitle={item.subTitle}
-              color={item.color && item.color}
               isOdd={(index + 1) % 2 === 1}
             >
               {item.logo}

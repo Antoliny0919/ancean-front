@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useState } from 'react';
 import styled, { css, keyframes } from 'styled-components';
 
@@ -51,7 +50,7 @@ const StyledIntroduceMiniBlock = styled.div`
       flex-direction: row-reverse;
     `}
   ${(props) =>
-    props.$isOdd && props.$animationState
+    props.$isOdd && props.$actionState
       ? css`
           animation: ${slideAnimation('left')} 3s 0s 1;
           animation-fill-mode: forwards;
@@ -79,18 +78,22 @@ const StyledIntroduceMiniBlock = styled.div`
   .short-introduce {
     width: 100%;
     display: flex;
-    font-size: 16px;
+    font-size: 15px;
+    opacity: 0;
+    font-family: 'NanumBarunGothic';
     flex-direction: column;
     justify-content: center;
     transition: width 1s;
     ${(props) =>
       props.$textState &&
       css`
-        animation: ${fadeInAnimation} 1s 0s 1;
+        animation: ${fadeInAnimation} 1s 0.5s 1;
+        animation-fill-mode: forwards;
       `}
     .sub-title {
       margin-top: 0.5em;
       font-size: 13px;
+      color: ${({ theme }) => theme.colors.subTitleBlack};
     }
   }
 `;
@@ -99,6 +102,7 @@ export default function IntroduceMiniBlock({
   children,
   position,
   animationState,
+  title,
   subTitle,
   isOdd,
   color,
@@ -110,19 +114,15 @@ export default function IntroduceMiniBlock({
       position={position}
       color={color}
       $isOdd={isOdd}
-      $animationState={animationState}
+      $actionState={animationState}
       $textState={textState}
       onAnimationEnd={() => setTextState(true)}
     >
       {children}
       {textState && (
         <div className="short-introduce">
-          <div className="title">hello</div>
-          {subTitle.includes('https') ? (
-            <Link href={subTitle}></Link>
-          ) : (
-            <div className="sub-title">{subTitle}</div>
-          )}
+          <div className="title">{title}</div>
+          <div className="sub-title">{subTitle}</div>
         </div>
       )}
     </StyledIntroduceMiniBlock>
