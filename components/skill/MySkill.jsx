@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import SkillProgress from './SkillProgress';
+import SkillSwiperButton from './SkillSwiperButton';
 import { MY_SKILL_DATA } from './data';
 
 const StyledMySkill = styled.div`
@@ -54,10 +56,24 @@ const StyledMySkill = styled.div`
   }
 `;
 
+const StyledSwiperButtonArea = styled.div`
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em 2em;
+  z-index: 15;
+  bottom: 0;
+`;
+
 export default function MySkill() {
+  const [slideNumber, setSlideNumber] = useState(0);
+
+  const lastSlideNum = Object.keys(MY_SKILL_DATA).length;
+
   return (
     <StyledMySkill>
-      <Swiper>
+      <Swiper onSlideChange={(slide) => setSlideNumber(slide.activeIndex)}>
         {Object.keys(MY_SKILL_DATA).map((name, index) => {
           return (
             <>
@@ -72,6 +88,18 @@ export default function MySkill() {
             </>
           );
         })}
+        <StyledSwiperButtonArea>
+          <SkillSwiperButton
+            direction="previous"
+            currentSlide={slideNumber}
+            lastSlideNum={lastSlideNum}
+          />
+          <SkillSwiperButton
+            direction="next"
+            currentSlide={slideNumber}
+            lastSlideNum={lastSlideNum - 1}
+          />
+        </StyledSwiperButtonArea>
       </Swiper>
     </StyledMySkill>
   );

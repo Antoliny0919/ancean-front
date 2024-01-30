@@ -32,6 +32,7 @@ const StyledIntroduceMiniBlock = styled.div`
   width: 2.5em;
   display: flex;
   font-size: 18px;
+  font-family: 'NanumBarunGothic';
   left: 50%;
   transform: translateX(-50%);
   transition: width 1s;
@@ -80,7 +81,6 @@ const StyledIntroduceMiniBlock = styled.div`
     display: flex;
     font-size: 15px;
     opacity: 0;
-    font-family: 'NanumBarunGothic';
     flex-direction: column;
     justify-content: center;
     transition: width 1s;
