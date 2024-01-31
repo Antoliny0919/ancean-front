@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 const StyledAboutMe = styled.div`
   width: 100%;
   font-size: 18px;
+  padding-bottom: 5em;
   .my-introduce {
     @media screen and (min-width: 768px) {
       flex-direction: row;

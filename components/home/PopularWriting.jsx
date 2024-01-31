@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import SectionHeader from './items/SectionHeader';
 import NewsStylePost from '../minipost/NewsStylePost';
-import SwiperButton from '../button/SwiperButton';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -80,12 +79,6 @@ export default function PopularWriting({ posts }) {
                 ></NewsStylePost>
               </SwiperSlide>
             ))}
-            <div className="swiper-button-prev">
-              <SwiperButton type="prev" />
-            </div>
-            <div className="swiper-button-next">
-              <SwiperButton type="next" />
-            </div>
           </Swiper>
         </StyledPostSwiper>
         <Wave

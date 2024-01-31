@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import styled from 'styled-components';
 import SkillProgress from './SkillProgress';
-import SkillSwiperButton from './SkillSwiperButton';
+import SwiperButton from '../button/SwiperButton';
 import { MY_SKILL_DATA } from './data';
 
 const StyledMySkill = styled.div`
@@ -101,12 +101,14 @@ export default function MySkill() {
           );
         })}
         <StyledSwiperButtonArea>
-          <SkillSwiperButton
+          <SwiperButton
+            color={({ theme }) => theme.colors.white}
             direction="previous"
             currentSlide={slideNumber}
             lastSlideNum={lastSlideNum}
           />
-          <SkillSwiperButton
+          <SwiperButton
+            color={({ theme }) => theme.colors.white}
             direction="next"
             currentSlide={slideNumber}
             lastSlideNum={lastSlideNum - 1}

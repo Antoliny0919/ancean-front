@@ -79,8 +79,8 @@ export default function MyIntroduce() {
   });
 
   return (
-    <StyledMyIntroduce>
-      <div className="introduce-mini-block" ref={target}>
+    <StyledMyIntroduce ref={target}>
+      <div className="introduce-mini-block">
         {MY_INTRODUCE_INFO_DATA.map((item, index) => {
           if (item.href) {
             return (

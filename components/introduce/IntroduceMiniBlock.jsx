@@ -46,21 +46,23 @@ const StyledIntroduceMiniBlock = styled.div`
     3px 3px 0 0 var(--shadow-outline-deep-dark),
     4px 4px 0 0 var(--shadow-outline-deep-dark);
   margin: 1em 0em;
-  ${(props) =>
-    props.$isOdd === false &&
-    css`
-      flex-direction: row-reverse;
-    `}
-  ${(props) =>
-    props.$isOdd && props.$actionState
-      ? css`
-          animation: ${slideAnimation('left')} 3s 0s 1;
-          animation-fill-mode: forwards;
-        `
-      : css`
-          animation: ${slideAnimation('right')} 3s 0s 1;
-          animation-fill-mode: forwards;
-        `}
+  &.odd {
+    flex-direction: row-reverse;
+    ${(props) =>
+      props.$animationState &&
+      css`
+        animation: ${slideAnimation('left')} 3s 0s 1;
+        animation-fill-mode: forwards;
+      `}
+  }
+  &.even {
+    ${(props) =>
+      props.$animationState &&
+      css`
+        animation: ${slideAnimation('right')} 3s 0s 1;
+        animation-fill-mode: forwards;
+      `}
+  }
   ${(props) =>
     props.color
       ? css`
@@ -88,7 +90,7 @@ const StyledIntroduceMiniBlock = styled.div`
     ${(props) =>
       props.$textState &&
       css`
-        animation: ${fadeInAnimation} 1s 0.5s 1;
+        animation: ${fadeInAnimation} 1s 0s 1;
         animation-fill-mode: forwards;
       `}
     .sub-title {
@@ -118,20 +120,18 @@ export default function IntroduceMiniBlock({
 
   return (
     <StyledIntroduceMiniBlock
+      className={isOdd ? 'odd' : 'even'}
       position={position}
       color={color}
-      $isOdd={isOdd}
-      $actionState={animationState}
+      $animationState={animationState}
       $textState={textState}
       onAnimationEnd={() => setTextState(true)}
     >
       {children}
-      {textState && (
-        <div className="short-introduce">
-          <div className="title">{title}</div>
-          <div className="sub-title">{subTitle}</div>
-        </div>
-      )}
+      <div className="short-introduce">
+        <div className="title">{title}</div>
+        <div className="sub-title">{subTitle}</div>
+      </div>
     </StyledIntroduceMiniBlock>
   );
 }

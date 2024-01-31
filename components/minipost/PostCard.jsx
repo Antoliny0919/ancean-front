@@ -1,13 +1,14 @@
-import { server, client } from '../../api/client';
-import Image from 'next/image';
+import Image from '../common/Image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Card from '../card/Card';
 import { post, flexBox } from '../../styles/variable';
 import { WaveLogo, CommentLogo } from '../common/Icon';
 
-const StyledPostCardImage = styled(Image)`
+const StyledPostCardImage = styled.div`
   position: absolute;
+  width: 100%;
+  height: 100%;
   background-color: #fff;
   border-radius: 10px;
   aspect-ratio: 1 / 1.4;
@@ -15,6 +16,11 @@ const StyledPostCardImage = styled(Image)`
   ${post.shadowBorder()};
   transition: opacity 0.7s;
   z-index: 10;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+  }
   &:hover {
     opacity: 0.15;
   }
@@ -22,10 +28,10 @@ const StyledPostCardImage = styled(Image)`
 
 const StyledPostCardCover = styled.div`
   position: relative;
-  background-color: #fff;
-  z-index: 0;
   width: 100%;
   height: 100%;
+  background-color: #fff;
+  z-index: 0;
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 10px;
@@ -42,10 +48,8 @@ const StyledPostCardCover = styled.div`
     ${post.titleEllipsis()};
   }
   .content {
-    padding: 10px 0;
-    ${post.contentEllipsis(9)};
-    font-size: 14px;
-    height: 60%;
+    ${post.contentEllipsis(10)};
+    font-size: 13px;
   }
   .author-and-writer-area {
     padding: 10px 0;
@@ -74,26 +78,14 @@ const StyledPostCardCover = styled.div`
 export default function PostCard({ post }) {
   const { header_image, author, title, created_at, id, introduce, wave } = post;
 
-  const myLoader = ({ src }) => {
-    return src;
-  };
-
   const createDate = new Date(created_at);
-
-  const imageUrl = header_image.includes(server.defaults.baseURL)
-    ? header_image.replace(server.defaults.baseURL, client.defaults.baseURL)
-    : header_image;
 
   return (
     <Link href={`/posts/${id}`}>
       <Card style={{ width: '270px' }}>
-        <StyledPostCardImage
-          src={imageUrl}
-          loader={myLoader}
-          fill
-          objectFit="contain"
-          alt={'no'}
-        />
+        <StyledPostCardImage>
+          <Image src={header_image}></Image>
+        </StyledPostCardImage>
         <StyledPostCardCover>
           <div className="title">{title}</div>
           <div className="content">{introduce}</div>
