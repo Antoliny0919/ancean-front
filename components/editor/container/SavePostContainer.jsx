@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
+// import useInterval from '../../../hooks/useInterval';
 import { EditorContext } from '../MarkdownEditor';
 import { savePost, createPost } from '../modules/editor';
 
@@ -15,7 +16,7 @@ export default function SavePostContainer({
 
   const dispatch = useDispatch();
 
-  const { title, selectedCategory, headerImage } = useSelector(
+  const { title, selectedCategory, headerImage, introduce } = useSelector(
     ({ editor }) => editor,
   );
 
@@ -23,8 +24,9 @@ export default function SavePostContainer({
     const postId = localStorage.getItem('beingWrittenPostId');
     const body = {
       title: title,
-      author: 'lululala0919',
+      author: 'antoliny0919',
       is_finish: is_finish,
+      ...(introduce && { introduce: introduce }),
       ...(headerImage && { header_image: headerImage }),
       ...(selectedCategory && { category: selectedCategory }),
     };
@@ -61,7 +63,7 @@ export default function SavePostContainer({
   };
 
   // autoSave logic interval(5minute)
-  // useInterval(() => saveOrCreate(), 30000);
+  // useInterval(() => saveOrCreate(false), 30000);
 
   return (
     <>

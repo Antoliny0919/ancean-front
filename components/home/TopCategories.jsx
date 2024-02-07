@@ -37,12 +37,15 @@ export default function TopCategories({ categories }) {
 
   const swiperRef = useRef(null);
 
-  const changeCategory = useCallback((slide) => {
-    let activeSlideNum = slide.activeIndex;
-    let slides = slide.slides;
-    let { name } = slides[activeSlideNum].dataset;
-    setCategoryName(name);
-  }, []);
+  const changeCategory = useCallback(
+    (slide) => {
+      let activeSlideNum = slide.activeIndex;
+      let slides = slide.slides;
+      let { name } = slides[activeSlideNum].dataset;
+      setCategoryName(name);
+    },
+    [categories],
+  );
 
   return (
     <StyledTopCategoriesArea $backgroundColor={transparentColor}>
@@ -79,11 +82,14 @@ export default function TopCategories({ categories }) {
             },
           }}
           onSwiper={(slide) => {
-            console.log(slide);
-            changeCategory(slide);
+            if (categories.length !== 0) {
+              changeCategory(slide);
+            }
           }}
           onSlideChange={(slide) => {
-            changeCategory(slide);
+            if (categories.length !== 0) {
+              changeCategory(slide);
+            }
           }}
           autoplay={{ delay: 30000 }}
         >

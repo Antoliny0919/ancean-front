@@ -11,9 +11,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 //   : 'http://api-local:8000';
 
 server.defaults.baseURL = isProduction
-  ? 'http://localhost:80'
+  ? 'http://ancean.net:8080'
   : 'http://api-local:8000';
 
 client.defaults.baseURL = isProduction
-  ? 'http://localhost:80'
+  ? 'http://ancean.net:80'
   : 'http://localhost:5050';

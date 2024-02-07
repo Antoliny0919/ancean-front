@@ -11,13 +11,13 @@ const StyledPopularWritingArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     height: 700px;
   }
   @media screen and (min-width: 1024px) {
     height: 800px;
   }
-  height: 550px;
+  height: 550px; */
 `;
 
 const ContentArea = styled.div`
@@ -26,24 +26,28 @@ const ContentArea = styled.div`
   flex-direction: column;
   width: 100%;
   .wave {
-    height: 400px;
-    bottom: 400px;
-    position: relative;
+    @media screen and (min-width: 768px) {
+      height: 400px;
+    }
+    height: 250px;
+    bottom: 0;
+    position: absolute;
     max-width: 2048px;
     z-index: 0;
   }
 `;
 
 const StyledPostSwiper = styled.div`
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-around;
   .slide-news-style-post {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    .swiper-button-next,
-    .swiper-button-prev {
-    }
+    padding: 5rem 3rem;
+  }
+  .swiper-slide {
+    width: 100%;
   }
 `;
 
@@ -56,18 +60,19 @@ export default function PopularWriting({ posts }) {
         colorHSL={{ hue: 215, saturation: 58, lightness: 59 }}
       />
       <ContentArea>
-        <StyledPostSwiper>
+        <StyledPostSwiper className="fade-in-slide-down-suspend">
           <Swiper
             modules={[Navigation]}
-            spaceBetween={0}
             loop={true}
             className="slide-news-style-post"
+            spaceBetween={500}
             breakpoints={{
               768: {
                 slidesPerView: 1,
               },
               1024: {
-                slidesPerView: 2,
+                slidesPerView: posts.length === 1 ? 1 : 2,
+                spaceBetween: 20,
               },
             }}
           >
@@ -86,7 +91,7 @@ export default function PopularWriting({ posts }) {
           paused={false}
           className="wave"
           options={{
-            height: 100,
+            height: 40,
             amplitude: 70,
             speed: 0.5,
             points: 2,

@@ -63,6 +63,7 @@ export const uploadHeaderImage = createAsyncThunk(
 
 const initialState = {
   title: '',
+  introduce: '',
   selectedCategory: '',
   headerImage: '',
   headerImagePath: '',
@@ -104,6 +105,7 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.data.message;
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
+      console.log(payload.redirect_path);
       if (payload.redirect_path) {
         localStorage.removeItem('beingWrittenPostId', payload.id);
       }

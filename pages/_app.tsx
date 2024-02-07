@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
-import { HahmletFont } from '../styles/font';
 import Layout from '../components/common/Layout';
 
 function App({ Component, pageProps }: AppProps) {
@@ -18,7 +17,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <main className={HahmletFont.className}>
+        <main>
           <GlobalStyle />
           <NextNProgress
             color="#155B82"

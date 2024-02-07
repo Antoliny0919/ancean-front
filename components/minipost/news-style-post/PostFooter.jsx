@@ -4,7 +4,7 @@ const StyledPostFooterArea = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 10px;
+  font-size: 8px;
   padding: 0.5em 1em 0.5em 1em;
   @media screen and (min-width: 768px) {
     font-size: 13px;

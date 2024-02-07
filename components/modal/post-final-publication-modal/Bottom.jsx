@@ -110,7 +110,7 @@ export default function Bottom() {
         <div className="field-name">
           <div>작성자</div>
         </div>
-        <div>Antoliny0919</div>
+        <div>antoliny0919</div>
       </div>
     </StyledBottomArea>
   );
