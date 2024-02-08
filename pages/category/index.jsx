@@ -22,5 +22,5 @@ export const getStaticProps = async () => {
     };
   }
 
-  return { props: { categories, categoryPosts } };
+  return { props: { categories, categoryPosts }, revalidate: 10 };
 };

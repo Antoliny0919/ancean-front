@@ -18,6 +18,7 @@ const StyledPostBodyArea = styled.div`
     @media screen and (min-width: 768px) {
       font-size: 14px;
     }
+    height: 8em;
     font-size: 10px;
     overflow: hidden;
     text-overflow: ellipsis;

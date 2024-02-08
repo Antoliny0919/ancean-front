@@ -42,6 +42,7 @@ export default function SavePostContainer({
           if (is_finish) {
             let { redirect_path } = payload;
             router.push(redirect_path);
+            editorRef.current.distroy();
           }
         });
       });

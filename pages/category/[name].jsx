@@ -34,13 +34,17 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-  const response = await server.get(
-    `api/posts?category__name=${params.name}&limit=3&is_finish=true`,
-  );
+  try {
+    const response = await server.get(
+      `api/posts/category/${params.name}?is_finish=true&limit=3`,
+    );
 
-  const categoryPosts = response.data;
+    const categoryPosts = response.data;
 
-  return {
-    props: { posts: { ...categoryPosts }, name: params.name },
-  };
+    return {
+      props: { posts: { ...categoryPosts }, name: params.name },
+    };
+  } catch (err) {
+    return { notFound: true };
+  }
 };

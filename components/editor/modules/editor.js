@@ -78,6 +78,7 @@ const editorSlice = createSlice({
   initialState,
   reducers: {
     changeValue: (state, { payload }) => {
+      console.log(payload);
       state[payload.target.name] = payload.target.value;
     },
     forcedChangeValue: (state, { payload: { name, value } }) => {
@@ -113,10 +114,12 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.message;
     });
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { id, title, content, category, header_image } = payload[0];
+      const { id, title, content, category, header_image, introduce } =
+        payload[0];
       state = {
         notificationState: state.notificationState,
         title,
+        introduce,
         selectedCategory: category,
         headerImagePath: header_image,
         content,

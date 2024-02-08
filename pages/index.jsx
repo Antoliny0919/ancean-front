@@ -82,5 +82,5 @@ export const getStaticProps = async () => {
   const data = await response.data;
   const representativeCategory = data.results;
 
-  return { props: { representativeCategory, posts } };
+  return { props: { representativeCategory, posts }, revalidate: 10 };
 };

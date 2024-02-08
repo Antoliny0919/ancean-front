@@ -9,6 +9,7 @@ const StyledEditorSaveNotification = styled.div`
   text-align: center;
   color: #f8f8f8;
   z-index: 100;
+  font-family: 'NanumBarunGothic';
   padding: 0.5vw 0 0.5vw 0;
   transition:
     transform 0.7s ease-in-out,

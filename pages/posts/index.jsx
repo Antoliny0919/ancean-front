@@ -10,11 +10,11 @@ export default function index({ posts }) {
   return <PostIndexContainer posts={results} nextPost={nextPost} />;
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const response = await server.get(
     '/api/posts?ordering=-created-at&limit=3&is_finish=true',
   );
   const posts = response.data;
 
-  return { props: { posts: posts } };
+  return { props: { posts: posts }, revalidate: 10 };
 };

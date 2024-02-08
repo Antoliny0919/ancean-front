@@ -166,6 +166,7 @@ export default function Top({
           </div>
           <h3>{title}</h3>
           <textarea
+            name="introduce"
             placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"
             value={introduce}
             onChange={onChangeIntroduce}

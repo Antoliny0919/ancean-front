@@ -11,13 +11,6 @@ const StyledPopularWritingArea = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* @media screen and (min-width: 768px) {
-    height: 700px;
-  }
-  @media screen and (min-width: 1024px) {
-    height: 800px;
-  }
-  height: 550px; */
 `;
 
 const ContentArea = styled.div`
@@ -86,17 +79,19 @@ export default function PopularWriting({ posts }) {
             ))}
           </Swiper>
         </StyledPostSwiper>
-        <Wave
-          fill={'#27566B'}
-          paused={false}
-          className="wave"
-          options={{
-            height: 40,
-            amplitude: 70,
-            speed: 0.5,
-            points: 2,
-          }}
-        ></Wave>
+        {posts.length !== 0 && (
+          <Wave
+            fill={'#27566B'}
+            paused={false}
+            className="wave"
+            options={{
+              height: 40,
+              amplitude: 70,
+              speed: 0.5,
+              points: 2,
+            }}
+          ></Wave>
+        )}
       </ContentArea>
     </StyledPopularWritingArea>
   );

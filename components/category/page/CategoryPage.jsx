@@ -81,11 +81,15 @@ export default function CategoryPage({ categories, categoryPosts }) {
           slideShadows: false,
         }}
         onSwiper={(slide) => {
-          changeCategory(slide);
+          if (categories.length !== 0) {
+            changeCategory(slide);
+          }
         }}
         onSlideChange={(slide) => {
-          changeCategory(slide);
-          setSlideNumber(slide.activeIndex);
+          if (categories.length !== 0) {
+            changeCategory(slide);
+            setSlideNumber(slide.activeIndex);
+          }
         }}
       >
         {categories.map(({ name }, index) => {
