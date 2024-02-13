@@ -30,11 +30,14 @@ export const getStaticPaths = async () => {
     return { params: { name: pathName.toLowerCase() } };
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 };
 
 export const getStaticProps = async ({ params }) => {
   try {
+    if (params.length === 0) {
+      return { notFound: true };
+    }
     const response = await server.get(
       `api/posts/category/${params.name}?is_finish=true&limit=3`,
     );
@@ -43,6 +46,7 @@ export const getStaticProps = async ({ params }) => {
 
     return {
       props: { posts: { ...categoryPosts }, name: params.name },
+      revalidate: 10,
     };
   } catch (err) {
     return { notFound: true };

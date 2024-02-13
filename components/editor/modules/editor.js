@@ -78,7 +78,6 @@ const editorSlice = createSlice({
   initialState,
   reducers: {
     changeValue: (state, { payload }) => {
-      console.log(payload);
       state[payload.target.name] = payload.target.value;
     },
     forcedChangeValue: (state, { payload: { name, value } }) => {
@@ -106,7 +105,6 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.data.message;
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
-      console.log(payload.redirect_path);
       if (payload.redirect_path) {
         localStorage.removeItem('beingWrittenPostId', payload.id);
       }
@@ -125,7 +123,6 @@ const editorSlice = createSlice({
         content,
       };
       localStorage.setItem('beingWrittenPostId', id);
-      console.log(state);
       return state;
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {

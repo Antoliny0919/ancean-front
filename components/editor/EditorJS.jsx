@@ -1,4 +1,4 @@
-import { client } from '../../api/client';
+import { uploadImage } from '../../api/image';
 
 export const initializeEditor = async ({ editorRef, content }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
@@ -60,16 +60,7 @@ export const initializeEditor = async ({ editorRef, content }) => {
               async uploadByFile(file) {
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await client.post(
-                  `/api/uploadImage/`,
-                  formData,
-                  {
-                    headers: {
-                      'Content-Type': 'multipart/form-data',
-                    },
-                    withCredentials: false,
-                  },
-                );
+                const response = await uploadImage({ formData: formData });
                 if (response.data.success === 1) {
                   return response.data;
                 }

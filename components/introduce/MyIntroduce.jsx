@@ -41,7 +41,7 @@ export default function MyIntroduce() {
     {
       logo: <FcGoogle />,
       title:
-        '그중에서도 전체적인 구조를 다루는 인프라, DevOps분야를 가장 좋아합니다.',
+        '그중에서도 전체적인 구조를 다루는 인프라, DevOps분야를 가장 사랑합니다.',
       subTitle: 'antoliny0919@gmail.com',
     },
     {

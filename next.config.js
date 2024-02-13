@@ -4,8 +4,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'localhost',
-        port: '5050',
+        hostname: 'ancean.net',
+        port: '80',
         pathname: '/**',
       }
     ]
