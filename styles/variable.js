@@ -9,6 +9,26 @@ export const flexBox = {
   `,
 };
 
+export const flex = (direction, justify, align) => `
+  display: flex;
+  flex-direction: ${direction};
+  justify-content: ${justify};
+  align-items: ${align};
+`;
+
+export const boxShadow = {
+  signatureBoxShadow: (thickness) => {
+    let boxShadow = ``;
+    for (let i = 1; i <= thickness; i++) {
+      if (i === thickness) {
+        boxShadow += `${i}px ${i}px 0 0 #273237;`;
+      }
+      boxShadow += `${i}px ${i}px 0 0 #273237,`;
+    }
+    return `box-shadow: ${boxShadow}`;
+  },
+};
+
 export const codeBlock = {
   info: (backgroundColor = '#black') =>
     `

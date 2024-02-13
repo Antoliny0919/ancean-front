@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import { useContext } from 'react';
 import styled from 'styled-components';
-import Logo from '@/components/common/Logo';
-import { SectionRefContext } from '@/pages';
+import { SectionRefContext } from '../../pages/index';
+import MoveSectionButtonContainer from '../button/container/MoveSectionButtonContainer';
+import Logo, { StyledLogoArea } from '../common/Logo';
+import OceanWaveButton, {
+  StyledOceanWaveButton,
+} from '../button/OceanWaveButton';
 import BannerAstrounautVer2 from '../../public/banner-astronaut-ver2.png';
-import MoveSectionButtonContainer from './container/MoveSectionButtonContainer';
-import { StyledLogoArea } from '@/components/common/Logo';
-import { StyledOceanWaveButton } from '../button/OceanWaveButton';
+import { BANNER_SECTION_BUTTON_DATA } from './data';
+import { flex } from '../../styles/variable';
 
 const StyledBannerArea = styled.section`
   @media screen and (min-width: 768px) {
@@ -27,11 +30,9 @@ const StyledBannerArea = styled.section`
   font-size: 12px;
   height: 650px;
   background-color: ${({ theme }) => theme.colors.mainColor[8]};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${flex('column', 'none', 'center')}
   font-family: 'GmarketSansMedium';
-  color: #f8f8f8;
+  color: ${({ theme }) => theme.colors.white};
   ${StyledLogoArea} {
     @media screen and (min-width: 768px) {
       font-size: 60px;
@@ -70,10 +71,7 @@ const StyledBannerInfo = styled.div`
       height: 80%;
       margin-bottom: 0;
     }
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    ${flex('column', 'center', 'center')}
     margin-bottom: 20px;
   }
   .title-section-link {
@@ -89,8 +87,6 @@ const StyledBannerProfile = styled.div`
     flex: 1 1 0%;
     height: 100%;
   }
-  display: flex;
-  align-items: flex-end;
   height: 70%;
   img {
     width: 100%;
@@ -99,70 +95,8 @@ const StyledBannerProfile = styled.div`
 `;
 
 export default function BannerMain() {
+  // sectionsRef is used for buttons that can be moved directly to a section
   const sectionsRef = useContext(SectionRefContext);
-
-  const sections = [
-    {
-      name: 'About Me',
-      rgb: {
-        red: 100,
-        green: 184,
-        blue: 201,
-      },
-      waveOption: {
-        height: 5,
-        amplitude: 10,
-        speed: 0.3,
-        points: 2,
-      },
-      ref: sectionsRef.aboutMe,
-    },
-    {
-      name: 'Popular Writing',
-      rgb: {
-        red: 90,
-        green: 140,
-        blue: 211,
-      },
-      waveOption: {
-        height: 15,
-        amplitude: 3,
-        speed: 0.5,
-        points: 2,
-      },
-      ref: sectionsRef.popularWriting,
-    },
-    {
-      name: 'Top Categories',
-      rgb: {
-        red: 19,
-        green: 181,
-        blue: 185,
-      },
-      waveOption: {
-        height: 7,
-        amplitude: 5,
-        speed: 0.3,
-        points: 2,
-      },
-      ref: sectionsRef.topCategories,
-    },
-    {
-      name: 'Latest Posts',
-      rgb: {
-        red: 104,
-        green: 111,
-        blue: 200,
-      },
-      waveOption: {
-        height: 15,
-        amplitude: 1,
-        speed: 0.8,
-        points: 2,
-      },
-      ref: sectionsRef.latestPosts,
-    },
-  ];
 
   return (
     <StyledBannerArea>
@@ -172,16 +106,16 @@ export default function BannerMain() {
           <Logo />
         </div>
         <div className="title-section-link">
-          {sections.map((section, index) => {
+          {Object.keys(BANNER_SECTION_BUTTON_DATA).map((sectionName, index) => {
             return (
-              // MoveSectionButton used OceanWaveButton Style
               <MoveSectionButtonContainer
                 key={index}
-                rgb={section.rgb}
-                waveOption={section.waveOption}
-                reference={section.ref}
+                buttonComponent={OceanWaveButton}
+                reference={sectionsRef[sectionName]}
+                rgb={BANNER_SECTION_BUTTON_DATA[sectionName].rgb}
+                waveOption={BANNER_SECTION_BUTTON_DATA[sectionName].waveOption}
               >
-                {section.name}
+                {BANNER_SECTION_BUTTON_DATA[sectionName].name}
               </MoveSectionButtonContainer>
             );
           })}
