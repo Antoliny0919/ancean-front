@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styled, { css } from 'styled-components';
-import { boxShadow } from '../../styles/variable';
 import SpreadSlideAnimation from '../animation/SpreadSlideAnimation';
 import FadeInAnimation from '../animation/FadeInAnimation';
-import { flex } from '../../styles/variable';
+import { flex, shadow } from '../../styles/variable';
 
 const StyledIntroduceMiniBlock = styled.div`
   width: 100%;
@@ -15,8 +14,14 @@ const StyledIntroduceMiniBlock = styled.div`
   padding: 1em;
   border-radius: 10px;
   margin: 1em 0em;
-  ${boxShadow.signatureBoxShadow(4)};
+  ${shadow.signatureBoxShadow(4)};
   ${(props) =>
+    props.$isOdd &&
+    css`
+      flex-direction: row-reverse;
+    `}
+  ${(props) =>
+    // Link IntroduceMiniBlock have background color
     props.color
       ? css`
           background-color: ${(props) => props.color};
@@ -65,9 +70,10 @@ export default function IntroduceMiniBlock({
     <SpreadSlideAnimation
       isOdd={isOdd}
       animationState={animationState}
+      // when SpreadSlideAnimation is finished start FadeInAnimation
       props={{ onAnimationEnd: () => setTextState(true) }}
     >
-      <StyledIntroduceMiniBlock color={color}>
+      <StyledIntroduceMiniBlock color={color} $isOdd={isOdd}>
         {children}
         <FadeInAnimation animationState={textState}>
           <div className="short-introduce">

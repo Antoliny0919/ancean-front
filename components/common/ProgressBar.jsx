@@ -30,6 +30,9 @@ export default function ProgressBar({ percentage, color }) {
 
   const [progressState, setProgressState] = useState(0);
 
+  // when the progress bar is shown on the screen change width value
+  // effect of the progress bar filling up(like animation)
+
   useEffect(() => {
     const progressObserver = new IntersectionObserver(
       (entries, observer) => {

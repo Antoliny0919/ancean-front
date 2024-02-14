@@ -16,7 +16,7 @@ export const flex = (direction, justify, align) => `
   align-items: ${align};
 `;
 
-export const boxShadow = {
+export const shadow = {
   signatureBoxShadow: (thickness) => {
     let boxShadow = ``;
     for (let i = 1; i <= thickness; i++) {
@@ -27,6 +27,25 @@ export const boxShadow = {
     }
     return `box-shadow: ${boxShadow}`;
   },
+  signatureTextShadow: (thickness) => {
+    let textShadow = ``;
+    let lightness = Math.ceil(20 / thickness);
+    for (let i = 1; i <= thickness; i++) {
+      if (i === thickness) {
+        textShadow += `${i}px ${i}px hsl(0, 0%, 14%);`;
+      }
+      textShadow += `${i}px ${i}px hsl(0, 0%, ${20 - lightness * i}%),`;
+    }
+    return `text-shadow: ${textShadow}`;
+  },
+};
+
+export const textColor = {
+  linearGradient: (color) => `
+    background: ${color};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  `,
 };
 
 export const codeBlock = {

@@ -17,7 +17,7 @@ const StyledMyIntroduce = styled.div`
   height: 100%;
   width: 100%;
   font-size: 8px;
-  padding: 1em 2em;
+  padding: 1em 2em 1em 0;
   display: flex;
   justify-content: center;
   text-align: center;

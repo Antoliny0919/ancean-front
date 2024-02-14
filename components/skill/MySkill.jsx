@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SkillProgress from './SkillProgress';
 import SwiperButton from '../button/SwiperButton';
 import { MY_SKILL_DATA } from './data';
+import { flex, shadow } from '../../styles/variable';
 
 const StyledMySkill = styled.div`
   @media screen and (min-width: 768px) {
@@ -13,10 +14,7 @@ const StyledMySkill = styled.div`
     font-size: 16px;
   }
   font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  ${flex('column', 'cetner', 'center')};
   font-family: 'Pretendard-Bold';
   height: 35em;
   width: 100%;
@@ -26,22 +24,11 @@ const StyledMySkill = styled.div`
     background-color: ${({ theme }) => theme.colors.mainColor[4]};
     border: solid ${({ theme }) => theme.colors.mainColor[4]} 2px;
     border-radius: 10px;
-    box-shadow:
-      1px 1px 0 0 var(--shadow-outline-deep-dark),
-      2px 2px 0 0 var(--shadow-outline-deep-dark),
-      3px 3px 0 0 var(--shadow-outline-deep-dark),
-      4px 4px 0 0 var(--shadow-outline-deep-dark),
-      5px 5px 0 0 var(--shadow-outline-deep-dark),
-      6px 6px 0 0 var(--shadow-outline-deep-dark),
-      7px 7px 0 0 var(--shadow-outline-deep-dark),
-      8px 8px 0 0 var(--shadow-outline-deep-dark),
-      9px 9px 0 0 var(--shadow-outline-deep-dark);
+    ${shadow.signatureBoxShadow(9)};
     overflow-y: scroll;
   }
   .swiper-slide {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    ${flex('column', 'flex-start', 'column')};
   }
   .skill-section {
     @media screen and (min-width: 768px) {
@@ -57,11 +44,7 @@ const StyledMySkill = styled.div`
     font-size: 20px;
     letter-spacing: 3px;
     color: ${({ theme }) => theme.colors.lightWhite};
-    text-shadow:
-      1px 1px hsl(0, 0%, 14%),
-      2px 2px hsl(0, 0%, 12%),
-      3px 3px hsl(0, 0%, 10%),
-      4px 4px hsl(0, 0%, 8%);
+    ${shadow.signatureTextShadow(4)};
   }
   ul {
     width: 100%;
@@ -73,6 +56,7 @@ const StyledSwiperButtonArea = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: inherit;
   padding: 1em 2em;
   z-index: 15;
   bottom: 0;

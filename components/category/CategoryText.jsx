@@ -1,13 +1,17 @@
 import styled, { css } from 'styled-components';
 import { CATEGORY_DATA } from './data';
-import { linearGradient } from '../../styles/variable';
+import { textColor } from '../../styles/variable';
 
 export const StyledCategoryText = styled.div`
   font-family: 'Pretendard-Bold';
   &::after {
     content: '${(props) => props.name}';
     position: relative;
-    text-shadow: ${(props) => props.shadow};
+    ${(props) =>
+      props.shadow &&
+      css`
+        text-shadow: ${(props) => props.shadow};
+      `}
   }
   &::before {
     content: '${(props) => props.name}';
@@ -15,7 +19,7 @@ export const StyledCategoryText = styled.div`
     ${(props) =>
       props.color && props.color.includes('linear-gradient')
         ? css`
-            ${linearGradient.text(props.color)}
+            ${textColor.linearGradient(props.color)};
           `
         : css`
             color: ${(props) => props.color};
@@ -24,12 +28,12 @@ export const StyledCategoryText = styled.div`
   }
 `;
 
-export default function CategoryText({ name, style = {} }) {
+export default function CategoryText({ name, textShadow = true, style = {} }) {
   return (
     <StyledCategoryText
       name={name}
       color={CATEGORY_DATA[name]['color']}
-      shadow={CATEGORY_DATA[name]['textShadow']}
+      shadow={textShadow && CATEGORY_DATA[name]['textShadow']}
       style={{ ...style }}
     />
   );

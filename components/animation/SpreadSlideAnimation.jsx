@@ -12,20 +12,22 @@ const spreadSlideAnimation = (direction) => keyframes`
     width: 2.5em;
   }
   100% {
+    // increase the width to make block content visible
     width: 80%;
   }
 `;
 
 const StyledSpreadSlideAnimation = styled.div`
   position: relative;
+  // located in the center before animation start
   left: 50%;
   transform: translateX(-50%);
   transition: width 1s;
   &.odd {
-    flex-direction: row-reverse;
     ${(props) =>
       props.$animationState &&
       css`
+        // odd index block slide direction left
         animation: ${spreadSlideAnimation('left')} 3s 0s 1;
         animation-fill-mode: forwards;
       `}
@@ -34,6 +36,7 @@ const StyledSpreadSlideAnimation = styled.div`
     ${(props) =>
       props.$animationState &&
       css`
+        // even index block slide direction right
         animation: ${spreadSlideAnimation('right')} 3s 0s 1;
         animation-fill-mode: forwards;
       `}
@@ -49,6 +52,7 @@ export default function SpreadSlideAnimation({
   return (
     <StyledSpreadSlideAnimation
       $animationState={animationState}
+      // SpreadSlideAnimation take block index number, slide action direction to the left when the number is odd
       className={isOdd ? 'odd' : 'even'}
       {...props}
     >

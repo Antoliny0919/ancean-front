@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
-import { boxShadow } from '../../styles/variable';
+import { shadow } from '../../styles/variable';
 
 export const StyledOceanWaveButton = styled.div`
   font-size: 16px;
@@ -16,7 +16,7 @@ export const StyledOceanWaveButton = styled.div`
   border: none;
   text-align: center;
   background-color: ${(props) => props.$backgroundColor};
-  ${boxShadow.signatureBoxShadow(6)};
+  ${shadow.signatureBoxShadow(6)};
   transition: background-color 0.7s;
   &:hover {
     cursor: pointer;
