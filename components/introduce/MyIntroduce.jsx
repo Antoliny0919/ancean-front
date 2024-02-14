@@ -1,10 +1,8 @@
+import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { FcGoogle } from 'react-icons/fc';
-import { FaBirthdayCake, FaMale, FaLinkedin } from 'react-icons/fa';
-import { IoLogoGithub } from 'react-icons/io';
 import IntroduceMiniBlock from './IntroduceMiniBlock';
-import Link from 'next/link';
+import { MY_INTRODUCE_DATA } from './data';
 
 const StyledMyIntroduce = styled.div`
   @media screen and (min-width: 450px) {
@@ -14,7 +12,7 @@ const StyledMyIntroduce = styled.div`
     font-size: 12px;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 15px;
+    font-size: 14px;
   }
   height: 100%;
   width: 100%;
@@ -27,42 +25,12 @@ const StyledMyIntroduce = styled.div`
 `;
 
 export default function MyIntroduce() {
-  const MY_INTRODUCE_INFO_DATA = [
-    {
-      logo: <FaBirthdayCake />,
-      title: '프로그래밍 개발을 공부하는 이시현, Antoliny입니다.',
-      subTitle: '2000.09.19',
-    },
-    {
-      logo: <FaMale />,
-      title: '웹 프로그래밍을 즐겨하며 다양한 분야에 관심이 많습니다.',
-      subTitle: '이시현, Antoliny',
-    },
-    {
-      logo: <FcGoogle />,
-      title:
-        '그중에서도 전체적인 구조를 다루는 인프라, DevOps분야를 가장 사랑합니다.',
-      subTitle: 'antoliny0919@gmail.com',
-    },
-    {
-      logo: <IoLogoGithub />,
-      title: 'Github에서 Antoliny의 작업물을 확인할 수 있습니다.',
-      href: 'https://github.com/Antoliny0919',
-      color: '#24292e',
-    },
-    {
-      logo: <FaLinkedin />,
-      title: 'LinkedIn에서 Antoliny의 비지니스를 확인할 수 있습니다.',
-      href: 'https://www.linkedin.com/in/antoliny0919',
-      color: '#0a66c2',
-    },
-  ];
-
   const [introduceBlockAnimationState, setIntroduceBlockAnimationState] =
     useState(false);
 
   const target = useRef(null);
 
+  // observe introduce block and when it's shown on the screen(0.01%) run slide animation
   useEffect(() => {
     const introduceBlockObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -80,36 +48,36 @@ export default function MyIntroduce() {
 
   return (
     <StyledMyIntroduce ref={target}>
-      <div className="introduce-mini-block">
-        {MY_INTRODUCE_INFO_DATA.map((item, index) => {
-          if (item.href) {
-            return (
-              <Link key={index} href={item.href}>
-                <IntroduceMiniBlock
-                  animationState={introduceBlockAnimationState}
-                  title={item.title}
-                  subTitle={null}
-                  color={item.color}
-                  isOdd={(index + 1) % 2 === 1}
-                >
-                  {item.logo}
-                </IntroduceMiniBlock>
-              </Link>
-            );
-          }
+      {MY_INTRODUCE_DATA.map((item, index) => {
+        // github, linkedin block have href so used Link Tag
+        if (item.href) {
           return (
-            <IntroduceMiniBlock
-              key={index}
-              animationState={introduceBlockAnimationState}
-              title={item.title}
-              subTitle={item.subTitle}
-              isOdd={(index + 1) % 2 === 1}
-            >
-              {item.logo}
-            </IntroduceMiniBlock>
+            <Link key={index} href={item.href}>
+              <IntroduceMiniBlock
+                animationState={introduceBlockAnimationState}
+                title={item.title}
+                subTitle={null}
+                color={item.color}
+                // Odd -> slide left , Even -> slide right (animation direction)
+                isOdd={(index + 1) % 2 === 1}
+              >
+                {item.logo}
+              </IntroduceMiniBlock>
+            </Link>
           );
-        })}
-      </div>
+        }
+        return (
+          <IntroduceMiniBlock
+            key={index}
+            animationState={introduceBlockAnimationState}
+            title={item.title}
+            subTitle={item.subTitle}
+            isOdd={(index + 1) % 2 === 1}
+          >
+            {item.logo}
+          </IntroduceMiniBlock>
+        );
+      })}
     </StyledMyIntroduce>
   );
 }

@@ -1,68 +1,21 @@
 import { useState } from 'react';
-import styled, { css, keyframes } from 'styled-components';
-
-const slideAnimation = (direction) => keyframes`
-  0% {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2.5em;
-  }
-  50% {
-    left: ${direction === 'left' ? 0 : 100}%;
-    transform: translateX(0%);
-    width: 2.5em;
-  }
-  100% {
-    width: 80%;
-  }
-`;
-
-const fadeInAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import styled, { css } from 'styled-components';
+import { boxShadow } from '../../styles/variable';
+import SpreadSlideAnimation from '../animation/SpreadSlideAnimation';
+import FadeInAnimation from '../animation/FadeInAnimation';
+import { flex } from '../../styles/variable';
 
 const StyledIntroduceMiniBlock = styled.div`
-  position: relative;
-  height: 2.5em;
-  width: 2.5em;
-  max-width: 600px;
+  width: 100%;
+  height: 3.5em;
   display: flex;
   font-size: inherit;
   font-family: 'NanumBarunGothic';
-  left: 50%;
-  transform: translateX(-50%);
-  transition: width 1s;
   box-sizing: content-box;
   padding: 1em;
   border-radius: 10px;
-  box-shadow:
-    1px 1px 0 0 var(--shadow-outline-deep-dark),
-    2px 2px 0 0 var(--shadow-outline-deep-dark),
-    3px 3px 0 0 var(--shadow-outline-deep-dark),
-    4px 4px 0 0 var(--shadow-outline-deep-dark);
   margin: 1em 0em;
-  &.odd {
-    flex-direction: row-reverse;
-    ${(props) =>
-      props.$animationState &&
-      css`
-        animation: ${slideAnimation('left')} 3s 0s 1;
-        animation-fill-mode: forwards;
-      `}
-  }
-  &.even {
-    ${(props) =>
-      props.$animationState &&
-      css`
-        animation: ${slideAnimation('right')} 3s 0s 1;
-        animation-fill-mode: forwards;
-      `}
-  }
+  ${boxShadow.signatureBoxShadow(4)};
   ${(props) =>
     props.color
       ? css`
@@ -81,18 +34,9 @@ const StyledIntroduceMiniBlock = styled.div`
   }
   .short-introduce {
     width: 100%;
-    display: flex;
+    height: 100%;
+    ${flex('column', 'center', 'none')};
     font-size: inherit;
-    opacity: 0;
-    flex-direction: column;
-    justify-content: center;
-    transition: width 1s;
-    ${(props) =>
-      props.$textState &&
-      css`
-        animation: ${fadeInAnimation} 1s 0s 1;
-        animation-fill-mode: forwards;
-      `}
     .sub-title {
       @media screen and (min-width: 768px) {
         font-size: 10px;
@@ -109,7 +53,6 @@ const StyledIntroduceMiniBlock = styled.div`
 
 export default function IntroduceMiniBlock({
   children,
-  position,
   animationState,
   title,
   subTitle,
@@ -119,19 +62,20 @@ export default function IntroduceMiniBlock({
   const [textState, setTextState] = useState(false);
 
   return (
-    <StyledIntroduceMiniBlock
-      className={isOdd ? 'odd' : 'even'}
-      position={position}
-      color={color}
-      $animationState={animationState}
-      $textState={textState}
-      onAnimationEnd={() => setTextState(true)}
+    <SpreadSlideAnimation
+      isOdd={isOdd}
+      animationState={animationState}
+      props={{ onAnimationEnd: () => setTextState(true) }}
     >
-      {children}
-      <div className="short-introduce">
-        <div className="title">{title}</div>
-        <div className="sub-title">{subTitle}</div>
-      </div>
-    </StyledIntroduceMiniBlock>
+      <StyledIntroduceMiniBlock color={color}>
+        {children}
+        <FadeInAnimation animationState={textState}>
+          <div className="short-introduce">
+            <div className="title">{title}</div>
+            <div className="sub-title">{subTitle}</div>
+          </div>
+        </FadeInAnimation>
+      </StyledIntroduceMiniBlock>
+    </SpreadSlideAnimation>
   );
 }
