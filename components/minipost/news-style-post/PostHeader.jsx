@@ -1,6 +1,7 @@
 import Image from '../../common/Image';
 import styled from 'styled-components';
 import { WaveLogo, CommentLogo } from '../../common/Icon';
+import { flex } from '../../../styles/variable';
 
 const StyledPostHeaderArea = styled.div`
   display: flex;
@@ -17,10 +18,7 @@ const StyledPostHeaderArea = styled.div`
 
 const StyledMinibarArea = styled.div`
   font-family: 'SUIT-Regular';
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  ${flex('column', 'flex-end', 'center')};
   width: 10%;
   margin-bottom: 1em;
   .state {

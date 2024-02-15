@@ -18,7 +18,9 @@ export const theme = {
     white: '#F8F8F8',
     lightBlack: '#282828',
     black: '#151515',
-    divideLineColor: '#DDDDDD',
+    lightGray: '#DDDDDD',
+    deepGray: '#484848',
+    gray: '#858585',
     subTitleBlack: '#939393',
     state: {
       success: '#276C27',

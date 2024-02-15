@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { miniPostContent } from '@/styles/variable';
 
 const StyledPostBodyArea = styled.div`
   width: 100%;
@@ -8,9 +9,7 @@ const StyledPostBodyArea = styled.div`
       font-size: 18px;
     }
     font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    ${miniPostContent.titleEllipsis};
     font-family: 'Pretendard-Bold';
     margin-bottom: 0.7em;
   }
@@ -20,11 +19,7 @@ const StyledPostBodyArea = styled.div`
     }
     height: 8em;
     font-size: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    -webkit-box-orient: vertical;
+    ${miniPostContent.contentEllipsis(5)};
     font-family: 'Pretendard-Light';
     margin-bottom: 0.7em;
   }
@@ -34,7 +29,7 @@ const StyledPostBodyArea = styled.div`
     }
     font-size: 9px;
     font-family: 'Pretendard-Light';
-    color: rgba(57, 57, 57, 0.7);
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;
 

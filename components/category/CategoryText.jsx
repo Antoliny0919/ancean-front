@@ -7,11 +7,7 @@ export const StyledCategoryText = styled.div`
   &::after {
     content: '${(props) => props.name}';
     position: relative;
-    ${(props) =>
-      props.shadow &&
-      css`
-        text-shadow: ${(props) => props.shadow};
-      `}
+    text-shadow: ${(props) => props.shadow};
   }
   &::before {
     content: '${(props) => props.name}';
@@ -28,12 +24,12 @@ export const StyledCategoryText = styled.div`
   }
 `;
 
-export default function CategoryText({ name, textShadow = true, style = {} }) {
+export default function CategoryText({ name, style = {} }) {
   return (
     <StyledCategoryText
       name={name}
       color={CATEGORY_DATA[name]['color']}
-      shadow={textShadow && CATEGORY_DATA[name]['textShadow']}
+      shadow={CATEGORY_DATA[name]['textShadow']}
       style={{ ...style }}
     />
   );

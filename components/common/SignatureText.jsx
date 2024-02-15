@@ -29,6 +29,7 @@ export default function SignatureText({
   style = {},
   colorHSL = {},
 }) {
+  // SignatureText measure the through the value to used props(fontSize)
   const shadowSize = fontSize * 0.025;
 
   const { hue, saturation, lightness } = colorHSL;

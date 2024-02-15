@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Wave from 'react-wavify';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import SectionHeader from './items/SectionHeader';
+import HomeSectionHeader from './HomeSectionHeader';
 import NewsStylePost from '../minipost/NewsStylePost';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -47,7 +47,7 @@ const StyledPostSwiper = styled.div`
 export default function PopularWriting({ posts }) {
   return (
     <StyledPopularWritingArea>
-      <SectionHeader
+      <HomeSectionHeader
         mainTitle={'Popular Writing'}
         subTitle={'가장 많은 WAVE를 획득한 포스트입니다.'}
         colorHSL={{ hue: 215, saturation: 58, lightness: 59 }}
@@ -64,6 +64,7 @@ export default function PopularWriting({ posts }) {
                 slidesPerView: 1,
               },
               1024: {
+                // if posts length 1 --> slidesPerView 2 meaningless
                 slidesPerView: posts.length === 1 ? 1 : 2,
                 spaceBetween: 20,
               },
@@ -73,6 +74,7 @@ export default function PopularWriting({ posts }) {
               <SwiperSlide key={index}>
                 <NewsStylePost
                   postData={item}
+                  // odd, even index post different style apply
                   rotate={index % 2 === 0 ? 'under-degree' : 'up-degree'}
                 ></NewsStylePost>
               </SwiperSlide>

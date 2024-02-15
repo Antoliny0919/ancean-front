@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, createContext } from 'react';
 import { server } from '@/api/client';
-import SectionContainer from '@/components/home/container/SectionContainer';
+import SectionContainer from '../components/home/container/SectionContainer';
 import Bannermain from '@/components/home/BannerMain';
 import AboutMe from '@/components/home/AboutMe';
 import PopularWriting from '@/components/home/PopularWriting';

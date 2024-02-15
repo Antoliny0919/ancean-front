@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SectionHeader from './items/SectionHeader';
+import HomeSectionHeader from './HomeSectionHeader';
 import ResponsivePost from '../minipost/ResponsivePost';
 
 const StyledLatestPostsArea = styled.div`
@@ -32,12 +32,12 @@ const StyledSectionBody = styled.div`
 export default function LatestPosts({ posts }) {
   return (
     <StyledLatestPostsArea>
-      <SectionHeader
+      <HomeSectionHeader
         mainTitle={'Latest Posts'}
         subTitle={''}
         colorHSL={{ hue: 237, saturation: 46, lightness: 56 }}
         style={{ 'align-items': 'flex-start' }}
-      ></SectionHeader>
+      ></HomeSectionHeader>
       <StyledSectionBody>
         {posts.map((post, index) => {
           return <ResponsivePost key={index} post={post}></ResponsivePost>;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CATEGORY_DATA } from '../category/data';
+import { CATEGORY_DATA } from './data';
 
 const StyledCategoryButton = styled.button`
   @media screen and (min-width: 768px) {

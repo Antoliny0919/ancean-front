@@ -1,21 +1,21 @@
 import { useState, useCallback, useRef } from 'react';
-import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import FlipCategoryCard from '../category/FlipCategoryCard';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
-import SectionHeader from './items/SectionHeader';
+import styled from 'styled-components';
+import FlipCategoryCard from '../category/FlipCategoryCard';
+import HomeSectionHeader from './HomeSectionHeader';
 import { CATEGORY_DATA } from '../category/data';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 
 const StyledTopCategoriesArea = styled.div`
-  @media screen and (min-width: 768px) {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
+  display: flex;
+  flex-direction: column;
+  background: ${(props) => props.$backgroundColor};
   padding-top: 3rem;
   padding-bottom: 3rem;
+  transition: background 1s;
   .swiper-category {
     @media screen and (min-width: 768px) {
       padding-top: 2rem;
@@ -24,23 +24,22 @@ const StyledTopCategoriesArea = styled.div`
     padding-top: 0;
     padding-bottom: 0;
   }
-  background: ${(props) => props.$backgroundColor};
-  display: flex;
-  flex-direction: column;
-  transition: background 1s;
 `;
 
 export default function TopCategories({ categories }) {
   const [categoryName, setCategoryName] = useState('');
 
+  // use BackgroundColor
   const { transparentColor } = categoryName && CATEGORY_DATA[categoryName];
 
   const swiperRef = useRef(null);
 
+  // swiper slide change call changeCategory method (onSlideChange)
   const changeCategory = useCallback(
     (slide) => {
       let activeSlideNum = slide.activeIndex;
       let slides = slide.slides;
+      // get the category name of the current slide from the changed slide
       let { name } = slides[activeSlideNum].dataset;
       setCategoryName(name);
     },
@@ -49,7 +48,7 @@ export default function TopCategories({ categories }) {
 
   return (
     <StyledTopCategoriesArea $backgroundColor={transparentColor}>
-      <SectionHeader
+      <HomeSectionHeader
         mainTitle={'Top Categories'}
         subTitle={'최근 가장 많은 게시글이 있는 카테고리 입니다.'}
         colorHSL={{ hue: 181, saturation: 81, lightness: 40 }}
@@ -91,6 +90,7 @@ export default function TopCategories({ categories }) {
               changeCategory(slide);
             }
           }}
+          // 30s interval slideChange(auto)
           autoplay={{ delay: 30000 }}
         >
           {categories.map(({ name, color, post_count }, index) => (

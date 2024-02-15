@@ -9,7 +9,7 @@ const StyledProgressBar = styled.div`
     height: inherit;
     position: absolute;
     display: block;
-    background-color: ${({ theme }) => theme.colors.divideLineColor};
+    background-color: ${({ theme }) => theme.colors.lightGray};
     border-radius: 5px;
   }
   .after {

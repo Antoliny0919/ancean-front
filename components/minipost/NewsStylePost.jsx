@@ -1,9 +1,9 @@
+import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import PostHeader from './news-style-post/PostHeader';
 import PostBody from './news-style-post/PostBody';
 import PostFooter from './news-style-post/PostFooter';
-import { post } from '@/styles/variable';
-import Link from 'next/link';
+import { shadow } from '../../styles/variable';
 
 const StyledPostArea = styled.div`
   display: flex;
@@ -15,17 +15,17 @@ const StyledPostArea = styled.div`
   font-size: 12px;
   width: 20em;
   border-radius: 10px;
-  background-color: #fcfcfc;
-  color: #171717;
-  ${post.shadowBorder()};
-  ${post.shadow()};
+  background-color: ${({ theme }) => theme.colors.lightWhite};
+  color: ${({ theme }) => theme.colors.black};
+  border: 2px solid #273237;
+  ${shadow.signatureBoxShadow(6)};
   transition:
     transform 0.5s ease-out,
     background-color 0.35s,
     box-shadow 0.5s ease-out;
-
+  // have rotate attribute tilt the post
   ${(props) =>
-    props.rotate === 'under-degree'
+    props.rotate && props.rotate === 'under-degree'
       ? css`
           transform: rotateZ(-1deg);
         `
@@ -35,7 +35,7 @@ const StyledPostArea = styled.div`
   &:hover {
     transform: rotateZ(0deg);
     background-color: white;
-    ${post.hoverShadow()};
+    ${shadow.signatureBoxShadow(9)};
   }
 `;
 

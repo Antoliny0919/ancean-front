@@ -48,6 +48,23 @@ export const textColor = {
   `,
 };
 
+export const miniPostContent = {
+  titleEllipsis: () =>
+    `
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  `,
+  contentEllipsis: (line = 5) =>
+    `
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: ${line};
+    -webkit-box-orient: vertical;
+  `,
+};
+
 export const codeBlock = {
   info: (backgroundColor = '#black') =>
     `

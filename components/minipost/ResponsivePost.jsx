@@ -1,6 +1,6 @@
 import Image from '../common/Image';
 import styled from 'styled-components';
-import CategoryButton from '../button/CategoryButton';
+import CategoryButton from '../category/CategoryButton';
 import Link from 'next/link';
 
 const StyledPostArea = styled(Link)`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import ProgressBar from '../common/ProgressBar';
-import CategoryText from '../category/CategoryText';
+import ColorText from '../common/ColorText';
 import { CATEGORY_DATA } from '../category/data';
 
 const StyledSkillProgress = styled.li`
@@ -29,7 +29,9 @@ export default function SkillProgress({ skill }) {
     <StyledSkillProgress>
       <div className="label">
         <div className="logo">{CATEGORY_DATA[skill.name]['logo']}</div>
-        <CategoryText name={skill.name} textShadow={false} />
+        <ColorText color={CATEGORY_DATA[skill.name]['color']}>
+          {skill.name}
+        </ColorText>
       </div>
       <ProgressBar
         percentage={skill.percentage}

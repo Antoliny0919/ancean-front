@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { flex } from '../../../styles/variable';
 
 const StyledPostFooterArea = styled.div`
   display: flex;
@@ -10,15 +11,12 @@ const StyledPostFooterArea = styled.div`
     font-size: 13px;
     padding: 0.5em 1em 0.5em 1em;
   }
-  border-top: solid rgba(73, 73, 73, 0.2) 0.1em;
+  border-top: solid ${({ theme }) => theme.colors.lightGray} 0.1em;
   font-family: 'GmarketSansMedium';
   align-items: center;
 `;
 const StyledCategoryArea = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
+  ${flex('row', 'flex-end', 'center')};
   width: 50%;
   span {
     margin-right: 0.2em;
@@ -33,10 +31,13 @@ export default function PostFooter({ author, categoryName }) {
   return (
     <StyledPostFooterArea>
       <div className="author">작성자: {author}</div>
-      <StyledCategoryArea>
-        <span>카테고리: </span>
-        <span className="category">{categoryName}</span>
-      </StyledCategoryArea>
+      {/* category may not exist */}
+      {categoryName && (
+        <StyledCategoryArea>
+          <span>카테고리: </span>
+          <span className="category">{categoryName}</span>
+        </StyledCategoryArea>
+      )}
     </StyledPostFooterArea>
   );
 }
