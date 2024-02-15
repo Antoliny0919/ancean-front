@@ -9,7 +9,7 @@ import LatestPosts from '@/components/home/LatestPosts';
 
 export const SectionRefContext = createContext();
 
-export default function Home({ representativeCategory, posts }) {
+export default function Home({ categories, posts }) {
   // Reference required for each section for scroll events
   const aboutMeRef = useRef(null);
   const popularWritingRef = useRef(null);
@@ -52,7 +52,7 @@ export default function Home({ representativeCategory, posts }) {
           <PopularWriting posts={posts.popularWriting} />
         </SectionContainer>
         <SectionContainer ref={topCategoriesRef}>
-          <TopCategories categories={representativeCategory} />
+          <TopCategories categories={categories} />
         </SectionContainer>
         <SectionContainer ref={latestPostsRef}>
           <LatestPosts posts={posts.latestPosts} />
@@ -80,7 +80,7 @@ export const getStaticProps = async () => {
     `/api/category/?ordering=-post_count&limit=7`,
   );
   const data = await response.data;
-  const representativeCategory = data.results;
+  const categories = data.results;
 
-  return { props: { representativeCategory, posts }, revalidate: 10 };
+  return { props: { categories, posts }, revalidate: 10 };
 };

@@ -1,22 +1,23 @@
 import { useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
-import { flexBox } from '../../styles/variable';
+import { flex } from '../../styles/variable';
 
 const StyledFlipCard = styled.div`
   position: relative;
   display: inline-grid;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   transition: transform 1s;
   transform-style: preserve-3d;
   opacity: 0.5;
   ${(props) =>
+    // active slide opacity 1(center located)
     props.isActive &&
     css`
       opacity: 1;
     `};
   & > * {
     grid-area: 1 / 1 / 1 / 1;
-    ${flexBox.flex()}
+    ${flex('row', 'center', 'center')};
     aspect-ratio: 140 / 200;
     font-family: 'Pretendard-Bold';
     font-size: 20px;
@@ -45,7 +46,9 @@ export default function FlipCard({
 }) {
   const target = useRef(null);
 
+  // card flip logic
   const flipCategoryCard = () => {
+    // returning the already flipped state to its original state
     if (target.current.style.transform === 'rotateY(180deg)') {
       target.current.style.transform = 'rotateY(0deg)';
     } else {
@@ -54,6 +57,7 @@ export default function FlipCard({
   };
 
   useEffect(() => {
+    // non active slide cannot be flip
     target.current.style.transform = 'rotateY(0deg)';
   }, [props.isActive]);
 

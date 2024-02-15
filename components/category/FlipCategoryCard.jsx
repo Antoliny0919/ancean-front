@@ -33,27 +33,22 @@ const StyledCategoryCard = styled.div`
 `;
 
 export default function FlipCategoryCard({ name, postCount, props = {} }) {
-  const category = CATEGORY_DATA[name];
+  const { color, logo, transparentColor } = CATEGORY_DATA[name];
 
   return (
     <FlipCard
       // the front of a card
       frontComponent={
-        <StyledCategoryCard $backgroundColor={category['color']}>
-          {category['logo']}
+        <StyledCategoryCard $backgroundColor={color}>
+          {logo}
           <div>{name}</div>
         </StyledCategoryCard>
       }
       // the back of a card
       backComponent={
-        <StyledCategoryCard
-          color={category['color']}
-          $buttonBackground={category['transparentColor']}
-        >
-          <ColorText color={category['color']}>{name}</ColorText>
-          <ColorText color={category['color']}>
-            {postCount}개의 포스트
-          </ColorText>
+        <StyledCategoryCard color={color} $buttonBackground={transparentColor}>
+          <ColorText color={color}>{name}</ColorText>
+          <ColorText color={color}>{postCount}개의 포스트</ColorText>
           <Link href={`/category/${name.toLowerCase()}`}>
             <CategoryButton style={{ padding: '8px 12px' }} name={name}>
               GO {name}
@@ -61,6 +56,7 @@ export default function FlipCategoryCard({ name, postCount, props = {} }) {
           </Link>
         </StyledCategoryCard>
       }
+      // card size
       style={{ width: '300px' }}
       props={props}
     />
