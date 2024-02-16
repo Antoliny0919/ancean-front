@@ -119,13 +119,13 @@ const StyledPostContent = styled.div`
   }
 `;
 
-export default function ResponsivePost({ post, reference }) {
+export default function ResponsivePost({ post, props = {} }) {
   const { id, category, introduce, created_at, header_image, title } = post;
 
   const writeDate = new Date(created_at);
 
   return (
-    <StyledPostArea ref={reference} href={`/posts/${id}`}>
+    <StyledPostArea {...props} href={`/posts/${id}`}>
       <div className="header-img">
         <Image src={header_image}></Image>
       </div>

@@ -27,6 +27,54 @@ export const shadow = {
     }
     return `box-shadow: ${boxShadow}`;
   },
+  hslShadow: ({ type, thickness, hsl }) => {
+    let shadow = ``;
+    let { hue, saturation, lightness } = hsl;
+    const lightnessDecrease = (lightness / thickness) * 0.8;
+
+    for (let i = 1; i <= thickness; i++) {
+      if (i === thickness) {
+        shadow += `${i}px ${i}px ${thickness * 3}px ${
+          type === 'box' ? 0 : ''
+        } rgba(0, 0, 0, 0.7);`;
+      }
+      shadow += `${i}px ${i}px 0 ${
+        type === 'box' ? 0 : ''
+      } hsl(${hue}, ${saturation}%, ${lightness - lightnessDecrease * i}%),`;
+    }
+    if (type === 'box') {
+      return `box-shadow: ${shadow}`;
+    } else {
+      return `text-shadow: ${shadow}`;
+    }
+  },
+  linearHslShadow: ({ type, thickness, hsl }) => {
+    let shadow = ``;
+    let eachThickness = Math.ceil(thickness / 2);
+    for (let i = 0; i <= hsl.length - 1; i++) {
+      let { hue, saturation, lightness } = hsl[i];
+      const lightnessDecrease = (lightness / thickness) * 0.8;
+      for (
+        let thickness = eachThickness * i + 1;
+        thickness <= eachThickness * (i + 1);
+        thickness++
+      ) {
+        if (i == hsl.length - 1 && thickness == eachThickness * (i + 1)) {
+          shadow += `${thickness}px ${thickness}px ${thickness * 3}px ${
+            type === 'box' ? 0 : ''
+          } rgba(0, 0, 0, 0.7);`;
+        }
+        shadow += `${thickness}px ${thickness}px 0 ${
+          type === 'box' ? 0 : ''
+        } hsl(${hue}, ${saturation}%, ${lightness - lightnessDecrease * i}%),`;
+      }
+    }
+    if (type === 'box') {
+      return `box-shadow: ${shadow}`;
+    } else {
+      return `text-shadow: ${shadow}`;
+    }
+  },
   signatureTextShadow: (thickness) => {
     let textShadow = ``;
     let lightness = Math.ceil(20 / thickness);

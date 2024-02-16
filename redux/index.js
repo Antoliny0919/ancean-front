@@ -1,18 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper';
-import field from '../components/common/sign/modules/field';
-import signupAuth from '../components/common/sign/modules/signupAuth';
-import signinAuth from '../components/common/sign/modules/signinAuth';
-import toggle from '../components/common/sign/modules/toggle';
 import editor from '../components/editor/modules/editor';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const rootReducer = combineReducers({
-  field,
-  signupAuth,
-  signinAuth,
-  toggle,
   editor,
 });
 

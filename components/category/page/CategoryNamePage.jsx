@@ -1,10 +1,9 @@
-import styled, { css } from 'styled-components';
-import ResponsivePost from '../../minipost/ResponsivePost';
+import styled from 'styled-components';
 import OceanWaveButton from '../../button/OceanWaveButton';
+import CategoryPoster from '../CategoryPoster';
 import CategoryText from '../CategoryText';
 import { StyledCategoryText } from '../CategoryText';
 import { StyledOceanWaveButton } from '../../button/OceanWaveButton';
-import { flexBox } from '../../../styles/variable';
 
 const StyledCategoryPageArea = styled.div`
   @media screen and (min-width: 768px) {
@@ -60,32 +59,8 @@ const StyledCategoryPageHeader = styled.div`
       font-size: 16px;
     }
     margin-right: 30px;
-    color: #272727;
+    color: ${({ theme }) => theme.colors.lightBlack};
     font-size: 10px;
-  }
-`;
-
-const StyledCategoryPageBody = styled.div`
-  .posts-border {
-    border-radius: 10px;
-    ${(props) =>
-      props.color.includes('linear-gradient')
-        ? css`
-            background: linear-gradient(#fff, #fff), ${(props) => props.color};
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            border: solid transparent 0.2rem;
-          `
-        : css`
-            border: solid ${(props) => props.color} 0.2rem;
-          `}
-    box-shadow: ${(props) => props.$boxShadow};
-  }
-  .posts-content {
-    ${flexBox.flex('column')};
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    background: ${(props) => props.$transparentColor};
   }
 `;
 
@@ -93,7 +68,6 @@ export default function CategoryNamePage({
   categoryPosts,
   target,
   categoryName,
-  bodyProps = {},
   sortPosts,
 }) {
   return (
@@ -127,21 +101,11 @@ export default function CategoryNamePage({
           </OceanWaveButton>
         </div>
       </StyledCategoryPageHeader>
-      <StyledCategoryPageBody {...bodyProps}>
-        <div className="posts-border">
-          <div className="posts-content">
-            {categoryPosts.map((post, index) => {
-              return (
-                <ResponsivePost
-                  key={index}
-                  post={post}
-                  reference={categoryPosts.length === index + 1 ? target : null}
-                />
-              );
-            })}
-          </div>
-        </div>
-      </StyledCategoryPageBody>
+      <CategoryPoster
+        posts={categoryPosts}
+        name={categoryName}
+        target={target}
+      ></CategoryPoster>
     </StyledCategoryPageArea>
   );
 }

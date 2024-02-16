@@ -1,13 +1,20 @@
 import styled, { css } from 'styled-components';
 import { CATEGORY_DATA } from './data';
-import { textColor } from '../../styles/variable';
+import { textColor, shadow } from '../../styles/variable';
 
 export const StyledCategoryText = styled.div`
   font-family: 'Pretendard-Bold';
   &::after {
     content: '${(props) => props.name}';
     position: relative;
-    text-shadow: ${(props) => props.shadow};
+    ${({ $textShadow }) =>
+      $textShadow && Array.isArray($textShadow.hsl)
+        ? css`
+            ${shadow.linearHslShadow({ ...$textShadow })}
+          `
+        : css`
+            ${shadow.hslShadow({ ...$textShadow })}
+          `}
   }
   &::before {
     content: '${(props) => props.name}';
@@ -25,11 +32,13 @@ export const StyledCategoryText = styled.div`
 `;
 
 export default function CategoryText({ name, style = {} }) {
+  const { color, hsl } = CATEGORY_DATA[name];
+
   return (
     <StyledCategoryText
       name={name}
-      color={CATEGORY_DATA[name]['color']}
-      shadow={CATEGORY_DATA[name]['textShadow']}
+      color={color}
+      $textShadow={{ type: 'text', thickness: 10, hsl: hsl }}
       style={{ ...style }}
     />
   );

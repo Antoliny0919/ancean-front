@@ -1,36 +1,50 @@
-import styled from 'styled-components';
-import { shadow } from '../../styles/variable';
+import styled, { css } from 'styled-components';
+import { shadow, flex } from '@/styles/variable';
 
-const StyledPoster = styled.div`
-  @media screen and (min-width: 768px) {
-    padding: 3rem 0;
-  }
-  @media screen and (min-width: 1024px) {
-    padding: 5rem 0;
-  }
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-  border: solid ${(props) => props.$borderColor} 0.2rem;
-  background-color: ${(props) => props.$backgroundColor};
+const StyledPosterBorder = styled.div`
   border-radius: 10px;
-  ${shadow.signatureBoxShadow(4)};
+  ${({ $borderColor }) =>
+    $borderColor.includes('linear-gradient')
+      ? css`
+          background: linear-gradient(#fff, #fff), ${$borderColor};
+          background-origin: border-box;
+          background-clip: content-box, border-box;
+          border: solid transparent 0.2rem;
+        `
+      : css`
+          border: solid ${$borderColor} 0.2rem;
+        `}
+  ${({ $boxShadowProps }) =>
+    $boxShadowProps && Array.isArray($boxShadowProps.hsl)
+      ? css`
+          ${shadow.linearHslShadow({ ...$boxShadowProps })}
+        `
+      : css`
+          ${shadow.hslShadow({ ...$boxShadowProps })}
+        `}
+`;
+
+const StyledPosterBody = styled.div`
+  ${flex('column', 'center', 'center')};
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  background: ${(props) => props.$backgroundColor};
 `;
 
 export default function Poster({
   children,
   borderColor,
   backgroundColor,
-  props = {},
+  boxShadowProps,
 }) {
   return (
-    <StyledPoster
+    <StyledPosterBorder
       $borderColor={borderColor}
-      $backgroundColor={backgroundColor}
-      {...props}
+      $boxShadowProps={boxShadowProps}
     >
-      {children}
-    </StyledPoster>
+      <StyledPosterBody $backgroundColor={backgroundColor}>
+        {children}
+      </StyledPosterBody>
+    </StyledPosterBorder>
   );
 }
