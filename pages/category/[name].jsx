@@ -73,9 +73,12 @@ export default function Name(props) {
     categoryName,
   } = props;
 
+  // change the url host server to client
+  // after the screen is created, api calls from the client
   const nextPoster =
     next && next.replace(server.defaults.baseURL, client.defaults.baseURL);
 
+  // poster --> a set of posts
   const [poster, lastPostTarget, sortPoster] = usePoster({
     initialPoster: results,
     initialNextPoster: nextPoster,
@@ -125,6 +128,7 @@ export const getStaticProps = async ({ params }) => {
     if (params.length === 0) {
       return { notFound: true };
     }
+    // get posts three(limit=3) at a time and only published(is_finish=true) posts
     const response = await server.get(
       `api/posts/category/${params.name}?is_finish=true&limit=3`,
     );
