@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { client, server } from '../../api/client';
 import usePoster from '../../components/poster/usePoster';
 import CategoryPoster from '../../components/category/CategoryPoster';
 import CategoryText, {
@@ -8,6 +7,7 @@ import CategoryText, {
 import OceanWaveButton, {
   StyledOceanWaveButton,
 } from '../../components/button/OceanWaveButton';
+import { client, server } from '../../api/client';
 import { CATEGORY_POSTER_SORT_BUTTON_PROPS } from '../../components/poster/data';
 import { flex } from '../../styles/variable';
 

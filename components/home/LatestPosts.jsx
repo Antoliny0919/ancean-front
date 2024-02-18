@@ -21,7 +21,7 @@ export default function LatestPosts({ posts }) {
       {/* latest post show only three post (check it page/index.jsx/ queries)*/}
       <Poster
         borderColor={'hsl(237, 46%, 60%)'}
-        backgroundColor={'rgba(106, 111, 200, 0.2)'}
+        backgroundColor={'rgba(106, 111, 200, 0.3)'}
         boxShadowProps={{
           type: 'box',
           thickness: 5,
