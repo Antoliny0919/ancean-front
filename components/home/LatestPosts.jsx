@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import HomeSectionHeader from './HomeSectionHeader';
 import ResponsivePost from '../minipost/ResponsivePost';
-import Poster from '../common/Poster';
+import Poster from '../poster/Poster';
 
 const StyledLatestPostsArea = styled.div`
   @media screen and (min-width: 768px) {

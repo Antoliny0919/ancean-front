@@ -1,9 +1,9 @@
-import Poster from '../common/Poster';
+import Poster from '../poster/Poster';
 import ResponsivePost from '../minipost/ResponsivePost';
 import { CATEGORY_DATA } from './data';
 
-export default function CategoryPoster({ name, target, posts }) {
-  const { transparentColor, color, hsl } = CATEGORY_DATA[name];
+export default function CategoryPoster({ categoryName, target, poster }) {
+  const { transparentColor, color, hsl } = CATEGORY_DATA[categoryName];
 
   return (
     <Poster
@@ -11,12 +11,12 @@ export default function CategoryPoster({ name, target, posts }) {
       borderColor={color}
       boxShadowProps={{ type: 'box', thickness: 10, hsl }}
     >
-      {posts.map((post, index) => {
+      {poster.map((post, index) => {
         return (
           <ResponsivePost
             key={index}
             post={post}
-            props={posts.length === index + 1 ? { ref: target } : {}}
+            props={poster.length === index + 1 ? { ref: target } : {}}
           />
         );
       })}
