@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
 import FlipCategoryCard from '../category/FlipCategoryCard';
-import HomeSectionHeader from './HomeSectionHeader';
+import HomeSectionHeader from './SectionHeader';
 import { CATEGORY_DATA } from '../category/data';
 
 import 'swiper/css';

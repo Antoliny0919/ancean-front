@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Logo from './Logo';
 import Link from 'next/link';
 import { StyledLogoArea } from './Logo';
-import { flexBox } from '../../styles/variable';
+import { flex } from '../../styles/variable';
 
 const StyledNavbar = styled.nav`
   @media screen and (max-width: 768px) {
@@ -107,7 +107,7 @@ const StyledAboutMeButton = styled.button`
   @media screen and (min-width: 1024px) {
     font-size: 16px;
   }
-  ${flexBox.flex()}
+  ${flex('row', 'center', 'center')};
   background-color: #f4f4f4;
   border: 2px solid #3e3e3e;
   border-radius: 30px;

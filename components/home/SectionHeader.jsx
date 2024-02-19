@@ -25,7 +25,7 @@ const StyledSectionHeaderArea = styled.div`
   }
 `;
 
-export default function HomeSectionHeader({
+export default function SectionHeader({
   mainTitle,
   subTitle,
   colorHSL,

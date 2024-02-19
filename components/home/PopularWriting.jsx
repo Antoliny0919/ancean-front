@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import Wave from 'react-wavify';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import HomeSectionHeader from './HomeSectionHeader';
 import NewsStylePost from '../minipost/NewsStylePost';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -47,11 +46,6 @@ const StyledPostSwiper = styled.div`
 export default function PopularWriting({ posts }) {
   return (
     <StyledPopularWritingArea>
-      <HomeSectionHeader
-        mainTitle={'Popular Writing'}
-        subTitle={'가장 많은 WAVE를 획득한 포스트입니다.'}
-        colorHSL={{ hue: 215, saturation: 58, lightness: 59 }}
-      />
       <ContentArea>
         <StyledPostSwiper className="fade-in-slide-down-suspend">
           <Swiper

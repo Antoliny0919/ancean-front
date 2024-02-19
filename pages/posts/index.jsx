@@ -82,7 +82,6 @@ export default function index({ posts }) {
   return (
     <StyledCategoryPageArea>
       <StyledCategoryPageHeader>
-        {/* <CategoryText name={categoryName} /> */}
         <SignatureText
           fontSize={24}
           colorHSL={{ hue: 202, saturation: 77, lightness: 25 }}

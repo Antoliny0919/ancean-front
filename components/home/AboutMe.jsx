@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import MySkill from '../skill/MySkill';
-import HomeSectionHeader from './HomeSectionHeader';
 import MyIntroduce from '../introduce/MyIntroduce';
 
 import 'swiper/css';
@@ -31,13 +30,6 @@ const StyledMyInfoSection = styled.div`
 export default function AboutMe() {
   return (
     <StyledAboutMe>
-      <HomeSectionHeader
-        mainTitle={'About Me'}
-        subTitle={
-          '프로그래밍 개발과 희로애락을 함께하는 이시현, Antoliny입니다.'
-        }
-        colorHSL={{ hue: 190, saturation: 48, lightness: 59 }}
-      ></HomeSectionHeader>
       <div className="my-introduce">
         <StyledMyInfoSection>
           <MyIntroduce />

@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, createContext } from 'react';
 import { server } from '@/api/client';
-import SectionContainer from '../components/home/container/SectionContainer';
-import Bannermain from '@/components/home/BannerMain';
-import AboutMe from '@/components/home/AboutMe';
-import PopularWriting from '@/components/home/PopularWriting';
-import TopCategories from '@/components/home/TopCategories';
-import LatestPosts from '@/components/home/LatestPosts';
+import BannerMain from '@/components/home/BannerMain';
+import Section from '@/components/home/Section';
+import { HOME_SECTION_DATA } from '@/components/home/data';
 
 export const SectionRefContext = createContext();
 
-export default function Home({ categories, posts }) {
+export default function Home({
+  categories,
+  posts: { popularWriting, latestPosts },
+}) {
   // Reference required for each section for scroll events
   const aboutMeRef = useRef(null);
   const popularWritingRef = useRef(null);
@@ -21,6 +21,12 @@ export default function Home({ categories, posts }) {
     popularWriting: popularWritingRef,
     topCategories: topCategoriesRef,
     latestPosts: latestPostsRef,
+  };
+
+  const sectionProps = {
+    popularWriting: { posts: popularWriting },
+    topCategories: { categories: categories },
+    latestPosts: { posts: latestPosts },
   };
 
   useEffect(() => {
@@ -44,19 +50,19 @@ export default function Home({ categories, posts }) {
   return (
     <SectionRefContext.Provider value={sectionsRef}>
       <main>
-        <Bannermain />
-        <SectionContainer ref={aboutMeRef}>
-          <AboutMe />
-        </SectionContainer>
-        <SectionContainer ref={popularWritingRef}>
-          <PopularWriting posts={posts.popularWriting} />
-        </SectionContainer>
-        <SectionContainer ref={topCategoriesRef}>
-          <TopCategories categories={categories} />
-        </SectionContainer>
-        <SectionContainer ref={latestPostsRef}>
-          <LatestPosts posts={posts.latestPosts} />
-        </SectionContainer>
+        <BannerMain />
+        {Object.keys(HOME_SECTION_DATA).map((section, index) => {
+          let sectionData = HOME_SECTION_DATA[section];
+          return (
+            <Section
+              key={index}
+              ref={sectionsRef[section]}
+              sectionHeaderProps={sectionData.headerProps}
+            >
+              {sectionData.component({ ...sectionProps[section] })}
+            </Section>
+          );
+        })}
       </main>
     </SectionRefContext.Provider>
   );

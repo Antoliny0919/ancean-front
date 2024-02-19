@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Wave from 'react-wavify';
-import { flexBox } from '@/styles/variable';
+import { flex } from '@/styles/variable';
 
 export const StyledLogoArea = styled.div`
   @media screen and (min-width: 768px) {
@@ -14,7 +14,7 @@ export const StyledLogoArea = styled.div`
   }
   font-size: 32px;
   letter-spacing: 5px;
-  ${flexBox.flex('row', 'flex-start')};
+  ${flex('row', 'flex-start', 'center')};
   h1 {
     font-size: inherit;
     font-family: 'Bodoni Moda';
