@@ -2,7 +2,7 @@ import Image from '../common/Image';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Card from '../card/Card';
-import { post, flexBox } from '../../styles/variable';
+import { shadow, flex, miniPostContent } from '../../styles/variable';
 import { WaveLogo, CommentLogo } from '../common/Icon';
 
 const StyledPostCardImage = styled.div`
@@ -12,8 +12,7 @@ const StyledPostCardImage = styled.div`
   background-color: #fff;
   border-radius: 10px;
   aspect-ratio: 1 / 1.4;
-  ${post.shadow()};
-  ${post.shadowBorder()};
+  ${shadow.signatureBoxShadow(9)};
   transition: opacity 0.7s;
   z-index: 10;
   img {
@@ -36,19 +35,18 @@ const StyledPostCardCover = styled.div`
   font-size: 16px;
   padding: 20px 10px;
   color: black;
-  ${post.shadow()};
-  ${post.shadowBorder()};
-  ${flexBox.flex('column', 'none', 'center')}
+  ${shadow.signatureBoxShadow(9)};
+  ${flex('column', 'none', 'center')}
   & > * {
     width: 80%;
   }
   .title {
     text-align: center;
     border-bottom: solid #565656 2px;
-    ${post.titleEllipsis()};
+    ${miniPostContent.titleEllipsis()};
   }
   .content {
-    ${post.contentEllipsis(10)};
+    ${miniPostContent.contentEllipsis(10)};
     font-size: 13px;
   }
   .author-and-writer-area {
@@ -59,10 +57,10 @@ const StyledPostCardCover = styled.div`
   .index-area {
     padding: 10px 0;
     font-size: 22px;
-    ${flexBox.flex()};
+    ${flex('row', 'center', 'center')};
     font-family: 'SUIT-Regular';
     .index {
-      ${flexBox.flex('row', 'space-around', 'center')};
+      ${flex('row', 'space-around', 'center')};
       margin-right: 20px;
       width: 30%;
       svg {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import CategoryButton from '../button/CategoryButton';
 import Wave from 'react-wavify';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import CategoryButton from '../category/CategoryButton';
 import FontButton from '../button/FontButton';
 import { deletePost } from '../../api/post';
 import { post } from '../../styles/variable';

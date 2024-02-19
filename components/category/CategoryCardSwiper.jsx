@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectCards } from 'swiper/modules';
-import PostCard from '../../minipost/PostCard';
-import CategoryCard from '../CategoryCard';
+import PostCard from '../minipost/PostCard';
+import CategoryCard from './CategoryCard';
 
 import 'swiper/css';
 import 'swiper/css/pagination';

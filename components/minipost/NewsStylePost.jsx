@@ -5,7 +5,7 @@ import PostBody from './news-style-post/PostBody';
 import PostFooter from './news-style-post/PostFooter';
 import { shadow } from '../../styles/variable';
 
-const StyledPostArea = styled.div`
+const StyledPostArea = styled.article`
   display: flex;
   flex-direction: column;
   @media screen and (min-width: 768px) {

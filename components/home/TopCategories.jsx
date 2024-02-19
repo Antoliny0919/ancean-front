@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
@@ -32,8 +32,6 @@ export default function TopCategories({ categories }) {
   // use BackgroundColor
   const { transparentColor } = categoryName && CATEGORY_DATA[categoryName];
 
-  const swiperRef = useRef(null);
-
   // swiper slide change call changeCategory method (onSlideChange)
   const changeCategory = useCallback(
     (slide) => {
@@ -55,7 +53,6 @@ export default function TopCategories({ categories }) {
       />
       <div className="fade-in-slide-down-suspend">
         <Swiper
-          ref={swiperRef}
           modules={[EffectCoverflow, Autoplay]}
           effect={'coverflow'}
           className="swiper-category"
@@ -81,10 +78,12 @@ export default function TopCategories({ categories }) {
             },
           }}
           onSwiper={(slide) => {
+            // called when swiper was frist created
             if (categories.length !== 0) {
               changeCategory(slide);
             }
           }}
+          // identify the current slide category name each time the slide change and apply the style to that category
           onSlideChange={(slide) => {
             if (categories.length !== 0) {
               changeCategory(slide);
