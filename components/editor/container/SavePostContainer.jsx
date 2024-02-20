@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 // import useInterval from '../../../hooks/useInterval';
-import { EditorContext } from '../MarkdownEditor';
+import { EditorContext } from '../../../pages/posts/newpost';
 import { savePost, createPost } from '../modules/editor';
 
 export default function SavePostContainer({

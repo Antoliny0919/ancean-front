@@ -1,6 +1,9 @@
 import { useState, useCallback, useMemo } from 'react';
 
-export default function useCategorySwiper(categories, slideChangeExtraAction) {
+export default function useCategorySwiper(
+  categories,
+  slideChangeExtraAction = null,
+) {
   const [categoryName, setCategoryName] = useState();
 
   const categoryCount = useMemo(() => {
@@ -23,7 +26,7 @@ export default function useCategorySwiper(categories, slideChangeExtraAction) {
       if (categoryCount !== 0) {
         changeCategory(slide);
         // when slide change any extra action need context to props (function)
-        slideChangeExtraAction(slide);
+        slideChangeExtraAction && slideChangeExtraAction(slide);
       }
     },
     [categories],

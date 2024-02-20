@@ -9,7 +9,7 @@ import PostFinalPublicationModal from '../modal/PostFinalPublicationModal';
 import { StyledCommonButton } from '../button/CommonButton';
 import { StyledFontButton } from '../button/FontButton';
 
-const StyledFooterArea = styled.div`
+const StyledFooterArea = styled.footer`
   @media screen and (min-width: 768px) {
     padding: 0 3rem;
   }
@@ -50,7 +50,7 @@ const StyledFooterArea = styled.div`
   }
 `;
 
-export default function MarkdownEditorFooter() {
+export default function EditorFooter() {
   const [modalState, setModalState] = useState(false);
 
   const { title } = useSelector(({ editor }) => editor);

@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
 import { resetHeaderImageState } from '../../editor/modules/editor';
-import { EditorContext } from '../../editor/MarkdownEditor';
+import { EditorContext } from '../../../pages/posts/newpost';
 import CategorySelectContainer from '../../editor/container/CategorySelectContainer';
 import CategoryText from '../../category/CategoryText';
 import { changeValue } from '../../editor/modules/editor';
-import { flexBox, post } from '../../../styles/variable';
+import { flex, miniPostContent } from '../../../styles/variable';
 
 const StyledTopArea = styled.div`
   @media screen and (min-width: 768px) {
@@ -25,7 +25,7 @@ const StyledTopArea = styled.div`
     margin: 10px;
   }
   .image-block {
-    ${flexBox.flex('column')}
+    ${flex('column', 'center', 'center')}
     width: 300px;
     aspect-ratio: 1.4 / 1;
     ${(props) =>
@@ -70,7 +70,7 @@ const StyledTopArea = styled.div`
     h3 {
       margin: 10px 0px;
       width: 100%;
-      ${post.titleEllipsis()};
+      ${miniPostContent.titleEllipsis()};
     }
     textarea {
       min-height: 100px;

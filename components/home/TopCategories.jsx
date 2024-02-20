@@ -26,7 +26,7 @@ const StyledTopCategoriesArea = styled.div`
   }
 `;
 
-export default function TopCategories(categories) {
+export default function TopCategories({ categories }) {
   const [categoryName, onSwiper, onSlideChange] = useCategorySwiper(categories);
 
   return (
