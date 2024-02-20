@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Card from '../card/Card';
 import { CATEGORY_DATA } from './data';
-import { flex } from '../../styles/variable';
+import { flex, shadow } from '../../styles/variable';
 
 const StyledCategoryCard = styled.div`
   background: ${(props) => props.color};
@@ -9,18 +9,12 @@ const StyledCategoryCard = styled.div`
   height: 100%;
   border-radius: 10px;
   ${flex('column', 'center', 'center')};
-  color: white;
+  ${shadow.signatureBoxShadow(6)};
+  color: ${({ theme }) => theme.colors.white};
   svg {
     height: 50px;
     width: 50px;
   }
-  box-shadow:
-    1px 1px 0 0 var(--shadow-outline-deep-dark),
-    2px 2px 0 0 var(--shadow-outline-deep-dark),
-    3px 3px 0 0 var(--shadow-outline-deep-dark),
-    4px 4px 0 0 var(--shadow-outline-deep-dark),
-    5px 5px 0 0 var(--shadow-outline-deep-dark),
-    6px 6px 0 0 var(--shadow-outline-deep-dark);
 `;
 
 export default function CategoryCard({ name }) {

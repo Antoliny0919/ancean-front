@@ -1,69 +1,67 @@
-import { SwiperSlide } from 'swiper/react';
+import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow } from 'swiper/modules';
 import styled from 'styled-components';
 import { server } from '../../api/client';
 import CategoryCardSwiper from '../../components/category/CategoryCardSwiper';
-import { StyledCategoryText } from '../../components/category/CategoryText';
-import CategorySwiper, {
-  StyledSwiperArea,
-  StyledSwiperButtonArea,
-} from '../../components/category/CategorySwiper';
+import SwiperButton from '../../components/button/SwiperButton';
+import useCategorySwiper from '../../components/category/useCategorySwiper';
+import { CATEGORY_DATA } from '../../components/category/data';
 import { flex } from '../../styles/variable';
 
 const StyledCategoryPage = styled.div`
-  ${StyledSwiperArea} {
-    display: flex;
-    height: 100vh;
-    overflow: scroll;
-    align-items: center;
-    .swiper-wrapper {
-      padding: 2rem 0;
-    }
-    .swiper-controller {
-      ${flex('row', 'space-between')}
-    }
+  display: flex;
+  height: 100vh;
+  overflow: scroll;
+  align-items: center;
+  background: ${(props) => props.$backgroundColor};
+  .swiper-wrapper {
+    padding: 2rem 0;
   }
-  ${StyledSwiperButtonArea} {
-    @media screen and (min-width: 768px) {
-      padding: 1em 2em;
-    }
-    ${flex('row', 'space-between', 'flex-end')};
-    padding: 0;
-    ${StyledCategoryText} {
-      @media screen and (min-width: 768px) {
-        font-size: 45px;
-        letter-spacing: 7px;
-      }
-      @media screen and (min-width: 1024px) {
-        font-size: 60px;
-        letter-spacing: 10px;
-      }
-      font-size: 28px;
-      letter-spacing: 5px;
-    }
+  .swiper-controller {
+    ${flex('row', 'space-between')}
   }
 `;
 
+const StyledSwiperButtonArea = styled.div`
+  @media screen and (min-width: 768px) {
+    padding: 1em 2em;
+  }
+  ${flex('row', 'space-between', 'flex-end')};
+  padding: 0;
+`;
+
 export default function Index({ categories, categoryPosts }) {
+  // check if current activeSlide(slideNumber) is the first or last category
+  const [slideNumber, setSlideNumber] = useState(0);
+
+  const [categoryName, onSwiper, onSlideChange] = useCategorySwiper(
+    categories,
+    (slide) => setSlideNumber(slide.activeIndex),
+  );
+
   return (
-    <StyledCategoryPage>
-      <CategorySwiper
-        swiperProps={{
-          modules: [EffectCoverflow],
-          slidesPerView: 1,
-          effect: 'coverflow',
-          speed: 2000,
-          spaceBetween: 400,
-          coverflowEffect: {
-            rotate: 20,
-            stretch: 100,
-            depth: 100,
-            modifier: 2,
-            slideShadows: false,
-          },
+    <StyledCategoryPage
+      $backgroundColor={
+        categoryName && CATEGORY_DATA[categoryName]['transparentColor']
+      }
+    >
+      <Swiper
+        modules={[EffectCoverflow]}
+        slidesPerView={1}
+        effect={'coverflow'}
+        speed={2000}
+        spaceBetween={400}
+        coverflowEffect={{
+          rotate: 20,
+          stretch: 100,
+          depth: 100,
+          modifier: 2,
+          slideShadows: false,
         }}
-        categoryCnt={categories.length}
-        swiperButton={true}
+        className="swiper-category"
+        onSwiper={onSwiper}
+        onSlideChange={onSlideChange}
       >
         {categories.map(({ name }, index) => {
           return (
@@ -74,7 +72,21 @@ export default function Index({ categories, categoryPosts }) {
             </SwiperSlide>
           );
         })}
-      </CategorySwiper>
+        <StyledSwiperButtonArea>
+          <SwiperButton
+            color={({ theme }) => theme.colors.mainColor[4]}
+            direction="previous"
+            currentSlide={slideNumber}
+            lastSlideNum={categories.length}
+          ></SwiperButton>
+          <SwiperButton
+            color={({ theme }) => theme.colors.mainColor[4]}
+            direction="next"
+            currentSlide={slideNumber}
+            lastSlideNum={categories.length - 1}
+          ></SwiperButton>
+        </StyledSwiperButtonArea>
+      </Swiper>
     </StyledCategoryPage>
   );
 }

@@ -1,9 +1,9 @@
-import { useState, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
 import FlipCategoryCard from '../category/FlipCategoryCard';
 import HomeSectionHeader from './SectionHeader';
+import useCategorySwiper from '../category/useCategorySwiper';
 import { CATEGORY_DATA } from '../category/data';
 
 import 'swiper/css';
@@ -26,26 +26,15 @@ const StyledTopCategoriesArea = styled.div`
   }
 `;
 
-export default function TopCategories({ categories }) {
-  const [categoryName, setCategoryName] = useState('');
-
-  // use BackgroundColor
-  const { transparentColor } = categoryName && CATEGORY_DATA[categoryName];
-
-  // swiper slide change call changeCategory method (onSlideChange)
-  const changeCategory = useCallback(
-    (slide) => {
-      let activeSlideNum = slide.activeIndex;
-      let slides = slide.slides;
-      // get the category name of the current slide from the changed slide
-      let { name } = slides[activeSlideNum].dataset;
-      setCategoryName(name);
-    },
-    [categories],
-  );
+export default function TopCategories(categories) {
+  const [categoryName, onSwiper, onSlideChange] = useCategorySwiper(categories);
 
   return (
-    <StyledTopCategoriesArea $backgroundColor={transparentColor}>
+    <StyledTopCategoriesArea
+      $backgroundColor={
+        categoryName && CATEGORY_DATA[categoryName]['transparentColor']
+      }
+    >
       <HomeSectionHeader
         mainTitle={'Top Categories'}
         subTitle={'최근 가장 많은 게시글이 있는 카테고리 입니다.'}
@@ -55,7 +44,6 @@ export default function TopCategories({ categories }) {
         <Swiper
           modules={[EffectCoverflow, Autoplay]}
           effect={'coverflow'}
-          className="swiper-category"
           slideToClickedSlide={true}
           centeredSlides={true}
           loop={true}
@@ -77,20 +65,10 @@ export default function TopCategories({ categories }) {
               slidesPerView: 3,
             },
           }}
-          onSwiper={(slide) => {
-            // called when swiper was frist created
-            if (categories.length !== 0) {
-              changeCategory(slide);
-            }
-          }}
-          // identify the current slide category name each time the slide change and apply the style to that category
-          onSlideChange={(slide) => {
-            if (categories.length !== 0) {
-              changeCategory(slide);
-            }
-          }}
-          // 30s interval slideChange(auto)
+          className="swiper-category"
           autoplay={{ delay: 30000 }}
+          onSwiper={onSwiper}
+          onSlideChange={onSlideChange}
         >
           {categories.map(({ name, color, post_count }, index) => (
             <SwiperSlide key={index} data-name={name}>

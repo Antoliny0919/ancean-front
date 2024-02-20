@@ -31,6 +31,7 @@ const StyledCategoryCardSwiper = styled.div`
     z-index: 0;
     width: 100%;
   }
+  // pagination button style
   .swiper-pagination-bullet {
     flex: 1 0 0;
     width: var(
@@ -77,6 +78,8 @@ export default function CategoryCardSwiper({ posts }) {
         }}
       >
         {posts.map((post, index) => {
+          // CategoryCardSwiper is always the first card means category(CategoryCard) and the rest cards
+          // are posts with that category(PostCard). --> like a card deck style
           return (
             <SwiperSlide key={index}>
               {index === 0 ? (
