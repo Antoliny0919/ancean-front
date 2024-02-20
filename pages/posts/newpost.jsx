@@ -2,8 +2,8 @@ import { useState, useEffect, useRef, createContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { server } from '@/api/client';
 import { getPost } from '../../components/editor/modules/editor';
-import NotificationContainer from '../../components/editor/container/NotificationContainer';
 import ModalBase from '../../components/modal/ModalBase';
+import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingContainer from '../../components/editor/container/ContinueWritingContainer';
 import EditorHeader from '../../components/editor/EditorHeader';
 import EditorContent from '../../components/editor/EditorContent';
@@ -40,7 +40,7 @@ export default function newpost({ categories }) {
   return (
     <EditorContext.Provider value={contextProps}>
       {/* Notification Save Message */}
-      <NotificationContainer />
+      <EditorNotification />
       {modalState && (
         <ModalBase disable={modalState} controlModalState={setModalState}>
           <ContinueWritingContainer controlModalState={setModalState} />
