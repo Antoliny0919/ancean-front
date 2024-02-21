@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import SavePostContainer from './container/SavePostContainer';
+import usePost from './useEditor';
 import GetSavedPostsContainer from './container/GetSavedPostsContainer';
 import CommonButton from '../button/CommonButton';
 import FontButton from '../button/FontButton';
 import PostFinalPublicationModal from '../modal/PostFinalPublicationModal';
+import { EditorContext } from '../../pages/posts/newpost';
 import { StyledCommonButton } from '../button/CommonButton';
 import { StyledFontButton } from '../button/FontButton';
 
@@ -13,13 +14,13 @@ const StyledFooterArea = styled.footer`
   @media screen and (min-width: 768px) {
     padding: 0 3rem;
   }
-  width: 100%;
   position: fixed;
-  justify-content: space-between;
   bottom: 0%;
+  width: 100%;
   display: flex;
   align-items: center;
-  background-color: white;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.colors.white};
   z-index: 50;
   box-shadow:
     rgba(0, 0, 0, 0.25) 0px 54px 55px,
@@ -55,21 +56,34 @@ export default function EditorFooter() {
 
   const { title } = useSelector(({ editor }) => editor);
 
+  const editorRef = useContext(EditorContext).editorRef;
+
+  const [createOrSavePost] = usePost(editorRef);
+
   return (
     <StyledFooterArea>
       <div className="footer-left-item-block">
-        <SavePostContainer is_finish={false} buttonComponent={FontButton}>
+        <FontButton
+          props={
+            title
+              ? { onClick: () => createOrSavePost(false) }
+              : { disabled: true }
+          }
+        >
           임시저장
-        </SavePostContainer>
-        <GetSavedPostsContainer>저장된 포스트</GetSavedPostsContainer>
+        </FontButton>
+        <GetSavedPostsContainer>
+          <p>저장된 포스트</p>
+        </GetSavedPostsContainer>
       </div>
       <div>
+        {/* publishing button must have a title entered */}
         <CommonButton
           props={
             title ? { onClick: () => setModalState(true) } : { disabled: true }
           }
         >
-          출간하기
+          <p>출간하기</p>
         </CommonButton>
         <PostFinalPublicationModal
           modalState={modalState}

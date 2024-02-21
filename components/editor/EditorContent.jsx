@@ -1,47 +1,19 @@
-import { useSelector } from 'react-redux';
-import { useEffect, useState, useContext } from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
+import createEditor from './createEditor';
 import { EditorContext } from '../../pages/posts/newpost';
-import { initializeEditor } from './EditorJS';
 
 const StyledEditorContent = styled.main`
-  /* padding: 1rem; */
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 2rem 1rem;
   position: relative;
   z-index: 15;
-  .ce-code__textarea {
-    resize: none;
-  }
 `;
 
 export default function EditorContent() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  const content = useSelector(({ editor }) => editor.content);
-
   const editorRef = useContext(EditorContext).editorRef;
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsMounted(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    const init = async () => {
-      await initializeEditor({ editorRef, content });
-    };
-    if (isMounted) {
-      init();
-
-      return () => {
-        if (editorRef.current) {
-          editorRef.current.destroy();
-        }
-      };
-    }
-  }, [isMounted, content]);
+  // content part is the area of the EditorJS
+  createEditor(editorRef);
 
   // autoSave logic interval(5minute)
   // useInterval(() => saveOrCreate(), 30000);

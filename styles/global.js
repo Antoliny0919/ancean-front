@@ -269,6 +269,10 @@ export const GlobalStyle = createGlobalStyle`
     letter-spacing: .3px;
   }
 
+  .ce-code__textarea {
+    resize: none;
+  }
+
   // quote default style remove
   .cdx-quote__caption {
     display: none;

@@ -38,7 +38,7 @@ export default function SavePostContainer({
             content: outputData.blocks,
             ...body,
           }),
-        ).then(async ({ payload }) => {
+        ).then(({ payload }) => {
           if (is_finish) {
             let { redirect_path } = payload;
             router.push(redirect_path);
