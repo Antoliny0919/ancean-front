@@ -4,7 +4,7 @@ import { server } from '@/api/client';
 import { getPost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
 import EditorNotification from '../../components/editor/EditorNotification';
-import ContinueWritingContainer from '../../components/editor/container/ContinueWritingContainer';
+import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import EditorHeader from '../../components/editor/EditorHeader';
 import EditorContent from '../../components/editor/EditorContent';
 import EditorFooter from '../../components/editor/EditorFooter';
@@ -43,7 +43,7 @@ export default function newpost({ categories }) {
       <EditorNotification />
       {modalState && (
         <ModalBase disable={modalState} controlModalState={setModalState}>
-          <ContinueWritingContainer controlModalState={setModalState} />
+          <ContinueWritingModal controlModalState={setModalState} />
         </ModalBase>
       )}
       <EditorHeader />

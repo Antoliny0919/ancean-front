@@ -20,6 +20,9 @@ export const GlobalStyle = createGlobalStyle`
     margin-left: auto;
     margin-right: auto;
   }
+  p {
+    margin: 0;
+  }
   @media only screen and (min-width: 280px) {
     font-size: 30px;
     h1 {
