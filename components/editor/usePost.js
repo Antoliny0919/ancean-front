@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPost, savePost } from './modules/editor';
+import { createPost, savePost, getPost } from './modules/editor';
+import * as postAPI from '../../api/post';
 
 export default function usePost(editorRef) {
   const router = useRouter();
@@ -79,5 +80,16 @@ export default function usePost(editorRef) {
     }
   };
 
-  return [createOrSavePost];
+  const rewritePost = (id) => {
+    dispatch(getPost(id));
+  };
+
+  const deletePost = (id) => {
+    let response = confirm('정말 삭제하시겠습니까?');
+    if (response) {
+      postAPI.deletePost(id);
+    }
+  };
+
+  return [createOrSavePost, rewritePost, deletePost];
 }

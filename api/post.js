@@ -10,7 +10,8 @@ export const savePost = (fields) =>
     ...fields,
   });
 
-export const getSavedPosts = () => client.get('api/posts?is_finish=false');
+export const getNonePublishedPosts = () =>
+  client.get('api/posts?is_finish=false');
 
 export const getPost = (id) => client.get(`api/posts?id=${id}`);
 

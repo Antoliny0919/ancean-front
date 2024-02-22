@@ -12,7 +12,7 @@ export const StyledCommonButton = styled.button`
     color 0.7s,
     background-color 0.7s,
     opacity 0.7s;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
   ${(props) =>
     props.disabled
       ? css`
@@ -21,8 +21,8 @@ export const StyledCommonButton = styled.button`
       : css`
           opacity: 1;
           &:hover {
-            color: black;
-            background-color: white;
+            color: ${({ theme }) => theme.colors.black};
+            background-color: ${({ theme }) => theme.colors.white};
           }
         `}
 `;
@@ -34,7 +34,7 @@ export default function CommonButton({
 }) {
   return (
     <StyledCommonButton style={styleProps} {...props}>
-      {children}
+      <p>{children}</p>
     </StyledCommonButton>
   );
 }

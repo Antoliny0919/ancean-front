@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import SavePostContainer from '../../editor/container/SavePostContainer';
 import FontButton from '../../button/FontButton';
-import CommonButton from '../../button/CommonButton';
+// import CommonButton from '../../button/CommonButton';
 
 const StyledFooterArea = styled.div`
   display: flex;
@@ -15,9 +14,9 @@ const StyledFooterArea = styled.div`
 export default function Footer({ closeModal }) {
   return (
     <StyledFooterArea>
-      <SavePostContainer is_finish={true} buttonComponent={CommonButton}>
+      {/* <SavePostContainer is_finish={true} buttonComponent={CommonButton}>
         출간하기
-      </SavePostContainer>
+      </SavePostContainer> */}
       <FontButton props={{ onClick: closeModal }}>취소</FontButton>
     </StyledFooterArea>
   );

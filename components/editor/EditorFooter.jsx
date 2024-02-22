@@ -1,14 +1,13 @@
 import { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import usePost from './useEditor';
-import GetSavedPostsContainer from './container/GetSavedPostsContainer';
-import CommonButton from '../button/CommonButton';
-import FontButton from '../button/FontButton';
-import PostFinalPublicationModal from '../modal/PostFinalPublicationModal';
 import { EditorContext } from '../../pages/posts/newpost';
-import { StyledCommonButton } from '../button/CommonButton';
-import { StyledFontButton } from '../button/FontButton';
+import usePost from './usePost';
+import ModalBase from '../modal/ModalBase';
+import NonePublishedPostsModal from './NonePublishedPostsModal';
+import PostFinalPublicationModal from '../modal/PostFinalPublicationModal';
+import CommonButton, { StyledCommonButton } from '../button/CommonButton';
+import FontButton, { StyledFontButton } from '../button/FontButton';
 
 const StyledFooterArea = styled.footer`
   @media screen and (min-width: 768px) {
@@ -52,7 +51,11 @@ const StyledFooterArea = styled.footer`
 `;
 
 export default function EditorFooter() {
-  const [modalState, setModalState] = useState(false);
+  // EditorFooter Area have 3 button -> save temporarily, saved posts, publishing
+  // saved posts(nonePublishedModal) and publishing(publishingModal)button is modal style(click to turn on the modal)
+  const [nonePublishedModalState, setNonePublishedModalState] = useState(false);
+
+  const [publicationModalState, setPublicationModalState] = useState(false);
 
   const { title } = useSelector(({ editor }) => editor);
 
@@ -62,6 +65,7 @@ export default function EditorFooter() {
 
   return (
     <StyledFooterArea>
+      {/* leftArea */}
       <div className="footer-left-item-block">
         <FontButton
           props={
@@ -72,22 +76,37 @@ export default function EditorFooter() {
         >
           임시저장
         </FontButton>
-        <GetSavedPostsContainer>
-          <p>저장된 포스트</p>
-        </GetSavedPostsContainer>
+        <CommonButton
+          props={{ onClick: () => setNonePublishedModalState(true) }}
+        >
+          저장된 포스트
+        </CommonButton>
+        {nonePublishedModalState && (
+          <ModalBase
+            disable={nonePublishedModalState}
+            controlModalState={setNonePublishedModalState}
+            styleProps={{ width: '700px' }}
+          >
+            <NonePublishedPostsModal
+              closeModal={() => setNonePublishedModalState(false)}
+            />
+          </ModalBase>
+        )}
       </div>
+      {/* rightArea */}
       <div>
-        {/* publishing button must have a title entered */}
         <CommonButton
           props={
-            title ? { onClick: () => setModalState(true) } : { disabled: true }
+            title
+              ? { onClick: () => setPublicationModalState(true) }
+              : { disabled: true }
           }
         >
-          <p>출간하기</p>
+          출간하기
         </CommonButton>
         <PostFinalPublicationModal
-          modalState={modalState}
-          closeModal={() => setModalState(false)}
+          modalState={publicationModalState}
+          closeModal={() => setPublicationModalState(false)}
         />
       </div>
     </StyledFooterArea>
