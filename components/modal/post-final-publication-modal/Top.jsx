@@ -5,22 +5,19 @@ import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
 import { resetHeaderImageState } from '../../editor/modules/editor';
 import { EditorContext } from '../../../pages/posts/newpost';
-import CategorySelectContainer from '../../editor/container/CategorySelectContainer';
+import EditorCategorySelect from '../../editor/EditorCategorySelect';
 import CategoryText from '../../category/CategoryText';
 import { changeValue } from '../../editor/modules/editor';
 import { flex, miniPostContent } from '../../../styles/variable';
 
-const StyledTopArea = styled.div`
+const StyledTopArea = styled.header`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
   }
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  ${flex('column', 'center', 'center')};
   h3 {
     margin: 10px;
   }
@@ -31,14 +28,14 @@ const StyledTopArea = styled.div`
     ${(props) =>
       props.$haveHeaderImage
         ? css`
-            background-color: white;
+            background-color: ${({ theme }) => theme.colors.white};
           `
         : css`
-            background-color: rgba(40, 80, 100, 0.3);
+            background-color: ${({ theme }) => theme.colors.lightGray};
           `}
     font-size: 16px;
     border-radius: 10px;
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     img {
       width: inherit;
       height: inherit;
@@ -54,7 +51,6 @@ const StyledTopArea = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 2em;
-
     .post-category-select {
       @media screen and (min-width: 768px) {
         flex-direction: row;
@@ -97,7 +93,7 @@ const StyledTopImageSideBar = styled.div`
   button {
     border: solid 1.5px ${({ theme }) => theme.colors.mainColor[4]};
     border-radius: 5px;
-    background-color: #f8f8f8;
+    background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.mainColor[4]};
     transition:
       background-color 0.7s,
@@ -106,7 +102,7 @@ const StyledTopImageSideBar = styled.div`
   button:hover {
     cursor: pointer;
     color: ${({ theme }) => theme.colors.mainColor[8]};
-    background-color: white;
+    background-color: ${({ theme }) => theme.colors.lightWhite};
   }
 `;
 
@@ -130,39 +126,41 @@ export default function Top({
   return (
     <>
       <StyledTopArea $haveHeaderImage={headerImagePath}>
-        <div>
-          {headerImagePath ? (
-            <>
-              <div className="image-block">
-                <Image src={headerImagePath}></Image>
-              </div>
-            </>
-          ) : (
-            <>
-              <label htmlFor="file-input" className="image-block">
-                <FaRegImage />
-                <div>대표이미지 추가</div>
-              </label>
-              <input
-                type="file"
-                style={{ display: 'none' }}
-                id="file-input"
-                onChange={onSelectedImageFile}
-              ></input>
-            </>
-          )}
-        </div>
+        {/* if the selected headerImage exist show that image or
+        not selected headerImage provide the input to select image file */}
+        {headerImagePath ? (
+          <>
+            <div className="image-block">
+              <Image src={headerImagePath}></Image>
+            </div>
+          </>
+        ) : (
+          <>
+            <label htmlFor="file-input" className="image-block">
+              <FaRegImage />
+              <p>대표이미지 추가</p>
+            </label>
+            <input
+              type="file"
+              style={{ display: 'none' }}
+              id="file-input"
+              onChange={onSelectedImageFile}
+            ></input>
+          </>
+        )}
         <div className="post-info">
           <div className="post-category-select">
+            {/* if category selected, show selected category to text */}
             {selectedCategory && (
               <CategoryText
                 name={selectedCategory}
                 style={{ fontSize: '30px' }}
               ></CategoryText>
             )}
-            <CategorySelectContainer
+            {/* select category  */}
+            <EditorCategorySelect
               categories={categories}
-            ></CategorySelectContainer>
+            ></EditorCategorySelect>
           </div>
           <h3>{title}</h3>
           <textarea
@@ -173,9 +171,10 @@ export default function Top({
           ></textarea>
         </div>
       </StyledTopArea>
+      {/* if headerImage selected, provide a button to change the headerImage with something else */}
       {headerImagePath && (
         <StyledTopImageSideBar>
-          <div>선택된 이미지: {headerImage}</div>
+          <p>선택된 이미지: {headerImage}</p>
           <button onClick={() => dispatch(resetHeaderImageState())}>
             이미지 다시 선택
           </button>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import FontButton from '../../button/FontButton';
-// import CommonButton from '../../button/CommonButton';
+import CommonButton from '../../button/CommonButton';
 
-const StyledFooterArea = styled.div`
+const StyledFooterArea = styled.footer`
   display: flex;
   flex-direction: row-reverse;
   padding: 1rem 1.5rem;
@@ -14,6 +14,7 @@ const StyledFooterArea = styled.div`
 export default function Footer({ closeModal }) {
   return (
     <StyledFooterArea>
+      <CommonButton></CommonButton>
       {/* <SavePostContainer is_finish={true} buttonComponent={CommonButton}>
         출간하기
       </SavePostContainer> */}

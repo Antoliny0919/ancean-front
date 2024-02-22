@@ -27,7 +27,7 @@ const StyledSavedPost = styled.div`
   font-size: 15px;
   flex-direction: row;
   justify-content: flex-start;
-  border-bottom: solid rgba(230, 230, 230, 0.8) 1.5px;
+  border-bottom: solid ${({ theme }) => theme.colors.lightGray} 1.5px;
   transition: border-bottom 0.7s;
   width: 100%;
   .date {
@@ -57,8 +57,10 @@ const StyledSavedPost = styled.div`
 `;
 
 export default function NonePublishedPostsModal({ closeModal }) {
+  // the id of the post currently writing
   const beingWrittenPostId = Number(localStorage.getItem('beingWrittenPostId'));
 
+  // nonePublishedPosts --> publish field value of the model field is false
   const [nonePublishedPosts, setNonePublishedPosts] = useState();
 
   const editorRef = useContext(EditorContext).editorRef;
@@ -66,6 +68,7 @@ export default function NonePublishedPostsModal({ closeModal }) {
   const [, rewritePost, deletePost] = usePost(editorRef);
 
   useEffect(() => {
+    // every time the open a modal, bring in nonePublished posts
     const getNonePublishedPosts = async () => {
       const response = await postAPI.getNonePublishedPosts();
       const posts = response.data;
@@ -79,12 +82,13 @@ export default function NonePublishedPostsModal({ closeModal }) {
     <StyledSavedPostsModal>
       <h1>저장된 포스트</h1>
       <div className="content">
+        {/* nonePublishedPosts are get after rendering is in progress(call from useEffect) */}
         {nonePublishedPosts &&
           nonePublishedPosts.map((post, index) => {
             let updatedAt = new Date(post.updated_at);
+            // except currently writing post
             if (beingWrittenPostId === post.id) return;
             return (
-              // onClick={changePost}
               <StyledSavedPost
                 key={index}
                 id={post.id}

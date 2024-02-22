@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { forcedChangeValue } from '../modules/editor';
-import CategorySelect from '../../category/CategorySelect';
+import { forcedChangeValue } from './modules/editor';
+import CategorySelect from '../category/CategorySelect';
 
-export default function CategorySelectContainer({ categories }) {
+export default function EditorCategorySelect({ categories }) {
   const [selectState, setSelectState] = useState(false);
 
   const onSelectBlock = () => {

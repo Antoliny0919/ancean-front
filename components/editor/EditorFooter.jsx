@@ -55,7 +55,8 @@ export default function EditorFooter() {
   // saved posts(nonePublishedModal) and publishing(publishingModal)button is modal style(click to turn on the modal)
   const [nonePublishedModalState, setNonePublishedModalState] = useState(false);
 
-  const [publicationModalState, setPublicationModalState] = useState(false);
+  const [postPublishingModalState, setPostPublishingModalState] =
+    useState(false);
 
   const { title } = useSelector(({ editor }) => editor);
 
@@ -98,15 +99,15 @@ export default function EditorFooter() {
         <CommonButton
           props={
             title
-              ? { onClick: () => setPublicationModalState(true) }
+              ? { onClick: () => setPostPublishingModalState(true) }
               : { disabled: true }
           }
         >
           출간하기
         </CommonButton>
         <PostFinalPublicationModal
-          modalState={publicationModalState}
-          closeModal={() => setPublicationModalState(false)}
+          modalState={postPublishingModalState}
+          closeModal={() => setPostPublishingModalState(false)}
         />
       </div>
     </StyledFooterArea>

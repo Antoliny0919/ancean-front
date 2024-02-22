@@ -21,7 +21,8 @@ export default function newpost({ categories }) {
     categories: categories,
   };
 
-  const [modalState, setModalState] = useState(false);
+  const [continueWritingModalState, setContinueWritingModalState] =
+    useState(false);
 
   useEffect(() => {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
@@ -32,7 +33,7 @@ export default function newpost({ categories }) {
       return;
     }
     if (previousWritingPostId) {
-      setModalState(true);
+      setContinueWritingModalState(true);
       return;
     }
   }, []);
@@ -41,9 +42,14 @@ export default function newpost({ categories }) {
     <EditorContext.Provider value={contextProps}>
       {/* Notification Save Message */}
       <EditorNotification />
-      {modalState && (
-        <ModalBase disable={modalState} controlModalState={setModalState}>
-          <ContinueWritingModal controlModalState={setModalState} />
+      {continueWritingModalState && (
+        <ModalBase
+          disable={continueWritingModalState}
+          controlModalState={setContinueWritingModalState}
+        >
+          <ContinueWritingModal
+            controlModalState={setContinueWritingModalState}
+          />
         </ModalBase>
       )}
       <EditorHeader />
