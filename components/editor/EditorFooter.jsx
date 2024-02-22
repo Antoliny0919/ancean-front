@@ -5,7 +5,7 @@ import { EditorContext } from '../../pages/posts/newpost';
 import usePost from './usePost';
 import ModalBase from '../modal/ModalBase';
 import NonePublishedPostsModal from './NonePublishedPostsModal';
-import PostFinalPublicationModal from './PublishingPostModal';
+import PublishingPostModal from './PublishingPostModal';
 import CommonButton, { StyledCommonButton } from '../button/CommonButton';
 import FontButton, { StyledFontButton } from '../button/FontButton';
 
@@ -105,7 +105,7 @@ export default function EditorFooter() {
         >
           출간하기
         </CommonButton>
-        <PostFinalPublicationModal
+        <PublishingPostModal
           modalState={postPublishingModalState}
           closeModal={() => setPostPublishingModalState(false)}
         />

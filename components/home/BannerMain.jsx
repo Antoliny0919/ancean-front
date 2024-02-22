@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import { SectionRefContext } from '../../pages/index';
-import MoveSectionButtonContainer from '../button/container/MoveSectionButtonContainer';
+import MoveSectionButton from '../button/MoveSectionButton';
 import Logo, { StyledLogoArea } from '../common/Logo';
 import OceanWaveButton, {
   StyledOceanWaveButton,
@@ -108,7 +108,7 @@ export default function BannerMain() {
         <div className="title-section-link">
           {Object.keys(BANNER_SECTION_BUTTON_DATA).map((sectionName, index) => {
             return (
-              <MoveSectionButtonContainer
+              <MoveSectionButton
                 key={index}
                 buttonComponent={OceanWaveButton}
                 reference={sectionsRef[sectionName]}
@@ -116,7 +116,7 @@ export default function BannerMain() {
                 waveOption={BANNER_SECTION_BUTTON_DATA[sectionName].waveOption}
               >
                 {BANNER_SECTION_BUTTON_DATA[sectionName].name}
-              </MoveSectionButtonContainer>
+              </MoveSectionButton>
             );
           })}
         </div>

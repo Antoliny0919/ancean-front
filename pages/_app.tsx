@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from '../styles/global';
 import { theme } from '../styles/theme';
-import Layout from '../components/common/Layout';
+import Layout from '../components/layout';
 
 function App({ Component, pageProps }: AppProps) {
   const currentPathName = usePathname();

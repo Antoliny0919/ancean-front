@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 import Wave from 'react-wavify';
-import { shadow } from '../../styles/variable';
+import { flex, shadow } from '../../styles/variable';
 
 export const StyledOceanWaveButton = styled.div`
   font-size: 16px;
   font-family: 'Raleway';
-  color: #f8f8f8;
+  color: ${({ theme }) => theme.colors.white};
   width: 7em;
   border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  ${flex('column', 'space-between', 'center')};
   outline: none;
   border: none;
   text-align: center;

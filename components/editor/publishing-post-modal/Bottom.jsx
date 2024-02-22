@@ -57,10 +57,13 @@ const StyledFooterArea = styled.footer`
 export default function Bottom({ closeModal }) {
   const editorRef = useContext(EditorContext).editorRef;
 
+  // first time publishing a post(isFinish field --> true)
+  // works even if the frist published post has already been modified
   const [createOrSavePost] = usePost(editorRef);
 
-  const publishingDate = new Date();
+  const dateOfPublication = new Date();
 
+  // publishingPostModal bottom area infoFields data
   const infoField = [
     {
       title: '공개설정',
@@ -85,8 +88,8 @@ export default function Bottom({ closeModal }) {
       title: '출간일',
       content: (
         <p>
-          {publishingDate.getFullYear()}년 {publishingDate.getMonth() + 1}월
-          {publishingDate.getDate()}일
+          {dateOfPublication.getFullYear()}년 {dateOfPublication.getMonth() + 1}
+          월{dateOfPublication.getDate()}일
         </p>
       ),
     },
@@ -111,7 +114,14 @@ export default function Bottom({ closeModal }) {
         })}
       </StyledMainArea>
       <StyledFooterArea>
-        <CommonButton props={{ onClick: () => createOrSavePost(true) }}>
+        {/* isFinish --> true(publishing) */}
+        <CommonButton
+          props={{
+            onClick: () => {
+              createOrSavePost(true);
+            },
+          }}
+        >
           출간하기
         </CommonButton>
         <FontButton props={{ onClick: closeModal }}>취소</FontButton>

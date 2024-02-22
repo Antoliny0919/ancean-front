@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import Logo from './Logo';
 import Link from 'next/link';
-import { StyledLogoArea } from './Logo';
+import Logo, { StyledLogoArea } from '../common/Logo';
 import { flex } from '../../styles/variable';
 
 const StyledNavbar = styled.nav`
@@ -174,7 +173,7 @@ export default function Navbar({ currentPathName }) {
   ];
 
   return (
-    <>
+    <header>
       {exceptRoute.includes(currentPathName) || (
         <StyledNavbar $currentPathName={currentPathName}>
           {currentPathName !== '/' ? <Logo /> : <div></div>}
@@ -192,6 +191,6 @@ export default function Navbar({ currentPathName }) {
           </StyledNavSideBar>
         </StyledNavbar>
       )}
-    </>
+    </header>
   );
 }

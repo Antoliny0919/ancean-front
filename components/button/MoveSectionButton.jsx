@@ -1,4 +1,4 @@
-export default function MoveSectionButtonContainer({
+export default function MoveSectionButton({
   children,
   buttonComponent,
   reference,

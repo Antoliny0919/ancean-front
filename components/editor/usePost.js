@@ -46,7 +46,7 @@ export default function usePost(editorRef) {
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if the first post to be publishing redirect post page
-        redirectPost(redirect_path);
+        redirectPost(redirect_path, isFinish);
       });
     });
   };
@@ -64,7 +64,7 @@ export default function usePost(editorRef) {
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if already published post redirect post page
-        redirectPost(redirect_path);
+        redirectPost(redirect_path, isFinish);
       });
     });
   };

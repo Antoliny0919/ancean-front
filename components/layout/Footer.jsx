@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Logo from './Logo';
-import { StyledLogoArea } from './Logo';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaStackOverflow } from 'react-icons/fa';
 import { IoLogoGithub } from 'react-icons/io5';
+import Logo, { StyledLogoArea } from '../common/Logo';
 import { CATEGORY_DATA } from '../category/data';
 
 const StyledFooter = styled.footer`
