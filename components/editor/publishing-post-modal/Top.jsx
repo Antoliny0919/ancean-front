@@ -1,16 +1,15 @@
-import Image from '../../common/Image';
 import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
-import { resetHeaderImageState } from '../../editor/modules/editor';
+import Image from '../../common/Image';
+import { resetHeaderImageState, changeValue } from '../modules/editor';
 import { EditorContext } from '../../../pages/posts/newpost';
-import EditorCategorySelect from '../../editor/EditorCategorySelect';
+import EditorCategorySelect from '../EditorCategorySelect';
 import CategoryText from '../../category/CategoryText';
-import { changeValue } from '../../editor/modules/editor';
 import { flex, miniPostContent } from '../../../styles/variable';
 
-const StyledTopArea = styled.header`
+const StyledPostPublishingModalTop = styled.header`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;
@@ -77,7 +76,7 @@ const StyledTopArea = styled.header`
   }
 `;
 
-const StyledTopImageSideBar = styled.div`
+const StyledImageSideBar = styled.div`
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
   }
@@ -125,7 +124,7 @@ export default function Top({
 
   return (
     <>
-      <StyledTopArea $haveHeaderImage={headerImagePath}>
+      <StyledPostPublishingModalTop $haveHeaderImage={headerImagePath}>
         {/* if the selected headerImage exist show that image or
         not selected headerImage provide the input to select image file */}
         {headerImagePath ? (
@@ -170,15 +169,15 @@ export default function Top({
             onChange={onChangeIntroduce}
           ></textarea>
         </div>
-      </StyledTopArea>
+      </StyledPostPublishingModalTop>
       {/* if headerImage selected, provide a button to change the headerImage with something else */}
       {headerImagePath && (
-        <StyledTopImageSideBar>
+        <StyledImageSideBar>
           <p>선택된 이미지: {headerImage}</p>
           <button onClick={() => dispatch(resetHeaderImageState())}>
             이미지 다시 선택
           </button>
-        </StyledTopImageSideBar>
+        </StyledImageSideBar>
       )}
     </>
   );
