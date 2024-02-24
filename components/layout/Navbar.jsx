@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Logo, { StyledLogoArea } from '../common/Logo';
+import SignatureTextButton from '../button/SignatureTextButton';
+import { NAVBAR_EXCEPT_ROUTE, NAVBAR_SIDEBAR_PROPS } from './data';
 import { flex } from '../../styles/variable';
 
 const StyledNavbar = styled.nav`
@@ -49,55 +51,6 @@ const StyledNavSideBar = styled.div`
   font-weight: 700;
   a + a {
     margin-left: 40px;
-  }
-  .category {
-    color: hsl(177, 75%, 50%);
-    transition: text-shadow 0.5s;
-    text-shadow:
-      0.5px 0.5px hsl(177, 75%, 45%),
-      1px 1px hsl(177, 75%, 40%),
-      1.5px 1.5px hsl(177, 75%, 35%),
-      2px 2px hsl(177, 75%, 30%),
-      2.5px 2.5px hsl(177, 75%, 25%),
-      3px 3px hsl(177, 75%, 20%);
-  }
-  .category:hover {
-    text-shadow:
-      0.5px 0.5px hsl(177, 75%, 45%),
-      1px 1px hsl(177, 75%, 40%),
-      1.5px 1.5px hsl(177, 75%, 35%),
-      2px 2px hsl(177, 75%, 30%),
-      2.5px 2.5px hsl(177, 75%, 25%),
-      3px 3px hsl(177, 75%, 20%),
-      3.5px 3.5px hsl(177, 75%, 17%),
-      4px 4px hsl(177, 75%, 14%),
-      4.5px 4.5px hsl(177, 75%, 11%),
-      5px 5px hsl(177, 75%, 8%);
-  }
-
-  .writing {
-    color: hsl(190, 75%, 50%);
-    transition: text-shadow 0.5s;
-    text-shadow:
-      0.5px 0.5px hsl(190, 75%, 45%),
-      1px 1px hsl(190, 75%, 40%),
-      1.5px 1.5px hsl(190, 75%, 35%),
-      2px 2px hsl(190, 75%, 30%),
-      2.5px 2.5px hsl(190, 75%, 25%),
-      3px 3px hsl(190, 75%, 20%);
-  }
-  .writing:hover {
-    text-shadow:
-      0.5px 0.5px hsl(190, 75%, 45%),
-      1px 1px hsl(190, 75%, 40%),
-      1.5px 1.5px hsl(190, 75%, 35%),
-      2px 2px hsl(190, 75%, 30%),
-      2.5px 2.5px hsl(190, 75%, 25%),
-      3px 3px hsl(190, 75%, 20%),
-      3.5px 3.5px hsl(190, 75%, 17%),
-      4px 4px hsl(190, 75%, 14%),
-      4.5px 4.5px hsl(190, 75%, 11%),
-      5px 5px hsl(190, 75%, 8%);
   }
 `;
 
@@ -157,31 +110,18 @@ const StyledAboutMeButton = styled.button`
 `;
 
 export default function Navbar({ currentPathName }) {
-  const exceptRoute = ['/posts/newpost', '/category'];
-
-  const sideBarProps = [
-    {
-      name: 'CATEGORY',
-      href: '/category',
-      className: 'category',
-    },
-    {
-      name: 'WRITING',
-      href: '/posts',
-      className: 'writing',
-    },
-  ];
-
   return (
     <header>
-      {exceptRoute.includes(currentPathName) || (
+      {NAVBAR_EXCEPT_ROUTE.includes(currentPathName) || (
         <StyledNavbar $currentPathName={currentPathName}>
           {currentPathName !== '/' ? <Logo /> : <div></div>}
           <StyledNavSideBar>
-            {sideBarProps.map(({ name, href, className }, index) => {
+            {NAVBAR_SIDEBAR_PROPS.map(({ name, href, hsl }, index) => {
               return (
-                <Link key={index} href={href} className={className}>
-                  <div>{name}</div>
+                <Link href={href} key={index}>
+                  <SignatureTextButton key={index} hsl={hsl} fontSize={24}>
+                    {name}
+                  </SignatureTextButton>
                 </Link>
               );
             })}
