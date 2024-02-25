@@ -2,8 +2,10 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Logo, { StyledLogoArea } from '../common/Logo';
 import SignatureTextButton from '../button/SignatureTextButton';
+import LenticularButton, {
+  StyledLenticularButton,
+} from '../button/LenticularButton';
 import { NAVBAR_EXCEPT_ROUTE, NAVBAR_SIDEBAR_PROPS } from './data';
-import { flex } from '../../styles/variable';
 
 const StyledNavbar = styled.nav`
   @media screen and (max-width: 768px) {
@@ -14,6 +16,7 @@ const StyledNavbar = styled.nav`
     font-size: 24px;
   }
   ${(props) =>
+    // if currentPath is home --> apply absolute position(overlapping the top and navbar)
     props.$currentPathName === '/' &&
     css`
       position: absolute;
@@ -52,68 +55,21 @@ const StyledNavSideBar = styled.div`
   a + a {
     margin-left: 40px;
   }
-`;
-
-const StyledAboutMeButton = styled.button`
-  /* CSS */
-  @media screen and (min-width: 1024px) {
-    font-size: 16px;
-  }
-  ${flex('row', 'center', 'center')};
-  background-color: #f4f4f4;
-  border: 2px solid #3e3e3e;
-  border-radius: 30px;
-  box-shadow: #3e3e3e 3px 3px 0 0;
-  color: #3e3e3e;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 13px;
-  padding: 0.5em 0.8em;
-  text-align: center;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  &:hover {
-    &::before {
-      opacity: 0;
+  ${StyledLenticularButton} {
+    @media screen and (min-width: 1024px) {
+      font-size: 16px;
     }
-    &::after {
-      opacity: 1;
-    }
-    background-color: #fff;
-  }
-
-  &:active {
-    box-shadow: #3e3e3e 2px 2px 0 0;
-    transform: translate(2px, 2px);
-  }
-  &::before {
-    position: absolute;
-    content: 'ABOUT ME';
-    transition-property: opacity;
-    transition-delay: 0.15s;
-    transition-duration: 0.5s;
-    width: inherit;
-    z-index: 0;
-  }
-
-  &::after {
-    position: relative;
-    content: 'ANTOLINY0919';
-    opacity: 0;
-    z-index: 5;
-    transition-property: opacity;
-    transition-delay: 0.15s;
-    transition-duration: 0.5s;
+    font-size: 13px;
   }
 `;
 
 export default function Navbar({ currentPathName }) {
   return (
     <header>
+      {/* verify that the layout applies to the current path */}
       {NAVBAR_EXCEPT_ROUTE.includes(currentPathName) || (
         <StyledNavbar $currentPathName={currentPathName}>
+          {/* the home path has a layout, but the logo is not shown */}
           {currentPathName !== '/' ? <Logo /> : <div></div>}
           <StyledNavSideBar>
             {NAVBAR_SIDEBAR_PROPS.map(({ name, href, hsl }, index) => {
@@ -126,7 +82,12 @@ export default function Navbar({ currentPathName }) {
               );
             })}
             <Link href={'/'}>
-              <StyledAboutMeButton role="button"></StyledAboutMeButton>
+              <LenticularButton
+                offText="ABOUT ME"
+                onText="ANTOLINY0919"
+                backgroundColor={({ theme }) => theme.colors.lightWhite}
+                borderColor="#3e3e3e"
+              />
             </Link>
           </StyledNavSideBar>
         </StyledNavbar>
