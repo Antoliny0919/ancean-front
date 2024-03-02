@@ -21,7 +21,7 @@ const StyledPostHeader = styled.div`
   margin-right: auto;
   margin-left: auto;
   height: 20em;
-  color: black;
+  color: ${({ theme }) => theme.colors.black};
   font-family: 'Pretendard-Bold';
   .post-main {
     position: relative;

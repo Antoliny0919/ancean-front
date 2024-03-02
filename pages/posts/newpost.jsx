@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { server } from '@/api/client';
-import { getPost } from '../../components/editor/modules/editor';
+import { getSinglePost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
@@ -28,7 +28,7 @@ export default function newpost({ categories }) {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     const requestPatchPostId = localStorage.getItem('patchPostId');
     if (requestPatchPostId) {
-      dispatch(getPost(requestPatchPostId));
+      dispatch(getSinglePost(requestPatchPostId));
       localStorage.removeItem('patchPostId');
       return;
     }

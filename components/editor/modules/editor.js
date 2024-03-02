@@ -48,10 +48,13 @@ export const deletePost = createAsyncThunk(
   },
 );
 
-export const getPost = createAsyncThunk('editor/getPost', async (id) => {
-  const response = await postAPI.getPost(id);
-  return response.data;
-});
+export const getSinglePost = createAsyncThunk(
+  'editor/getSinglePost',
+  async (id) => {
+    const response = await postAPI.getSinglePost(id);
+    return response.data;
+  },
+);
 
 export const uploadHeaderImage = createAsyncThunk(
   'editor/uploadHeaderImage',
@@ -92,8 +95,13 @@ const editorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // when post create or save successful, the user check result through the notification value on the editor page
+    // (notificationState, notificationMessage)
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
       if (payload.redirect_path) {
+        // when createPost, savePost is successful,
+        // the presence of redirect_path in the response means that the post is published
+        // so notification not set --> it moves to the redirect_path and leaves the editor page
         return;
       }
       state.notificationState = true;
@@ -111,9 +119,9 @@ const editorSlice = createSlice({
       state.notificationState = true;
       state.notificationMessage = payload.message;
     });
-    builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { id, title, content, category, header_image, introduce } =
-        payload[0];
+    // get the post data and puts the editor in that post data state
+    builder.addCase(getSinglePost.fulfilled, (state, { payload }) => {
+      const { id, title, content, category, header_image, introduce } = payload;
       state = {
         notificationState: state.notificationState,
         title,

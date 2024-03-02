@@ -44,10 +44,10 @@ const StyledMoveQuoteSidebar = styled.div`
 `;
 
 export default function PostContent({ content }) {
-  const haveContent = Object.keys(content);
+  const haveContent = content.length;
 
-  const contentTypes = haveContent.map((index) => {
-    let { type } = content[index];
+  const contentTypes = content.map((item) => {
+    let { type } = item;
     return type;
   });
 
@@ -76,8 +76,6 @@ export default function PostContent({ content }) {
     },
     image: (data) => {
       const { file } = data;
-
-      console.log(file);
       return <ImageTool url={file.url}></ImageTool>;
     },
   };
@@ -102,9 +100,6 @@ export default function PostContent({ content }) {
         <>
           <StyledPostContent>
             {content.map(({ data, type }) => {
-              // console.log(haveContent);
-              // console.log(type, data);
-              // return <div>hello</div>
               return parser[type](data);
             })}
           </StyledPostContent>
