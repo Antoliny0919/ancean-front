@@ -4,7 +4,7 @@ import Highlight from 'react-highlight';
 import { FaRegCopy } from 'react-icons/fa';
 import { MdLanguage } from 'react-icons/md';
 import { FaCheck } from 'react-icons/fa6';
-import { flexBox, codeBlock } from '../../../styles/variable';
+import { flex, codeBlock } from '../../../styles/variable';
 import '@/node_modules/highlight.js/styles/googlecode.css';
 
 const StyledCodeBlock = styled.div`
@@ -103,11 +103,11 @@ const StyledCodeBlockHeader = styled.div`
       margin-left: 10px;
     }
     .code-language {
-      ${flexBox.flex()};
+      ${flex('row', 'center', 'center')};
       ${codeBlock.info('#3AB0CF')};
     }
     .copy-code {
-      ${flexBox.flex()};
+      ${flex('row', 'center', 'center')};
       ${codeBlock.info('#5196E5')};
       transition:
         color 0.7s,

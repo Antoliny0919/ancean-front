@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Wave from 'react-wavify';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import usePost from './usePost';
 import CategoryButton from '../category/CategoryButton';
 import FontButton from '../button/FontButton';
-import { deletePost } from '../../api/post';
-import { post } from '../../styles/variable';
+import { miniPostContent } from '../../styles/variable';
 
 const StyledPostHeader = styled.div`
   @media screen and (min-width: 768px) {
@@ -34,7 +34,7 @@ const StyledPostHeader = styled.div`
         font-size: 64px;
         text-align: start;
       }
-      ${post.contentEllipsis(2)};
+      ${miniPostContent.contentEllipsis(2)};
       font-size: 24px;
       max-height: 300px;
       text-align: center;
@@ -93,18 +93,12 @@ export default function PostHeader({
 
   const updatedAt = new Date(updated_at);
 
-  const onPatchPost = async () => {
-    localStorage.setItem('patchPostId', id);
-    router.push('/posts/newpost');
-  };
+  const [, patchPost, deletePost] = usePost();
 
-  const onDeletePost = () => {
-    let confirmState = confirm('정말로 포스트를 삭제하시겠습니까?');
-    if (confirmState) {
-      deletePost(id);
-      router.back();
-    }
-  };
+  const onPatchPost = () => patchPost(id);
+
+  // delete post and go homepage
+  const onDeletePost = () => deletePost(id, () => router.push('/'));
 
   return (
     <>

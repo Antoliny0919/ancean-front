@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaRegTrashCan } from 'react-icons/fa6';
-import { EditorContext } from '../../pages/posts/newpost';
-import usePost from './usePost';
+import { getPost } from './modules/editor';
+import usePost from '../post/usePost';
 import * as postAPI from '../../api/post';
 
 const StyledSavedPostsModal = styled.div`
@@ -57,15 +58,14 @@ const StyledSavedPost = styled.div`
 `;
 
 export default function NonePublishedPostsModal({ closeModal }) {
+  const dispatch = useDispatch();
   // the id of the post currently writing
   const beingWrittenPostId = Number(localStorage.getItem('beingWrittenPostId'));
 
   // nonePublishedPosts --> publish field value of the model field is false
   const [nonePublishedPosts, setNonePublishedPosts] = useState();
 
-  const editorRef = useContext(EditorContext).editorRef;
-
-  const [, rewritePost, deletePost] = usePost(editorRef);
+  const [, , deletePost] = usePost();
 
   useEffect(() => {
     // every time the open a modal, bring in nonePublished posts
@@ -93,7 +93,7 @@ export default function NonePublishedPostsModal({ closeModal }) {
                 key={index}
                 id={post.id}
                 onClick={(e) => {
-                  rewritePost(e.currentTarget.id);
+                  dispatch(getPost(e.currentTarget.id));
                   closeModal();
                 }}
               >

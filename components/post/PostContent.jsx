@@ -102,6 +102,9 @@ export default function PostContent({ content }) {
         <>
           <StyledPostContent>
             {content.map(({ data, type }) => {
+              // console.log(haveContent);
+              // console.log(type, data);
+              // return <div>hello</div>
               return parser[type](data);
             })}
           </StyledPostContent>

@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPost, savePost, getPost } from './modules/editor';
-import * as postAPI from '../../api/post';
+import { createPost, savePost } from './modules/editor';
 
-export default function usePost(editorRef) {
+export default function useEditor(editorRef) {
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -15,7 +14,7 @@ export default function usePost(editorRef) {
 
   // if isFinish state is true --> first publishing post or modified a post that has already been published
   // redirect to the post page
-  const redirectPost = (path, isFinish) => {
+  const isPublishedMovePage = (path, isFinish) => {
     if (isFinish) {
       router.push(path);
     }
@@ -46,7 +45,7 @@ export default function usePost(editorRef) {
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if the first post to be publishing redirect post page
-        redirectPost(redirect_path, isFinish);
+        isPublishedMovePage(redirect_path, isFinish);
       });
     });
   };
@@ -64,32 +63,10 @@ export default function usePost(editorRef) {
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if already published post redirect post page
-        redirectPost(redirect_path, isFinish);
+        isPublishedMovePage(redirect_path, isFinish);
       });
     });
   };
 
-  const createOrSavePost = (isFinish) => {
-    // isFinish is very important value --> meaning the status of the publication of the post
-    // localStorage beingWrittenPostId value --> determining whether to create or save post
-    const postId = localStorage.getItem('beingWrittenPostId');
-    if (postId) {
-      save(postId, isFinish);
-    } else {
-      create(isFinish);
-    }
-  };
-
-  const rewritePost = (id) => {
-    dispatch(getPost(id));
-  };
-
-  const deletePost = (id) => {
-    let response = confirm('정말 삭제하시겠습니까?');
-    if (response) {
-      postAPI.deletePost(id);
-    }
-  };
-
-  return [createOrSavePost, rewritePost, deletePost];
+  return [create, save];
 }

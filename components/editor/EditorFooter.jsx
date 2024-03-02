@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { EditorContext } from '../../pages/posts/newpost';
-import usePost from './usePost';
+import useEditor from './useEditor';
 import ModalBase from '../modal/ModalBase';
 import NonePublishedPostsModal from './NonePublishedPostsModal';
 import PublishingPostModal from './PublishingPostModal';
@@ -62,18 +62,24 @@ export default function EditorFooter() {
 
   const editorRef = useContext(EditorContext).editorRef;
 
-  const [createOrSavePost] = usePost(editorRef);
+  const [create, save] = useEditor(editorRef);
+
+  const saveTemporarily = () => {
+    // it is temporarily, so isFinish value is false
+    const postId = localStorage.getItem('beingWrittenPostId');
+    if (postId) {
+      save(postId, false);
+    } else {
+      create(false);
+    }
+  };
 
   return (
     <StyledFooterArea>
       {/* leftArea */}
       <div className="footer-left-item-block">
         <FontButton
-          props={
-            title
-              ? { onClick: () => createOrSavePost(false) }
-              : { disabled: true }
-          }
+          props={title ? { onClick: saveTemporarily } : { disabled: true }}
         >
           임시저장
         </FontButton>

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import usePost from '../usePost';
+import useEditor from '../useEditor';
 import { EditorContext } from '../../../pages/posts/newpost';
 import RadioInput from '../../common/RadioInput';
 import FontButton from '../../button/FontButton';
@@ -59,7 +59,17 @@ export default function Bottom({ closeModal }) {
 
   // first time publishing a post(isFinish field --> true)
   // works even if the frist published post has already been modified
-  const [createOrSavePost] = usePost(editorRef);
+  const [create, save] = useEditor(editorRef);
+
+  const savePublishing = () => {
+    // it is publishing, so isFinish value is true
+    const postId = localStorage.getItem('beingWrittenPostId');
+    if (postId) {
+      save(postId, true);
+    } else {
+      create(true);
+    }
+  };
 
   const dateOfPublication = new Date();
 
@@ -117,9 +127,7 @@ export default function Bottom({ closeModal }) {
         {/* isFinish --> true(publishing) */}
         <CommonButton
           props={{
-            onClick: () => {
-              createOrSavePost(true);
-            },
+            onClick: savePublishing,
           }}
         >
           출간하기
