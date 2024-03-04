@@ -13,7 +13,6 @@ export const theme = {
       '#0C3A55',
     ],
     lightMainColor: ['#EBF4FF', '#E2EFFF', '#B7D2F3', '#A1C5F0', '#7DACE5'],
-    shallowMainColor: ['rgba(25, 112, 161, 0.1)'],
     lightWhite: '#FFF',
     white: '#F8F8F8',
     lightBlack: '#282828',
@@ -23,16 +22,16 @@ export const theme = {
     gray: '#858585',
     subTitleBlack: '#939393',
     state: {
-      success: '#276C27',
-      fail: '#bd2d2d',
-      warning: '#D27E30',
+      success: '#00ca42',
+      fail: '#ff605c',
+      warning: '#ffbd44',
     },
-    post: {
-      shallow: '#F3F9FF',
-      deep: '#427cbe',
-    },
-    editor: {
-      divideLine: 'rgba(44, 91, 124, 0.5)',
+    code: {
+      headerBackground: '#427cbe',
+      contentBackground: '#F3F9FF',
+      languageButtonBackground: '#3AB0CF',
+      copyButtonBackground: '#5196E5',
+      copyButtonBackgroundHover: '#5aa7ff',
     },
     socialBackground: '#4A7E9B',
     socialBackgroundHover: '#3C657A',

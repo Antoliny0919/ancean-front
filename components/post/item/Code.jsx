@@ -4,7 +4,7 @@ import Highlight from 'react-highlight';
 import { FaRegCopy } from 'react-icons/fa';
 import { MdLanguage } from 'react-icons/md';
 import { FaCheck } from 'react-icons/fa6';
-import { flex, codeBlock } from '../../../styles/variable';
+import { flex, shadow } from '../../../styles/variable';
 import '@/node_modules/highlight.js/styles/googlecode.css';
 
 const StyledCodeBlock = styled.div`
@@ -14,12 +14,11 @@ const StyledCodeBlock = styled.div`
   font-size: 12px;
   margin-top: 1em;
   margin-bottom: 1em;
-  box-shadow:
-    1px 1px hsl(212, 65%, 35%),
-    2px 2px hsl(212, 65%, 32%),
-    3px 3px hsl(212, 65%, 29%),
-    4px 4px hsl(212, 65%, 26%),
-    5px 5px hsl(212, 65%, 23%);
+  ${shadow.hslShadow({
+    type: 'box',
+    thickness: 5,
+    hsl: { hue: 212, saturation: 65, lightness: 35 },
+  })};
   border-radius: 10px;
   pre {
     margin: 0;
@@ -32,7 +31,7 @@ const StyledCodeBlock = styled.div`
   code {
     height: 100%;
     font-size: inherit;
-    background-color: ${({ theme }) => theme.colors.post.shallow};
+    background-color: ${({ theme }) => theme.colors.code.contentBackground};
     transition: background-color 0.7s;
   }
 `;
@@ -41,15 +40,12 @@ const StyledCodeBlockHeader = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 12px;
   }
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  ${flex('row', 'space-between', 'center')};
   font-family: 'Pretendard-Bold';
-  align-items: center;
   width: 100%;
   height: 35px;
   font-size: 10px;
-  background-color: ${({ theme }) => theme.colors.post.deep};
+  background-color: ${({ theme }) => theme.colors.code.headerBackground};
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 0 1.5em;
@@ -76,13 +72,13 @@ const StyledCodeBlockHeader = styled.div`
         margin-left: 10px;
       }
       .close {
-        background-color: #ff605c;
+        background-color: ${({ theme }) => theme.colors.state.fail};
       }
       .minimise {
-        background-color: #ffbd44;
+        background-color: ${({ theme }) => theme.colors.state.warning};
       }
       .maximise {
-        background-color: #00ca42;
+        background-color: ${({ theme }) => theme.colors.state.success};
       }
     }
   }
@@ -93,7 +89,7 @@ const StyledCodeBlockHeader = styled.div`
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #f8f8f8;
+    color: ${({ theme }) => theme.colors.white};
     svg {
       width: 14px;
       height: 14px;
@@ -104,18 +100,25 @@ const StyledCodeBlockHeader = styled.div`
     }
     .code-language {
       ${flex('row', 'center', 'center')};
-      ${codeBlock.info('#3AB0CF')};
+      border-radius: 5px;
+      padding: 2.5px 8px;
+      background-color: ${({ theme }) =>
+        theme.colors.code.languageButtonBackground};
     }
     .copy-code {
       ${flex('row', 'center', 'center')};
-      ${codeBlock.info('#5196E5')};
+      border-radius: 5px;
+      padding: 2.5px 8px;
+      background-color: ${({ theme }) =>
+        theme.colors.code.copyButtonBackground};
       transition:
         color 0.7s,
         background-color 0.7s;
     }
     .copy-code:hover {
       cursor: pointer;
-      background-color: #5aa7ff;
+      background-color: ${({ theme }) =>
+        theme.colors.code.copyButtonBackgroundHover};
     }
   }
 `;

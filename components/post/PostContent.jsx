@@ -10,6 +10,7 @@ import Link from 'next/link';
 const StyledPostContent = styled.div`
   position: relative;
   bottom: 100px;
+  padding: 0 1em;
   margin-left: auto;
   margin-right: auto;
   font-family: 'Pretendard-Light';
@@ -25,7 +26,6 @@ const StyledMoveQuoteSidebar = styled.div`
   left: 80%;
   z-index: 10;
   width: 240px;
-  /* max-height: calc(100vh - 256px); */
   padding: 1rem 0;
   font-size: 12px;
   border-left: solid ${({ theme }) => theme.colors.mainColor[4]} 3px;
@@ -35,15 +35,16 @@ const StyledMoveQuoteSidebar = styled.div`
     transition:
       transform 0.7s,
       color 0.7s;
-    color: #bbbbbb;
+    color: ${({ theme }) => theme.colors.lightGray};
   }
   .move-quote-text:hover {
     transform: scale(1.05);
-    color: #626262;
+    color: ${({ theme }) => theme.colors.gray};
   }
 `;
 
 export default function PostContent({ content }) {
+  // content is array type so find out if content exists through length properties
   const haveContent = content.length;
 
   const contentTypes = content.map((item) => {
@@ -51,8 +52,10 @@ export default function PostContent({ content }) {
     return type;
   });
 
+  // if content have quote block --> quote side bar component create(StyledMoveQuoteSidebar)
   const haveQuote = contentTypes.includes('quote');
 
+  // components parsed for each block type of content
   const parser = {
     paragraph: (data) => {
       let { text } = data;

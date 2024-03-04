@@ -6,7 +6,7 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 import usePost from './usePost';
 import CategoryButton from '../category/CategoryButton';
 import FontButton from '../button/FontButton';
-import { miniPostContent } from '../../styles/variable';
+import { miniPostContent, flex } from '../../styles/variable';
 
 const StyledPostHeader = styled.div`
   @media screen and (min-width: 768px) {
@@ -48,11 +48,8 @@ const StyledPostHeader = styled.div`
       font-size: 16px;
       justify-content: flex-start;
     }
-    display: flex;
-    flex-direction: row;
+    ${flex('row', 'center', 'center')};
     font-size: 8px;
-    align-items: center;
-    justify-content: center;
     & > * {
       margin-right: 1.5em;
       display: flex;
@@ -97,7 +94,7 @@ export default function PostHeader({
 
   const onPatchPost = () => patchPost(id);
 
-  // delete post and go homepage
+  // delete post and go homepage('/')
   const onDeletePost = () => deletePost(id, () => router.push('/'));
 
   return (
@@ -109,12 +106,14 @@ export default function PostHeader({
         <div className="sub-title post-main">
           <div className="author">
             <FaPen />
-            {author}
+            <span>{author}</span>
           </div>
           <div className="calendar">
             <FaRegCalendarAlt />
-            {updatedAt.getFullYear()}년{updatedAt.getMonth() + 1}월
-            {updatedAt.getDate()}일
+            <span>
+              {updatedAt.getFullYear()}년{updatedAt.getMonth() + 1}월
+              {updatedAt.getDate()}일
+            </span>
           </div>
           {category && (
             <CategoryButton name={category}>{category}</CategoryButton>

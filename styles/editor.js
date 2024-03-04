@@ -127,8 +127,8 @@ const EditorCSS = css`
     font-family: 'Pretendard-Bold';
     margin: 1.5rem 0;
     padding: 0.7rem 0.7rem 0.7rem 1.5rem;
-    border-left: solid ${({ theme }) => theme.colors.post.deep} 4px;
-    background-color: ${({ theme }) => theme.colors.post.shallow};
+    border-left: solid ${({ theme }) => theme.colors.code.headerBackground} 4px;
+    background-color: ${({ theme }) => theme.colors.code.contentBackground};
   }
 
   .cdx-quote,

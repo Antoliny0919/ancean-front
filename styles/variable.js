@@ -102,15 +102,6 @@ export const miniPostContent = {
   `,
 };
 
-export const codeBlock = {
-  info: (backgroundColor = '#black') =>
-    `
-  border-radius: 5px;
-  padding: 2.5px 8px;
-  background-color: ${backgroundColor}
-  `,
-};
-
 export const footer = {
   smallBox: () =>
     `

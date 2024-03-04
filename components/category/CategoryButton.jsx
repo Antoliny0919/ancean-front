@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CATEGORY_DATA } from './data';
+import { shadow } from '@/styles/variable';
 
 const StyledCategoryButton = styled.button`
   @media screen and (min-width: 768px) {
@@ -15,11 +16,7 @@ const StyledCategoryButton = styled.button`
   border-radius: 10px;
   opacity: 0.8;
   padding: 0.3em 0.5em;
-  border: solid var(--shadow-outline-deep-dark) 0.1rem;
-  box-shadow:
-    0 1px 0 0 var(--shadow-outline-deep-dark),
-    0 2px 0 0 var(--shadow-outline-deep-dark),
-    0 3px 0 0 var(--shadow-outline-deep-dark);
+  ${shadow.signatureBoxShadow(3)};
   transition: opacity 0.7s;
   &:hover {
     cursor: pointer;
