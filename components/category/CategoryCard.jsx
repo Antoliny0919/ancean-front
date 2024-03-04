@@ -9,7 +9,7 @@ const StyledCategoryCard = styled.div`
   height: 100%;
   border-radius: 10px;
   ${flex('column', 'center', 'center')};
-  ${shadow.signatureBoxShadow(6)};
+  ${shadow.signatureBoxShadow(5)};
   color: ${({ theme }) => theme.colors.white};
   svg {
     height: 50px;

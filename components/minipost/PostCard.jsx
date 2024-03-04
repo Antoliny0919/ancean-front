@@ -7,18 +7,20 @@ import { WaveLogo, CommentLogo } from '../common/Icon';
 
 const StyledPostCardImage = styled.div`
   position: absolute;
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.lightWhite};
   border-radius: 10px;
   aspect-ratio: 1 / 1.4;
-  ${shadow.signatureBoxShadow(9)};
+  ${shadow.signatureBoxShadow(5)};
   transition: opacity 0.7s;
   z-index: 10;
   img {
     width: 100%;
-    height: 100%;
-    border-radius: 5px;
+    height: 60%;
+    border-radius: 10px;
   }
   &:hover {
     opacity: 0.15;
@@ -29,20 +31,20 @@ const StyledPostCardCover = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.lightWhite};
   z-index: 0;
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 10px;
-  color: black;
-  ${shadow.signatureBoxShadow(9)};
+  color: ${({ theme }) => theme.colors.black};
+  ${shadow.signatureBoxShadow(5)};
   ${flex('column', 'none', 'center')}
   & > * {
     width: 80%;
   }
   .title {
     text-align: center;
-    border-bottom: solid #565656 2px;
+    border-bottom: solid ${({ theme }) => theme.colors.gray} 2px;
     ${miniPostContent.titleEllipsis()};
   }
   .content {
@@ -52,7 +54,7 @@ const StyledPostCardCover = styled.div`
   .author-and-writer-area {
     padding: 10px 0;
     font-size: 10px;
-    color: #565656;
+    color: ${({ theme }) => theme.colors.gray};
   }
   .index-area {
     padding: 10px 0;
@@ -80,7 +82,7 @@ export default function PostCard({ post }) {
 
   return (
     <Link href={`/posts/${id}`}>
-      <Card style={{ width: '270px' }}>
+      <Card>
         <StyledPostCardImage>
           <Image src={header_image}></Image>
         </StyledPostCardImage>
