@@ -70,7 +70,8 @@ export default function NonePublishedPostsModal({ closeModal }) {
   useEffect(() => {
     // every time the open a modal, bring in nonePublished posts
     const getNonePublishedPosts = async () => {
-      const response = await postAPI.getNonePublishedPosts();
+      const query = `is_finish=False`;
+      const response = await postAPI.getPost(query);
       const posts = response.data;
       setNonePublishedPosts(posts);
       return posts;
@@ -93,7 +94,8 @@ export default function NonePublishedPostsModal({ closeModal }) {
                 key={index}
                 id={post.id}
                 onClick={(e) => {
-                  dispatch(getPost(e.currentTarget.id));
+                  const query = `id=${e.currentTarget.id}`;
+                  dispatch(getPost(query));
                   closeModal();
                 }}
               >

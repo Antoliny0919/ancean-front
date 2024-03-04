@@ -88,6 +88,7 @@ export default function index({ posts }) {
         >
           POSTS
         </SignatureText>
+        {/* button have post sort function */}
         <div className="post-sort-button">
           {POSTER_SORT_BUTTON_PROPS.map((props, index) => {
             return (

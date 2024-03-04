@@ -48,13 +48,10 @@ export const deletePost = createAsyncThunk(
   },
 );
 
-export const getSinglePost = createAsyncThunk(
-  'editor/getSinglePost',
-  async (id) => {
-    const response = await postAPI.getSinglePost(id);
-    return response.data;
-  },
-);
+export const getPost = createAsyncThunk('editor/getPost', async (query) => {
+  const response = await postAPI.getPost(query);
+  return response.data;
+});
 
 export const uploadHeaderImage = createAsyncThunk(
   'editor/uploadHeaderImage',
@@ -120,7 +117,7 @@ const editorSlice = createSlice({
       state.notificationMessage = payload.message;
     });
     // get the post data and puts the editor in that post data state
-    builder.addCase(getSinglePost.fulfilled, (state, { payload }) => {
+    builder.addCase(getPost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, header_image, introduce } = payload;
       state = {
         notificationState: state.notificationState,

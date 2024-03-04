@@ -61,7 +61,8 @@ export default function ContinueWritingModal({ controlModalState }) {
     // get beingWrittenPostId data from localStorage
     // get post data from the obtained post id and create a state that can be written continuosly
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
-    dispatch(getPost(previousWritingPostId));
+    const query = `id=${previousWritingPostId}`;
+    dispatch(getPost(query));
     closeModal(controlModalState);
   };
 

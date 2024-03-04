@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, createContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { server } from '@/api/client';
-import { getSinglePost } from '../../components/editor/modules/editor';
+import { getPost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
@@ -28,11 +28,14 @@ export default function newpost({ categories }) {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     const requestPatchPostId = localStorage.getItem('patchPostId');
     if (requestPatchPostId) {
-      dispatch(getSinglePost(requestPatchPostId));
+      // get data of the post to be modified
+      const query = `id=${requestPatchPostId}`;
+      dispatch(getPost(query));
       localStorage.removeItem('patchPostId');
       return;
     }
     if (previousWritingPostId) {
+      // get a post that was previously being created
       setContinueWritingModalState(true);
       return;
     }

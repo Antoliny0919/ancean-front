@@ -6,7 +6,8 @@ export default function usePost() {
 
   const changePrivatePost = async (id) => {
     // switch to private state, preparatory step to modify published post
-    const response = await postAPI.getSinglePost(id);
+    const query = `id=${id}`;
+    const response = await postAPI.getPost(query);
     const data = response.data;
     // id, title, author, is_finish --> require field to patch post
     // is_finish value change to false --> change private post

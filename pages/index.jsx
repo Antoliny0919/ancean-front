@@ -23,6 +23,7 @@ export default function Home({
     latestPosts: latestPostsRef,
   };
 
+  // data for each section
   const sectionProps = {
     popularWriting: { posts: popularWriting },
     topCategories: { categories: categories },
@@ -35,6 +36,8 @@ export default function Home({
       (e) => {
         e.forEach((item) => {
           if (item.isIntersecting) {
+            // if the components assigned the class(.fade-in-slide-down-suspend)
+            // are shown on the screen, the style below applies
             item.target.style.opacity = '1';
             item.target.style.transform = 'translateY(0px)';
           }
