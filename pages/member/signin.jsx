@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import CommonButton from '../../components/button/CommonButton';
@@ -16,12 +17,18 @@ const StyledSignIn = styled.div`
 `;
 
 export default function SignIn() {
+  const router = useRouter();
+
   const dispatch = useDispatch();
 
   const { email, password, message } = useSelector(({ auth }) => auth.signin);
 
   const loadSignin = () => {
-    dispatch(signin({ email, password }));
+    dispatch(signin({ email, password })).then(({ meta }) => {
+      if (meta.requestStatus === 'fulfilled') {
+        router.back();
+      }
+    });
   };
 
   return (

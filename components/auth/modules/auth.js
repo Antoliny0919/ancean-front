@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { Cookies } from 'react-cookie';
 import * as authAPI from '../../../api/auth';
+
+const cookies = new Cookies();
 
 export const signin = createAsyncThunk(
   'auth/signin',
@@ -21,6 +24,9 @@ const initialState = {
     password: '',
     message: '',
   },
+  token: {
+    access: '',
+  },
 };
 
 const authSlice = createSlice({
@@ -34,10 +40,17 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signin.fulfilled, (state, { payload }) => {
-      console.log(payload);
+      const { refresh, access } = payload;
+      cookies.set('refresh', refresh, {
+        path: '/',
+        secure: false,
+        httpOnly: false,
+        sameSite: false,
+      });
+      state.token.access = access;
     });
     builder.addCase(signin.rejected, (state, { payload }) => {
-      console.log(payload);
+      state.signin.message = payload.data.detail;
     });
   },
 });
