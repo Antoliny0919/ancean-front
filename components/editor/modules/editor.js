@@ -106,6 +106,9 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
+      if (payload.status == 401) {
+        console.log(payload);
+      }
       state.notificationState = false;
       state.notificationMessage = payload.data.message;
     });

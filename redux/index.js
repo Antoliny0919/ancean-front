@@ -1,11 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper';
 import editor from '../components/editor/modules/editor';
+import auth from '../components/auth/modules/auth';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const rootReducer = combineReducers({
   editor,
+  auth,
 });
 
 export const makeStore = () => {
