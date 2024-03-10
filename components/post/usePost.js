@@ -11,8 +11,8 @@ export default function usePost({ id, accessToken }) {
   const changePrivatePost = async () => {
     // switch to private state, preparatory step to modify published post
     const query = `id=${id}`;
-    const response = await postAPI.getPost(query);
-    const data = response.data;
+    const target = await postAPI.getPost(query);
+    const data = target.data;
     // id, title, author, is_finish --> require field to patch post
     // is_finish value change to false --> change private post
     const body = {
@@ -21,27 +21,28 @@ export default function usePost({ id, accessToken }) {
       author: data['author'],
       is_finish: false,
     };
-    const status = await postAPI
+    // changePrivate success(authentication) or fail return status code number
+    const response = await postAPI
       .savePost({ body, headers })
       .then((res) => {
-        return res.status;
+        return res;
       })
       .catch((err) => {
-        return err.response.status;
+        return err;
       });
 
-    return status;
+    return response;
   };
 
   const patchPost = async () => {
     // save the postId to localStorage and navigate to the writing page
     // prepare to modify the page according to the useEffect logic on the writing page.
-    const status = await changePrivatePost(id);
-    if (status == 200) {
+    const response = await changePrivatePost(id);
+    if (response.status == 200) {
       localStorage.setItem('patchPostId', id);
       router.push('/posts/newpost');
     } else {
-      alert('포스트를 수정할 수 있는 권한이 존재하지 않습니다.');
+      alert(response.response.data.detail);
     }
   };
 
@@ -54,10 +55,11 @@ export default function usePost({ id, accessToken }) {
       postAPI
         .deletePost({ id, headers })
         .then(() => {
+          // if request success follow up callback method
           confirmFollowUp(confirmFollowUpProps);
         })
-        .catch(() => {
-          alert('포스트를 삭제할 수 있는 권한이 존재하지 않습니다.');
+        .catch((err) => {
+          alert(err.response.data.detail);
         });
     }
   };

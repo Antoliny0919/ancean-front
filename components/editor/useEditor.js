@@ -12,6 +12,12 @@ export default function useEditor(editorRef) {
     ({ editor }) => editor,
   );
 
+  const accessToken = useSelector(({ auth }) => auth.token).access;
+
+  const headers = {
+    ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+  };
+
   // if isFinish state is true --> first publishing post or modified a post that has already been published
   // redirect to the post page
   const isPublishedMovePage = (path, isFinish) => {
@@ -40,8 +46,8 @@ export default function useEditor(editorRef) {
     editorRef.current.save().then((outputData) => {
       dispatch(
         createPost({
-          content: outputData.blocks,
-          ...body,
+          body: { content: outputData.blocks, ...body },
+          headers: headers,
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if the first post to be publishing redirect post page
@@ -57,9 +63,8 @@ export default function useEditor(editorRef) {
     editorRef.current.save().then((outputData) => {
       dispatch(
         savePost({
-          id: postId,
-          content: outputData.blocks,
-          ...body,
+          body: { id: postId, content: outputData.blocks, ...body },
+          headers: headers,
         }),
       ).then(({ payload: { redirect_path } }) => {
         // if already published post redirect post page

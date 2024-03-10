@@ -32,10 +32,10 @@ export const getStaticPaths = async () => {
   return { paths, fallback: 'blocking' };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async ({ params }) => {
   try {
     const response = await server.get(
-      `/api/posts?id=${context.params.id}&is_finish=True`,
+      `/api/posts?id=${params.id}&is_finish=True`,
     );
     const post = response.data;
     return { props: { post }, revalidate: 10 };

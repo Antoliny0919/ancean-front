@@ -15,12 +15,12 @@ const StyledEditorNotification = styled.div`
   font-size: 14px;
   z-index: 100;
   font-family: 'NanumBarunGothic';
-  padding: 0;
+  padding: 0.3em 0;
   transition:
     transform 0.7s ease-in-out,
     opacity 0.7s;
-  background-color: ${({ $notificationState, theme }) =>
-    $notificationState ? theme.colors.state.success : theme.colors.state.fail};
+  background-color: ${({ $notificationState }) =>
+    $notificationState ? '#236931' : '#BA3A3A'};
   // when the warning is active show notification
   &.show {
     opacity: 1;

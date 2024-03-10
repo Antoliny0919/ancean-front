@@ -4,11 +4,12 @@ import * as imageAPI from '@/api/image';
 
 export const createPost = createAsyncThunk(
   'editor/createPost',
-  async (fields, { rejectWithValue }) => {
+  async ({ body, headers }, { rejectWithValue }) => {
     let result = null;
     try {
       const response = await postAPI.createPost({
-        ...fields,
+        body,
+        headers,
       });
       result = response.data;
     } catch (err) {
@@ -20,11 +21,12 @@ export const createPost = createAsyncThunk(
 
 export const savePost = createAsyncThunk(
   'editor/savePost',
-  async (fields, { rejectWithValue }) => {
+  async ({ body, headers }, { rejectWithValue }) => {
     let result = null;
     try {
       const response = await postAPI.savePost({
-        ...fields,
+        body,
+        headers,
       });
       result = response.data;
     } catch (err) {
@@ -106,11 +108,8 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
-      if (payload.status == 401) {
-        console.log(payload);
-      }
       state.notificationState = false;
-      state.notificationMessage = payload.data.message;
+      state.notificationMessage = payload.data.detail;
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
       if (payload.redirect_path) {
@@ -118,6 +117,10 @@ const editorSlice = createSlice({
       }
       state.notificationState = true;
       state.notificationMessage = payload.message;
+    });
+    builder.addCase(savePost.rejected, (state, { payload }) => {
+      state.notificationState = false;
+      state.notificationMessage = payload.data.detail;
     });
     // get the post data and puts the editor in that post data state
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
