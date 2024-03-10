@@ -12,7 +12,7 @@ export default function AuthContainer({ children }) {
 
   const cookies = new Cookies();
 
-  const accessToken = useSelector(({ auth }) => auth.token).access;
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
   const refreshToken = cookies.get('refresh');
 

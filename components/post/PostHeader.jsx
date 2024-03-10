@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Wave from 'react-wavify';
@@ -91,14 +90,12 @@ export default function PostHeader({
 
   const updatedAt = new Date(updated_at);
 
-  const token = useSelector(({ auth }) => auth.token);
+  const [, patchPost, deletePost] = usePost();
 
-  const [, patchPost, deletePost] = usePost({ id, accessToken: token.access });
-
-  const onPatchPost = () => patchPost();
+  const onPatchPost = () => patchPost(id);
 
   // delete post and go homepage('/')
-  const onDeletePost = () => deletePost(() => router.push('/'));
+  const onDeletePost = () => deletePost(id, () => router.push('/'));
 
   return (
     <>

@@ -1,14 +1,17 @@
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 import * as postAPI from '../../api/post';
 
-export default function usePost({ id, accessToken }) {
+export default function usePost() {
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
   const headers = {
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
   };
 
   const router = useRouter();
 
-  const changePrivatePost = async () => {
+  const changePrivatePost = async (id) => {
     // switch to private state, preparatory step to modify published post
     const query = `id=${id}`;
     const target = await postAPI.getPost(query);
@@ -34,7 +37,7 @@ export default function usePost({ id, accessToken }) {
     return response;
   };
 
-  const patchPost = async () => {
+  const patchPost = async (id) => {
     // save the postId to localStorage and navigate to the writing page
     // prepare to modify the page according to the useEffect logic on the writing page.
     const response = await changePrivatePost(id);
@@ -47,6 +50,7 @@ export default function usePost({ id, accessToken }) {
   };
 
   const deletePost = (
+    id,
     confirmFollowUp = () => {},
     confirmFollowUpProps = {},
   ) => {

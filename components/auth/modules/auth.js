@@ -33,13 +33,18 @@ export const reIssueAccessToken = createAsyncThunk(
 );
 
 const initialState = {
+  user: {
+    token: {
+      access: '',
+    },
+    name: '',
+    email: '',
+    introduce: '',
+  },
   signin: {
     email: '',
     password: '',
     message: '',
-  },
-  token: {
-    access: '',
   },
 };
 
@@ -61,14 +66,14 @@ const authSlice = createSlice({
         httpOnly: false,
         sameSite: false,
       });
-      state.token.access = access;
+      state.user.token.access = access;
     });
     builder.addCase(signin.rejected, (state, { payload }) => {
       state.signin.message = payload.data.detail;
     });
     builder.addCase(reIssueAccessToken.fulfilled, (state, { payload }) => {
       const { access } = payload;
-      state.token.access = access;
+      state.user.token.access = access;
     });
     builder.addCase(reIssueAccessToken.rejected, (state, { payload }) => {
       console.log(payload);

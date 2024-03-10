@@ -2,6 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as postAPI from '@/api/post';
 import * as imageAPI from '@/api/image';
 
+export const getPost = createAsyncThunk('editor/getPost', async (query) => {
+  const response = await postAPI.getPost(query);
+  return response.data;
+});
+
 export const createPost = createAsyncThunk(
   'editor/createPost',
   async ({ body, headers }, { rejectWithValue }) => {
@@ -35,25 +40,6 @@ export const savePost = createAsyncThunk(
     return result;
   },
 );
-
-export const deletePost = createAsyncThunk(
-  'editor/deletePost',
-  async ({ id }, { rejectWithValue }) => {
-    let result = null;
-    try {
-      const response = await postAPI.deletePost(id);
-      result = response.data;
-    } catch (err) {
-      result = rejectWithValue(err.response);
-    }
-    return result;
-  },
-);
-
-export const getPost = createAsyncThunk('editor/getPost', async (query) => {
-  const response = await postAPI.getPost(query);
-  return response.data;
-});
 
 export const uploadHeaderImage = createAsyncThunk(
   'editor/uploadHeaderImage',
@@ -104,7 +90,7 @@ const editorSlice = createSlice({
         return;
       }
       state.notificationState = true;
-      state.notificationMessage = payload.message;
+      state.notificationMessage = payload.detail;
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
@@ -114,9 +100,10 @@ const editorSlice = createSlice({
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
       if (payload.redirect_path) {
         localStorage.removeItem('beingWrittenPostId', payload.id);
+        return;
       }
       state.notificationState = true;
-      state.notificationMessage = payload.message;
+      state.notificationMessage = payload.detail;
     });
     builder.addCase(savePost.rejected, (state, { payload }) => {
       state.notificationState = false;

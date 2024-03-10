@@ -12,7 +12,7 @@ export default function useEditor(editorRef) {
     ({ editor }) => editor,
   );
 
-  const accessToken = useSelector(({ auth }) => auth.token).access;
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
   const headers = {
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
