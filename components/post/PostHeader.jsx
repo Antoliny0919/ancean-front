@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import Wave from 'react-wavify';
@@ -90,12 +91,14 @@ export default function PostHeader({
 
   const updatedAt = new Date(updated_at);
 
-  const [, patchPost, deletePost] = usePost();
+  const token = useSelector(({ auth }) => auth.token);
 
-  const onPatchPost = () => patchPost(id);
+  const [, patchPost, deletePost] = usePost({ id, accessToken: token.access });
+
+  const onPatchPost = () => patchPost();
 
   // delete post and go homepage('/')
-  const onDeletePost = () => deletePost(id, () => router.push('/'));
+  const onDeletePost = () => deletePost(() => router.push('/'));
 
   return (
     <>
@@ -119,10 +122,12 @@ export default function PostHeader({
             <CategoryButton name={category}>{category}</CategoryButton>
           )}
         </div>
-        <div className="sub-title control-post">
-          <FontButton props={{ onClick: onPatchPost }}>수정</FontButton>
-          <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
-        </div>
+        {
+          <div className="sub-title control-post">
+            <FontButton props={{ onClick: onPatchPost }}>수정</FontButton>
+            <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
+          </div>
+        }
       </StyledPostHeader>
       <StyledHeaderWave>
         <Wave

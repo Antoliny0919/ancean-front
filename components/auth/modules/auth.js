@@ -18,6 +18,20 @@ export const signin = createAsyncThunk(
   },
 );
 
+export const reIssueAccessToken = createAsyncThunk(
+  'auth/reIssueAccessToken',
+  async ({ refresh }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await authAPI.reIssueAccessToken({ refresh });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
+
 const initialState = {
   signin: {
     email: '',
@@ -51,6 +65,13 @@ const authSlice = createSlice({
     });
     builder.addCase(signin.rejected, (state, { payload }) => {
       state.signin.message = payload.data.detail;
+    });
+    builder.addCase(reIssueAccessToken.fulfilled, (state, { payload }) => {
+      const { access } = payload;
+      state.token.access = access;
+    });
+    builder.addCase(reIssueAccessToken.rejected, (state, { payload }) => {
+      console.log(payload);
     });
   },
 });

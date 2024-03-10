@@ -1,18 +1,31 @@
 import { client } from './client';
 
-export const createPost = (fields) =>
-  client.post('api/posts/', {
-    ...fields,
-  });
-
-export const savePost = (fields) =>
-  client.patch('api/posts/', {
-    ...fields,
-  });
-
 export const getPost = (query) => client.get(`api/posts?${query}`);
 
-export const deletePost = (id) =>
+export const createPost = ({ body, headers }) =>
+  client.post(
+    'api/posts/',
+    {
+      ...body,
+    },
+    {
+      headers: headers,
+    },
+  );
+
+export const savePost = ({ body, headers }) =>
+  client.patch(
+    'api/posts/',
+    {
+      ...body,
+    },
+    {
+      headers: headers,
+    },
+  );
+
+export const deletePost = ({ id, headers }) =>
   client.delete('api/posts/', {
+    headers: headers,
     data: { id: id },
   });
