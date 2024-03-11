@@ -32,6 +32,20 @@ export const reIssueAccessToken = createAsyncThunk(
   },
 );
 
+export const getUserData = createAsyncThunk(
+  'auth/getUserData',
+  async ({ query, headers }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await authAPI.getUserData({ query, headers });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
+
 const initialState = {
   user: {
     token: {
@@ -77,6 +91,9 @@ const authSlice = createSlice({
     });
     builder.addCase(reIssueAccessToken.rejected, (state, { payload }) => {
       console.log(payload);
+    });
+    builder.addCase(getUserData.fulfilled, (state, { payload }) => {
+      state.user = { ...state.user, ...payload };
     });
   },
 });

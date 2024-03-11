@@ -12,6 +12,8 @@ export default function useEditor(editorRef) {
     ({ editor }) => editor,
   );
 
+  const author = useSelector(({ auth }) => auth.user.name);
+
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
   const headers = {
@@ -31,7 +33,7 @@ export default function useEditor(editorRef) {
     let body = {
       title: title,
       // ancean only one user exist --> antoliny0919
-      author: 'antoliny0919',
+      author: author,
       // introduce, headerImage, selectedCategory --> it's optional field
       ...(introduce && { introduce: introduce }),
       ...(headerImage && { header_image: headerImage }),

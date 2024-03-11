@@ -2,6 +2,7 @@ import { server } from '../../api/client';
 import PostContent from '../../components/post/PostContent';
 import PostHeader from '../../components/post/PostHeader';
 import AuthContainer from '../../components/auth/AuthContainer';
+import UserContainer from '../../components/auth/UserContainer';
 
 export default function Post({ post }) {
   // list with single data answered because id data exists in query(getStaticProps)
@@ -9,20 +10,22 @@ export default function Post({ post }) {
 
   return (
     <AuthContainer>
-      <PostHeader
-        id={id}
-        title={title}
-        updated_at={updated_at}
-        author={author}
-        category={category}
-      ></PostHeader>
-      <PostContent content={content}></PostContent>
+      <UserContainer>
+        <PostHeader
+          id={id}
+          title={title}
+          updated_at={updated_at}
+          author={author}
+          category={category}
+        ></PostHeader>
+        <PostContent content={content}></PostContent>
+      </UserContainer>
     </AuthContainer>
   );
 }
 
 export const getStaticPaths = async () => {
-  const response = await server.get(`/api/posts?is_finish=True`);
+  const response = await server.get(`/api/posts/?is_finish=True`);
   const posts = response.data;
 
   const paths = posts.map((post) => ({
@@ -35,7 +38,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   try {
     const response = await server.get(
-      `/api/posts?id=${params.id}&is_finish=True`,
+      `/api/posts/?id=${params.id}&is_finish=True`,
     );
     const post = response.data;
     return { props: { post }, revalidate: 10 };

@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import useEditor from '../useEditor';
 import { EditorContext } from '../../../pages/posts/newpost';
@@ -73,6 +74,8 @@ export default function Bottom({ closeModal }) {
 
   const dateOfPublication = new Date();
 
+  const client = useSelector(({ auth }) => auth.user.name);
+
   // publishingPostModal bottom area infoFields data
   const infoField = [
     {
@@ -105,7 +108,7 @@ export default function Bottom({ closeModal }) {
     },
     {
       title: '작성자',
-      content: <p>antoliny0919</p>,
+      content: <p>{client}</p>,
     },
   ];
 

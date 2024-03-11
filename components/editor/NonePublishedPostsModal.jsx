@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaRegTrashCan } from 'react-icons/fa6';
@@ -59,8 +59,10 @@ const StyledSavedPost = styled.div`
 
 export default function NonePublishedPostsModal({ closeModal }) {
   const dispatch = useDispatch();
-  // the id of the post currently writing
+  // the id of the post currently writing --> exclude posts currently being created
   const beingWrittenPostId = Number(localStorage.getItem('beingWrittenPostId'));
+
+  const userName = useSelector(({ auth }) => auth.user.name);
 
   // nonePublishedPosts --> publish field value of the model field is false
   const [nonePublishedPosts, setNonePublishedPosts] = useState();
@@ -68,9 +70,9 @@ export default function NonePublishedPostsModal({ closeModal }) {
   const [, , deletePost] = usePost();
 
   useEffect(() => {
-    // every time the open a modal, bring in nonePublished posts
+    // every time client open a modal, it fetches nonePublishedPosts associated with the connected user
     const getNonePublishedPosts = async () => {
-      const query = `is_finish=False`;
+      const query = `is_finish=False&author__name=${userName}`;
       const response = await postAPI.getPost(query);
       const posts = response.data;
       setNonePublishedPosts(posts);

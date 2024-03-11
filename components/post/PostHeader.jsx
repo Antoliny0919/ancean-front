@@ -1,6 +1,8 @@
+import { useMemo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import Wave from 'react-wavify';
+import styled from 'styled-components';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
 import usePost from './usePost';
@@ -88,14 +90,22 @@ export default function PostHeader({
 }) {
   const router = useRouter();
 
-  const updatedAt = new Date(updated_at);
+  const updatedAt = useMemo(() => {
+    return new Date(updated_at);
+  }, [updated_at]);
 
   const [, patchPost, deletePost] = usePost();
 
-  const onPatchPost = () => patchPost(id);
+  const client = useSelector(({ auth }) => auth.user.name);
+
+  const onPatchPost = () => useCallback(patchPost(id), [id]);
 
   // delete post and go homepage('/')
-  const onDeletePost = () => deletePost(id, () => router.push('/'));
+  const onDeletePost = () =>
+    useCallback(
+      deletePost(id, () => router.push('/')),
+      [id],
+    );
 
   return (
     <>
@@ -119,12 +129,13 @@ export default function PostHeader({
             <CategoryButton name={category}>{category}</CategoryButton>
           )}
         </div>
-        {
+        {/* it the client accessed is the owner of the post, the edit and delete interface is visible */}
+        {author === client && (
           <div className="sub-title control-post">
             <FontButton props={{ onClick: onPatchPost }}>수정</FontButton>
             <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
           </div>
-        }
+        )}
       </StyledPostHeader>
       <StyledHeaderWave>
         <Wave

@@ -6,6 +6,7 @@ import ModalBase from '../../components/modal/ModalBase';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import AuthContainer from '../../components/auth/AuthContainer';
+import UserContainer from '../../components/auth/UserContainer';
 import EditorHeader from '../../components/editor/EditorHeader';
 import EditorContent from '../../components/editor/EditorContent';
 import EditorFooter from '../../components/editor/EditorFooter';
@@ -44,23 +45,25 @@ export default function newpost({ categories }) {
 
   return (
     <AuthContainer>
-      <EditorContext.Provider value={contextProps}>
-        {/* Notification Save Message */}
-        <EditorNotification />
-        {continueWritingModalState && (
-          <ModalBase
-            disable={continueWritingModalState}
-            controlModalState={setContinueWritingModalState}
-          >
-            <ContinueWritingModal
+      <UserContainer>
+        <EditorContext.Provider value={contextProps}>
+          {/* Notification Save Message */}
+          <EditorNotification />
+          {continueWritingModalState && (
+            <ModalBase
+              disable={continueWritingModalState}
               controlModalState={setContinueWritingModalState}
-            />
-          </ModalBase>
-        )}
-        <EditorHeader />
-        <EditorContent />
-        <EditorFooter categories={categories} />
-      </EditorContext.Provider>
+            >
+              <ContinueWritingModal
+                controlModalState={setContinueWritingModalState}
+              />
+            </ModalBase>
+          )}
+          <EditorHeader />
+          <EditorContent />
+          <EditorFooter categories={categories} />
+        </EditorContext.Provider>
+      </UserContainer>
     </AuthContainer>
   );
 }

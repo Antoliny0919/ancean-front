@@ -5,3 +5,8 @@ export const signin = ({ email, password }) =>
 
 export const reIssueAccessToken = ({ refresh }) =>
   client.post('api/token/refresh/', { refresh });
+
+export const getUserData = ({ headers }) =>
+  client.get(`api/users/`, {
+    headers: headers,
+  });
