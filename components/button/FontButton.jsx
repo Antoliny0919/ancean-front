@@ -24,9 +24,5 @@ export const StyledFontButton = styled.button`
 `;
 
 export default function FontButton({ children, props = {} }) {
-  return (
-    <StyledFontButton {...props}>
-      <p>{children}</p>
-    </StyledFontButton>
-  );
+  return <StyledFontButton {...props}>{children}</StyledFontButton>;
 }

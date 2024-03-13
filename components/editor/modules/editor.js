@@ -1,11 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { client } from '../../../api/client';
 import * as postAPI from '@/api/post';
 import * as imageAPI from '@/api/image';
 
-export const getPost = createAsyncThunk('editor/getPost', async (query) => {
-  const response = await postAPI.getPost(query);
-  return response.data;
-});
+export const getPost = createAsyncThunk(
+  'editor/getPost',
+  async ({ query, headers = {} }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await postAPI.getPost({ query, headers });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
 
 export const createPost = createAsyncThunk(
   'editor/createPost',
@@ -80,6 +90,28 @@ const editorSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // get the post data and puts the editor in that post data state
+    builder.addCase(getPost.fulfilled, (state, { payload }) => {
+      console.log(payload);
+
+      const { id, title, content, category, header_image, introduce } = payload;
+      state = {
+        notificationState: state.notificationState,
+        title,
+        introduce,
+        selectedCategory: category,
+        headerImagePath: `${client.defaults.baseURL}/${header_image}`,
+        content,
+      };
+      localStorage.setItem('beingWrittenPostId', id);
+      return state;
+    });
+    builder.addCase(getPost.rejected, (state, { payload }) => {
+      // if getPost rejected, when permissions do not exist
+      const message = payload.data.detail;
+      state.notificationState = false;
+      state.notificationMessage = message;
+    });
     // when post create or save successful, the user check result through the notification value on the editor page
     // (notificationState, notificationMessage)
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
@@ -108,20 +140,6 @@ const editorSlice = createSlice({
     builder.addCase(savePost.rejected, (state, { payload }) => {
       state.notificationState = false;
       state.notificationMessage = payload.data.detail;
-    });
-    // get the post data and puts the editor in that post data state
-    builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      const { id, title, content, category, header_image, introduce } = payload;
-      state = {
-        notificationState: state.notificationState,
-        title,
-        introduce,
-        selectedCategory: category,
-        headerImagePath: header_image,
-        content,
-      };
-      localStorage.setItem('beingWrittenPostId', id);
-      return state;
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {
       state['headerImagePath'] = payload.file.url;

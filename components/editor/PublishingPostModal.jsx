@@ -50,6 +50,7 @@ export default function PublishingPostModal({ modalState, closeModal }) {
   const { headerImage, headerImagePath } = useSelector(({ editor }) => editor);
 
   const onSelectedImageFile = (e) => {
+    // when client select a haeder image file, the image is upload
     let selectedFile = e.target.files[0];
     const formData = new FormData();
     formData.append('file', selectedFile);

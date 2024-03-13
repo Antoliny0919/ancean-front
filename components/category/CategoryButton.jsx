@@ -16,6 +16,7 @@ const StyledCategoryButton = styled.button`
   border-radius: 10px;
   opacity: 0.8;
   padding: 0.3em 0.5em;
+  border: solid 1px #273237;
   ${shadow.signatureBoxShadow(3)};
   transition: opacity 0.7s;
   &:hover {

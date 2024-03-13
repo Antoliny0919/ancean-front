@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Wave from 'react-wavify';
@@ -98,14 +98,10 @@ export default function PostHeader({
 
   const client = useSelector(({ auth }) => auth.user.name);
 
-  const onPatchPost = () => useCallback(patchPost(id), [id]);
+  const onPatchPost = () => patchPost(id);
 
   // delete post and go homepage('/')
-  const onDeletePost = () =>
-    useCallback(
-      deletePost(id, () => router.push('/')),
-      [id],
-    );
+  const onDeletePost = () => deletePost(id, () => router.push('/'));
 
   return (
     <>

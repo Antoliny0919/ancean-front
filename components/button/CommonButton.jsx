@@ -34,7 +34,7 @@ export default function CommonButton({
 }) {
   return (
     <StyledCommonButton style={styleProps} {...props}>
-      <p>{children}</p>
+      {children}
     </StyledCommonButton>
   );
 }

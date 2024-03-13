@@ -131,7 +131,7 @@ export default function index({ posts }) {
 
 export const getStaticProps = async () => {
   const response = await server.get(
-    '/api/posts?ordering=-created-at&limit=3&is_finish=true',
+    '/api/posts/?ordering=-created-at&limit=3&is_finish=true',
   );
   const posts = response.data;
 

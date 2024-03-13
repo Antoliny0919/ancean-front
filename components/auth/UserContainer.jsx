@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from './modules/auth';
 
@@ -13,11 +13,9 @@ export default function UserContainer({ children }) {
 
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
-  const headers = useMemo(() => {
-    return {
-      Authorization: `Bearer ${accessToken}`,
-    };
-  }, [accessToken]);
+  const headers = {
+    Authorization: `Bearer ${accessToken}`,
+  };
 
   useEffect(() => {
     // when an access token exist, the user is identified through the access token and the user data import

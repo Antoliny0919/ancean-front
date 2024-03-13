@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, createContext } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { server } from '@/api/client';
 import { getPost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
@@ -23,25 +23,29 @@ export default function newpost({ categories }) {
     categories: categories,
   };
 
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
   const [continueWritingModalState, setContinueWritingModalState] =
     useState(false);
 
   useEffect(() => {
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     const requestPatchPostId = localStorage.getItem('patchPostId');
-    if (requestPatchPostId) {
-      // get data of the post to be modified
-      const query = `id=${requestPatchPostId}`;
-      dispatch(getPost(query));
-      localStorage.removeItem('patchPostId');
-      return;
+
+    if (accessToken) {
+      const headers = { Authorization: `Bearer ${accessToken}` };
+      if (requestPatchPostId) {
+        const query = `id=${requestPatchPostId}`;
+        dispatch(getPost({ query, headers }));
+        localStorage.removeItem('patchPostId');
+        return;
+      } else if (previousWritingPostId) {
+        // get a post that was previously being created
+        setContinueWritingModalState(true);
+        return;
+      }
     }
-    if (previousWritingPostId) {
-      // get a post that was previously being created
-      setContinueWritingModalState(true);
-      return;
-    }
-  }, []);
+  }, [accessToken]);
 
   return (
     <AuthContainer>

@@ -89,8 +89,8 @@ const authSlice = createSlice({
       const { access } = payload;
       state.user.token.access = access;
     });
-    builder.addCase(reIssueAccessToken.rejected, (state, { payload }) => {
-      console.log(payload);
+    builder.addCase(reIssueAccessToken.rejected, () => {
+      alert('로그인이 필요한 서비스입니다.');
     });
     builder.addCase(getUserData.fulfilled, (state, { payload }) => {
       state.user = { ...state.user, ...payload };

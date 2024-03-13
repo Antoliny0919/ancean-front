@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FaExclamation } from 'react-icons/fa';
 import { FcIdea } from 'react-icons/fc';
 import styled from 'styled-components';
@@ -57,12 +57,15 @@ const StyledContinueWritingPostModal = styled.div`
 export default function ContinueWritingModal({ controlModalState }) {
   const dispatch = useDispatch();
 
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
   const continueWriting = () => {
     // get beingWrittenPostId data from localStorage
     // get post data from the obtained post id and create a state that can be written continuosly
+    const headers = { Authorization: `Bearer ${accessToken}` };
     const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     const query = `id=${previousWritingPostId}`;
-    dispatch(getPost(query));
+    dispatch(getPost({ query, headers }));
     closeModal(controlModalState);
   };
 
