@@ -53,8 +53,8 @@ export const savePost = createAsyncThunk(
 
 export const uploadHeaderImage = createAsyncThunk(
   'editor/uploadHeaderImage',
-  async ({ formData }) => {
-    const response = await imageAPI.uploadImage({ formData });
+  async ({ formData, headers }) => {
+    const response = await imageAPI.uploadImage({ formData, headers });
     return response.data;
   },
 );

@@ -49,12 +49,18 @@ export default function PublishingPostModal({ modalState, closeModal }) {
 
   const { headerImage, headerImagePath } = useSelector(({ editor }) => editor);
 
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
+  const headers = { Authorization: `Bearer ${accessToken}` };
+
   const onSelectedImageFile = (e) => {
     // when client select a haeder image file, the image is upload
+    const postId = localStorage.getItem('beingWrittenPostId');
     let selectedFile = e.target.files[0];
     const formData = new FormData();
     formData.append('file', selectedFile);
-    dispatch(uploadHeaderImage({ formData }));
+    formData.append('id', postId);
+    dispatch(uploadHeaderImage({ formData, headers }));
   };
 
   return (

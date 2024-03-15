@@ -6,6 +6,7 @@ import { EditorContext } from '../../../pages/posts/newpost';
 import RadioInput from '../../common/RadioInput';
 import FontButton from '../../button/FontButton';
 import CommonButton from '../../button/CommonButton';
+import { flex } from '../../../styles/variable';
 
 const StyledMainArea = styled.main`
   padding: 0 1em;
@@ -13,15 +14,9 @@ const StyledMainArea = styled.main`
 `;
 
 export const StyledPostInfoField = styled.div`
-  @media screen and (min-width: 768px) {
-    justify-content: flex-start;
-  }
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  ${flex('row', 'flex-start', 'center')};
   font-size: inherit;
-  justify-content: center;
   margin-bottom: 1em;
   padding-bottom: 0.5em;
   border-bottom: solid ${({ theme }) => theme.colors.lightGray} 1px;

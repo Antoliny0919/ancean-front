@@ -1,6 +1,6 @@
 import { uploadImage } from '../../api/image';
 
-export const initializeEditor = async ({ editorRef, content }) => {
+export const initializeEditor = async ({ content, editorRef, headers }) => {
   const EditorJS = (await import('@editorjs/editorjs')).default;
   const Image = (await import('@editorjs/image')).default;
   const CodeTool = (await import('@editorjs/code')).default;
@@ -9,6 +9,7 @@ export const initializeEditor = async ({ editorRef, content }) => {
   const Warning = (await import('@editorjs/warning')).default;
   const Quote = (await import('@editorjs/quote')).default;
   const Marker = (await import('@editorjs/marker')).default;
+
   editorRef.current = null;
   if (!editorRef.current) {
     const editor = new EditorJS({
@@ -60,9 +61,14 @@ export const initializeEditor = async ({ editorRef, content }) => {
               async uploadByFile(file) {
                 const formData = new FormData();
                 formData.append('file', file);
-                const response = await uploadImage({ formData: formData });
-                if (response.data.success === 1) {
+                const postId = localStorage.getItem('beingWrittenPostId');
+                formData.append('id', postId);
+                try {
+                  const response = await uploadImage({ formData, headers });
                   return response.data;
+                } catch (err) {
+                  const errorMessage = err.response.data.detail;
+                  alert(errorMessage);
                 }
               },
             },

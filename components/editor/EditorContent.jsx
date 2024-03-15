@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { useContext } from 'react';
 import styled from 'styled-components';
 import createEditor from './createEditor';
@@ -12,16 +13,18 @@ const StyledEditorContent = styled.main`
 `;
 
 export default function EditorContent() {
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
   const editorRef = useContext(EditorContext).editorRef;
 
   // content part is the area of the EditorJS
-  createEditor(editorRef);
+  createEditor({ editorRef, accessToken });
 
   const [create, save] = useEditor(editorRef);
 
   const saveTemporarily = () => {
-    // it is temporarily, so isFinish value is false
     const postId = localStorage.getItem('beingWrittenPostId');
+    // it is temporarily, so isFinish value is false
     if (postId) {
       save(postId, false);
     } else {
