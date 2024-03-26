@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 
-export default function useCategorySwiper(
+export default function categorySwiperContainer(
   categories,
   slideChangeExtraAction = null,
 ) {
@@ -44,5 +44,5 @@ export default function useCategorySwiper(
     [categories],
   );
 
-  return [categoryName, onSwiper, onSlideChange];
+  return { categoryName, onSwiper, onSlideChange };
 }

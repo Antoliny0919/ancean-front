@@ -8,7 +8,7 @@ import { getUserData } from './modules/auth';
  * That's why tokens must exist first, so it must be below the authContainer when used.
  *
  */
-export default function UserContainer({ children }) {
+export default function UserGateway({ children }) {
   const dispatch = useDispatch();
 
   const accessToken = useSelector(({ auth }) => auth.user.token.access);

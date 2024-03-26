@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { getPost } from './modules/editor';
-import usePost from '../post/usePost';
+import postContainer from '../post/postContainer';
 import * as postAPI from '../../api/post';
 
 const StyledSavedPostsModal = styled.div`
@@ -67,7 +67,7 @@ export default function NonePublishedPostsModal({ closeModal }) {
   // nonePublishedPosts --> publish field value of the model field is false
   const [nonePublishedPosts, setNonePublishedPosts] = useState();
 
-  const [, , deletePost] = usePost();
+  const { deletePost } = postContainer();
 
   useEffect(() => {
     // every time client open a modal, it fetches nonePublishedPosts associated with the connected user

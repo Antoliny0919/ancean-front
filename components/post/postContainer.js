@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import * as postAPI from '../../api/post';
 
-export default function usePost() {
+export default function postContainer() {
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
   const headers = {
@@ -16,7 +16,6 @@ export default function usePost() {
     const query = `id=${id}`;
     const target = await postAPI.getPost({ query });
     const data = target.data;
-    console.log(data);
     // id, title, author, is_finish --> require field to patch post
     // is_finish value change to false --> change private post
     const body = {
@@ -69,5 +68,5 @@ export default function usePost() {
     }
   };
 
-  return [changePrivatePost, patchPost, deletePost];
+  return { changePrivatePost, patchPost, deletePost };
 }

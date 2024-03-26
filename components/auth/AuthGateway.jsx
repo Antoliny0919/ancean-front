@@ -9,7 +9,7 @@ import { reIssueAccessToken } from './modules/auth';
  * the ability to initialize tokens required for authentication is provided
  *
  */
-export default function AuthContainer({ children }) {
+export default function AuthGateway({ children }) {
   const dispatch = useDispatch();
 
   const cookies = new Cookies();

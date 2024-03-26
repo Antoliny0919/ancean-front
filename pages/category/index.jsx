@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { server } from '../../api/client';
 import CategoryCardSwiper from '../../components/category/CategoryCardSwiper';
 import SwiperButton from '../../components/button/SwiperButton';
-import useCategorySwiper from '../../components/category/useCategorySwiper';
+import categorySwiperContainer from '../../components/category/categorySwiperContainer';
 import { CATEGORY_DATA } from '../../components/category/data';
 import { flex } from '../../styles/variable';
 
@@ -35,7 +35,7 @@ export default function Index({ categories, categoryPosts }) {
   // check if current activeSlide(slideNumber) is the first or last category
   const [slideNumber, setSlideNumber] = useState(0);
 
-  const [categoryName, onSwiper, onSlideChange] = useCategorySwiper(
+  const { categoryName, onSwiper, onSlideChange } = categorySwiperContainer(
     categories,
     (slide) => setSlideNumber(slide.activeIndex),
   );

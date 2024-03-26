@@ -1,16 +1,16 @@
 import { server } from '../../api/client';
 import PostContent from '../../components/post/PostContent';
 import PostHeader from '../../components/post/PostHeader';
-import AuthContainer from '../../components/auth/AuthContainer';
-import UserContainer from '../../components/auth/UserContainer';
+import AuthGateway from '../../components/auth/AuthGateway';
+import UserGateway from '../../components/auth/UserGateway';
 
 export default function Post({ post }) {
   // list with single data answered because id data exists in query(getStaticProps)
   const { id, title, updated_at, author, category, content } = post;
 
   return (
-    <AuthContainer>
-      <UserContainer>
+    <AuthGateway>
+      <UserGateway>
         <PostHeader
           id={id}
           title={title}
@@ -19,8 +19,8 @@ export default function Post({ post }) {
           category={category}
         ></PostHeader>
         <PostContent content={content}></PostContent>
-      </UserContainer>
-    </AuthContainer>
+      </UserGateway>
+    </AuthGateway>
   );
 }
 

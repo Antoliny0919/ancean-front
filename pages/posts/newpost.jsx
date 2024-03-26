@@ -5,8 +5,8 @@ import { getPost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
-import AuthContainer from '../../components/auth/AuthContainer';
-import UserContainer from '../../components/auth/UserContainer';
+import AuthGateway from '../../components/auth/AuthGateway';
+import UserGateway from '../../components/auth/UserGateway';
 import EditorHeader from '../../components/editor/EditorHeader';
 import EditorContent from '../../components/editor/EditorContent';
 import EditorFooter from '../../components/editor/EditorFooter';
@@ -48,8 +48,8 @@ export default function newpost({ categories }) {
   }, [accessToken]);
 
   return (
-    <AuthContainer>
-      <UserContainer>
+    <AuthGateway>
+      <UserGateway>
         <EditorContext.Provider value={contextProps}>
           {/* Notification Save Message */}
           <EditorNotification />
@@ -67,8 +67,8 @@ export default function newpost({ categories }) {
           <EditorContent />
           <EditorFooter categories={categories} />
         </EditorContext.Provider>
-      </UserContainer>
-    </AuthContainer>
+      </UserGateway>
+    </AuthGateway>
   );
 }
 

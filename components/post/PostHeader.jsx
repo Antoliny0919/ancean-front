@@ -5,7 +5,7 @@ import Wave from 'react-wavify';
 import styled from 'styled-components';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import usePost from './usePost';
+import postContainer from './postContainer';
 import CategoryButton from '../category/CategoryButton';
 import FontButton from '../button/FontButton';
 import { miniPostContent, flex } from '../../styles/variable';
@@ -94,7 +94,7 @@ export default function PostHeader({
     return new Date(updated_at);
   }, [updated_at]);
 
-  const [, patchPost, deletePost] = usePost();
+  const { patchPost, deletePost } = postContainer();
 
   const client = useSelector(({ auth }) => auth.user.name);
 

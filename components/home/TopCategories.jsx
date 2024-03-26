@@ -3,7 +3,7 @@ import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
 import FlipCategoryCard from '../category/FlipCategoryCard';
 import HomeSectionHeader from './SectionHeader';
-import useCategorySwiper from '../category/useCategorySwiper';
+import categorySwiperContainer from '../category/categorySwiperContainer';
 import { CATEGORY_DATA } from '../category/data';
 
 import 'swiper/css';
@@ -27,7 +27,8 @@ const StyledTopCategoriesArea = styled.div`
 `;
 
 export default function TopCategories({ categories }) {
-  const [categoryName, onSwiper, onSlideChange] = useCategorySwiper(categories);
+  const { categoryName, onSwiper, onSlideChange } =
+    categorySwiperContainer(categories);
 
   return (
     <StyledTopCategoriesArea

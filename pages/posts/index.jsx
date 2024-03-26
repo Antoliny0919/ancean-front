@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import usePoster from '../../components/poster/usePoster';
+import { server, client } from '../../api/client';
 import Poster from '../../components/poster/Poster';
 import SignatureText, {
   StyledSignatureText,
@@ -8,7 +8,7 @@ import OceanWaveButton, {
   StyledOceanWaveButton,
 } from '../../components/button/OceanWaveButton';
 import ResponsivePost from '../../components/minipost/ResponsivePost';
-import { server, client } from '../../api/client';
+import usePoster from '../../components/poster/usePoster';
 import { POSTER_SORT_BUTTON_PROPS } from '../../components/poster/data';
 import { flex } from '../../styles/variable';
 

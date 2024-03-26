@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPost, savePost } from './modules/editor';
 
-export default function useEditor(editorRef) {
+export default function editorContainer(editorRef) {
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -75,5 +75,15 @@ export default function useEditor(editorRef) {
     });
   };
 
-  return [create, save];
+  const createOrSave = (isFinish) => {
+    const postId = localStorage.getItem('beingWrittenPostId');
+    // it is temporarily, so isFinish value is false
+    if (postId) {
+      save(postId, isFinish);
+    } else {
+      create(isFinish);
+    }
+  };
+
+  return { create, save, createOrSave };
 }

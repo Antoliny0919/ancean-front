@@ -92,8 +92,6 @@ const editorSlice = createSlice({
   extraReducers: (builder) => {
     // get the post data and puts the editor in that post data state
     builder.addCase(getPost.fulfilled, (state, { payload }) => {
-      console.log(payload);
-
       const { id, title, content, category, header_image, introduce } = payload;
       state = {
         notificationState: state.notificationState,
