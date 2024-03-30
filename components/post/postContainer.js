@@ -63,7 +63,7 @@ export default function postContainer() {
           confirmFollowUp(confirmFollowUpProps);
         })
         .catch((err) => {
-          alert(err.response.data.detail);
+          console.log(err);
         });
     }
   };

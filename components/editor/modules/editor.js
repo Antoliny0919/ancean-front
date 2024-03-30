@@ -36,10 +36,11 @@ export const createPost = createAsyncThunk(
 
 export const savePost = createAsyncThunk(
   'editor/savePost',
-  async ({ body, headers }, { rejectWithValue }) => {
+  async ({ id, body, headers }, { rejectWithValue }) => {
     let result = null;
     try {
       const response = await postAPI.savePost({
+        id,
         body,
         headers,
       });
@@ -113,31 +114,32 @@ const editorSlice = createSlice({
     // when post create or save successful, the user check result through the notification value on the editor page
     // (notificationState, notificationMessage)
     builder.addCase(createPost.fulfilled, (state, { payload }) => {
-      if (payload.redirect_path) {
-        // when createPost, savePost is successful,
-        // the presence of redirect_path in the response means that the post is published
-        // so notification not set --> it moves to the redirect_path and leaves the editor page
+      if (payload.is_finish) {
+        // if is_finish state is true, redirect to generated post
+        // redirect logic cannot be write in extraReducers
         return;
       }
       state.notificationState = true;
-      state.notificationMessage = payload.detail;
+      state.notificationMessage = '포스트가 생성되었습니다.';
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
     builder.addCase(createPost.rejected, (state, { payload }) => {
       state.notificationState = false;
-      state.notificationMessage = payload.data.detail;
+      console.log(payload);
+      state.notificationMessage = '포스트 생성에 실패하였습니다.';
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
-      if (payload.redirect_path) {
-        localStorage.removeItem('beingWrittenPostId', payload.id);
+      if (payload.is_finish) {
+        // same resons for createPost
         return;
       }
       state.notificationState = true;
-      state.notificationMessage = payload.detail;
+      state.notificationMessage = '포스트가 저장되었습니다.';
     });
     builder.addCase(savePost.rejected, (state, { payload }) => {
       state.notificationState = false;
-      state.notificationMessage = payload.data.detail;
+      console.log(payload);
+      state.notificationMessage = '포스트 저장에 실패하였습니다.';
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {
       state['headerImagePath'] = payload.file.url;

@@ -16,3 +16,5 @@ export const client = axios.create();
 
 server.defaults.baseURL = `http://api-local:8000`;
 client.defaults.baseURL = `http://localhost:5050`;
+// server.defaults.baseURL = `http://host.docker.internal:80`;
+// client.defaults.baseURL = `http://localhost:80`;

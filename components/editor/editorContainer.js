@@ -51,9 +51,10 @@ export default function editorContainer(editorRef) {
           body: { content: outputData.blocks, ...body },
           headers: headers,
         }),
-      ).then(({ payload: { redirect_path } }) => {
+      ).then(({ payload }) => {
         // if the first post to be publishing redirect post page
-        isPublishedMovePage(redirect_path, isFinish);
+        let redirectPath = `/posts/${payload.id}`;
+        isPublishedMovePage(redirectPath, isFinish);
       });
     });
   };
@@ -65,12 +66,14 @@ export default function editorContainer(editorRef) {
     editorRef.current.save().then((outputData) => {
       dispatch(
         savePost({
-          body: { id: postId, content: outputData.blocks, ...body },
+          id: postId,
+          body: { content: outputData.blocks, ...body },
           headers: headers,
         }),
-      ).then(({ payload: { redirect_path } }) => {
+      ).then(({ payload }) => {
         // if already published post redirect post page
-        isPublishedMovePage(redirect_path, isFinish);
+        let redirectPath = `/posts/${payload.id}`;
+        isPublishedMovePage(redirectPath, isFinish);
       });
     });
   };

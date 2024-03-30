@@ -14,9 +14,9 @@ export const createPost = ({ body, headers }) =>
     },
   );
 
-export const savePost = ({ body, headers }) =>
+export const savePost = ({ id, body, headers }) =>
   client.patch(
-    'api/posts/',
+    `api/posts/${id}/`,
     {
       ...body,
     },
@@ -26,7 +26,6 @@ export const savePost = ({ body, headers }) =>
   );
 
 export const deletePost = ({ id, headers }) =>
-  client.delete('api/posts/', {
+  client.delete(`api/posts/${id}/`, {
     headers: headers,
-    data: { id: id },
   });
