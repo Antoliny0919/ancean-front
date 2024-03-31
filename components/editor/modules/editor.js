@@ -105,11 +105,10 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', id);
       return state;
     });
-    builder.addCase(getPost.rejected, (state, { payload }) => {
+    builder.addCase(getPost.rejected, (state) => {
       // if getPost rejected, when permissions do not exist
-      const message = payload.data.detail;
       state.notificationState = false;
-      state.notificationMessage = message;
+      state.notificationMessage = '포스트를 가져오지 못했습니다.';
     });
     // when post create or save successful, the user check result through the notification value on the editor page
     // (notificationState, notificationMessage)
@@ -123,9 +122,8 @@ const editorSlice = createSlice({
       state.notificationMessage = '포스트가 생성되었습니다.';
       localStorage.setItem('beingWrittenPostId', payload.id);
     });
-    builder.addCase(createPost.rejected, (state, { payload }) => {
+    builder.addCase(createPost.rejected, (state) => {
       state.notificationState = false;
-      console.log(payload);
       state.notificationMessage = '포스트 생성에 실패하였습니다.';
     });
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
@@ -136,9 +134,8 @@ const editorSlice = createSlice({
       state.notificationState = true;
       state.notificationMessage = '포스트가 저장되었습니다.';
     });
-    builder.addCase(savePost.rejected, (state, { payload }) => {
+    builder.addCase(savePost.rejected, (state) => {
       state.notificationState = false;
-      console.log(payload);
       state.notificationMessage = '포스트 저장에 실패하였습니다.';
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { server } from '@/api/client';
 import { getPost } from '../../components/editor/modules/editor';
 import ModalBase from '../../components/modal/ModalBase';
+import AuthModal from '../../components/auth/AuthModal';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import AuthGateway from '../../components/auth/AuthGateway';
@@ -23,7 +24,9 @@ export default function newpost({ categories }) {
     categories: categories,
   };
 
-  const accessToken = useSelector(({ auth }) => auth.user.token.access);
+  const { user } = useSelector(({ auth }) => auth);
+
+  const accessToken = user.token.access;
 
   const [continueWritingModalState, setContinueWritingModalState] =
     useState(false);
@@ -50,6 +53,7 @@ export default function newpost({ categories }) {
   return (
     <AuthGateway>
       <UserGateway>
+        <AuthModal></AuthModal>
         <EditorContext.Provider value={contextProps}>
           {/* Notification Save Message */}
           <EditorNotification />

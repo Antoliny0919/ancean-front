@@ -20,10 +20,8 @@ export default function AuthGateway({ children }) {
 
   useEffect(() => {
     // the presence of a refresh token can generate access token
-    if (refreshToken && !accessToken) {
-      // reissue tokens and save them in the auth store
-      dispatch(reIssueAccessToken({ refresh: refreshToken }));
-    }
+    // reissue tokens and save them in the auth store
+    dispatch(reIssueAccessToken({ refresh: refreshToken }));
   }, [accessToken]);
 
   return <>{children}</>;

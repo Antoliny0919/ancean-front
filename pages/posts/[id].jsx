@@ -38,7 +38,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   try {
     const response = await server.get(
-      `/api/posts/?id=${params.id}&is_finish=True`,
+      `/api/posts/${params.id}/?is_finish=True`,
     );
     const post = response.data;
     return { props: { post }, revalidate: 10 };

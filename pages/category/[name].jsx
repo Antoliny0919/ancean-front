@@ -130,7 +130,7 @@ export const getStaticProps = async ({ params }) => {
     }
     // get posts three(limit=3) at a time and only published(is_finish=true) posts
     const response = await server.get(
-      `api/posts/category/${params.name}?is_finish=true&limit=3`,
+      `api/posts/?category__name=${params.name}&is_finish=true&limit=3`,
     );
 
     const categoryPosts = response.data;

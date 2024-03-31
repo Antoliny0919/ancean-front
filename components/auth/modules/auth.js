@@ -60,6 +60,10 @@ const initialState = {
     password: '',
     message: '',
   },
+  modal: {
+    state: false,
+    message: '',
+  },
 };
 
 const authSlice = createSlice({
@@ -70,9 +74,12 @@ const authSlice = createSlice({
       const signin = state.signin;
       signin[payload.target.name] = payload.target.value;
     },
+    changeModalState: (state, { payload }) => {
+      state.modal.state = payload;
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(signin.fulfilled, (state, { payload }) => {
+    builder.addCase(signin.fulfilled, ({ user }, { payload }) => {
       const { refresh, access } = payload;
       cookies.set('refresh', refresh, {
         path: '/',
@@ -80,17 +87,19 @@ const authSlice = createSlice({
         httpOnly: false,
         sameSite: false,
       });
-      state.user.token.access = access;
+      user.token.access = access;
     });
-    builder.addCase(signin.rejected, (state, { payload }) => {
-      state.signin.message = payload.data.detail;
+    builder.addCase(signin.rejected, ({ signin }, { payload }) => {
+      signin.message = payload.data.detail;
     });
-    builder.addCase(reIssueAccessToken.fulfilled, (state, { payload }) => {
+    builder.addCase(reIssueAccessToken.fulfilled, ({ user }, { payload }) => {
       const { access } = payload;
-      state.user.token.access = access;
+      user.token.access = access;
     });
-    builder.addCase(reIssueAccessToken.rejected, () => {
-      alert('로그인이 필요한 서비스입니다.');
+    builder.addCase(reIssueAccessToken.rejected, ({ modal }) => {
+      modal.state = true;
+      modal.message =
+        '로그인이 필요한 서비스입니다. 로그인을 먼저 진행해주세요!';
     });
     builder.addCase(getUserData.fulfilled, (state, { payload }) => {
       state.user = { ...state.user, ...payload };
@@ -98,5 +107,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { changeValue } = authSlice.actions;
+export const { changeValue, changeModalState } = authSlice.actions;
 export default authSlice.reducer;
