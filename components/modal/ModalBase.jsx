@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import { IoIosCloseCircle } from 'react-icons/io';
 
 const StyledBackground = styled.div`
   position: absolute;
@@ -22,45 +21,28 @@ const StyledModalBase = styled.div`
   border: solid ${({ theme }) => theme.colors.mainColor[4]} 0.2vw;
   border-radius: 10px;
   font-family: 'NanumBarunGothic';
-  .close-bar {
-    display: flex;
-    flex-direction: row-reverse;
-    svg {
-      width: 20px;
-      height: 20px;
-      color: #fe4949;
-    }
-    svg:hover {
-      cursor: pointer;
-    }
-  }
 `;
 
-export function closeModal(controlModalState) {
-  controlModalState(false);
-  document.body.style = 'overflow: none';
-}
-
-export default function ModalBase({
-  disable,
-  controlModalState,
-  children,
-  styleProps = {},
-}) {
+export default function ModalBase({ state, children, styleProps = {} }) {
   useEffect(() => {
-    if (disable) {
+    if (state) {
       document.body.style = 'overflow: hidden';
+    } else {
+      document.body.style = 'overflow: none';
     }
-  }, [disable, window.outerWidth, window.outerHeight]);
+  }, [
+    state,
+    typeof window !== 'undefined' && window.outerWidth,
+    typeof window !== 'undefined' && window.outerHeight,
+  ]);
 
   return (
-    <StyledBackground>
-      <StyledModalBase style={styleProps}>
-        <div className="close-bar">
-          <IoIosCloseCircle onClick={() => closeModal(controlModalState)} />
-        </div>
-        {children}
-      </StyledModalBase>
-    </StyledBackground>
+    <>
+      {state && (
+        <StyledBackground>
+          <StyledModalBase style={styleProps}>{children}</StyledModalBase>
+        </StyledBackground>
+      )}
+    </>
   );
 }
