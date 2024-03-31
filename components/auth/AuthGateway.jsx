@@ -2,6 +2,7 @@ import { Cookies } from 'react-cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { reIssueAccessToken } from './modules/auth';
+import { getUserData } from './modules/auth';
 
 /**
  *
@@ -22,6 +23,11 @@ export default function AuthGateway({ children }) {
     // the presence of a refresh token can generate access token
     // reissue tokens and save them in the auth store
     dispatch(reIssueAccessToken({ refresh: refreshToken }));
+  }, []);
+
+  useEffect(() => {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    accessToken && dispatch(getUserData({ headers }));
   }, [accessToken]);
 
   return <>{children}</>;

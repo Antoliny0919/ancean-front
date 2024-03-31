@@ -3,6 +3,9 @@ import { client } from './client';
 export const getPost = ({ query, headers = {} }) =>
   client.get(`api/posts/?${query}`, { headers: headers });
 
+export const getRetrievePost = ({ id, headers = {} }) =>
+  client.get(`api/posts/${id}/`, { headers: headers });
+
 export const createPost = ({ body, headers }) =>
   client.post(
     'api/posts/',

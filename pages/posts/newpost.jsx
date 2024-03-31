@@ -6,7 +6,6 @@ import { getPost } from '../../components/editor/modules/editor';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import AuthGateway from '../../components/auth/AuthGateway';
-import UserGateway from '../../components/auth/UserGateway';
 import {
   EditorContent,
   EditorFooter,
@@ -45,17 +44,15 @@ export default function newpost({ categories }) {
 
   return (
     <AuthGateway>
-      <UserGateway>
-        <EditorContext.Provider value={contextProps}>
-          {/* Notification Save Message */}
-          <EditorNotification />
-          {/* <AuthModal></AuthModal> */}
-          <ContinueWritingModal />
-          <EditorHeader />
-          <EditorContent />
-          <EditorFooter categories={categories} />
-        </EditorContext.Provider>
-      </UserGateway>
+      <EditorContext.Provider value={contextProps}>
+        {/* Notification Save Message */}
+        <EditorNotification />
+        {/* <AuthModal></AuthModal> */}
+        <ContinueWritingModal />
+        <EditorHeader />
+        <EditorContent />
+        <EditorFooter categories={categories} />
+      </EditorContext.Provider>
     </AuthGateway>
   );
 }

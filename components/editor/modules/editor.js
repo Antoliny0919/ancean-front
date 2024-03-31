@@ -17,6 +17,20 @@ export const getPost = createAsyncThunk(
   },
 );
 
+export const getRetrievePost = createAsyncThunk(
+  'editor/getRetrievePost',
+  async ({ id, headers = {} }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await postAPI.getRetrievePost({ id, headers });
+      result = response.data;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
+  },
+);
+
 export const createPost = createAsyncThunk(
   'editor/createPost',
   async ({ body, headers }, { rejectWithValue }) => {
@@ -92,7 +106,7 @@ const editorSlice = createSlice({
   },
   extraReducers: (builder) => {
     // get the post data and puts the editor in that post data state
-    builder.addCase(getPost.fulfilled, (state, { payload }) => {
+    builder.addCase(getRetrievePost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, header_image, introduce } = payload;
       state = {
         notificationState: state.notificationState,
@@ -105,7 +119,7 @@ const editorSlice = createSlice({
       localStorage.setItem('beingWrittenPostId', id);
       return state;
     });
-    builder.addCase(getPost.rejected, (state) => {
+    builder.addCase(getRetrievePost.rejected, (state) => {
       // if getPost rejected, when permissions do not exist
       state.notificationState = false;
       state.notificationMessage = '포스트를 가져오지 못했습니다.';

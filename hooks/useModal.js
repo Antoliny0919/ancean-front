@@ -3,12 +3,12 @@ import { useState, useEffect, useCallback } from 'react';
 export default function useModal(initialState = false) {
   const [state, setState] = useState(initialState);
 
-  const open = useCallback((effect) => {
+  const open = useCallback((effect = () => {}) => {
     setState(true);
     effect();
   }, []);
 
-  const close = useCallback((effect) => {
+  const close = useCallback((effect = () => {}) => {
     setState(false);
     effect();
   }, []);

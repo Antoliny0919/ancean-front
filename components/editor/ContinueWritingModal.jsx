@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaExclamation } from 'react-icons/fa';
 import { FcIdea } from 'react-icons/fc';
@@ -5,11 +6,9 @@ import styled from 'styled-components';
 import CommonButton from '../button/CommonButton';
 import useModal from '../../hooks/useModal';
 import ModalBase from '../modal/ModalBase';
-import { getPost } from './modules/editor';
-import LocalStorage from '../../client/LocalStorage';
+import { getRetrievePost } from './modules/editor';
 import { StyledCommonButton } from '../button/CommonButton';
 import { flex } from '../../styles/variable';
-import { useEffect } from 'react';
 
 const StyledContinueWritingPostModal = styled.div`
   @media screen and (min-width: 450px) {
@@ -69,23 +68,21 @@ export default function ContinueWritingModal() {
     // get beingWrittenPostId data from localStorage
     // get post data from the obtained post id and create a state that can be written continuosly
     const headers = { Authorization: `Bearer ${accessToken}` };
-    const previousWritingPostId = LocalStorage.getItem('beingWrittenPostId');
-    const query = `id=${previousWritingPostId}`;
-    dispatch(getPost({ query, headers }));
+    const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
+    dispatch(getRetrievePost({ id: previousWritingPostId, headers }));
   };
 
   const newWriting = () => {
     // considered to be creating a new post
-    LocalStorage.removeItem('beingWrittenPostId');
+    localStorage.removeItem('beingWrittenPostId');
   };
 
   useEffect(() => {
-    const previousWritingPostId = LocalStorage.getItem('beingWrittenPostId');
-
+    const previousWritingPostId = localStorage.getItem('beingWrittenPostId');
     if (accessToken && previousWritingPostId) {
       open();
     }
-  }, []);
+  }, [accessToken]);
 
   return (
     <ModalBase state={state}>
