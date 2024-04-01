@@ -49,22 +49,13 @@ export default function postContainer() {
     }
   };
 
-  const deletePost = (
-    id,
-    confirmFollowUp = () => {},
-    confirmFollowUpProps = {},
-  ) => {
+  const deletePost = ({ id, teardown = () => {} }) => {
     let confirmState = confirm('정말 삭제하시겠습니까?');
     if (confirmState) {
-      postAPI
-        .deletePost({ id, headers })
-        .then(() => {
-          // if request success follow up callback method
-          confirmFollowUp(confirmFollowUpProps);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      postAPI.deletePost({ id, headers }).then(() => {
+        // if request success follow up callback method
+        teardown();
+      });
     }
   };
 

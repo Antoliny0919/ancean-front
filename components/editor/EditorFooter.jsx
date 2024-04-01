@@ -1,17 +1,18 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { EditorContext } from '../../pages/posts/newpost';
 import editorContainer from './editorContainer';
-import ModalBase from '../modal/ModalBase';
+import useModal from '../../hooks/useModal';
+// import ModalBase from '../modal/ModalBase';
 import NonePublishedPostsModal from './NonePublishedPostsModal';
-import PublishingPostModal from './PublishingPostModal';
+// import PublishingPostModal from './PublishingPostModal';
 import CommonButton, { StyledCommonButton } from '../button/CommonButton';
 import FontButton, { StyledFontButton } from '../button/FontButton';
 
 const StyledFooterArea = styled.footer`
   @media screen and (min-width: 768px) {
-    padding: 0 3rem;
+    padding: 0.7rem 3rem;
   }
   position: fixed;
   bottom: 0%;
@@ -27,13 +28,12 @@ const StyledFooterArea = styled.footer`
     rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px,
     rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  padding: 0 1em;
+  padding: 0.7rem 1em;
   .footer-left-item-block {
     button + button {
       margin-left: 3em;
     }
     display: flex;
-    padding: 0.8em 0 0.8em 0;
     border-top-right-radius: 10px;
   }
   ${StyledCommonButton} {
@@ -53,12 +53,15 @@ const StyledFooterArea = styled.footer`
 export default function EditorFooter() {
   // EditorFooter Area have 3 button -> save temporarily, saved posts, publishing
   // saved posts(nonePublishedModal) and publishing(publishingModal)button is modal style(click to turn on the modal)
-  const [nonePublishedModalState, setNonePublishedModalState] = useState(false);
 
-  const [postPublishingModalState, setPostPublishingModalState] =
-    useState(false);
+  // const [postPublishingModalState, setPostPublishingModalState] =
+  //   useState(false);
 
   const { title } = useSelector(({ editor }) => editor);
+
+  const nonePublishedPostsModal = useModal(false);
+
+  // const publishingPostModal = useModal(false);
 
   const editorRef = useContext(EditorContext).editorRef;
 
@@ -75,25 +78,16 @@ export default function EditorFooter() {
         >
           임시저장
         </FontButton>
-        <CommonButton
-          props={{ onClick: () => setNonePublishedModalState(true) }}
-        >
+        <CommonButton props={{ onClick: () => nonePublishedPostsModal.open() }}>
           저장된 포스트
         </CommonButton>
-        {nonePublishedModalState && (
-          <ModalBase
-            disable={nonePublishedModalState}
-            controlModalState={setNonePublishedModalState}
-            styleProps={{ width: '700px' }}
-          >
-            <NonePublishedPostsModal
-              closeModal={() => setNonePublishedModalState(false)}
-            />
-          </ModalBase>
-        )}
+        <NonePublishedPostsModal
+          state={nonePublishedPostsModal.state}
+          close={nonePublishedPostsModal.close}
+        ></NonePublishedPostsModal>
       </div>
       {/* rightArea */}
-      <div>
+      {/* <div>
         <CommonButton
           props={
             title
@@ -107,7 +101,7 @@ export default function EditorFooter() {
           modalState={postPublishingModalState}
           closeModal={() => setPostPublishingModalState(false)}
         />
-      </div>
+      </div> */}
     </StyledFooterArea>
   );
 }
