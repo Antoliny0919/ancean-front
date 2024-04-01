@@ -10,7 +10,7 @@ export const StyledLenticularButton = styled.button`
   color: ${(props) => props.$borderColor};
   cursor: pointer;
   font-weight: 600;
-  font-size: 18px;
+  font-size: inherit;
   padding: 0.5em 0.8em;
   text-align: center;
   text-decoration: none;

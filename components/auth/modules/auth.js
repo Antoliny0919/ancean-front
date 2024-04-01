@@ -51,17 +51,15 @@ const initialState = {
     token: {
       access: '',
     },
-    name: '',
-    email: '',
-    introduce: '',
+    object: {},
+    // name: '',
+    // email: '',
+    // introduce: '',
+    // isStaff: null,
   },
   signin: {
     email: '',
     password: '',
-    message: '',
-  },
-  modal: {
-    state: false,
     message: '',
   },
 };
@@ -73,9 +71,6 @@ const authSlice = createSlice({
     changeValue: (state, { payload }) => {
       const signin = state.signin;
       signin[payload.target.name] = payload.target.value;
-    },
-    changeModalState: (state, { payload }) => {
-      state.modal.state = payload;
     },
   },
   extraReducers: (builder) => {
@@ -96,16 +91,14 @@ const authSlice = createSlice({
       const { access } = payload;
       user.token.access = access;
     });
-    builder.addCase(reIssueAccessToken.rejected, ({ modal }) => {
-      modal.state = true;
-      modal.message =
-        '로그인이 필요한 서비스입니다. 로그인을 먼저 진행해주세요!';
+    builder.addCase(reIssueAccessToken.rejected, (state) => {
+      state.user.object = null;
     });
     builder.addCase(getUserData.fulfilled, (state, { payload }) => {
-      state.user = { ...state.user, ...payload };
+      state.user.object = { ...payload };
     });
   },
 });
 
-export const { changeValue, changeModalState } = authSlice.actions;
+export const { changeValue } = authSlice.actions;
 export default authSlice.reducer;

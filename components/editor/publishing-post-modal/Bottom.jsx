@@ -50,7 +50,7 @@ const StyledFooterArea = styled.footer`
   }
 `;
 
-export default function Bottom({ closeModal }) {
+export default function Bottom({ close }) {
   const editorRef = useContext(EditorContext).editorRef;
 
   // first time publishing a post(isFinish field --> true)
@@ -120,7 +120,15 @@ export default function Bottom({ closeModal }) {
         >
           출간하기
         </CommonButton>
-        <FontButton props={{ onClick: closeModal }}>취소</FontButton>
+        <FontButton
+          props={{
+            onClick: () => {
+              close();
+            },
+          }}
+        >
+          취소
+        </FontButton>
       </StyledFooterArea>
     </>
   );

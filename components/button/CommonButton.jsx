@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const StyledCommonButton = styled.button`
-  font-size: 16px;
+  font-size: inherit;
   font-family: 'NanumBarunGothic';
   padding: 0.7em 1em 0.7em 1em;
   border-radius: 5px;

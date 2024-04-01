@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import { EditorContext } from '../../pages/posts/newpost';
 import editorContainer from './editorContainer';
 import useModal from '../../hooks/useModal';
-// import ModalBase from '../modal/ModalBase';
 import NonePublishedPostsModal from './NonePublishedPostsModal';
-// import PublishingPostModal from './PublishingPostModal';
+import PublishingPostModal from './PublishingPostModal';
 import CommonButton, { StyledCommonButton } from '../button/CommonButton';
 import FontButton, { StyledFontButton } from '../button/FontButton';
 
@@ -54,14 +53,11 @@ export default function EditorFooter() {
   // EditorFooter Area have 3 button -> save temporarily, saved posts, publishing
   // saved posts(nonePublishedModal) and publishing(publishingModal)button is modal style(click to turn on the modal)
 
-  // const [postPublishingModalState, setPostPublishingModalState] =
-  //   useState(false);
-
   const { title } = useSelector(({ editor }) => editor);
 
   const nonePublishedPostsModal = useModal(false);
 
-  // const publishingPostModal = useModal(false);
+  const publishingPostModal = useModal(false);
 
   const editorRef = useContext(EditorContext).editorRef;
 
@@ -87,21 +83,21 @@ export default function EditorFooter() {
         ></NonePublishedPostsModal>
       </div>
       {/* rightArea */}
-      {/* <div>
+      <div>
         <CommonButton
           props={
             title
-              ? { onClick: () => setPostPublishingModalState(true) }
+              ? { onClick: () => publishingPostModal.open() }
               : { disabled: true }
           }
         >
           출간하기
         </CommonButton>
         <PublishingPostModal
-          modalState={postPublishingModalState}
-          closeModal={() => setPostPublishingModalState(false)}
+          state={publishingPostModal.state}
+          close={publishingPostModal.close}
         />
-      </div> */}
+      </div>
     </StyledFooterArea>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useRef, createContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '@/api/client';
 import { getPost } from '../../components/editor/modules/editor';
-// import AuthModal from '../../components/auth/AuthModal';
+import AuthModal from '../../components/auth/AuthModal';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import AuthGateway from '../../components/auth/AuthGateway';
@@ -47,7 +47,7 @@ export default function newpost({ categories }) {
       <EditorContext.Provider value={contextProps}>
         {/* Notification Save Message */}
         <EditorNotification />
-        {/* <AuthModal></AuthModal> */}
+        <AuthModal permit="is_staff" />
         <ContinueWritingModal />
         <EditorHeader />
         <EditorContent />
@@ -57,7 +57,7 @@ export default function newpost({ categories }) {
   );
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const response = await server.get('/api/category/');
   const categories = response.data;
 

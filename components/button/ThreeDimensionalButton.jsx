@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const StyledSectionButton = styled.button`
   border-radius: 10px;
   padding: 0.7em 1em 0.7em 1em;
-  font-size: 16px;
-  color: #f8f8f8;
+  font-size: inherit;
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   background-color: ${(props) => props.color};
   box-shadow:

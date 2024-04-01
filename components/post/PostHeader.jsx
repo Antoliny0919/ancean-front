@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Wave from 'react-wavify';
@@ -90,18 +89,17 @@ export default function PostHeader({
 }) {
   const router = useRouter();
 
-  const updatedAt = useMemo(() => {
-    return new Date(updated_at);
-  }, [updated_at]);
+  const updatedAt = new Date(updated_at);
 
   const { patchPost, deletePost } = postContainer();
 
-  const client = useSelector(({ auth }) => auth.user.name);
+  const client = useSelector(({ auth }) => auth.user.object.name);
 
   const onPatchPost = () => patchPost(id);
 
   // delete post and go homepage('/')
-  const onDeletePost = () => deletePost(id, () => router.push('/'));
+  const onDeletePost = () =>
+    deletePost({ id, teardown: () => router.push('/') });
 
   return (
     <>

@@ -2,7 +2,6 @@ import { server } from '../../api/client';
 import PostContent from '../../components/post/PostContent';
 import PostHeader from '../../components/post/PostHeader';
 import AuthGateway from '../../components/auth/AuthGateway';
-import UserGateway from '../../components/auth/UserGateway';
 
 export default function Post({ post }) {
   // list with single data answered because id data exists in query(getStaticProps)
@@ -10,16 +9,14 @@ export default function Post({ post }) {
 
   return (
     <AuthGateway>
-      <UserGateway>
-        <PostHeader
-          id={id}
-          title={title}
-          updated_at={updated_at}
-          author={author}
-          category={category}
-        ></PostHeader>
-        <PostContent content={content}></PostContent>
-      </UserGateway>
+      <PostHeader
+        id={id}
+        title={title}
+        updated_at={updated_at}
+        author={author}
+        category={category}
+      ></PostHeader>
+      <PostContent content={content}></PostContent>
     </AuthGateway>
   );
 }

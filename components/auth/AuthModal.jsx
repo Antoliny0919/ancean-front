@@ -1,19 +1,60 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { changeModalState } from './modules/auth';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { FcCancel } from 'react-icons/fc';
+import styled from 'styled-components';
+import useModal from '../../hooks/useModal';
 import ModalBase from '../modal/ModalBase';
+import CommonButton from '../button/CommonButton';
 
-export default function AuthModal() {
-  const dispatch = useDispatch();
+const StyledAuthModal = styled.div`
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+  height: 100%;
+  width: 20em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 14px;
+  svg {
+    width: 4em;
+    height: 4em;
+  }
+`;
 
-  const { state } = useSelector(({ auth }) => auth.modal);
+/**
+ * param permit is value for specific permission in the user model
+ */
+export default function AuthModal({ permit }) {
+  const { state, open } = useModal();
 
-  const close = () => {
-    dispatch(changeModalState(false));
-  };
+  const router = useRouter();
+
+  const user = useSelector(({ auth }) => auth.user.object);
+
+  useEffect(() => {
+    if (user === null || user[permit] === false) {
+      open();
+    }
+  }, [user]);
 
   return (
-    <ModalBase disable={state} controlModalState={close}>
-      <div>hello</div>
+    <ModalBase state={state}>
+      <StyledAuthModal>
+        <FcCancel />
+        <p>로그인이 필요한 서비스입니다!</p>
+        <CommonButton
+          props={{
+            onClick: () => {
+              router.push('/member/signin');
+            },
+          }}
+        >
+          로그인 하러 가기
+        </CommonButton>
+      </StyledAuthModal>
     </ModalBase>
   );
 }

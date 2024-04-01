@@ -44,7 +44,7 @@ const StyledPublishingPostModal = styled.div`
   }
 `;
 
-export default function PublishingPostModal({ modalState, closeModal }) {
+export default function PublishingPostModal({ state, close }) {
   const dispatch = useDispatch();
 
   const { headerImage, headerImagePath } = useSelector(({ editor }) => editor);
@@ -64,7 +64,7 @@ export default function PublishingPostModal({ modalState, closeModal }) {
   };
 
   return (
-    <StyledPublishingPostModal className={modalState && 'on'}>
+    <StyledPublishingPostModal className={state && 'on'}>
       <div className="content-area">
         <Top
           headerImage={headerImage}
@@ -72,7 +72,7 @@ export default function PublishingPostModal({ modalState, closeModal }) {
           onSelectedImageFile={onSelectedImageFile}
         />
         <div className="divide-line"></div>
-        <Bottom closeModal={closeModal} />
+        <Bottom close={close} />
       </div>
     </StyledPublishingPostModal>
   );
