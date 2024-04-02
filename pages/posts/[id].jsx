@@ -34,10 +34,11 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   try {
-    const response = await server.get(
-      `/api/posts/${params.id}/?is_finish=True`,
-    );
+    const response = await server.get(`/api/posts/${params.id}/`);
     const post = response.data;
+    if (post.is_finish === false) {
+      throw new Error('None is finish post');
+    }
     return { props: { post }, revalidate: 10 };
   } catch (e) {
     return { notFound: true };

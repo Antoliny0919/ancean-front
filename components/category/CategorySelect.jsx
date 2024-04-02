@@ -24,6 +24,12 @@ export default function CategorySelect({
       selectState={selectState}
       setSelectState={setSelectState}
     >
+      <StyledOption
+        $backgroundColor={({ theme }) => theme.colors.gray}
+        {...optionProps}
+      >
+        선택안함
+      </StyledOption>
       {categories.map((category, index) => {
         return (
           <StyledOption

@@ -13,20 +13,18 @@ export default function postContainer() {
 
   const changePrivatePost = async (id) => {
     // switch to private state, preparatory step to modify published post
-    const query = `id=${id}`;
-    const target = await postAPI.getPost({ query });
+    const target = await postAPI.getPost({ id, headers });
     const data = target.data;
     // id, title, author, is_finish --> require field to patch post
     // is_finish value change to false --> change private post
     const body = {
-      id: data['id'],
       title: data['title'],
       author: data['author'],
       is_finish: false,
     };
     // changePrivate success(authentication) or fail return status code number
     const response = await postAPI
-      .savePost({ body, headers })
+      .savePost({ id, body, headers })
       .then((res) => {
         return res;
       })

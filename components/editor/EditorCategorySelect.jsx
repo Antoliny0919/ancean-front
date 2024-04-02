@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { forcedChangeValue } from './modules/editor';
+import { EditorContext } from '@/pages/posts/newpost';
 import CategorySelect from '../category/CategorySelect';
 
-export default function EditorCategorySelect({ categories }) {
+export default function EditorCategorySelect() {
   const [selectState, setSelectState] = useState(false);
 
   const onSelectBlock = () => {
@@ -12,14 +13,18 @@ export default function EditorCategorySelect({ categories }) {
 
   const dispatch = useDispatch();
 
+  const categories = useContext(EditorContext).categories;
+
   const { selectedCategory } = useSelector(({ editor }) => editor);
+
+  console.log(selectedCategory);
 
   const onSelectCategory = (e) => {
     let selectedCategoryName = e.target.innerHTML;
     dispatch(
       forcedChangeValue({
         name: 'selectedCategory',
-        value: selectedCategoryName,
+        value: selectedCategoryName === '선택안함' ? '' : selectedCategoryName,
       }),
     );
     onSelectBlock();

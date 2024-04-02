@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FaRegImage } from 'react-icons/fa6';
 import Image from '../../common/Image';
 import { resetHeaderImageState, changeValue } from '../modules/editor';
-import { EditorContext } from '../../../pages/posts/newpost';
 import EditorCategorySelect from '../EditorCategorySelect';
 import CategoryText from '../../category/CategoryText';
 import { flex, miniPostContent } from '../../../styles/variable';
@@ -116,8 +114,6 @@ export default function Top({
     dispatch(changeValue(e));
   };
 
-  const categories = useContext(EditorContext).categories;
-
   const { title, selectedCategory, introduce } = useSelector(
     ({ editor }) => editor,
   );
@@ -157,9 +153,7 @@ export default function Top({
               ></CategoryText>
             )}
             {/* select category  */}
-            <EditorCategorySelect
-              categories={categories}
-            ></EditorCategorySelect>
+            <EditorCategorySelect />
           </div>
           <h3>{title}</h3>
           <textarea

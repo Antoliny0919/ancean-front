@@ -130,6 +130,7 @@ const editorSlice = createSlice({
       if (payload.is_finish) {
         // if is_finish state is true, redirect to generated post
         // redirect logic cannot be write in extraReducers
+        localStorage.removeItem('beingWrittenPostId');
         return;
       }
       state.notificationState = true;
@@ -143,6 +144,7 @@ const editorSlice = createSlice({
     builder.addCase(savePost.fulfilled, (state, { payload }) => {
       if (payload.is_finish) {
         // same resons for createPost
+        localStorage.removeItem('beingWrittenPostId');
         return;
       }
       state.notificationState = true;

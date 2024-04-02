@@ -1,7 +1,7 @@
 import { useEffect, useRef, createContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '@/api/client';
-import { getPost } from '../../components/editor/modules/editor';
+import { getRetrievePost } from '../../components/editor/modules/editor';
 import AuthModal from '../../components/auth/AuthModal';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
@@ -34,8 +34,7 @@ export default function newpost({ categories }) {
     if (accessToken) {
       const headers = { Authorization: `Bearer ${accessToken}` };
       if (requestPatchPostId) {
-        const query = `id=${requestPatchPostId}`;
-        dispatch(getPost({ query, headers }));
+        dispatch(getRetrievePost({ id: requestPatchPostId, headers }));
         localStorage.removeItem('patchPostId');
         return;
       }

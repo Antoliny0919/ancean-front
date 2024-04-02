@@ -12,7 +12,7 @@ export default function editorContainer(editorRef) {
     ({ editor }) => editor,
   );
 
-  const author = useSelector(({ auth }) => auth.user.name);
+  const author = useSelector(({ auth }) => auth.user.object.name);
 
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
@@ -45,6 +45,7 @@ export default function editorContainer(editorRef) {
   const create = (isFinish) => {
     let body = setBodyData();
     body['is_finish'] = isFinish;
+    console.log(body);
     editorRef.current.save().then((outputData) => {
       dispatch(
         createPost({
