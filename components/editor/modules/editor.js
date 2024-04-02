@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { client } from '../../../api/client';
+import { client } from '@/api/client';
 import * as postAPI from '@/api/post';
 import * as imageAPI from '@/api/image';
+
+const MEDIA_ROOT = `${client.defaults.baseURL}/media`;
 
 export const getPost = createAsyncThunk(
   'editor/getPost',
@@ -107,13 +109,25 @@ const editorSlice = createSlice({
   extraReducers: (builder) => {
     // get the post data and puts the editor in that post data state
     builder.addCase(getRetrievePost.fulfilled, (state, { payload }) => {
-      const { id, title, content, category, header_image, introduce } = payload;
+      const { id, title, content, category, header_image, introduce, author } =
+        payload;
+      let headerImage = '';
+      if (header_image.includes(`${author}/${id}/`)) {
+        headerImage = header_image.replace(
+          `${MEDIA_ROOT}/${author}/${id}/`,
+          '',
+        );
+      } else {
+        headerImage = header_image.replace(`${MEDIA_ROOT}/`, '');
+      }
+
       state = {
         notificationState: state.notificationState,
         title,
         introduce,
         selectedCategory: category,
-        headerImagePath: `${client.defaults.baseURL}/${header_image}`,
+        headerImagePath: header_image,
+        headerImage: headerImage,
         content,
       };
       localStorage.setItem('beingWrittenPostId', id);

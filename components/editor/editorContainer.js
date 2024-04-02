@@ -8,7 +8,7 @@ export default function editorContainer(editorRef) {
   const dispatch = useDispatch();
 
   // get data from redux editor store
-  const { title, selectedCategory, headerImage, introduce } = useSelector(
+  const { title, selectedCategory, headerImagePath, introduce } = useSelector(
     ({ editor }) => editor,
   );
 
@@ -36,7 +36,7 @@ export default function editorContainer(editorRef) {
       author: author,
       // introduce, headerImage, selectedCategory --> it's optional field
       ...(introduce && { introduce: introduce }),
-      ...(headerImage && { header_image: headerImage }),
+      ...(headerImagePath && { header_image: headerImagePath }),
       ...(selectedCategory && { category: selectedCategory }),
     };
     return body;
@@ -45,7 +45,6 @@ export default function editorContainer(editorRef) {
   const create = (isFinish) => {
     let body = setBodyData();
     body['is_finish'] = isFinish;
-    console.log(body);
     editorRef.current.save().then((outputData) => {
       dispatch(
         createPost({

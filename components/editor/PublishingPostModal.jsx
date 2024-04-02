@@ -55,13 +55,15 @@ export default function PublishingPostModal({ state, close }) {
 
   const onSelectedImageFile = (e) => {
     // when client select a haeder image file, the image is upload
+    const formData = new FormData();
     const postId = localStorage.getItem('beingWrittenPostId');
     let selectedFile = e.target.files[0];
-    const formData = new FormData();
     formData.append('file', selectedFile);
     formData.append('id', postId);
     dispatch(uploadHeaderImage({ formData, headers }));
   };
+
+  console.log(1);
 
   return (
     <StyledPublishingPostModal className={state && 'on'}>

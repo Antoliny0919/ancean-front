@@ -17,8 +17,6 @@ export default function EditorCategorySelect() {
 
   const { selectedCategory } = useSelector(({ editor }) => editor);
 
-  console.log(selectedCategory);
-
   const onSelectCategory = (e) => {
     let selectedCategoryName = e.target.innerHTML;
     dispatch(
