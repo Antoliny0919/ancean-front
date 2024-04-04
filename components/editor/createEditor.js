@@ -14,14 +14,15 @@ export default function createEditor({ editorRef, accessToken }) {
   useEffect(() => {
     const headers = { Authorization: `Bearer ${accessToken}` };
 
-    initEditor({ content, editorRef, headers });
-    if (editorRef === undefined) {
-      editorRef.current = null;
-    }
+    accessToken && initEditor({ content, editorRef, headers });
+    // if (editorRef === undefined) {
+    //   editorRef.current = null;
+    // }
 
     return () => {
       if (editorRef.current && editorRef.current.destroy) {
         // 이 부분이 호출이 되지 않으면 자꾸 여러개의 에디터가 생성된다.
+
         editorRef.current.destroy();
       }
     };

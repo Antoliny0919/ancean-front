@@ -67,7 +67,7 @@ export default function editorContainer(editorRef) {
       dispatch(
         savePost({
           id: postId,
-          body: { content: outputData.blocks, ...body },
+          body: { content: outputData.blocks },
           headers: headers,
         }),
       ).then(({ payload }) => {
