@@ -39,12 +39,11 @@ export default function useEditor() {
     const postId = localStorage.getItem('beingWrittenPostId');
     const content = await instance.save().then((outputData) => outputData);
     const body = { ...setBodyData(isFinish), content };
-    console.log(body);
     let response = null;
     if (postId) {
-      response = dispatch(createPost({ body, headers }));
-    } else {
       response = dispatch(patchPost({ id: postId, body, headers }));
+    } else {
+      response = dispatch(createPost({ body, headers }));
     }
     response.then(({ payload }) => {
       let redirectPath = `/posts/${payload.id}`;

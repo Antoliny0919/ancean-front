@@ -1,8 +1,6 @@
-import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import editorContainer from '../editorContainer';
-import { EditorContext } from '../../../pages/posts/newpost';
+import useEditor from '../useEditor';
 import RadioInput from '../../common/RadioInput';
 import FontButton from '../../button/FontButton';
 import CommonButton from '../../button/CommonButton';
@@ -51,11 +49,9 @@ const StyledFooterArea = styled.footer`
 `;
 
 export default function Bottom({ close }) {
-  const editorRef = useContext(EditorContext).editorRef;
-
   // first time publishing a post(isFinish field --> true)
   // works even if the frist published post has already been modified
-  const { createOrSave } = editorContainer(editorRef);
+  const { save } = useEditor();
 
   const dateOfPublication = new Date();
 
@@ -115,7 +111,7 @@ export default function Bottom({ close }) {
         {/* isFinish --> true(publishing) */}
         <CommonButton
           props={{
-            onClick: () => createOrSave(true),
+            onClick: () => save(true),
           }}
         >
           출간하기

@@ -99,7 +99,7 @@ export default function PostContent({ content }) {
           })}
         </StyledMoveQuoteSidebar>
       )} */}
-      {haveContent.length !== 0 ? (
+      {haveContent !== 0 ? (
         <>
           <StyledPostContent>
             {content.map(({ data, type }) => {

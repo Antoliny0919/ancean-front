@@ -1,4 +1,4 @@
-import { useEffect, useRef, createContext } from 'react';
+import { useEffect, createContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { server } from '@/api/client';
 import { getRetrievePost } from '../../components/editor/modules/editor';
@@ -6,21 +6,14 @@ import AuthModal from '../../components/auth/AuthModal';
 import EditorNotification from '../../components/editor/EditorNotification';
 import ContinueWritingModal from '../../components/editor/ContinueWritingModal';
 import AuthGateway from '../../components/auth/AuthGateway';
-import {
-  EditorContent,
-  EditorFooter,
-  EditorHeader,
-} from '../../components/editor';
+import Editor from '../../components/editor/Editor';
 
 export const EditorContext = createContext();
 
 export default function newpost({ categories }) {
   const dispatch = useDispatch();
 
-  const editorRef = useRef();
-
   const contextProps = {
-    editorRef: editorRef,
     categories: categories,
   };
 
@@ -48,9 +41,7 @@ export default function newpost({ categories }) {
         <EditorNotification />
         <AuthModal permits={['is_staff']} />
         <ContinueWritingModal />
-        <EditorHeader />
-        <EditorContent />
-        <EditorFooter categories={categories} />
+        <Editor />
       </EditorContext.Provider>
     </AuthGateway>
   );

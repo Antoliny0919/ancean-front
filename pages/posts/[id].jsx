@@ -16,7 +16,7 @@ export default function Post({ post }) {
         author={author}
         category={category}
       ></PostHeader>
-      <PostContent content={content}></PostContent>
+      <PostContent content={content.blocks}></PostContent>
     </AuthGateway>
   );
 }
