@@ -12,9 +12,9 @@ export default function editorContainer(editorRef) {
     ({ editor }) => editor,
   );
 
-  const author = useSelector(({ auth }) => auth.user.object.name);
-
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
+
+  const author = useSelector(({ auth }) => auth.user.info.name);
 
   const headers = {
     ...(accessToken && { Authorization: `Bearer ${accessToken}` }),

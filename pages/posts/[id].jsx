@@ -39,7 +39,7 @@ export const getStaticProps = async ({ params }) => {
     if (post.is_finish === false) {
       throw new Error('None is finish post');
     }
-    return { props: { post }, revalidate: 10 };
+    return { props: { post }, revalidate: 1 };
   } catch (e) {
     return { notFound: true };
   }

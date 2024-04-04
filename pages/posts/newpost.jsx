@@ -46,7 +46,7 @@ export default function newpost({ categories }) {
       <EditorContext.Provider value={contextProps}>
         {/* Notification Save Message */}
         <EditorNotification />
-        <AuthModal permit="is_staff" />
+        <AuthModal permits={['is_staff']} />
         <ContinueWritingModal />
         <EditorHeader />
         <EditorContent />

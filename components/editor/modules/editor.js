@@ -111,14 +111,15 @@ const editorSlice = createSlice({
     builder.addCase(getRetrievePost.fulfilled, (state, { payload }) => {
       const { id, title, content, category, header_image, introduce, author } =
         payload;
-      let headerImage = '';
+
+      let headerImageName = '';
       if (header_image.includes(`${author}/${id}/`)) {
-        headerImage = header_image.replace(
+        headerImageName = header_image.replace(
           `${MEDIA_ROOT}/${author}/${id}/`,
           '',
         );
       } else {
-        headerImage = header_image.replace(`${MEDIA_ROOT}/`, '');
+        headerImageName = header_image.replace(`${MEDIA_ROOT}/`, '');
       }
 
       state = {
@@ -127,7 +128,7 @@ const editorSlice = createSlice({
         introduce,
         selectedCategory: category,
         headerImagePath: header_image,
-        headerImage: headerImage,
+        headerImage: headerImageName,
         content,
       };
       localStorage.setItem('beingWrittenPostId', id);

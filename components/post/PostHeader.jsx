@@ -93,7 +93,7 @@ export default function PostHeader({
 
   const { patchPost, deletePost } = postContainer();
 
-  const client = useSelector(({ auth }) => auth.user.object.name);
+  const client = useSelector(({ auth }) => auth.user.info.name);
 
   const onPatchPost = () => patchPost(id);
 

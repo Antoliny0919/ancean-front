@@ -68,7 +68,7 @@ export default function NonePublishedPostsModal({ state, close }) {
     typeof window !== 'undefined' &&
     Number(localStorage.getItem('beingWrittenPostId'));
 
-  const userName = useSelector(({ auth }) => auth.user.name);
+  const user = useSelector(({ auth }) => auth.user.info.name);
 
   const { deletePost } = postContainer();
 
@@ -77,7 +77,7 @@ export default function NonePublishedPostsModal({ state, close }) {
 
   useEffect(() => {
     const getNonePublishedPosts = async () => {
-      const query = `is_finish=False&author__name=${userName}`;
+      const query = `is_finish=False&author__name=${user}`;
       const response = await postAPI.getPost({ query });
       const posts = response.data;
       setNonePublishedPosts(posts);

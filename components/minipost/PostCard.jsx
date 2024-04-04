@@ -81,7 +81,7 @@ export default function PostCard({ post }) {
   const createDate = new Date(created_at);
 
   return (
-    <Link href={`/posts/${id}`}>
+    <Link href={`/posts/${id}`} style={{ width: '100%', height: '100%' }}>
       <Card>
         <StyledPostCardImage>
           <Image src={header_image}></Image>

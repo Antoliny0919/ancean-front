@@ -59,7 +59,7 @@ export default function Bottom({ close }) {
 
   const dateOfPublication = new Date();
 
-  const client = useSelector(({ auth }) => auth.user.object.name);
+  const client = useSelector(({ auth }) => auth.user.info.name);
 
   // publishingPostModal bottom area infoFields data
   const infoField = [

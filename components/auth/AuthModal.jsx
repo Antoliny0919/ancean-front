@@ -27,17 +27,20 @@ const StyledAuthModal = styled.div`
 /**
  * param permit is value for specific permission in the user model
  */
-export default function AuthModal({ permit }) {
+export default function AuthModal({ permits }) {
   const { state, open } = useModal();
 
   const router = useRouter();
 
-  const user = useSelector(({ auth }) => auth.user.object);
+  const { user } = useSelector(({ auth }) => auth);
 
   useEffect(() => {
-    if (user === null || user[permit] === false) {
-      open();
-    }
+    permits.forEach((permit) => {
+      if (user.auth === false || user.info[permit] === false) {
+        open();
+        return;
+      }
+    });
   }, [user]);
 
   return (

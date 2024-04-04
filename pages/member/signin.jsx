@@ -26,7 +26,7 @@ export default function SignIn() {
   const loadSignin = () => {
     dispatch(signin({ email, password })).then(({ meta }) => {
       if (meta.requestStatus === 'fulfilled') {
-        router.back();
+        router.push('/');
       }
     });
   };

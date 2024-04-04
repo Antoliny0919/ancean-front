@@ -63,8 +63,6 @@ export default function PublishingPostModal({ state, close }) {
     dispatch(uploadHeaderImage({ formData, headers }));
   };
 
-  console.log(1);
-
   return (
     <StyledPublishingPostModal className={state && 'on'}>
       <div className="content-area">

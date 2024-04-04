@@ -4,17 +4,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: 'ancean.net',
+        hostname: 'localhost',
         port: '80',
         pathname: '/**',
       }
     ]
   },
+  output: 'standalone',
   compiler: {
     styledComponents: true,
   },
   reactStrictMode: false,
-  output: 'standalone',
 };
 
 module.exports = nextConfig

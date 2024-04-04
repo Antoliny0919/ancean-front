@@ -51,11 +51,13 @@ const initialState = {
     token: {
       access: '',
     },
-    object: {},
-    // name: '',
-    // email: '',
-    // introduce: '',
-    // isStaff: null,
+    info: {
+      name: '',
+      email: '',
+      introduce: '',
+      is_staff: null,
+    },
+    auth: null,
   },
   signin: {
     email: '',
@@ -92,10 +94,10 @@ const authSlice = createSlice({
       user.token.access = access;
     });
     builder.addCase(reIssueAccessToken.rejected, (state) => {
-      state.user.object = null;
+      state.user.auth = false;
     });
     builder.addCase(getUserData.fulfilled, (state, { payload }) => {
-      state.user.object = { ...payload };
+      state.user.info = { ...payload };
     });
   },
 });
