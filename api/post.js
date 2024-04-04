@@ -17,7 +17,7 @@ export const createPost = ({ body, headers }) =>
     },
   );
 
-export const savePost = ({ id, body, headers }) =>
+export const patchPost = ({ id, body, headers }) =>
   client.patch(
     `api/posts/${id}/`,
     {

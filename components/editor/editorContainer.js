@@ -45,6 +45,7 @@ export default function editorContainer(editorRef) {
   const create = (isFinish) => {
     let body = setBodyData();
     body['is_finish'] = isFinish;
+    console.log(body);
     editorRef.current.save().then((outputData) => {
       dispatch(
         createPost({
@@ -67,7 +68,7 @@ export default function editorContainer(editorRef) {
       dispatch(
         savePost({
           id: postId,
-          body: { content: outputData.blocks },
+          body: { content: outputData.blocks, ...body },
           headers: headers,
         }),
       ).then(({ payload }) => {

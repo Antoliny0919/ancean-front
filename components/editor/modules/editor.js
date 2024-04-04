@@ -50,12 +50,12 @@ export const createPost = createAsyncThunk(
   },
 );
 
-export const savePost = createAsyncThunk(
-  'editor/savePost',
+export const patchPost = createAsyncThunk(
+  'editor/patchPost',
   async ({ id, body, headers }, { rejectWithValue }) => {
     let result = null;
     try {
-      const response = await postAPI.savePost({
+      const response = await postAPI.patchPost({
         id,
         body,
         headers,
@@ -77,6 +77,7 @@ export const uploadHeaderImage = createAsyncThunk(
 );
 
 const initialState = {
+  instance: null,
   title: '',
   introduce: '',
   selectedCategory: '',
@@ -156,7 +157,7 @@ const editorSlice = createSlice({
       state.notificationState = false;
       state.notificationMessage = '포스트 생성에 실패하였습니다.';
     });
-    builder.addCase(savePost.fulfilled, (state, { payload }) => {
+    builder.addCase(patchPost.fulfilled, (state, { payload }) => {
       if (payload.is_finish) {
         // same resons for createPost
         localStorage.removeItem('beingWrittenPostId');
@@ -165,7 +166,7 @@ const editorSlice = createSlice({
       state.notificationState = true;
       state.notificationMessage = '포스트가 저장되었습니다.';
     });
-    builder.addCase(savePost.rejected, (state) => {
+    builder.addCase(patchPost.rejected, (state) => {
       state.notificationState = false;
       state.notificationMessage = '포스트 저장에 실패하였습니다.';
     });

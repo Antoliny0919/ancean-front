@@ -1,3 +1,4 @@
+import { useSelector, useDispatch } from 'react-redux';
 import EditorJs from 'react-editor-js';
 import Image from '@editorjs/image';
 import CodeTool from '@editorjs/code';
@@ -6,12 +7,13 @@ import InlineCode from '@editorjs/inline-code';
 import Warning from '@editorjs/warning';
 import Quote from '@editorjs/quote';
 import Marker from '@editorjs/marker';
-import { useSelector } from 'react-redux';
-
+import { forcedChangeValue } from './modules/editor';
 import { uploadImage } from '../../api/image';
 
-export default function CustomEditorConfig({ handleInstance }) {
-  const content = useSelector(({ editor }) => editor.content);
+export default function CustomEditorConfig() {
+  const dispatch = useDispatch();
+
+  const { content } = useSelector(({ editor }) => editor);
 
   const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
@@ -50,7 +52,9 @@ export default function CustomEditorConfig({ handleInstance }) {
   // pass EDITOR_JS_TOOLS in tools props to configure tools with editor.js
   return (
     <EditorJs
-      instanceRef={(instance) => handleInstance(instance)}
+      instanceRef={(instance) =>
+        dispatch(forcedChangeValue({ name: 'instance', value: instance }))
+      }
       tools={EDITOR_JS_TOOLS}
       data={content}
       placeholder={`Write from here...`}
