@@ -85,21 +85,17 @@ let CustomEditorConfig = dynamic(() => import('./CustomEditorConfig'), {
 });
 
 const Editor = () => {
-  const { save } = useEditor();
-
-  const { title } = useSelector(({ editor }) => editor);
-
   const dispatch = useDispatch();
 
-  const onChange = (e) => {
-    dispatch(changeValue(e));
-  };
+  const { save, uploadImage } = useEditor();
 
-  useInterval(() => save(false), 600000);
+  const { title } = useSelector(({ editor }) => editor);
 
   const nonePublishedPostsModal = useModal(false);
 
   const publishingPostModal = useModal(false);
+
+  useInterval(() => save(false), 600000);
 
   return (
     <StyledEditor>
@@ -109,10 +105,14 @@ const Editor = () => {
           placeholder="제목을 입력해주세요.."
           name="title"
           value={title}
-          onChange={onChange}
+          onChange={(e) => dispatch(changeValue(e))}
         ></input>
       </header>
-      <main>{CustomEditorConfig && <CustomEditorConfig />}</main>
+      <main>
+        {CustomEditorConfig && (
+          <CustomEditorConfig onUploadImage={uploadImage} />
+        )}
+      </main>
       <footer>
         {/* leftArea */}
         <div className="footer-left-item-block">

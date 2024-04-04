@@ -10,14 +10,10 @@ import Marker from '@editorjs/marker';
 import { forcedChangeValue } from './modules/editor';
 import { uploadImage } from '../../api/image';
 
-export default function CustomEditorConfig() {
+export default function CustomEditorConfig({ onUploadImage }) {
   const dispatch = useDispatch();
 
   const { content } = useSelector(({ editor }) => editor);
-
-  const accessToken = useSelector(({ auth }) => auth.user.token.access);
-
-  const headers = { Authorization: `Bearer ${accessToken}` };
 
   const EDITOR_JS_TOOLS = {
     header: Header,
@@ -29,17 +25,7 @@ export default function CustomEditorConfig() {
       config: {
         uploader: {
           async uploadByFile(file) {
-            const formData = new FormData();
-            formData.append('file', file);
-            const postId = localStorage.getItem('beingWrittenPostId');
-            formData.append('id', postId);
-            try {
-              const response = await uploadImage({ formData, headers });
-              return response.data;
-            } catch (err) {
-              const errorMessage = err.response.data.detail;
-              alert(errorMessage);
-            }
+            return onUploadImage(file, uploadImage, false);
           },
         },
       },

@@ -1,8 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { uploadHeaderImage } from './modules/editor';
+import useEditor from './useEditor';
 import Top from './\bpublishing-post-modal/Top';
 import Bottom from './\bpublishing-post-modal/Bottom';
-import styled from 'styled-components';
 
 const StyledPublishingPostModal = styled.div`
   position: absolute;
@@ -45,23 +46,9 @@ const StyledPublishingPostModal = styled.div`
 `;
 
 export default function PublishingPostModal({ state, close }) {
-  const dispatch = useDispatch();
-
   const { headerImage, headerImagePath } = useSelector(({ editor }) => editor);
 
-  const accessToken = useSelector(({ auth }) => auth.user.token.access);
-
-  const headers = { Authorization: `Bearer ${accessToken}` };
-
-  const onSelectedImageFile = (e) => {
-    // when client select a haeder image file, the image is upload
-    const formData = new FormData();
-    const postId = localStorage.getItem('beingWrittenPostId');
-    let selectedFile = e.target.files[0];
-    formData.append('file', selectedFile);
-    formData.append('id', postId);
-    dispatch(uploadHeaderImage({ formData, headers }));
-  };
+  const { uploadImage } = useEditor();
 
   return (
     <StyledPublishingPostModal className={state && 'on'}>
@@ -69,7 +56,9 @@ export default function PublishingPostModal({ state, close }) {
         <Top
           headerImage={headerImage}
           headerImagePath={headerImagePath}
-          onSelectedImageFile={onSelectedImageFile}
+          onSelectedImageFile={(e) =>
+            uploadImage(e.target.files[0], uploadHeaderImage, true)
+          }
         />
         <div className="divide-line"></div>
         <Bottom close={close} />

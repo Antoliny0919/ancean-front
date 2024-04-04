@@ -51,5 +51,21 @@ export default function useEditor() {
     });
   };
 
-  return { save };
+  const uploadImage = async (file, func, isDispatch) => {
+    const formData = new FormData();
+    const postId = localStorage.getItem('beingWrittenPostId');
+    formData.append('file', file);
+    formData.append('id', postId);
+    try {
+      const response = isDispatch
+        ? await dispatch(func({ formData, headers }))
+        : await func({ formData, headers });
+      return response.data;
+    } catch (err) {
+      const errorMessage = err.response.data.detail;
+      alert(errorMessage);
+    }
+  };
+
+  return { save, uploadImage };
 }

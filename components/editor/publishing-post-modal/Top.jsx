@@ -110,10 +110,6 @@ export default function Top({
 }) {
   const dispatch = useDispatch();
 
-  const onChangeIntroduce = (e) => {
-    dispatch(changeValue(e));
-  };
-
   const { title, selectedCategory, introduce } = useSelector(
     ({ editor }) => editor,
   );
@@ -160,7 +156,7 @@ export default function Top({
             name="introduce"
             placeholder="포스트 썸네일에 들어갈 내용입니다. 포스트에 대해 간단한 설명을 입력해주세요!"
             value={introduce}
-            onChange={onChangeIntroduce}
+            onChange={(e) => dispatch(changeValue(e))}
           ></textarea>
         </div>
       </StyledPostPublishingModalTop>
