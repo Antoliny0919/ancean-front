@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
+import { client } from '../../api/client';
 import { createPost, patchPost } from './modules/editor';
 
 export default function useEditor() {
@@ -23,7 +24,11 @@ export default function useEditor() {
       is_finish: isFinish,
       // introduce, headerImage, selectedCategory --> it's optional field
       ...(introduce && { introduce: introduce }),
-      ...(headerImagePath && { header_image: headerImagePath }),
+      ...(headerImagePath
+        ? { header_image: headerImagePath }
+        : {
+            header_image: `${client.defaults.baseURL}/media/ancean-no-header-image.png`,
+          }),
       ...(selectedCategory && { category: selectedCategory }),
     };
     return body;
