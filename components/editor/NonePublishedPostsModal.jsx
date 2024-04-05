@@ -13,8 +13,8 @@ const StyledSavedPostsModal = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  width: 40em;
-  h1 {
+  width: 20em;
+  h3 {
     margin-top: 0;
     margin-bottom: 2rem;
     border-bottom: solid black 2px;
@@ -89,7 +89,7 @@ export default function NonePublishedPostsModal({ state, close }) {
     <ModalBase state={state}>
       <StyledSavedPostsModal>
         <ModalCloseHeader close={close} />
-        <h1>저장된 포스트</h1>
+        <h3>저장된 포스트</h3>
         <div className="content">
           {/* nonePublishedPosts are get after rendering is in progress(call from useEffect) */}
           {nonePublishedPosts &&

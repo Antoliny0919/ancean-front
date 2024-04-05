@@ -6,7 +6,7 @@ import FontButton from '../../button/FontButton';
 import CommonButton from '../../button/CommonButton';
 import { flex } from '../../../styles/variable';
 
-const StyledMainArea = styled.main`
+const StyledMainArea = styled.div`
   padding: 0 1em;
   font-size: inherit;
 `;
@@ -39,7 +39,7 @@ export const StyledPostInfoField = styled.div`
   }
 `;
 
-const StyledFooterArea = styled.footer`
+const StyledFooterArea = styled.div`
   display: flex;
   flex-direction: row-reverse;
   padding: 1rem 1.5rem;

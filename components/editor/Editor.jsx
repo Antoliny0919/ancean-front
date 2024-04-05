@@ -80,7 +80,7 @@ const StyledEditor = styled.div`
   }
 `;
 
-let CustomEditorConfig = dynamic(() => import('./CustomEditorConfig'), {
+const CustomEditorConfig = dynamic(() => import('./CustomEditorConfig'), {
   ssr: false,
 });
 
@@ -89,7 +89,7 @@ const Editor = () => {
 
   const { save, uploadImage } = useEditor();
 
-  const { title } = useSelector(({ editor }) => editor);
+  const { title, content } = useSelector(({ editor }) => editor);
 
   const nonePublishedPostsModal = useModal(false);
 
@@ -109,9 +109,7 @@ const Editor = () => {
         ></input>
       </header>
       <main>
-        {CustomEditorConfig && (
-          <CustomEditorConfig onUploadImage={uploadImage} />
-        )}
+        <CustomEditorConfig onUploadImage={uploadImage} data={content.blocks} />
       </main>
       <footer>
         {/* leftArea */}

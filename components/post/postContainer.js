@@ -24,7 +24,7 @@ export default function postContainer() {
     };
     // changePrivate success(authentication) or fail return status code number
     const response = await postAPI
-      .savePost({ id, body, headers })
+      .patchPost({ id, body, headers })
       .then((res) => {
         return res;
       })

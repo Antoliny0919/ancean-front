@@ -7,7 +7,7 @@ import EditorCategorySelect from '../EditorCategorySelect';
 import CategoryText from '../../category/CategoryText';
 import { flex, miniPostContent } from '../../../styles/variable';
 
-const StyledPostPublishingModalTop = styled.header`
+const StyledPostPublishingModalTop = styled.div`
   @media screen and (min-width: 768px) {
     flex-direction: row;
     align-items: flex-start;

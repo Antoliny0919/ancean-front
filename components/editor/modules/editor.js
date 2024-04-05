@@ -124,10 +124,10 @@ const editorSlice = createSlice({
       }
 
       state = {
-        notificationState: state.notificationState,
+        ...state,
         title,
         introduce,
-        selectedCategory: category,
+        selectedCategor: category,
         headerImagePath: header_image,
         headerImage: headerImageName,
         content,

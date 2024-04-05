@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import EditorJs from 'react-editor-js';
 import Image from '@editorjs/image';
 import CodeTool from '@editorjs/code';
@@ -9,13 +9,12 @@ import Quote from '@editorjs/quote';
 import Marker from '@editorjs/marker';
 import { forcedChangeValue } from './modules/editor';
 import { uploadImage } from '../../api/image';
+import { useEffect } from 'react';
 
-export default function CustomEditorConfig({ onUploadImage }) {
+export default function CustomEditorConfig({ onUploadImage, data }) {
   const dispatch = useDispatch();
 
-  const { content } = useSelector(({ editor }) => editor);
-
-  const EDITOR_JS_TOOLS = {
+  const TOOLS = {
     header: Header,
     code: CodeTool,
     warning: Warning,
@@ -34,16 +33,25 @@ export default function CustomEditorConfig({ onUploadImage }) {
     inlineCode: InlineCode,
   };
 
-  // Editor.js This will show block editor in component
-  // pass EDITOR_JS_TOOLS in tools props to configure tools with editor.js
+  const { instance } = useSelector(({ editor }) => editor);
+
+  useEffect(() => {
+    if (instance && Object.hasOwn(instance, 'render')) {
+      instance.render({ blocks: data });
+    }
+    return () => {
+      instance && instance.destroy;
+    };
+  }, [data]);
+
   return (
     <EditorJs
       instanceRef={(instance) =>
         dispatch(forcedChangeValue({ name: 'instance', value: instance }))
       }
-      tools={EDITOR_JS_TOOLS}
-      data={content}
-      placeholder={`Write from here...`}
+      tools={TOOLS}
+      data={{ blocks: data }}
+      placeholder={'포스트 작성...'}
     />
   );
 }
