@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CommonSelect from '../select/CommonSelect';
+import BaseSelect from '../select/BaseSelect';
 import { CATEGORY_DATA } from './data';
 
 const StyledOption = styled.li`
@@ -18,7 +18,7 @@ export default function CategorySelect({
   setSelectState,
 }) {
   return (
-    <CommonSelect
+    <BaseSelect
       selectedData={selectedCategory}
       defaultData={defaultData}
       selectState={selectState}
@@ -41,6 +41,6 @@ export default function CategorySelect({
           </StyledOption>
         );
       })}
-    </CommonSelect>
+    </BaseSelect>
   );
 }

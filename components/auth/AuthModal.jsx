@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { FcCancel } from 'react-icons/fc';
 import styled from 'styled-components';
 import useModal from '../../hooks/useModal';
-import ModalBase from '../modal/ModalBase';
+import BaseModal from '../modal/BaseModal';
 import CommonButton from '../button/CommonButton';
 
 const StyledAuthModal = styled.div`
@@ -44,7 +44,7 @@ export default function AuthModal({ permits }) {
   }, [user]);
 
   return (
-    <ModalBase state={state}>
+    <BaseModal state={state}>
       <StyledAuthModal>
         <FcCancel />
         <p>로그인이 필요한 서비스입니다!</p>
@@ -58,6 +58,6 @@ export default function AuthModal({ permits }) {
           로그인 하러 가기
         </CommonButton>
       </StyledAuthModal>
-    </ModalBase>
+    </BaseModal>
   );
 }

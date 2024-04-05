@@ -5,7 +5,7 @@ import { FcIdea } from 'react-icons/fc';
 import styled from 'styled-components';
 import CommonButton from '../button/CommonButton';
 import useModal from '../../hooks/useModal';
-import ModalBase from '../modal/ModalBase';
+import BaseModal from '../modal/BaseModal';
 import { getRetrievePost } from './modules/editor';
 import { StyledCommonButton } from '../button/CommonButton';
 import { flex } from '../../styles/variable';
@@ -85,7 +85,7 @@ export default function ContinueWritingModal() {
   }, [accessToken]);
 
   return (
-    <ModalBase state={state}>
+    <BaseModal state={state}>
       <StyledContinueWritingPostModal>
         <FcIdea className="logo" />
         <div className="header">
@@ -105,6 +105,6 @@ export default function ContinueWritingModal() {
           </CommonButton>
         </div>
       </StyledContinueWritingPostModal>
-    </ModalBase>
+    </BaseModal>
   );
 }

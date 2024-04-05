@@ -4,7 +4,7 @@ import Wave from 'react-wavify';
 import styled from 'styled-components';
 import { FaPen } from 'react-icons/fa';
 import { FaRegCalendarAlt } from 'react-icons/fa';
-import postContainer from './postContainer';
+import usePost from './usePost';
 import CategoryButton from '../category/CategoryButton';
 import FontButton from '../button/FontButton';
 import { miniPostContent, flex } from '../../styles/variable';
@@ -91,15 +91,9 @@ export default function PostHeader({
 
   const updatedAt = new Date(updated_at);
 
-  const { patchPost, deletePost } = postContainer();
+  const { editPost, deletePost } = usePost();
 
   const client = useSelector(({ auth }) => auth.user.info.name);
-
-  const onPatchPost = () => patchPost(id);
-
-  // delete post and go homepage('/')
-  const onDeletePost = () =>
-    deletePost({ id, teardown: () => router.push('/') });
 
   return (
     <>
@@ -126,8 +120,17 @@ export default function PostHeader({
         {/* it the client accessed is the owner of the post, the edit and delete interface is visible */}
         {author === client && (
           <div className="sub-title control-post">
-            <FontButton props={{ onClick: onPatchPost }}>수정</FontButton>
-            <FontButton props={{ onClick: onDeletePost }}>삭제</FontButton>
+            <FontButton props={{ onClick: () => editPost(id) }}>
+              수정
+            </FontButton>
+            <FontButton
+              props={{
+                onClick: () =>
+                  deletePost({ id, teardown: () => router.push('/') }),
+              }}
+            >
+              삭제
+            </FontButton>
           </div>
         )}
       </StyledPostHeader>

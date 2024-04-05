@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-const StyledCommonSelect = styled.div`
+const StyledBaseSelect = styled.div`
   position: relative;
   width: 200px;
   height: 40px;
@@ -53,7 +53,7 @@ const StyledCommonSelect = styled.div`
   }
 `;
 
-export default function CommonSelect({
+export default function BaseSelect({
   children,
   selectedData,
   defaultData,
@@ -61,11 +61,11 @@ export default function CommonSelect({
   setSelectState,
 }) {
   return (
-    <StyledCommonSelect $selectState={selectState}>
+    <StyledBaseSelect $selectState={selectState}>
       <button className="label" onClick={setSelectState}>
         {selectedData ? selectedData : defaultData}
       </button>
       <ul className="option-list">{children}</ul>
-    </StyledCommonSelect>
+    </StyledBaseSelect>
   );
 }

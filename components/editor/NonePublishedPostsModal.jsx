@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FaRegTrashCan } from 'react-icons/fa6';
 import { getRetrievePost } from './modules/editor';
-import postContainer from '../post/postContainer';
+import usePost from '../post/usePost';
 import ModalCloseHeader from '../modal/ModalCloseHeader';
-import ModalBase from '../modal/ModalBase';
+import BaseModal from '../modal/BaseModal';
 import * as postAPI from '../../api/post';
 
 const StyledSavedPostsModal = styled.div`
@@ -70,7 +70,7 @@ export default function NonePublishedPostsModal({ state, close }) {
 
   const user = useSelector(({ auth }) => auth.user.info.name);
 
-  const { deletePost } = postContainer();
+  const { deletePost } = usePost();
 
   // nonePublishedPosts --> publish field value of the model field is false
   const [nonePublishedPosts, setNonePublishedPosts] = useState();
@@ -86,7 +86,7 @@ export default function NonePublishedPostsModal({ state, close }) {
   }, [state]);
 
   return (
-    <ModalBase state={state}>
+    <BaseModal state={state}>
       <StyledSavedPostsModal>
         <ModalCloseHeader close={close} />
         <h3>저장된 포스트</h3>
@@ -135,6 +135,6 @@ export default function NonePublishedPostsModal({ state, close }) {
             })}
         </div>
       </StyledSavedPostsModal>
-    </ModalBase>
+    </BaseModal>
   );
 }

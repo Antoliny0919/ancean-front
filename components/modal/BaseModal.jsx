@@ -11,7 +11,7 @@ const StyledBackground = styled.div`
   z-index: 100;
 `;
 
-const StyledModalBase = styled.div`
+const StyledBaseModal = styled.div`
   position: fixed;
   aspect-ratio: 1 / 0.7;
   background-color: white;
@@ -23,7 +23,7 @@ const StyledModalBase = styled.div`
   font-family: 'NanumBarunGothic';
 `;
 
-export default function ModalBase({ state, children, styleProps = {} }) {
+export default function BaseModal({ state, children, styleProps = {} }) {
   useEffect(() => {
     if (state) {
       document.body.style = 'overflow: hidden';
@@ -40,7 +40,7 @@ export default function ModalBase({ state, children, styleProps = {} }) {
     <>
       {state && (
         <StyledBackground>
-          <StyledModalBase style={styleProps}>{children}</StyledModalBase>
+          <StyledBaseModal style={styleProps}>{children}</StyledBaseModal>
         </StyledBackground>
       )}
     </>
