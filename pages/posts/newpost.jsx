@@ -17,9 +17,7 @@ export default function newpost({ categories }) {
     categories: categories,
   };
 
-  const { user } = useSelector(({ auth }) => auth);
-
-  const accessToken = user.token.access;
+  const accessToken = useSelector(({ auth }) => auth.user.token.access);
 
   useEffect(() => {
     const requestPatchPostId = localStorage.getItem('patchPostId');
@@ -29,7 +27,6 @@ export default function newpost({ categories }) {
       if (requestPatchPostId) {
         dispatch(getRetrievePost({ id: requestPatchPostId, headers }));
         localStorage.removeItem('patchPostId');
-        return;
       }
     }
   }, [accessToken]);

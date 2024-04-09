@@ -87,7 +87,7 @@ const authSlice = createSlice({
       user.token.access = access;
     });
     builder.addCase(signin.rejected, ({ signin }, { payload }) => {
-      signin.message = payload.data.detail;
+      signin.message = payload.detail;
     });
     builder.addCase(reIssueAccessToken.fulfilled, ({ user }, { payload }) => {
       const { access } = payload;

@@ -5,10 +5,8 @@ import { reIssueAccessToken } from './modules/auth';
 import { getUserData } from './modules/auth';
 
 /**
- *
  * use it as the top parent component for pages that require authentication permission
  * the ability to initialize tokens required for authentication is provided
- *
  */
 export default function AuthGateway({ children }) {
   const dispatch = useDispatch();

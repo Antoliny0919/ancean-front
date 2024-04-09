@@ -87,9 +87,11 @@ const CustomEditorConfig = dynamic(() => import('./CustomEditorConfig'), {
 const Editor = () => {
   const dispatch = useDispatch();
 
-  const { save, uploadImage } = useEditor();
+  const { save, imageUploader } = useEditor();
 
   const { title, content } = useSelector(({ editor }) => editor);
+
+  const { access } = useSelector(({ auth }) => auth.user.token);
 
   const nonePublishedPostsModal = useModal(false);
 
@@ -109,7 +111,9 @@ const Editor = () => {
         ></input>
       </header>
       <main>
-        <CustomEditorConfig onUploadImage={uploadImage} data={content.blocks} />
+        {access && (
+          <CustomEditorConfig imageUploader={imageUploader} content={content} />
+        )}
       </main>
       <footer>
         {/* leftArea */}

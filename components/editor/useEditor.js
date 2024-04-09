@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { client } from '../../api/client';
 import { createPost, patchPost } from './modules/editor';
@@ -8,8 +9,10 @@ export default function useEditor() {
 
   const router = useRouter();
 
+  const fields = useSelector(({ editor }) => editor);
+
   const { instance, title, introduce, headerImagePath, selectedCategory } =
-    useSelector(({ editor }) => editor);
+    fields;
 
   const { token, info } = useSelector(({ auth }) => auth.user);
 
@@ -34,11 +37,11 @@ export default function useEditor() {
     return body;
   };
 
-  const isPublishedMovePage = (path, isFinish) => {
+  const isPublishedMovePage = useCallback((path, isFinish) => {
     if (isFinish) {
       router.push(path);
     }
-  };
+  }, []);
 
   const save = async (isFinish) => {
     const postId = localStorage.getItem('beingWrittenPostId');
@@ -56,11 +59,12 @@ export default function useEditor() {
     });
   };
 
-  const uploadImage = async (file, func, isDispatch) => {
+  const imageUploader = async (file, func, isDispatch) => {
     const formData = new FormData();
     const postId = localStorage.getItem('beingWrittenPostId');
     formData.append('file', file);
     formData.append('id', postId);
+    console.log(headers);
     try {
       const response = isDispatch
         ? await dispatch(func({ formData, headers }))
@@ -72,5 +76,5 @@ export default function useEditor() {
     }
   };
 
-  return { save, uploadImage };
+  return { save, imageUploader };
 }

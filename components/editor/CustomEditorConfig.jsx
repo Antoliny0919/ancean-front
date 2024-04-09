@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import EditorJs from 'react-editor-js';
+import React, { useCallback, useEffect } from 'react';
+import { forcedChangeValue } from './modules/editor';
+import { uploadImage } from '../../api/image';
+import { createReactEditorJS } from 'react-editor-js';
 import Image from '@editorjs/image';
 import CodeTool from '@editorjs/code';
 import Header from '@editorjs/header';
@@ -7,12 +10,13 @@ import InlineCode from '@editorjs/inline-code';
 import Warning from '@editorjs/warning';
 import Quote from '@editorjs/quote';
 import Marker from '@editorjs/marker';
-import { forcedChangeValue } from './modules/editor';
-import { uploadImage } from '../../api/image';
-import { useEffect } from 'react';
 
-export default function CustomEditorConfig({ onUploadImage, data }) {
+const EditorJS = createReactEditorJS();
+
+export default function CustomEditorConfig({ imageUploader, content }) {
   const dispatch = useDispatch();
+
+  const { instance } = useSelector(({ editor }) => editor);
 
   const TOOLS = {
     header: Header,
@@ -23,8 +27,8 @@ export default function CustomEditorConfig({ onUploadImage, data }) {
       class: Image,
       config: {
         uploader: {
-          async uploadByFile(file) {
-            return onUploadImage(file, uploadImage, false);
+          uploadByFile(file) {
+            return imageUploader(file, uploadImage, false);
           },
         },
       },
@@ -33,24 +37,23 @@ export default function CustomEditorConfig({ onUploadImage, data }) {
     inlineCode: InlineCode,
   };
 
-  const { instance } = useSelector(({ editor }) => editor);
+  const handleInitialize = useCallback((instance) => {
+    dispatch(forcedChangeValue({ name: 'instance', value: instance }));
+  }, []);
 
   useEffect(() => {
-    if (instance && Object.hasOwn(instance, 'render')) {
-      instance.render({ blocks: data });
+    if (instance && content.length !== 0) {
+      instance.render({ blocks: content });
     }
     return () => {
       instance && instance.destroy;
     };
-  }, [data]);
+  }, [content]);
 
   return (
-    <EditorJs
-      instanceRef={(instance) =>
-        dispatch(forcedChangeValue({ name: 'instance', value: instance }))
-      }
+    <EditorJS
+      onInitialize={handleInitialize}
       tools={TOOLS}
-      data={{ blocks: data }}
       placeholder={'포스트 작성...'}
     />
   );

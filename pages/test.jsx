@@ -1,14 +1,14 @@
-import Editor from '../components/editor/Editor';
-import useEditor from '../components/editor/useEditor';
-import AuthGateway from '../components/auth/AuthGateway';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
+
+const EditorBlock = dynamic(() => import('../components/editor/TestEditor'), {
+  ssr: false,
+});
 
 export default function Test() {
-  const { save } = useEditor();
+  const [data, setData] = useState();
 
   return (
-    <AuthGateway>
-      <button onClick={() => save(false)}>세이브</button>
-      <Editor />
-    </AuthGateway>
+    <EditorBlock data={data} onChange={setData} holder="editorjs-container" />
   );
 }

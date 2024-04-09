@@ -48,7 +48,7 @@ const StyledPublishingPostModal = styled.div`
 export default function PublishingPostModal({ state, close }) {
   const { headerImage, headerImagePath } = useSelector(({ editor }) => editor);
 
-  const { uploadImage } = useEditor();
+  const { imageUploader } = useEditor();
 
   return (
     <StyledPublishingPostModal className={state && 'on'}>
@@ -57,7 +57,7 @@ export default function PublishingPostModal({ state, close }) {
           headerImage={headerImage}
           headerImagePath={headerImagePath}
           onSelectedImageFile={(e) =>
-            uploadImage(e.target.files[0], uploadHeaderImage, true)
+            imageUploader(e.target.files[0], uploadHeaderImage, true)
           }
         />
         <div className="divide-line"></div>

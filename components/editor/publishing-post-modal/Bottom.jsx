@@ -4,6 +4,7 @@ import useEditor from '../useEditor';
 import RadioInput from '../../common/RadioInput';
 import FontButton from '../../button/FontButton';
 import CommonButton from '../../button/CommonButton';
+import Date from '../../common/Date';
 import { flex } from '../../../styles/variable';
 
 const StyledMainArea = styled.div`
@@ -51,9 +52,10 @@ const StyledFooterArea = styled.div`
 export default function Bottom({ close }) {
   // first time publishing a post(isFinish field --> true)
   // works even if the frist published post has already been modified
-  const { save } = useEditor();
 
-  const dateOfPublication = new Date();
+  const publishingDate = Date();
+
+  const { save } = useEditor();
 
   const client = useSelector(({ auth }) => auth.user.info.name);
 
@@ -81,10 +83,14 @@ export default function Bottom({ close }) {
     {
       title: '출간일',
       content: (
-        <p>
-          {dateOfPublication.getFullYear()}년 {dateOfPublication.getMonth() + 1}
-          월{dateOfPublication.getDate()}일
-        </p>
+        <>
+          {publishingDate && (
+            <p>
+              {publishingDate.getFullYear()}년 {publishingDate.getMonth() + 1}월{' '}
+              {publishingDate.getDate()}일
+            </p>
+          )}
+        </>
       ),
     },
     {

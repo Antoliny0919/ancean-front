@@ -130,7 +130,7 @@ const editorSlice = createSlice({
         selectedCategor: category,
         headerImagePath: header_image,
         headerImage: headerImageName,
-        content,
+        content: content.blocks,
       };
       localStorage.setItem('beingWrittenPostId', id);
       return state;
