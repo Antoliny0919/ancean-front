@@ -70,9 +70,15 @@ export const patchPost = createAsyncThunk(
 
 export const uploadHeaderImage = createAsyncThunk(
   'editor/uploadHeaderImage',
-  async ({ formData, headers }) => {
-    const response = await imageAPI.uploadImage({ formData, headers });
-    return response.data;
+  async ({ formData, headers }, { rejectWithValue }) => {
+    let result = null;
+    try {
+      const response = await imageAPI.uploadImage({ formData, headers });
+      result = response;
+    } catch (err) {
+      result = rejectWithValue(err.response);
+    }
+    return result;
   },
 );
 
@@ -105,6 +111,11 @@ const editorSlice = createSlice({
     resetHeaderImageState: (state) => {
       state.headerImagePath = '';
       state.headerImage = '';
+    },
+    uploadImageState: (state, { payload }) => {
+      const { result, message } = payload;
+      state.notificationState = result;
+      state.notificationMessage = message;
     },
   },
   extraReducers: (builder) => {
@@ -171,8 +182,12 @@ const editorSlice = createSlice({
       state.notificationMessage = '포스트 저장에 실패하였습니다.';
     });
     builder.addCase(uploadHeaderImage.fulfilled, (state, { payload }) => {
-      state['headerImagePath'] = payload.file.url;
-      state['headerImage'] = payload.file.name;
+      const { url, name } = payload.data.file;
+      state['headerImagePath'] = url;
+      state['headerImage'] = name;
+    });
+    builder.addCase(uploadHeaderImage.rejected, (_, actions) => {
+      throw actions;
     });
   },
 });
@@ -182,5 +197,6 @@ export const {
   forcedChangeValue,
   resetNotificationState,
   resetHeaderImageState,
+  uploadImageState,
 } = editorSlice.actions;
 export default editorSlice.reducer;

@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { client } from '../../api/client';
 import { createPost, patchPost } from './modules/editor';
+import { uploadImageState } from './modules/editor';
 
 export default function useEditor() {
   const dispatch = useDispatch();
@@ -64,15 +65,17 @@ export default function useEditor() {
     const postId = localStorage.getItem('beingWrittenPostId');
     formData.append('file', file);
     formData.append('id', postId);
-    console.log(headers);
+
     try {
       const response = isDispatch
         ? await dispatch(func({ formData, headers }))
         : await func({ formData, headers });
       return response.data;
     } catch (err) {
-      const errorMessage = err.response.data.detail;
-      alert(errorMessage);
+      const errorMessage = isDispatch
+        ? err.payload.data.detail
+        : err.response.data.detail;
+      dispatch(uploadImageState({ result: false, message: errorMessage }));
     }
   };
 

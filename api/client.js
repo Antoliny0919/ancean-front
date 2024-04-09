@@ -15,13 +15,13 @@ export const server = axios.create();
 
 export const client = axios.create();
 
-// server.defaults.baseURL = `http://api-local:8000`;
-// client.defaults.baseURL = `http://localhost:5050`;
+server.defaults.baseURL = `http://api-local:8000`;
+client.defaults.baseURL = `http://localhost:5050`;
 
 // const MEDIA_ROOT = `${client.defaults.baseURL}/media`;
 
 // server.defaults.baseURL = `http://host.docker.internal:80`;
 // client.defaults.baseURL = `http://localhost:80`;
 
-server.defaults.baseURL = 'https://host.docker.internal';
-client.defaults.baseURL = 'https://ancean.stag';
+// server.defaults.baseURL = 'https://host.docker.internal';
+// client.defaults.baseURL = 'https://ancean.stag';
