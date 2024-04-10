@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Wave from 'react-wavify';
 import { flex } from '@/styles/variable';
 
-export const StyledLogoArea = styled.div`
+export const StyledLogo = styled.div`
   @media screen and (min-width: 768px) {
     font-size: 48px;
     letter-spacing: 7px;
@@ -62,7 +62,7 @@ export const StyledLogoArea = styled.div`
 export default function Logo({ style = {} }) {
   return (
     <Link href="/">
-      <StyledLogoArea style={{ ...style }}>
+      <StyledLogo style={{ ...style }}>
         <div className="waterball">
           <Wave
             fill={'#27566B'}
@@ -78,7 +78,7 @@ export default function Logo({ style = {} }) {
         </div>
         <h1 className={`before`}>An</h1>
         <h1 className={`after`}>Cean</h1>
-      </StyledLogoArea>
+      </StyledLogo>
     </Link>
   );
 }

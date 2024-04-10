@@ -2,7 +2,10 @@ import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import LabelSlideInput from '../../components/input/LabelSlideInput';
-import CommonButton from '../../components/button/CommonButton';
+import CommonButton, {
+  StyledCommonButton,
+} from '../../components/button/CommonButton';
+import Logo, { StyledLogo } from '../../components/common/Logo';
 import { signin } from '../../components/auth/modules/auth';
 import { flex } from '../../styles/variable';
 
@@ -16,6 +19,13 @@ const StyledSignInLayout = styled.main`
 const StyledSignIn = styled.form`
   ${flex('column', 'center', 'center')};
   font-size: 20px;
+  ${StyledLogo} {
+    margin-bottom: 0.8em;
+  }
+  ${StyledCommonButton} {
+    width: 100%;
+    margin-top: 2.5em;
+  }
 `;
 
 export default function SignIn() {
@@ -29,6 +39,7 @@ export default function SignIn() {
         name: 'email',
         type: 'text',
         id: 'email',
+        required: true,
       },
     },
     {
@@ -40,6 +51,7 @@ export default function SignIn() {
         name: 'password',
         type: 'password',
         id: 'password',
+        required: true,
       },
     },
   ];
@@ -61,6 +73,7 @@ export default function SignIn() {
   return (
     <StyledSignInLayout>
       <StyledSignIn>
+        <Logo />
         {INPUTS_DATA.map(({ labelProps, inputProps }, index) => {
           return (
             <LabelSlideInput
@@ -70,19 +83,6 @@ export default function SignIn() {
             />
           );
         })}
-
-        {/* <input
-          name="email"
-          type="text"
-          value={email}
-          onChange={(e) => dispatch(changeValue(e))}
-        ></input>
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => dispatch(changeValue(e))}
-        ></input> */}
         <div>{message}</div>
         <CommonButton props={{ onClick: loadSignin }}>로그인</CommonButton>
       </StyledSignIn>

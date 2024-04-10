@@ -4,8 +4,12 @@ const StyledLabelSlideInput = styled.div`
   font-family: 'SUIT-Regular';
   label {
     position: absolute;
-    font-size: inherit;
+    left: 0;
+    font-size: 0.8em;
     color: ${({ theme }) => theme.colors.mainColor[7]};
+    transition: 0.5s;
+    transform: translateY(30%);
+    opacity: 0.5;
   }
   input {
     border: none;
@@ -14,15 +18,28 @@ const StyledLabelSlideInput = styled.div`
     width: 20em;
     padding: 0.5em;
     border-bottom: solid ${({ theme }) => theme.colors.mainColor[4]} 0.15em;
+    opacity: 0.8;
+    &:focus + label,
+    &:valid + label {
+      transform: translate(-5em, 30%);
+      color: ${({ theme }) => theme.colors.mainColor[0]};
+      opacity: 1;
+    }
+    &:focus,
+    &:valid {
+      opacity: 1;
+    }
   }
-  margin-bottom: 1.5rem;
+  & + & {
+    margin-top: 1.5em;
+  }
 `;
 
 export default function LabelSlideInput({ labelProps = {}, inputProps = {} }) {
   return (
     <StyledLabelSlideInput>
-      <label {...labelProps}></label>
       <input {...inputProps}></input>
+      <label {...labelProps}></label>
     </StyledLabelSlideInput>
   );
 }
