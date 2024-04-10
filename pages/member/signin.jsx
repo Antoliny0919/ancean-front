@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import LabelSlideInput from '../../components/input/LabelSlideInput';
 import CommonButton from '../../components/button/CommonButton';
-import { signin, changeValue } from '../../components/auth/modules/auth';
+import { signin } from '../../components/auth/modules/auth';
 import { flex } from '../../styles/variable';
 
 const StyledSignInLayout = styled.main`
@@ -12,11 +13,37 @@ const StyledSignInLayout = styled.main`
   transform: translate(-50%, -50%);
 `;
 
-const StyledSignIn = styled.div`
+const StyledSignIn = styled.form`
   ${flex('column', 'center', 'center')};
+  font-size: 20px;
 `;
 
 export default function SignIn() {
+  const INPUTS_DATA = [
+    {
+      labelProps: {
+        children: '이메일',
+        htmlFor: 'email',
+      },
+      inputProps: {
+        name: 'email',
+        type: 'text',
+        id: 'email',
+      },
+    },
+    {
+      labelProps: {
+        children: '비밀번호',
+        htmlFor: 'password',
+      },
+      inputProps: {
+        name: 'password',
+        type: 'password',
+        id: 'password',
+      },
+    },
+  ];
+
   const router = useRouter();
 
   const dispatch = useDispatch();
@@ -34,7 +61,17 @@ export default function SignIn() {
   return (
     <StyledSignInLayout>
       <StyledSignIn>
-        <input
+        {INPUTS_DATA.map(({ labelProps, inputProps }, index) => {
+          return (
+            <LabelSlideInput
+              key={index}
+              labelProps={labelProps}
+              inputProps={inputProps}
+            />
+          );
+        })}
+
+        {/* <input
           name="email"
           type="text"
           value={email}
@@ -45,7 +82,7 @@ export default function SignIn() {
           type="password"
           value={password}
           onChange={(e) => dispatch(changeValue(e))}
-        ></input>
+        ></input> */}
         <div>{message}</div>
         <CommonButton props={{ onClick: loadSignin }}>로그인</CommonButton>
       </StyledSignIn>
