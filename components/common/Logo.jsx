@@ -5,16 +5,18 @@ import { flex } from '@/styles/variable';
 
 export const StyledLogo = styled.div`
   @media screen and (min-width: 768px) {
-    font-size: 48px;
-    letter-spacing: 7px;
+    font-size: 2em;
+    letter-spacing: 0.1em;
   }
   @media screen and (min-width: 1024px) {
-    font-size: 64px;
-    letter-spacing: 10px;
+    font-size: 3em;
+    letter-spacing: 0.15em;
   }
-  font-size: 32px;
-  letter-spacing: 5px;
-  ${flex('row', 'flex-start', 'center')};
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  a {
+    ${flex('row', 'flex-start', 'center')};
+  }
   h1 {
     font-size: inherit;
     font-family: 'Bodoni Moda';
@@ -22,21 +24,23 @@ export const StyledLogo = styled.div`
     color: #205a82;
     margin: 0;
   }
-  .before {
-    color: #205a82;
-    text-shadow:
-      0.5px 0.5px hsl(199, 47%, 26%),
-      1px 1px hsl(199, 47%, 23%),
-      1.5px 1.5px hsl(199, 47%, 20%),
-      2px 2px hsl(199, 47%, 17%);
-  }
-  .after {
+  h1::after {
+    content: 'Cean';
     color: #29beaa;
     text-shadow:
       0.5px 0.5px hsl(172, 65%, 40%),
       1px 1px hsl(172, 65%, 35%),
       1.5px 1.5px hsl(172, 65%, 30%),
       2px 2px hsl(172, 65%, 27%);
+  }
+  h1::before {
+    content: 'An';
+    color: #205a82;
+    text-shadow:
+      0.5px 0.5px hsl(199, 47%, 26%),
+      1px 1px hsl(199, 47%, 23%),
+      1.5px 1.5px hsl(199, 47%, 20%),
+      2px 2px hsl(199, 47%, 17%);
   }
   .waterball {
     position: relative;
@@ -61,8 +65,8 @@ export const StyledLogo = styled.div`
 
 export default function Logo({ style = {} }) {
   return (
-    <Link href="/">
-      <StyledLogo style={{ ...style }}>
+    <StyledLogo style={{ ...style }}>
+      <Link href="/">
         <div className="waterball">
           <Wave
             fill={'#27566B'}
@@ -76,9 +80,8 @@ export default function Logo({ style = {} }) {
             }}
           ></Wave>
         </div>
-        <h1 className={`before`}>An</h1>
-        <h1 className={`after`}>Cean</h1>
-      </StyledLogo>
-    </Link>
+        <h1></h1>
+      </Link>
+    </StyledLogo>
   );
 }

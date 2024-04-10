@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import styled from 'styled-components';
 import { SectionRefContext } from '../../pages/index';
 import MoveSectionButton from '../button/MoveSectionButton';
-import Logo, { StyledLogoArea } from '../common/Logo';
+import Logo from '../common/Logo';
 import OceanWaveButton, {
   StyledOceanWaveButton,
 } from '../button/OceanWaveButton';
@@ -14,37 +14,25 @@ import { flex } from '../../styles/variable';
 const StyledBannerArea = styled.section`
   @media screen and (min-width: 768px) {
     flex-direction: row;
-    font-size: 18px;
+    font-size: 14px;
   }
   @media screen and (min-width: 1024px) {
     padding: 3em 5em 0 5em;
-    font-size: 20px;
+    font-size: 18px;
   }
   @media screen and (min-width: 1440px) {
-    font-size: 26px;
+    font-size: 22px;
     padding: 3em 8em 0 8em;
   }
   height: 100%;
   position: relative;
   padding: 3em 2em 0 2em;
-  font-size: 12px;
+  font-size: 10px;
   height: 650px;
   background-color: ${({ theme }) => theme.colors.mainColor[8]};
   ${flex('column', 'none', 'center')}
   font-family: 'GmarketSansMedium';
   color: ${({ theme }) => theme.colors.white};
-  ${StyledLogoArea} {
-    @media screen and (min-width: 768px) {
-      font-size: 60px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 75px;
-    }
-    @media screen and (min-width: 1440px) {
-      font-size: 95px;
-    }
-    font-size: 40px;
-  }
   ${StyledOceanWaveButton} {
     @media screen and (min-width: 768px) {
       font-size: 10px;
@@ -66,16 +54,12 @@ const StyledBannerInfo = styled.div`
   }
   height: 30%;
   .title-text {
-    @media screen and (min-width: 768px) {
-      align-items: flex-start;
-      height: 80%;
-      margin-bottom: 0;
-    }
-    ${flex('column', 'center', 'center')}
-    margin-bottom: 20px;
+    height: 80%;
+    ${flex('column', 'center', 'center')};
   }
   .title-section-link {
     display: flex;
+    justify-content: center;
     & > * {
       margin-right: 1.5em;
     }
@@ -103,7 +87,9 @@ export default function BannerMain() {
       <StyledBannerInfo>
         <div className="title-text">
           <p>Antoliny&#39;s Experience Storage Space</p>
-          <Logo />
+          <div style={{ 'font-size': '30px' }}>
+            <Logo />
+          </div>
         </div>
         <div className="title-section-link">
           {Object.keys(BANNER_SECTION_BUTTON_DATA).map((sectionName, index) => {

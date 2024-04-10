@@ -21,6 +21,7 @@ const StyledSignInForm = styled.form`
   font-size: 20px;
   ${StyledLogo} {
     margin-bottom: 0.8em;
+    font-size: 60px;
   }
   ${StyledCommonButton} {
     width: 100%;
