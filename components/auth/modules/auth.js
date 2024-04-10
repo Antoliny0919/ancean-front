@@ -70,24 +70,24 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    changeValue: (state, { payload }) => {
-      const signin = state.signin;
-      signin[payload.target.name] = payload.target.value;
+    changeValue: (state, { payload: { step, name, value } }) => {
+      const section = state[step];
+      section[name] = value;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(signin.fulfilled, ({ user }, { payload }) => {
-      const { refresh, access } = payload;
+    builder.addCase(signin.fulfilled, (_, { payload }) => {
+      const { refresh } = payload;
       cookies.set('refresh', refresh, {
         path: '/',
         secure: false,
         httpOnly: false,
         sameSite: false,
       });
-      user.token.access = access;
     });
-    builder.addCase(signin.rejected, ({ signin }, { payload }) => {
-      signin.message = payload.detail;
+    builder.addCase(signin.rejected, ({ signin }) => {
+      signin.message = '존재하지 않는 유저입니다.';
+      signin.password = '';
     });
     builder.addCase(reIssueAccessToken.fulfilled, ({ user }, { payload }) => {
       const { access } = payload;

@@ -1,12 +1,11 @@
-import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import LabelSlideInput from '../../components/input/LabelSlideInput';
+import useSignin from '../../components/auth/useSignin';
 import CommonButton, {
   StyledCommonButton,
 } from '../../components/button/CommonButton';
 import Logo, { StyledLogo } from '../../components/common/Logo';
-import { signin } from '../../components/auth/modules/auth';
 import { flex } from '../../styles/variable';
 
 const StyledSignInLayout = styled.main`
@@ -16,19 +15,30 @@ const StyledSignInLayout = styled.main`
   transform: translate(-50%, -50%);
 `;
 
-const StyledSignIn = styled.form`
+const StyledSignInForm = styled.form`
   ${flex('column', 'center', 'center')};
+  font-family: 'SUIT-Regular';
   font-size: 20px;
   ${StyledLogo} {
     margin-bottom: 0.8em;
   }
   ${StyledCommonButton} {
     width: 100%;
-    margin-top: 2.5em;
+    margin-top: 0.5em;
+  }
+  .error {
+    color: ${({ theme }) => theme.colors.state.fail};
+    height: 1.5em;
+    font-size: 0.8em;
+    margin-top: 1em;
   }
 `;
 
 export default function SignIn() {
+  const { email, password, message } = useSelector(({ auth }) => auth.signin);
+
+  const { changeInputValue, onSubmit } = useSignin();
+
   const INPUTS_DATA = [
     {
       labelProps: {
@@ -40,6 +50,8 @@ export default function SignIn() {
         type: 'text',
         id: 'email',
         required: true,
+        value: email,
+        onChange: changeInputValue,
       },
     },
     {
@@ -52,27 +64,15 @@ export default function SignIn() {
         type: 'password',
         id: 'password',
         required: true,
+        value: password,
+        onChange: changeInputValue,
       },
     },
   ];
 
-  const router = useRouter();
-
-  const dispatch = useDispatch();
-
-  const { email, password, message } = useSelector(({ auth }) => auth.signin);
-
-  const loadSignin = () => {
-    dispatch(signin({ email, password })).then(({ meta }) => {
-      if (meta.requestStatus === 'fulfilled') {
-        router.push('/');
-      }
-    });
-  };
-
   return (
     <StyledSignInLayout>
-      <StyledSignIn>
+      <StyledSignInForm onSubmit={onSubmit}>
         <Logo />
         {INPUTS_DATA.map(({ labelProps, inputProps }, index) => {
           return (
@@ -83,9 +83,9 @@ export default function SignIn() {
             />
           );
         })}
-        <div>{message}</div>
-        <CommonButton props={{ onClick: loadSignin }}>로그인</CommonButton>
-      </StyledSignIn>
+        <div className="error">{message}</div>
+        <CommonButton>로그인</CommonButton>
+      </StyledSignInForm>
     </StyledSignInLayout>
   );
 }
