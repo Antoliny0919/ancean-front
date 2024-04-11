@@ -4,15 +4,7 @@ import Wave from 'react-wavify';
 import { flex } from '@/styles/variable';
 
 export const StyledLogo = styled.div`
-  @media screen and (min-width: 768px) {
-    font-size: 2em;
-    letter-spacing: 0.1em;
-  }
-  @media screen and (min-width: 1024px) {
-    font-size: 3em;
-    letter-spacing: 0.15em;
-  }
-  font-size: 1em;
+  font-size: 4em;
   letter-spacing: 0.05em;
   a {
     ${flex('row', 'flex-start', 'center')};

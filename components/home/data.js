@@ -43,7 +43,7 @@ export const BANNER_SECTION_BUTTON_DATA = {
       blue: 201,
     },
     waveOption: {
-      height: 5,
+      height: 3,
       amplitude: 10,
       speed: 0.3,
       points: 2,

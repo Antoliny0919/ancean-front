@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import { SectionRefContext } from '../../pages/index';
 import MoveSectionButton from '../button/MoveSectionButton';
 import Logo from '../common/Logo';
-import OceanWaveButton, {
-  StyledOceanWaveButton,
-} from '../button/OceanWaveButton';
+import OceanWaveButton from '../button/OceanWaveButton';
 import BannerAstrounautVer2 from '../../public/banner-astronaut-ver2.png';
 import { BANNER_SECTION_BUTTON_DATA } from './data';
 import { flex } from '../../styles/variable';
@@ -33,18 +31,6 @@ const StyledBannerArea = styled.section`
   ${flex('column', 'none', 'center')}
   font-family: 'GmarketSansMedium';
   color: ${({ theme }) => theme.colors.white};
-  ${StyledOceanWaveButton} {
-    @media screen and (min-width: 768px) {
-      font-size: 10px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 12px;
-    }
-    @media screen and (min-width: 1440px) {
-      font-size: 14px;
-    }
-    font-size: 8px;
-  }
 `;
 
 const StyledBannerInfo = styled.div`
@@ -55,11 +41,13 @@ const StyledBannerInfo = styled.div`
   height: 30%;
   .title-text {
     height: 80%;
+    font-size: inherit;
     ${flex('column', 'center', 'center')};
   }
   .title-section-link {
     display: flex;
     justify-content: center;
+    font-size: inherit;
     & > * {
       margin-right: 1.5em;
     }
@@ -87,9 +75,7 @@ export default function BannerMain() {
       <StyledBannerInfo>
         <div className="title-text">
           <p>Antoliny&#39;s Experience Storage Space</p>
-          <div style={{ 'font-size': '30px' }}>
-            <Logo />
-          </div>
+          <Logo />
         </div>
         <div className="title-section-link">
           {Object.keys(BANNER_SECTION_BUTTON_DATA).map((sectionName, index) => {

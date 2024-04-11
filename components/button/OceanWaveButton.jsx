@@ -3,7 +3,7 @@ import Wave from 'react-wavify';
 import { flex, shadow } from '../../styles/variable';
 
 export const StyledOceanWaveButton = styled.div`
-  font-size: inherit;
+  font-size: 0.7em;
   font-family: 'Raleway';
   color: ${({ theme }) => theme.colors.white};
   width: 7em;
@@ -28,6 +28,9 @@ export const StyledOceanWaveButton = styled.div`
       height: 3em;
       border-radius: 10px;
     }
+  }
+  & + & {
+    margin-left: 1em;
   }
 `;
 
