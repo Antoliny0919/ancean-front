@@ -74,7 +74,7 @@ export default function SignIn() {
   return (
     <StyledSignInLayout>
       <StyledSignInForm onSubmit={onSubmit}>
-        <Logo />
+        <Logo waveHeight={30} />
         {INPUTS_DATA.map(({ labelProps, inputProps }, index) => {
           return (
             <LabelSlideInput

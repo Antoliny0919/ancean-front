@@ -1,19 +1,14 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import Logo, { StyledLogoArea } from '../common/Logo';
+import Logo from '../common/Logo';
 import SignatureTextButton from '../button/SignatureTextButton';
-import LenticularButton, {
-  StyledLenticularButton,
-} from '../button/LenticularButton';
+import LenticularButton from '../button/LenticularButton';
 import { NAVBAR_EXCEPT_ROUTE, NAVBAR_SIDEBAR_PROPS } from './data';
 
 const StyledNavbar = styled.nav`
-  @media screen and (max-width: 768px) {
-    justify-content: center;
-    height: 100px;
-  }
-  @media screen and (min-width: 1024px) {
-    font-size: 24px;
+  @media screen and (min-width: 768px) {
+    font-size: 12px;
+    justify-content: space-between;
   }
   ${(props) =>
     // if currentPath is home --> apply absolute position(overlapping the top and navbar)
@@ -24,24 +19,13 @@ const StyledNavbar = styled.nav`
     `}
   width: 100%;
   height: 100px;
+  font-size: 14px;
   padding: 0.5em 3em;
   max-width: 2048px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-family: 'Pretendard-Bold';
-  ${StyledLogoArea} {
-    @media screen and (min-width: 450px) {
-      font-size: 50px;
-    }
-    @media screen and (min-width: 768px) {
-      font-size: 40px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 50px;
-    }
-    font-size: 40px;
-  }
 `;
 
 const StyledNavSideBar = styled.div`
@@ -52,14 +36,9 @@ const StyledNavSideBar = styled.div`
   align-items: center;
   letter-spacing: 2px;
   font-weight: 700;
+  font-size: 1.2em;
   a + a {
     margin-left: 40px;
-  }
-  ${StyledLenticularButton} {
-    @media screen and (min-width: 1024px) {
-      font-size: 16px;
-    }
-    font-size: 13px;
   }
 `;
 
@@ -70,12 +49,12 @@ export default function Navbar({ currentPathName }) {
       {NAVBAR_EXCEPT_ROUTE.includes(currentPathName) || (
         <StyledNavbar $currentPathName={currentPathName}>
           {/* the home path has a layout, but the logo is not shown */}
-          {currentPathName !== '/' ? <Logo /> : <div></div>}
+          {currentPathName !== '/' ? <Logo waveHeight={30} /> : <div></div>}
           <StyledNavSideBar>
             {NAVBAR_SIDEBAR_PROPS.map(({ name, href, hsl }, index) => {
               return (
                 <Link href={href} key={index}>
-                  <SignatureTextButton key={index} hsl={hsl} fontSize={24}>
+                  <SignatureTextButton key={index} hsl={hsl}>
                     {name}
                   </SignatureTextButton>
                 </Link>

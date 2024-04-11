@@ -55,7 +55,7 @@ export const StyledLogo = styled.div`
   }
 `;
 
-export default function Logo({ style = {} }) {
+export default function Logo({ waveHeight, style = {} }) {
   return (
     <StyledLogo style={{ ...style }}>
       <Link href="/">
@@ -65,7 +65,7 @@ export default function Logo({ style = {} }) {
             paused={false}
             className="wave"
             options={{
-              height: 30,
+              height: waveHeight,
               amplitude: 3,
               speed: 0.4,
               points: 2,

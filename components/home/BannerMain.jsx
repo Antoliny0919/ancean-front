@@ -75,7 +75,7 @@ export default function BannerMain() {
       <StyledBannerInfo>
         <div className="title-text">
           <p>Antoliny&#39;s Experience Storage Space</p>
-          <Logo />
+          <Logo waveHeight={30} />
         </div>
         <div className="title-section-link">
           {Object.keys(BANNER_SECTION_BUTTON_DATA).map((sectionName, index) => {

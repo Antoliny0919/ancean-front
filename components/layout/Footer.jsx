@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaStackOverflow } from 'react-icons/fa';
 import { IoLogoGithub } from 'react-icons/io5';
-import Logo, { StyledLogoArea } from '../common/Logo';
+import Logo from '../common/Logo';
 import { CATEGORY_DATA } from '../category/data';
 
 const StyledFooter = styled.footer`
@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
-  color: #f8f8f8;
+  color: ${({ theme }) => theme.colors.white};
   font-family: 'RaleWay';
   margin-top: 100px;
   .content {
@@ -25,13 +25,6 @@ const StyledFooter = styled.footer`
     width: 1024px;
     padding: 2em 2em;
     flex-direction: column;
-  }
-  ${StyledLogoArea} {
-    @media screen and (min-width: 768px) {
-      padding-top: 20px;
-      margin-bottom: 10px;
-    }
-    font-size: 28px;
   }
 `;
 
@@ -54,6 +47,10 @@ const StyledContentBox = styled.div`
       display: flex;
       flex-direction: column;
     }
+    font-size: 8px;
+    p {
+      font-size: 12px;
+    }
   }
   .title {
     font-size: 16px;
@@ -74,7 +71,7 @@ const StyledContentBox = styled.div`
     }
   }
   a {
-    color: #f8f8f8;
+    color: ${({ theme }) => theme.colors.white};
   }
   a:hover {
     text-decoration: underline;
@@ -140,8 +137,8 @@ export default function Footer() {
       <div className="content">
         <StyledContentBox>
           <div className="symbol">
-            <Logo />
-            <div>Language : Korea</div>
+            <Logo waveHeight={10} />
+            <p>Language : Korea</p>
           </div>
         </StyledContentBox>
         <StyledContentBox>

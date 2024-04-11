@@ -11,60 +11,46 @@ import { client, server } from '../../api/client';
 import { CATEGORY_POSTER_SORT_BUTTON_PROPS } from '../../components/poster/data';
 import { flex } from '../../styles/variable';
 
-const StyledCategoryPageArea = styled.div`
-  @media screen and (min-width: 768px) {
-    padding: 3em 5em;
+const StyledCategoryPageHeader = styled.header`
+  @media screen and (min-width: 450px) {
+    font-size: 16px;
   }
-  padding: 0;
-`;
-
-const StyledCategoryPageHeader = styled.div`
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
     flex-direction: row;
+    font-size: 20px;
+    padding: 2em;
   }
+  padding: 0 2em 2em 2em;
   ${flex('column', 'center', 'center')};
-  font-family: 'Pretendard-Bold';
-  .logo {
-    width: 15%;
-    height: 15%;
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  }
+  font-size: 12px;
   .post-sort-button {
     @media screen and (min-width: 768px) {
-      margin: 0;
+      margin-left: 3em;
     }
     display: flex;
-    margin: 0 0 2em 0;
+    flex-direction: row;
+  }
+  ${StyledOceanWaveButton} {
+    font-family: 'Pretendard-Bold';
   }
   ${StyledCategoryText} {
     @media screen and (min-width: 768px) {
-      font-size: 74px;
-      letter-spacing: 10px;
-      margin: 0.5em 0.5em 0.5em 0;
+      margin-bottom: 0em;
     }
-    @media screen and (min-width: 1024px) {
-      font-size: 100px;
-      letter-spacing: 15px;
-    }
-    font-size: 50px;
-    letter-spacing: 7px;
-    margin: 0.5em 0;
+    margin-bottom: 0.3em;
+    font-size: 3.5em;
   }
-  ${StyledOceanWaveButton} {
-    @media screen and (min-width: 768px) {
-      font-size: 12px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 16px;
-    }
-    margin-right: 30px;
-    color: ${({ theme }) => theme.colors.lightBlack};
+`;
+
+const StyledCategoryPageBody = styled.body`
+  @media screen and (min-width: 450px) {
     font-size: 10px;
   }
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+  font-size: 8px;
 `;
 
 export default function Name(props) {
@@ -85,7 +71,7 @@ export default function Name(props) {
   });
 
   return (
-    <StyledCategoryPageArea>
+    <>
       <StyledCategoryPageHeader>
         <CategoryText name={categoryName} />
         <div className="post-sort-button">
@@ -102,12 +88,14 @@ export default function Name(props) {
           })}
         </div>
       </StyledCategoryPageHeader>
-      <CategoryPoster
-        poster={poster}
-        categoryName={categoryName}
-        target={lastPostTarget}
-      ></CategoryPoster>
-    </StyledCategoryPageArea>
+      <StyledCategoryPageBody>
+        <CategoryPoster
+          poster={poster}
+          categoryName={categoryName}
+          target={lastPostTarget}
+        ></CategoryPoster>
+      </StyledCategoryPageBody>
+    </>
   );
 }
 

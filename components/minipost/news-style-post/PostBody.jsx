@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import CreateDate from '@/components/common/Date';
 import { miniPostContent } from '@/styles/variable';
 
 const StyledPostBodyArea = styled.div`
@@ -34,16 +35,18 @@ const StyledPostBodyArea = styled.div`
 `;
 
 export default function PostBody({ content, title, created_at }) {
-  const date = new Date(created_at);
+  const date = CreateDate(created_at);
 
   return (
     <StyledPostBodyArea>
       <div className="title">{title}</div>
       <div className="content">{content}</div>
-      <div className="created-date">
-        작성일: {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}
-        일
-      </div>
+      {date && (
+        <div className="created-date">
+          작성일: {date.getFullYear()}년 {date.getMonth() + 1}월{' '}
+          {date.getDate()}일
+        </div>
+      )}
     </StyledPostBodyArea>
   );
 }

@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
 import { shadow, flex } from '@/styles/variable';
 
+const StyledPoster = styled.div`
+  @media screen and (min-width: 768px) {
+    padding: 2rem 3rem;
+  }
+`;
+
 const StyledPosterBorder = styled.div`
   border-radius: 10px;
   ${({ $borderColor }) =>
@@ -38,13 +44,15 @@ export default function Poster({
   boxShadowProps,
 }) {
   return (
-    <StyledPosterBorder
-      $borderColor={borderColor}
-      $boxShadowProps={boxShadowProps}
-    >
-      <StyledPosterBody $backgroundColor={backgroundColor}>
-        {children}
-      </StyledPosterBody>
-    </StyledPosterBorder>
+    <StyledPoster>
+      <StyledPosterBorder
+        $borderColor={borderColor}
+        $boxShadowProps={boxShadowProps}
+      >
+        <StyledPosterBody $backgroundColor={backgroundColor}>
+          {children}
+        </StyledPosterBody>
+      </StyledPosterBorder>
+    </StyledPoster>
   );
 }

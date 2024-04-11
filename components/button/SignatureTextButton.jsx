@@ -3,11 +3,11 @@ import { shadow } from '@/styles/variable';
 
 const StyledSignatureTextButton = styled.button`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.$fontSize}px;
+  font-size: 1.5em;
   border: none;
   outline: none;
   background-color: transparent;
-  letter-spacing: 2px;
+  letter-spacing: 0.1em;
   transition: text-shadow 0.5s;
   font-weight: 700;
 
@@ -18,7 +18,7 @@ const StyledSignatureTextButton = styled.button`
   }
 `;
 
-export default function SignatureTextButton({ children, fontSize, hsl }) {
+export default function SignatureTextButton({ children, hsl }) {
   const { hue, saturation, lightness } = hsl;
 
   const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
@@ -34,7 +34,6 @@ export default function SignatureTextButton({ children, fontSize, hsl }) {
   return (
     <StyledSignatureTextButton
       color={color}
-      $fontSize={fontSize}
       $textShadow={textShadow}
       $textHoverShadow={textHoverShadow}
     >

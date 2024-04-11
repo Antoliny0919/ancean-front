@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 
-export default function CreateDate() {
+export default function CreateDate(requestDate) {
   const [date, setDate] = useState(null);
 
-  useEffect(() => setDate(new Date()), []);
+  useEffect(
+    () => setDate(requestDate ? new Date(requestDate) : new Date()),
+    [],
+  );
 
   return date;
 }
