@@ -11,7 +11,7 @@ const StyledSwiperButton = styled.button`
   svg {
     width: 2.5em;
     height: 2.5em;
-    color: ${(props) => props.color};
+    color: ${(props) => props.$buttonColor};
   }
   &:hover {
     cursor: pointer;
@@ -36,7 +36,7 @@ export default function SwiperButton({
     <>
       {direction === 'previous' ? (
         <StyledSwiperButton
-          color={color}
+          $buttonColor={color}
           onClick={() => swiper.slidePrev()}
           // if currentSlide number is 0 means previous slide does not exist
           disabled={currentSlide === 0 && true}
@@ -45,7 +45,7 @@ export default function SwiperButton({
         </StyledSwiperButton>
       ) : (
         <StyledSwiperButton
-          color={color}
+          $buttonColor={color}
           onClick={() => swiper.slideNext()}
           // if currentSlide number is lastSlideNum means next slide does not exist
           disabled={currentSlide === lastSlideNum && true}

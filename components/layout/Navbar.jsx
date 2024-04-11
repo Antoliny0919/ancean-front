@@ -62,8 +62,8 @@ export default function Navbar({ currentPathName }) {
             })}
             <Link href={'/'}>
               <LenticularButton
-                offText="ABOUT ME"
-                onText="ANTOLINY0919"
+                beforeText="ABOUT ME"
+                afterText="ANTOLINY0919"
                 backgroundColor={({ theme }) => theme.colors.lightWhite}
                 borderColor="#3e3e3e"
               />

@@ -94,7 +94,13 @@ export default function BannerMain() {
         </div>
       </StyledBannerInfo>
       <StyledBannerProfile>
-        <Image src={BannerAstrounautVer2} width={0} height={0}></Image>
+        <Image
+          src={BannerAstrounautVer2}
+          width={0}
+          height={0}
+          priority
+          alt="no"
+        ></Image>
       </StyledBannerProfile>
     </StyledBannerArea>
   );

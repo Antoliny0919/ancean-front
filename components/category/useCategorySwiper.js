@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
 
-export default function categorySwiperContainer(
+export default function useCategorySwiper(
   categories,
   slideChangeExtraAction = null,
 ) {

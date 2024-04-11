@@ -33,7 +33,7 @@ export const StyledLenticularButton = styled.button`
   &::before {
     position: absolute;
     // content value string type is not delivered to props so use dataset
-    content: attr(data-offText);
+    content: attr(data-offtext);
     transition-property: opacity;
     transition-delay: 0.15s;
     transition-duration: 0.5s;
@@ -43,7 +43,7 @@ export const StyledLenticularButton = styled.button`
 
   &::after {
     position: relative;
-    content: attr(data-onText);
+    content: attr(data-ontext);
     opacity: 0;
     z-index: 5;
     transition-property: opacity;
@@ -53,15 +53,15 @@ export const StyledLenticularButton = styled.button`
 `;
 
 export default function LenticularButton({
-  onText,
-  offText,
+  beforeText,
+  afterText,
   backgroundColor,
   borderColor,
 }) {
   return (
     <StyledLenticularButton
-      data-onText={onText}
-      data-offText={offText}
+      data-ontext={afterText}
+      data-offtext={beforeText}
       $backgroundColor={backgroundColor}
       $borderColor={borderColor}
     />

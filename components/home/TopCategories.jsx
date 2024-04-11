@@ -3,7 +3,7 @@ import { EffectCoverflow, Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
 import FlipCategoryCard from '../category/FlipCategoryCard';
 import HomeSectionHeader from './SectionHeader';
-import categorySwiperContainer from '../category/categorySwiperContainer';
+import useCategorySwiper from '../category/useCategorySwiper';
 import { CATEGORY_DATA } from '../category/data';
 
 import 'swiper/css';
@@ -28,7 +28,7 @@ const StyledTopCategoriesArea = styled.div`
 
 export default function TopCategories({ categories }) {
   const { categoryName, onSwiper, onSlideChange } =
-    categorySwiperContainer(categories);
+    useCategorySwiper(categories);
 
   return (
     <StyledTopCategoriesArea
@@ -47,7 +47,9 @@ export default function TopCategories({ categories }) {
           effect={'coverflow'}
           slideToClickedSlide={true}
           centeredSlides={true}
-          loop={true}
+          // the loop property is affected by the slidesPerView value and must exist in a certain number to apply
+          // so it's applied when the number of categories increases
+          // loop={true}
           coverflowEffect={{
             rotate: 50,
             stretch: 100,

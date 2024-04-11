@@ -11,7 +11,7 @@ import { client, server } from '../../api/client';
 import { CATEGORY_POSTER_SORT_BUTTON_PROPS } from '../../components/poster/data';
 import { flex } from '../../styles/variable';
 
-const StyledCategoryPageHeader = styled.header`
+const StyledCategoryPageHeader = styled.div`
   @media screen and (min-width: 450px) {
     font-size: 16px;
   }
@@ -43,7 +43,7 @@ const StyledCategoryPageHeader = styled.header`
   }
 `;
 
-const StyledCategoryPageBody = styled.body`
+const StyledCategoryPageBody = styled.div`
   @media screen and (min-width: 450px) {
     font-size: 10px;
   }
@@ -128,7 +128,7 @@ export const getStaticProps = async ({ params }) => {
         posts: { ...categoryPosts },
         categoryName: params.name.toUpperCase(),
       },
-      revalidate: 10,
+      revalidate: 1,
     };
   } catch (err) {
     return { notFound: true };
