@@ -138,7 +138,7 @@ const editorSlice = createSlice({
         ...state,
         title,
         introduce,
-        selectedCategor: category,
+        selectedCategory: category,
         headerImagePath: header_image,
         headerImage: headerImageName,
         content: content.blocks,
