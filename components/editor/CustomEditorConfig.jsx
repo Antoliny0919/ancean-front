@@ -43,6 +43,8 @@ export default function CustomEditorConfig({ imageUploader, content }) {
 
   useEffect(() => {
     if (instance && content.length !== 0) {
+      console.log(instance);
+      console.log(content);
       instance.render({ blocks: content });
     }
     return () => {

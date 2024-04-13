@@ -5,12 +5,8 @@ const StyledPostFooterArea = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 8px;
+  font-size: 0.6em;
   padding: 0.5em 1em 0.5em 1em;
-  @media screen and (min-width: 768px) {
-    font-size: 13px;
-    padding: 0.5em 1em 0.5em 1em;
-  }
   border-top: solid ${({ theme }) => theme.colors.lightGray} 0.1em;
   font-family: 'GmarketSansMedium';
   align-items: center;

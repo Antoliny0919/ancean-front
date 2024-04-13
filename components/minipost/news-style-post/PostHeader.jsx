@@ -9,10 +9,7 @@ const StyledPostHeaderArea = styled.div`
   img {
     width: 90%;
     border-top-left-radius: 8px;
-    height: 150px;
-    @media screen and (min-width: 768px) {
-      height: 250px;
-    }
+    height: 14em;
   }
 `;
 
@@ -30,7 +27,7 @@ const StyledMinibarArea = styled.div`
     }
   }
   .state + .state {
-    margin-top: 1rem;
+    margin-top: 1em;
   }
 `;
 

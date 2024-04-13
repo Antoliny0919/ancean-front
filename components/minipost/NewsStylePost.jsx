@@ -6,19 +6,19 @@ import PostFooter from './news-style-post/PostFooter';
 import { shadow } from '../../styles/variable';
 
 const StyledPostArea = styled.article`
-  display: flex;
-  flex-direction: column;
   @media screen and (min-width: 768px) {
     font-size: 18px;
-    width: 25em;
+    ${shadow.signatureBoxShadow(7)};
   }
+  display: flex;
+  flex-direction: column;
   font-size: 12px;
-  width: 20em;
+  width: 24em;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.colors.lightWhite};
   color: ${({ theme }) => theme.colors.black};
   border: 2px solid #273237;
-  ${shadow.signatureBoxShadow(6)};
+  ${shadow.signatureBoxShadow(4)};
   transition:
     transform 0.5s ease-out,
     background-color 0.35s,
@@ -33,9 +33,12 @@ const StyledPostArea = styled.article`
           transform: rotateZ(1deg);
         `}
   &:hover {
+    @media screen and (min-width: 768px) {
+      ${shadow.signatureBoxShadow(9)};
+    }
     transform: rotateZ(0deg);
     background-color: white;
-    ${shadow.signatureBoxShadow(9)};
+    ${shadow.signatureBoxShadow(7)};
   }
 `;
 

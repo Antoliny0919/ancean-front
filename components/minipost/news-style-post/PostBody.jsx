@@ -4,31 +4,25 @@ import { miniPostContent } from '@/styles/variable';
 
 const StyledPostBodyArea = styled.div`
   width: 100%;
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  height: 13em;
   .title {
-    @media screen and (min-width: 768px) {
-      font-size: 18px;
-    }
-    font-size: 12px;
+    font-size: 1.2em;
     ${miniPostContent.titleEllipsis};
     font-family: 'Pretendard-Bold';
     margin-bottom: 0.7em;
   }
   .content {
-    @media screen and (min-width: 768px) {
-      font-size: 14px;
-    }
-    height: 8em;
-    font-size: 10px;
+    height: 80%;
+    font-size: 0.8em;
     ${miniPostContent.contentEllipsis(5)};
     font-family: 'Pretendard-Light';
-    margin-bottom: 0.7em;
+    margin-bottom: 1.5em;
   }
   .created-date {
-    @media screen and (min-width: 768px) {
-      font-size: 12px;
-    }
-    font-size: 9px;
+    font-size: 0.6em;
     font-family: 'Pretendard-Light';
     color: ${({ theme }) => theme.colors.gray};
   }
