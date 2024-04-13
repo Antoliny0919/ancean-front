@@ -17,7 +17,7 @@ const StyledProgressBar = styled.div`
     position: relative;
     display: block;
     background: ${(props) => props.color};
-    width: ${(props) => props.percentage};
+    width: ${(props) => props.$percentage};
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     z-index: 1;
@@ -49,7 +49,7 @@ export default function ProgressBar({ percentage, color }) {
   });
 
   return (
-    <StyledProgressBar percentage={progressState} color={color} ref={target}>
+    <StyledProgressBar $percentage={progressState} color={color} ref={target}>
       <div className="before"></div>
       <div className="after"></div>
     </StyledProgressBar>

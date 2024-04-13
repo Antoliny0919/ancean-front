@@ -27,10 +27,10 @@ const StyledPostArea = styled.article`
   ${(props) =>
     props.rotate && props.rotate === 'under-degree'
       ? css`
-          transform: rotateZ(-1deg);
+          transform: rotateZ(-1.5deg);
         `
       : css`
-          transform: rotateZ(1deg);
+          transform: rotateZ(1.5deg);
         `}
   &:hover {
     @media screen and (min-width: 768px) {

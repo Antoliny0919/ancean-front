@@ -80,7 +80,7 @@ export default function TopCategories({ categories }) {
                   name={name}
                   color={color}
                   postCount={post_count}
-                  props={{ isActive: isActive }}
+                  props={{ $isActive: isActive }}
                 ></FlipCategoryCard>
               )}
             </SwiperSlide>

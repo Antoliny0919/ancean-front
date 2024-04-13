@@ -31,17 +31,11 @@ const StyledMySkill = styled.div`
     ${flex('column', 'flex-start', 'column')};
   }
   .skill-section {
-    @media screen and (min-width: 768px) {
-      font-size: 24px;
-    }
-    @media screen and (min-width: 1024px) {
-      font-size: 32px;
-    }
     display: flex;
     justify-content: center;
     width: 100%;
     margin: 1em 0;
-    font-size: 20px;
+    font-size: 2em;
     letter-spacing: 3px;
     color: ${({ theme }) => theme.colors.lightWhite};
     ${shadow.signatureTextShadow(4)};
@@ -72,16 +66,14 @@ export default function MySkill() {
       <Swiper onSlideChange={(slide) => setSlideNumber(slide.activeIndex)}>
         {Object.keys(MY_SKILL_DATA).map((name, index) => {
           return (
-            <>
-              <SwiperSlide key={index}>
-                <div className="skill-section">&lt;{name}&#47;&gt;</div>
-                <ul>
-                  {MY_SKILL_DATA[name].map((skill, index) => {
-                    return <SkillProgress key={index} skill={skill} />;
-                  })}
-                </ul>
-              </SwiperSlide>
-            </>
+            <SwiperSlide key={index}>
+              <div className="skill-section">&lt;{name}&#47;&gt;</div>
+              <ul>
+                {MY_SKILL_DATA[name].map((skill, index) => {
+                  return <SkillProgress key={index} skill={skill} />;
+                })}
+              </ul>
+            </SwiperSlide>
           );
         })}
         <StyledSwiperButtonArea>

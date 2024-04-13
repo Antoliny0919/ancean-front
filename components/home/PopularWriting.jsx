@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 const StyledPopularWritingArea = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 14px;
   width: 100%;
 `;
 
@@ -18,10 +19,7 @@ const ContentArea = styled.div`
   flex-direction: column;
   width: 100%;
   .wave {
-    @media screen and (min-width: 768px) {
-      height: 400px;
-    }
-    height: 250px;
+    height: 25em;
     bottom: 0;
     position: absolute;
     max-width: 2048px;
@@ -50,7 +48,6 @@ export default function PopularWriting({ posts }) {
         <StyledPostSwiper className="fade-in-slide-down-suspend">
           <Swiper
             modules={[Navigation]}
-            loop={true}
             className="slide-news-style-post"
             spaceBetween={500}
             breakpoints={{

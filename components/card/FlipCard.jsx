@@ -11,7 +11,7 @@ const StyledFlipCard = styled.div`
   opacity: 0.5;
   ${(props) =>
     // active slide opacity 1(center located)
-    props.isActive &&
+    props.$isActive &&
     css`
       opacity: 1;
     `};

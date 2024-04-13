@@ -49,10 +49,7 @@ export default function FlipCategoryCard({ name, postCount, props = {} }) {
         <StyledCategoryCard color={color} $buttonBackground={transparentColor}>
           <ColorText color={color}>{name}</ColorText>
           <ColorText color={color}>{postCount}개의 포스트</ColorText>
-          <Link
-            href={`/category/${name.toLowerCase()}`}
-            style={{ position: 'relative' }}
-          >
+          <Link href={`/category/${name.toLowerCase()}`}>
             <CategoryButton style={{ padding: '8px 12px' }} name={name}>
               GO {name}
             </CategoryButton>
