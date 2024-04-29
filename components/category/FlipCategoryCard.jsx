@@ -16,6 +16,7 @@ const StyledCategoryCard = styled.div`
   ${flex('column', 'center', 'center')};
   // The front of the category card has each color(props.$backgroundColor)
   // but back, all cards are in the same color(#484848)
+  font-family: 'RaleWay';
   background: ${(props) =>
     props.$backgroundColor ? props.$backgroundColor : '#484848'};
   border-radius: 10px;

@@ -9,13 +9,14 @@ const StyledPostBodyArea = styled.div`
   padding: 1em;
   height: 13em;
   .title {
+    height: 20%;
     font-size: 1.2em;
     ${miniPostContent.titleEllipsis};
     font-family: 'Pretendard-Bold';
     margin-bottom: 0.7em;
   }
   .content {
-    height: 80%;
+    height: 75%;
     font-size: 0.8em;
     ${miniPostContent.contentEllipsis(5)};
     font-family: 'Pretendard-Light';

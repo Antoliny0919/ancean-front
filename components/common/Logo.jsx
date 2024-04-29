@@ -15,6 +15,7 @@ export const StyledLogo = styled.div`
     font-weight: 100;
     color: #205a82;
     margin: 0;
+    margin-left: 10px;
   }
   h1::after {
     content: 'Cean';
@@ -40,7 +41,6 @@ export const StyledLogo = styled.div`
     height: 1em;
     background-color: #29beaa;
     border-radius: 10%;
-    margin-right: 10px;
     .wave {
       width: 100%;
       height: 100%;

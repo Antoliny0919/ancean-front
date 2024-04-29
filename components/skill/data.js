@@ -6,61 +6,41 @@ export const MY_SKILL_DATA = {
     },
     {
       name: 'TYPESCRIPT',
-      percentage: '46%',
+      percentage: '33%',
     },
     {
-      name: 'RUST',
+      name: 'GOLANG',
       percentage: '23%',
     },
   ],
   INFRASTRUCTURE: [
     {
       name: 'DOCKER',
-      percentage: '70%',
-    },
-    {
-      name: 'KUBERNETES',
-      percentage: '60%',
-    },
-    {
-      name: 'HELM',
       percentage: '45%',
     },
     {
-      name: 'PROMETHEUS',
-      percentage: '43%',
-    },
-    {
-      name: 'GRAFANA',
-      percentage: '39%',
-    },
-    {
-      name: 'JENKINS',
-      percentage: '32%',
+      name: 'KUBERNETES',
+      percentage: '30%',
     },
   ],
   FRONTEND: [
     {
       name: 'REACT',
-      percentage: '67%',
-    },
-    {
-      name: 'SCSS',
-      percentage: '62%',
+      percentage: '60%',
     },
     {
       name: 'REDUX',
-      percentage: '55%',
+      percentage: '43%',
     },
     {
       name: 'NEXT.JS',
-      percentage: '53%',
+      percentage: '32%',
     },
   ],
   BACKEND: [
     {
       name: 'DJANGO',
-      percentage: '80%',
+      percentage: '65%',
     },
     {
       name: 'FLASK',

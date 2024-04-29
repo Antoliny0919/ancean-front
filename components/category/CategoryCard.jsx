@@ -8,6 +8,7 @@ const StyledCategoryCard = styled.div`
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  font-family: 'RaleWay';
   ${flex('column', 'center', 'center')};
   ${shadow.signatureBoxShadow(5)};
   color: ${({ theme }) => theme.colors.white};
@@ -19,7 +20,7 @@ const StyledCategoryCard = styled.div`
 
 export default function CategoryCard({ name }) {
   return (
-    <Card style={{ width: '280px' }}>
+    <Card>
       <StyledCategoryCard color={CATEGORY_DATA[name]['color']}>
         <div>{CATEGORY_DATA[name]['logo']}</div>
         <div>{name}</div>

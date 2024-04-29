@@ -9,7 +9,7 @@ import axios from 'axios';
 //   local: 'localhost:5050',
 //   dev: 'localhost:6060',
 // };
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export const server = axios.create();
 
@@ -17,6 +17,8 @@ export const client = axios.create();
 
 server.defaults.baseURL = `http://api-local:8000`;
 client.defaults.baseURL = `http://localhost:5050`;
+// server.defaults.baseURL = `https://www.ancean.net`;
+// client.defaults.baseURL = `https://www.ancean.net`;
 
 // const MEDIA_ROOT = `${client.defaults.baseURL}/media`;
 

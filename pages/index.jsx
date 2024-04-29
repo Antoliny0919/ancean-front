@@ -76,7 +76,6 @@ export const getStaticProps = async () => {
     popularWriting: 'ordering=-wave&limit=10',
     latestPosts: 'ordering=-created_at&limit=3',
   };
-
   let posts = {};
 
   for (const [section, query] of Object.entries(queries)) {
@@ -84,12 +83,13 @@ export const getStaticProps = async () => {
     const { results } = response.data;
     posts = { ...posts, [section]: results };
   }
-
   const response = await server.get(
     `/api/category/?ordering=-post_count&limit=7`,
   );
   const data = await response.data;
   const categories = data.results;
 
-  return { props: { categories, posts }, revalidate: 10 };
+  console.log(data);
+
+  return { props: { categories, posts }, revalidate: 3 };
 };

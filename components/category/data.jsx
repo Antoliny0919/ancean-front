@@ -15,6 +15,7 @@ import {
   SiRedux,
   SiFlask,
 } from 'react-icons/si';
+import { FaGolang } from 'react-icons/fa6';
 
 export const CATEGORY_DATA = {
   REACT: {
@@ -163,6 +164,16 @@ export const CATEGORY_DATA = {
       hue: 0,
       saturation: 0,
       lightness: 16,
+    },
+  },
+  GOLANG: {
+    logo: <FaGolang></FaGolang>,
+    color: '#00ADD8',
+    transparentColor: 'rgba(0, 173, 216, 0.3)',
+    hsl: {
+      hue: 192,
+      saturation: 100,
+      lightness: 42,
     },
   },
 };

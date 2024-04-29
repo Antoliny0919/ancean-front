@@ -127,8 +127,8 @@ export default function Footer() {
       title: 'Next.js',
     },
     {
-      logo: CATEGORY_DATA['KUBERNETES']['logo'],
-      title: 'Kubernetes',
+      logo: CATEGORY_DATA['DOCKER']['logo'],
+      title: 'DockerSwarm',
     },
   ];
 
