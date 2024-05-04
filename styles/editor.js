@@ -121,6 +121,10 @@ const EditorCSS = css`
     margin-bottom: 0;
   }
 
+  .cdx-quote > .cdx-quote__text::before {
+    display: none;
+  }
+
   // quote
 
   .ce-block__content > .cdx-quote {
@@ -147,6 +151,13 @@ const EditorCSS = css`
   }
   .ce-block__content > .cdx-warning::before {
     background-image: none;
+  }
+  .cdx-warning > .cdx-warning__title::before {
+    display: none;
+  }
+
+  .cdx-warning > .cdx-warning__message::before {
+    display: none;
   }
 
   .cdx-warning__title {
@@ -236,6 +247,14 @@ const EditorCSS = css`
     background-color: #fff;
     border: 1px solid #e8e8eb;
     box-shadow: 0 3px 15px -3px #0d142121;
+  }
+
+  .image-tool__image {
+    width: 650px;
+  }
+  .image-tool-filled {
+    display: flex;
+    justify-content: center;
   }
 `;
 

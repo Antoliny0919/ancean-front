@@ -32,7 +32,8 @@ const StyledCategoryPageHeader = styled.div`
     flex-direction: row;
   }
   ${StyledOceanWaveButton} {
-    font-family: 'Pretendard-Bold';
+    font-family: 'Raleway';
+    color: ${({ theme }) => theme.colors.white};
   }
   ${StyledCategoryText} {
     @media screen and (min-width: 768px) {

@@ -8,7 +8,7 @@ export default function ImageTool({ url }) {
           <Image
             src={url}
             props={{ className: 'image-tool__image-picture' }}
-            style={{ width: 'auto', height: 'auto' }}
+            style={{ height: 'auto', width: 'auto' }}
           ></Image>
         </div>
       </div>

@@ -1,6 +1,6 @@
 export const CATEGORY_POSTER_SORT_BUTTON_PROPS = [
   {
-    name: '인기순',
+    name: 'Popular',
     priorityProps: {
       rgb: { red: 102, green: 194, blue: 197 },
       waveOption: {
@@ -14,7 +14,7 @@ export const CATEGORY_POSTER_SORT_BUTTON_PROPS = [
       `category__name=${categoryName}&limit=3&ordering=-wave&is_finish=true`,
   },
   {
-    name: '최신순',
+    name: 'Latest',
     priorityProps: {
       rgb: { red: 58, green: 114, blue: 200 },
       waveOption: {
@@ -31,7 +31,7 @@ export const CATEGORY_POSTER_SORT_BUTTON_PROPS = [
 
 export const POSTER_SORT_BUTTON_PROPS = [
   {
-    name: '인기순',
+    name: 'Popular',
     priorityProps: {
       rgb: { red: 102, green: 194, blue: 197 },
       waveOption: {
@@ -44,7 +44,7 @@ export const POSTER_SORT_BUTTON_PROPS = [
     query: `limit=3&ordering=-wave&is_finish=true`,
   },
   {
-    name: '최신순',
+    name: 'Latest',
     priorityProps: {
       rgb: { red: 58, green: 114, blue: 200 },
       waveOption: {

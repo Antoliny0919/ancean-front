@@ -5,10 +5,6 @@ export const MY_SKILL_DATA = {
       percentage: '65%',
     },
     {
-      name: 'TYPESCRIPT',
-      percentage: '33%',
-    },
-    {
       name: 'GOLANG',
       percentage: '23%',
     },

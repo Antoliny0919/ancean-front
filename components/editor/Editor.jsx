@@ -111,7 +111,7 @@ const Editor = () => {
         ></input>
       </header>
       <main>
-        {access && (
+        {access && content && (
           <CustomEditorConfig imageUploader={imageUploader} content={content} />
         )}
       </main>

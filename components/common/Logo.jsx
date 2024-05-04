@@ -15,7 +15,6 @@ export const StyledLogo = styled.div`
     font-weight: 100;
     color: #205a82;
     margin: 0;
-    margin-left: 10px;
   }
   h1::after {
     content: 'Cean';
@@ -41,6 +40,7 @@ export const StyledLogo = styled.div`
     height: 1em;
     background-color: #29beaa;
     border-radius: 10%;
+    margin-right: 10px;
     .wave {
       width: 100%;
       height: 100%;
@@ -52,26 +52,29 @@ export const StyledLogo = styled.div`
     border-radius: 10%;
     position: absolute;
     bottom: 0;
+    margin-right: 0;
   }
 `;
 
-export default function Logo({ waveHeight, style = {} }) {
+export default function Logo({ waveHeight, wave = true, style = {} }) {
   return (
     <StyledLogo style={{ ...style }}>
       <Link href="/">
-        <div className="waterball">
-          <Wave
-            fill={'#27566B'}
-            paused={false}
-            className="wave"
-            options={{
-              height: waveHeight,
-              amplitude: 3,
-              speed: 0.4,
-              points: 2,
-            }}
-          ></Wave>
-        </div>
+        {wave && (
+          <div className="waterball">
+            <Wave
+              fill={'#27566B'}
+              paused={false}
+              className="wave"
+              options={{
+                height: waveHeight,
+                amplitude: 3,
+                speed: 0.4,
+                points: 2,
+              }}
+            ></Wave>
+          </div>
+        )}
         <h1></h1>
       </Link>
     </StyledLogo>

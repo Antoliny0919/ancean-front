@@ -63,7 +63,7 @@ const StyledCategoryPageHeader = styled.div`
       font-size: 16px;
     }
     margin-right: 30px;
-    color: ${({ theme }) => theme.colors.lightBlack};
+    font-family: 'Raleway';
     font-size: 10px;
   }
 `;

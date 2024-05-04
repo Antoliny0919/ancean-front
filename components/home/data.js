@@ -29,7 +29,7 @@ export const HOME_SECTION_DATA = {
       mainTitle: 'Latest Posts',
       subTitle: '',
       colorHSL: { hue: 237, saturation: 46, lightness: 56 },
-      style: { 'align-items': 'flex-start' },
+      style: { alignItems: 'flex-start' },
     },
   },
 };

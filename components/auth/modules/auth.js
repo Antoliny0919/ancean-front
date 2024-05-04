@@ -1,8 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { Cookies } from 'react-cookie';
 import * as authAPI from '../../../api/auth';
-
-const cookies = new Cookies();
 
 export const signin = createAsyncThunk(
   'auth/signin',
@@ -76,15 +73,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(signin.fulfilled, (_, { payload }) => {
-      const { refresh } = payload;
-      cookies.set('refresh', refresh, {
-        path: '/',
-        secure: false,
-        httpOnly: false,
-        sameSite: false,
-      });
-    });
     builder.addCase(signin.rejected, ({ signin }) => {
       signin.message = '존재하지 않는 유저입니다.';
       signin.password = '';

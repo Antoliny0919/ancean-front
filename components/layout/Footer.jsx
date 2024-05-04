@@ -137,7 +137,7 @@ export default function Footer() {
       <div className="content">
         <StyledContentBox>
           <div className="symbol">
-            <Logo waveHeight={10} />
+            <Logo waveHeight={10} wave={false} />
             <p>Language : Korea</p>
           </div>
         </StyledContentBox>
