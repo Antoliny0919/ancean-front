@@ -33,6 +33,11 @@ export const theme = {
       copyButtonBackground: '#5196E5',
       copyButtonBackgroundHover: '#5aa7ff',
     },
+    warning: {
+      base: '#e98114',
+      light: '#ff9425',
+      shallow: '#ffa546',
+    },
     socialBackground: '#4A7E9B',
     socialBackgroundHover: '#3C657A',
   },

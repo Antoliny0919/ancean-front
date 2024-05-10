@@ -161,22 +161,24 @@ const EditorCSS = css`
   }
 
   .cdx-warning__title {
+    display: flex;
+    align-items: center;
     font-family: 'Pretendard-Bold';
-    color: #ee801a;
-    background-color: white;
     padding: 10px 12px;
-  }
-  .cdx-warning > .cdx-warning__title {
-    margin-bottom: 0;
     border: none;
     border-radius: 0;
-    border: solid #ee801a 1px;
-    border-left: solid #ee801a 4px;
+    border: solid ${({ theme }) => theme.colors.warning.light} 1px;
+    border-left: solid ${({ theme }) => theme.colors.warning.light} 4px;
+    color: ${({ theme }) => theme.colors.warning.light};
+  }
+
+  .cdx-warning > .cdx-warning__title {
+    margin-bottom: 0;
   }
 
   .cdx-warning__message {
-    background-color: rgba(255, 219, 40, 0.1);
-    transition: background-color 0.7s;
+    background-color: rgba(255, 219, 40, 0.2);
+    color: ${({ theme }) => theme.colors.warning.shallow};
   }
 
   .cdx-warning > .cdx-warning__message {
@@ -189,10 +191,7 @@ const EditorCSS = css`
     font-size: 14px;
     font-family: 'Pretendard-Light';
     padding: 10px 12px;
-  }
-
-  .cdx-warning__message:hover {
-    background-color: rgba(255, 219, 40, 0.3);
+    min-height: 0;
   }
 
   // editorJS(Image Block)
