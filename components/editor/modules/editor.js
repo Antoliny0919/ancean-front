@@ -100,6 +100,7 @@ const editorSlice = createSlice({
   initialState,
   reducers: {
     changeValue: (state, { payload }) => {
+      console.log(payload.target);
       state[payload.target.name] = payload.target.value;
     },
     forcedChangeValue: (state, { payload: { name, value } }) => {

@@ -1,15 +1,20 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { changeOption } from '../../components/project/modules/project';
 import { flex } from '../../styles/variable';
 import ProjectButton from '../../components/project/ProjectButton';
 import { PROJECT_HOME_BUTTON_DATA } from '../../components/project/data';
 
 const StyledProjectCover = styled.main`
+  @media screen and (min-width: 450px) {
+    font-size: 12px;
+  }
   @media screen and (min-width: 768px) {
     font-size: 20px;
   }
   margin: 8rem 0;
   font-family: 'NanumBarunGothic';
-  font-size: 14px;
+  font-size: 8px;
 `;
 
 const StyledProject = styled.div`
@@ -18,6 +23,8 @@ const StyledProject = styled.div`
 `;
 
 export default function Project() {
+  const dispatch = useDispatch();
+
   return (
     <StyledProjectCover>
       <StyledProject>
@@ -27,7 +34,13 @@ export default function Project() {
               key={index}
               title={title}
               logo={logo}
-              buttonProps={buttonProps}
+              buttonProps={{
+                ...buttonProps,
+                props: {
+                  ...buttonProps.props,
+                  onClick: (e) => dispatch(changeOption(e.currentTarget.name)),
+                },
+              }}
             ></ProjectButton>
           );
         })}

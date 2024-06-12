@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import Wave from 'react-wavify';
 import { flex, shadow } from '../../styles/variable';
 
-export const StyledOceanWaveButton = styled.div`
+export const StyledOceanWaveButton = styled.button`
   font-size: 0.7em;
   font-family: 'Raleway';
   color: ${({ theme }) => theme.colors.white};
   width: 7em;
   border-radius: 10px;
+  padding: 0;
   ${flex('column', 'space-between', 'center')};
   outline: none;
   border: none;
@@ -20,7 +21,7 @@ export const StyledOceanWaveButton = styled.div`
     background-color: ${(props) => props.$hoverBackgroundColor};
   }
   .title {
-    margin-top: 0.5em;
+    margin: 0.6em 0;
   }
   .wave {
     height: 3em;
@@ -51,6 +52,7 @@ export default function OceanWaveButton({
       $backgroundColor={backgroundColor}
       $hoverBackgroundColor={hoverBackgroundColor}
       {...props}
+      data-name="helloworld"
     >
       <div className="title">{children}</div>
       <Wave

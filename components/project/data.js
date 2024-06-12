@@ -17,6 +17,9 @@ export const PROJECT_HOME_BUTTON_DATA = [
         speed: 0.5,
         points: 2,
       },
+      props: {
+        name: 'crate-project',
+      },
     },
   },
   {
@@ -33,6 +36,9 @@ export const PROJECT_HOME_BUTTON_DATA = [
         amplitude: 4,
         speed: 0.5,
         points: 2,
+      },
+      props: {
+        name: 'add-release',
       },
     },
   },
