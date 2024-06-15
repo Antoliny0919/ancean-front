@@ -4,6 +4,7 @@ import { changeOption } from '../../components/project/modules/project';
 import { flex } from '../../styles/variable';
 import ProjectButton from '../../components/project/ProjectButton';
 import { PROJECT_HOME_BUTTON_DATA } from '../../components/project/data';
+import ProjectSettingForm from '../../components/project/ProjectOptionForm';
 
 const StyledProjectCover = styled.main`
   @media screen and (min-width: 450px) {
@@ -44,6 +45,7 @@ export default function Project() {
             ></ProjectButton>
           );
         })}
+        <ProjectSettingForm />
       </StyledProject>
     </StyledProjectCover>
   );

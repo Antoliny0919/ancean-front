@@ -9,8 +9,7 @@ const projectSlice = createSlice({
   initialState,
   reducers: {
     changeOption: (state, { payload }) => {
-      console.log(payload);
-      // state[selectedOption] = payload;
+      state['selectedOption'] = payload;
     },
   },
 });
