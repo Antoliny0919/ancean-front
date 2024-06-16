@@ -15,8 +15,8 @@ const StyledProjectButton = styled.div`
   ${({ $isActive }) =>
     $isActive &&
     css`
-      width: 25em;
-      height: 25em;
+      width: 30em;
+      height: 30em;
     `}
   ${StyledOceanWaveButton} {
     font-size: inherit;
@@ -51,20 +51,20 @@ const StyledProjectButton = styled.div`
   }
 `;
 
-export default function ProjectButton({ logo, title, buttonProps = {} }) {
-  const activeButton = useSelector(({ project }) => project.selectedOption);
+export default function ProjectOption({ logo, title, optionProps = {} }) {
+  const activeOption = useSelector(({ project }) => project.selectedOption);
 
   const buttonState =
-    activeButton === null || activeButton === buttonProps.props.name;
+    activeOption === null || activeOption === optionProps.props.name;
 
   return (
     <>
       {buttonState && (
         <StyledProjectButton
-          $isActive={activeButton === buttonProps.props.name}
+          $isActive={activeOption === optionProps.props.name}
         >
-          {activeButton === null ? (
-            <OceanWaveButton {...buttonProps}>
+          {activeOption === null ? (
+            <OceanWaveButton {...optionProps}>
               {logo}
               <p>{title}</p>
             </OceanWaveButton>

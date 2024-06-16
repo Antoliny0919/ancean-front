@@ -2,9 +2,9 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { changeOption } from '../../components/project/modules/project';
 import { flex } from '../../styles/variable';
-import ProjectButton from '../../components/project/ProjectButton';
+import ProjectOption from '../../components/project/ProjectOption';
+import AuthGateway from '../../components/auth/AuthGateway';
 import { PROJECT_HOME_BUTTON_DATA } from '../../components/project/data';
-import ProjectSettingForm from '../../components/project/ProjectOptionForm';
 
 const StyledProjectCover = styled.main`
   @media screen and (min-width: 450px) {
@@ -27,26 +27,30 @@ export default function Project() {
   const dispatch = useDispatch();
 
   return (
-    <StyledProjectCover>
-      <StyledProject>
-        {PROJECT_HOME_BUTTON_DATA.map(({ title, logo, buttonProps }, index) => {
-          return (
-            <ProjectButton
-              key={index}
-              title={title}
-              logo={logo}
-              buttonProps={{
-                ...buttonProps,
-                props: {
-                  ...buttonProps.props,
-                  onClick: (e) => dispatch(changeOption(e.currentTarget.name)),
-                },
-              }}
-            ></ProjectButton>
-          );
-        })}
-        <ProjectSettingForm />
-      </StyledProject>
-    </StyledProjectCover>
+    <AuthGateway>
+      <StyledProjectCover>
+        <StyledProject>
+          {PROJECT_HOME_BUTTON_DATA.map(
+            ({ title, logo, buttonProps }, index) => {
+              return (
+                <ProjectOption
+                  key={index}
+                  title={title}
+                  logo={logo}
+                  optionProps={{
+                    ...buttonProps,
+                    props: {
+                      ...buttonProps.props,
+                      onClick: (e) =>
+                        dispatch(changeOption(e.currentTarget.name)),
+                    },
+                  }}
+                ></ProjectOption>
+              );
+            },
+          )}
+        </StyledProject>
+      </StyledProjectCover>
+    </AuthGateway>
   );
 }

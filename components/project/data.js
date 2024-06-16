@@ -43,3 +43,42 @@ export const PROJECT_HOME_BUTTON_DATA = [
     },
   },
 ];
+
+export const CREATE_OPTION_INPUT_DATA = [
+  {
+    labelProps: {
+      children: '제작자',
+      htmlFor: 'creator',
+    },
+    inputProps: {
+      name: 'creator',
+      type: 'text',
+      id: 'creator',
+      required: true,
+    },
+  },
+  {
+    labelProps: {
+      children: '제목',
+      htmlFor: 'title',
+    },
+    inputProps: {
+      name: 'title',
+      type: 'text',
+      id: 'title',
+      required: true,
+    },
+  },
+  {
+    labelProps: {
+      children: '시작일',
+      htmlFor: 'startDate',
+    },
+    inputProps: {
+      name: 'startDate',
+      type: 'text',
+      id: 'startDate',
+      required: true,
+    },
+  },
+];

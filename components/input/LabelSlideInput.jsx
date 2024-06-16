@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const StyledLabelSlideInput = styled.div`
+  position: relative;
   font-family: inherit;
   label {
     position: absolute;
