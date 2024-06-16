@@ -69,16 +69,28 @@ export const CREATE_OPTION_INPUT_DATA = [
       required: true,
     },
   },
-  {
-    labelProps: {
-      children: '시작일',
-      htmlFor: 'startDate',
-    },
-    inputProps: {
-      name: 'startDate',
-      type: 'text',
-      id: 'startDate',
-      required: true,
-    },
-  },
+  // {
+  //   labelProps: {
+  //     children: '시작일',
+  //     htmlFor: 'startDate',
+  //   },
+  //   inputProps: {
+  //     name: 'startDate',
+  //     type: 'text',
+  //     id: 'startDate',
+  //     required: true,
+  //   },
+  // },
 ];
+
+export const CREATE_OPTION_TEXTAREA_DATA = {
+  labelProps: {
+    children: '설명',
+    htmlFor: 'description',
+  },
+  textareaProps: {
+    name: 'description',
+    id: 'description',
+    placeholder: '프로젝트에 대한 간단한 설명을 입력해주세요!',
+  },
+};

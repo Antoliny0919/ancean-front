@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import LabelSlideInput from '../input/LabelSlideInput';
+import SimpleTextarea from '../input/SimpleTextarea';
 import { changeInputValue } from './modules/project';
-import { CREATE_OPTION_INPUT_DATA } from './data';
+import { CREATE_OPTION_INPUT_DATA, CREATE_OPTION_TEXTAREA_DATA } from './data';
 
 export default function ProjectCreateOption() {
   const dispatch = useDispatch();
@@ -11,6 +12,27 @@ export default function ProjectCreateOption() {
   const inputValue = {
     ...useSelector(({ project }) => project.createForm),
     creator: creator,
+  };
+
+  const onChangeValue = (e, name) => {
+    dispatch(
+      changeInputValue({
+        option: 'createForm',
+        name: name,
+        value: e.target.value,
+      }),
+    );
+  };
+
+  const descriptionName = CREATE_OPTION_TEXTAREA_DATA.textareaProps.name;
+
+  const descriptionData = {
+    ...CREATE_OPTION_TEXTAREA_DATA,
+    textareaProps: {
+      ...CREATE_OPTION_TEXTAREA_DATA.textareaProps,
+      value: inputValue[descriptionName],
+      onChange: (e) => onChangeValue(e, descriptionName),
+    },
   };
 
   return (
@@ -23,18 +45,12 @@ export default function ProjectCreateOption() {
             inputProps={{
               ...inputProps,
               value: inputValue[inputProps.name],
-              onChange: (e) =>
-                dispatch(
-                  changeInputValue({
-                    option: 'createForm',
-                    name: inputProps.name,
-                    value: e.target.value,
-                  }),
-                ),
+              onChange: (e) => onChangeValue(e, inputProps.name),
             }}
           />
         );
       })}
+      <SimpleTextarea {...descriptionData} />
     </>
   );
 }

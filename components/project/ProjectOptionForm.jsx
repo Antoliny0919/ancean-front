@@ -8,12 +8,11 @@ import { flex } from '../../styles/variable';
 const StyledOptionForm = styled.form`
   ${flex('column', 'center', 'center')};
   font-size: 20px;
+  font-family: 'SUIT-Regular';
 `;
 
 export default function ProjectOptionForm() {
   const dispatch = useDispatch();
-
-  // const activeSetting = useSelector(({ project }) => project.selectedOption);
 
   return (
     <StyledOptionForm>
