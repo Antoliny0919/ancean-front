@@ -18,7 +18,7 @@ export const PROJECT_HOME_BUTTON_DATA = [
         points: 2,
       },
       props: {
-        name: 'crate-project',
+        name: 'create-project',
       },
     },
   },
@@ -43,6 +43,25 @@ export const PROJECT_HOME_BUTTON_DATA = [
     },
   },
 ];
+
+export const PROJECT_HOME_TITLE_DATA = {
+  'create-project': {
+    children: '새로운 프로젝트 생성',
+    colorHSL: {
+      hue: 195,
+      saturation: 59,
+      lightness: 50,
+    },
+  },
+  'add-release': {
+    children: '프로젝트 릴리스 추가',
+    colorHSL: {
+      hue: 164,
+      saturation: 90,
+      lightness: 38,
+    },
+  },
+};
 
 export const CREATE_OPTION_INPUT_DATA = [
   {
