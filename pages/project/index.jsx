@@ -41,6 +41,7 @@ const StyledProjectTitle = styled.div`
   ${StyledSignatureText} {
     font-size: 4.5em;
     margin-bottom: 0.5em;
+    letter-spacing: 7px;
   }
 `;
 

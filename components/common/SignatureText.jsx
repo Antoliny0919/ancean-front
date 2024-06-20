@@ -27,12 +27,13 @@ export default function SignatureText({
   let textShadow = ``;
   for (let step = 1; step <= 10; step++) {
     let size = 0.01 * step;
-    if (step === 10) {
-      textShadow += `${size}em ${size}em ${size * 3}em rgba(0,0,0,.5);`;
-    }
     textShadow += `${size}em ${size}em hsl(${hue}, ${saturation}%, ${
       lightness - lightnessDecrease * step
     }%),`;
+    if (step === 10) {
+      textShadow = textShadow.slice(0, -1);
+      textShadow += ';';
+    }
   }
 
   return (

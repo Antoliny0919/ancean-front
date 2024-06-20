@@ -9,14 +9,14 @@ import { shadow } from '../../styles/variable';
 const StyledProjectButton = styled.div`
   width: 15em;
   height: 15em;
-  transition: all 1s;
+  transition: all 0.7s;
   ${shadow.signatureBoxShadow(4)};
   border-radius: 10px;
   ${({ $isActive }) =>
     $isActive &&
     css`
-      width: 30em;
-      height: 30em;
+      width: 28em;
+      height: 28em;
     `}
   ${StyledOceanWaveButton} {
     font-size: inherit;
