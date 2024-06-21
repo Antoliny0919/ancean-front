@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { changeOption } from '../../components/project/modules/project';
@@ -40,6 +41,8 @@ const StyledProjectTitle = styled.div`
     `}
   ${StyledSignatureText} {
     font-size: 4.5em;
+    /* font-family: "GmarketSansMedium"; */
+    font-family: 'Raleway';
     margin-bottom: 0.5em;
     letter-spacing: 7px;
   }
@@ -52,6 +55,8 @@ const StyledProject = styled.div`
 `;
 
 export default function Project() {
+  const [textTransitionTrigger, setTextTransitionTrigger] = useState(false);
+
   const dispatch = useDispatch();
 
   const selectedOption = useSelector(({ project }) => project.selectedOption);
@@ -59,7 +64,10 @@ export default function Project() {
   return (
     <AuthGateway>
       <StyledProjectCover>
-        <StyledProjectTitle $isActive={selectedOption}>
+        <StyledProjectTitle
+          $isActive={selectedOption}
+          onTransitionEnd={() => setTextTransitionTrigger(true)}
+        >
           {selectedOption && (
             <SignatureText {...PROJECT_HOME_TITLE_DATA[selectedOption]} />
           )}
@@ -72,6 +80,7 @@ export default function Project() {
                   key={index}
                   title={title}
                   logo={logo}
+                  textTransitionTrigger={textTransitionTrigger}
                   optionProps={{
                     ...buttonProps,
                     props: {

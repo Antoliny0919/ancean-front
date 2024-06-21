@@ -48,9 +48,9 @@ export const PROJECT_HOME_TITLE_DATA = {
   'create-project': {
     children: '새로운 프로젝트 생성',
     colorHSL: {
-      hue: 195,
-      saturation: 59,
-      lightness: 50,
+      hue: 204,
+      saturation: 74,
+      lightness: 46,
     },
   },
   'add-release': {

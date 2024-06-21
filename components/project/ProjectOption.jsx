@@ -51,7 +51,12 @@ const StyledProjectButton = styled.div`
   }
 `;
 
-export default function ProjectOption({ logo, title, optionProps = {} }) {
+export default function ProjectOption({
+  logo,
+  title,
+  textTransitionTrigger,
+  optionProps = {},
+}) {
   const activeOption = useSelector(({ project }) => project.selectedOption);
 
   const buttonState =
@@ -69,7 +74,7 @@ export default function ProjectOption({ logo, title, optionProps = {} }) {
               <p>{title}</p>
             </OceanWaveButton>
           ) : (
-            <ProjectOptionForm />
+            <ProjectOptionForm textTransitionTrigger={textTransitionTrigger} />
           )}
         </StyledProjectButton>
       )}

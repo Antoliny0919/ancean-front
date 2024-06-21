@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import LabelSlideInput from '../input/LabelSlideInput';
 import SimpleTextarea from '../input/SimpleTextarea';
 import { changeInputValue } from './modules/project';
+import BoxDateInput from '../input/BoxDateInput';
 import { CREATE_OPTION_INPUT_DATA, CREATE_OPTION_TEXTAREA_DATA } from './data';
 
 export default function ProjectCreateOption() {
@@ -51,6 +52,7 @@ export default function ProjectCreateOption() {
         );
       })}
       <SimpleTextarea {...descriptionData} />
+      <BoxDateInput />
     </>
   );
 }
